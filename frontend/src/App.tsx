@@ -70,7 +70,7 @@ class App extends Component<Props, State> {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
-            bezKoder
+            zapiszTo
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -102,6 +102,14 @@ class App extends Component<Props, State> {
                 </Link>
               </li>
             )}
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/zapisz"} className="nav-link">
+                  zapiszTo
+                </Link>
+              </li>
+            )}
+
           </div>
 
           {currentUser ? (
@@ -144,6 +152,7 @@ class App extends Component<Props, State> {
             <Route path="/user" element={<BoardUser />} />
             <Route path="/mod" element={<BoardModerator />} />
             <Route path="/admin" element={<BoardAdmin />} />
+            <Route path="/zapisz" element={<Home />} />
           </Routes>
         </div>
 
