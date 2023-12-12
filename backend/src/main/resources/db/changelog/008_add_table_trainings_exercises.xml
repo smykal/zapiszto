@@ -1,0 +1,37 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="createTable-trainings_exercises" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="trainings_exercises" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="trainings_exercises">
+            <column name="training_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="exercises_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat" type="INT"/>
+            <column name="load" type="DECIMAL(5,2)"/>
+            <column name="notes" type="varchar(200)"/>
+        </createTable>
+        <addPrimaryKey tableName="trainings_exercises"
+                       columnNames="training_id, exercises_id"
+        />
+        <addForeignKeyConstraint baseTableName="trainings_exercises"
+                                 baseColumnNames="training_id"
+                                 constraintName="fk_trainings_exercises_training_id"
+                                 referencedTableName="trainings"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="trainings_exercises"
+                                 baseColumnNames="exercises_id"
+                                 constraintName="fk_trainings_exercises_exercises_id"
+                                 referencedTableName="exercises"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

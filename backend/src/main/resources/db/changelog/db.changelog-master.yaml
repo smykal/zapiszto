@@ -5,3 +5,13 @@ databaseChangeLog:
       file: db/changelog/002_add_table_roles.xml
   - include:
       file: db/changelog/003_add_table_user_roles.xml
+  - include:
+      file: db/changelog/004_add_table_dict_category.xml
+  - include:
+      file: db/changelog/005_add_table_dict_muscle_group.xml
+  - include:
+      file: db/changelog/006_add_table_trainings.xml
+  - include:
+      file: db/changelog/007_add_table_exercises.xml
+  - include:
+      file: db/changelog/008_add_table_trainings_exercises.xml

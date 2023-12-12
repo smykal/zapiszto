@@ -1,0 +1,41 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="createTable-exercises" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="exercises" schemaName="public"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="exercises">
+            <column name="id" type="serial4">
+                <constraints primaryKey="true"
+                             nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(150)"/>
+            <column name="category_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="muscle_group_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="exercises"
+                                 baseColumnNames="category_id"
+                                 constraintName="fk_category_id"
+                                 referencedTableName="dict_category"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="exercises"
+                                 baseColumnNames="muscle_group_id"
+                                 constraintName="fk_muscle_group_id"
+                                 referencedTableName="dict_muscle_group"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

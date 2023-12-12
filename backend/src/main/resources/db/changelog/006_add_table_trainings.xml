@@ -1,0 +1,34 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="createTable-trainings" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="trainings" schemaName="public"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="trainings">
+            <column name="id" type="serial4">
+                <constraints primaryKey="true"
+                             nullable="false"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="training_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="training_time" type="INT"/>
+            <column name="notes" type="TEXT"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="trainings"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
