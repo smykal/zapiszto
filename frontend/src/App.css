@@ -1,3 +1,15 @@
+body {
+  background-image: url('https://scontent.flcj1-1.fna.fbcdn.net/v/t39.30808-6/351365386_218040787707966_1946718467962882789_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=QfVoLCZmUsEAX9YONGQ&_nc_ht=scontent.flcj1-1.fna&oh=00_AfDOWT9SIfA6t8T-K0twEup8epWh2gJXWl3PqfOusJ0hug&oe=6564FDFE');
+  background-size: cover; /* Dodano, aby obraz zawsze wypełniał cały obszar tła */
+  background-repeat: no-repeat; /* Zapobiega powtarzaniu obrazu */
+  background-position: center center; /* Ustala pozycję obrazu na środku tła */
+
+  /* Dostosuj szerokość do 100% szerokości strony */
+  width: 100%;
+  /* Dostosuj wysokość do 100% wysokości strony (opcjonalne, jeśli chcesz, aby obraz również wypełniał całą wysokość strony) */
+  height: 100vh;
+}
+
 label {
   display: block;
   margin-top: 10px;
@@ -19,6 +31,9 @@ label {
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.container {
+  background-color: #f7f7f7;
 }
 
 .profile-img-card {

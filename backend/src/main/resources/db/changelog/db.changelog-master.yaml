@@ -15,3 +15,5 @@ databaseChangeLog:
       file: db/changelog/007_add_table_exercises.xml
   - include:
       file: db/changelog/008_add_table_trainings_exercises.xml
+  - include:
+      file: db/changelog/009_add_data_to_user_roles.xml

@@ -6,13 +6,14 @@ import "./App.css";
 import AuthService from "./services/auth.service";
 import IUser from './types/user.type';
 
-import Login from "./components/login.component";
-import Register from "./components/register.component";
-import Home from "./components/home.component";
-import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardModerator from "./components/board-moderator.component";
-import BoardAdmin from "./components/board-admin.component";
+import Login from "./components/login/login.component";
+import Register from "./components/register/register.component";
+import Home from "./components/home/home.component";
+import Profile from "./components/profile/profile.component";
+import BoardUser from "./components/board/board-user.component";
+import BoardModerator from "./components/board/board-moderator.component";
+import BoardAdmin from "./components/board/board-admin.component";
+import Zapisz from "./components/zapiszto";
 
 import EventBus from "./common/EventBus";
 
@@ -152,7 +153,7 @@ class App extends Component<Props, State> {
             <Route path="/user" element={<BoardUser />} />
             <Route path="/mod" element={<BoardModerator />} />
             <Route path="/admin" element={<BoardAdmin />} />
-            <Route path="/zapisz" element={<Home />} />
+            <Route path="/zapisz" element={<Zapisz />} />
           </Routes>
         </div>
 

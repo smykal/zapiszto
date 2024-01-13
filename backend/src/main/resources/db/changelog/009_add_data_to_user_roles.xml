@@ -1,0 +1,27 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="add data to user roles - USER" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM roles WHERE name = 'ROLE_USER'</sqlCheck>
+        </preConditions>
+        <sql>INSERT INTO roles(name) VALUES('ROLE_USER');</sql>
+    </changeSet>
+
+    <changeSet id="add data to user roles - MODERATOR" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM roles WHERE name = 'ROLE_MODERATOR'</sqlCheck>
+        </preConditions>
+        <sql>INSERT INTO roles(name) VALUES('ROLE_MODERATOR');</sql>
+    </changeSet>
+
+    <changeSet id="add data to user roles - ADMIN" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM roles WHERE name = 'ROLE_ADMIN'</sqlCheck>
+        </preConditions>
+        <sql>INSERT INTO roles(name) VALUES('ROLE_ADMIN');</sql>
+    </changeSet>
+
+</databaseChangeLog>
