@@ -44,9 +44,8 @@ export default class BoardUser extends Component<Props, State> {
         }
       }
     );
-
-    //   UserService.getUserBoardTestGet()
-      Service.getTestData()
+Service.getActualBodyParams()
+      //Service.getTestData()
       .then(
         (response) => {
             this.setState({

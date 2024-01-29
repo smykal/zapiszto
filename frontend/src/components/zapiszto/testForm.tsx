@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Formik, Field, Form} from "formik";
+import { Formik, Field, Form, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import ZapiszToService from '../../services/zapiszto'
 import AuthService from "../../services/auth.service";
@@ -9,7 +9,8 @@ type Props = {};
 type State = {
   field_1: string,
   field_2: string,
-  currentUserId: number
+  currentUserId: number;
+  bodyParameters: { id: string; name: string }[];
 };
 
 export default class TestForm extends Component<Props, State> {
@@ -22,7 +23,8 @@ export default class TestForm extends Component<Props, State> {
     this.state = {
       field_1: '',
       field_2: '',
-      currentUserId: 99
+      currentUserId: 99,
+      bodyParameters: []
     };
   }
 
@@ -33,6 +35,13 @@ export default class TestForm extends Component<Props, State> {
         currentUserId: currentUser.id,
       });
     }
+    ZapiszToService.getDictBodyParams().then(
+      response => {
+        this.setState({
+          bodyParameters: response.data
+        })
+      }
+    )
   }
 
   componentWillUnmount() {
@@ -41,8 +50,8 @@ export default class TestForm extends Component<Props, State> {
 
   validationSchema() {
     return Yup.object().shape({
-      field_1: Yup.string().required("This field is required!"),
-      field_2: Yup.string().required("This field is required!"),
+      field_1: Yup.number().required("This field is required!"),
+      field_2: Yup.number().required("This field is required!"),
     });
   }
   
@@ -77,16 +86,24 @@ export default class TestForm extends Component<Props, State> {
             <Form>
               <div className="form-group">
                 <Field as="select" name="field_1">
-                  <option value="1">Chest</option>
-                  <option value="2">Waist</option>
-                  <option value="3">Hip</option>
-                  <option value="4">Weight</option>
+                  <option value="" disabled>
+                    Select attribute
+                  </option>
+                  {this.state.bodyParameters.map((param) => (
+                    <option key={param.id} value={param.id}>
+                      {param.name}
+                    </option>
+                  ))}
                 </Field>
+                <ErrorMessage name="field_1" component="div" className="error" />
+
               </div>
               
               <div className="form-group">
                 <label htmlFor="field_2">Kolumna 2</label>
                 <Field name="field_2" type="text" className="form-control" />
+                <ErrorMessage name="field_2" component="div" className="error" />
+
               </div>
 
               <div className="form-group">

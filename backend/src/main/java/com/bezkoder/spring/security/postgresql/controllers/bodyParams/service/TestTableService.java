@@ -1,6 +1,6 @@
 package com.bezkoder.spring.security.postgresql.controllers.testTable.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.testTable.dto.TestTableDto;
+import com.bezkoder.spring.security.postgresql.controllers.testTable.dto.BodyParametersDto;
 import com.bezkoder.spring.security.postgresql.controllers.testTable.serializer.TestTableSerializer;
 import com.bezkoder.spring.security.postgresql.repository.testTable.TestTableRepository;
 import java.util.List;
@@ -20,13 +20,18 @@ public class TestTableService {
   @Autowired
   private TestTableSerializer testTableSerializer;
 
-  public void saveTestItem(TestTableDto testTableDto) {
-    var testTableEntity = testTableSerializer.getTestTableEntityFromDto(testTableDto);
+  public void saveTestItem(BodyParametersDto bodyParametersDto) {
+    var testTableEntity = testTableSerializer.getTestTableEntityFromDto(bodyParametersDto);
     testTableRepository.save(testTableEntity);
   }
 
-  public List<TestTableDto> getTestTable() {
-    var testTableEntityList = testTableRepository.getAll();
+  public List<BodyParametersDto> getTestTable(Long userId) {
+    var testTableEntityList = testTableRepository.getAllById(userId);
     return testTableSerializer.convertDtoListoToEntityList(testTableEntityList);
+  }
+
+  public List<BodyParametersDto> getActualBodyParameters(Long userId) {
+    var actualBodyParamsById = testTableRepository.getActualBodyParamsById(userId);
+    return testTableSerializer.convertDtoListoToEntityList(actualBodyParamsById);
   }
 }

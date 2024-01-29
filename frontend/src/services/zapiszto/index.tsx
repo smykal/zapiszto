@@ -8,9 +8,20 @@ const API_URL = 'http://localhost:8080/v1/';
 
 class ZapiszToService {
 
+  getDictBodyParams() {
+    return axios.get(API_URL + 'dictBodyParams', { headers: authHeader() });
+  }
+
+  getActualBodyParams() {
+    return axios.get(API_URL + 'actual_body_params', { headers: authHeader() });
+  }
+
   getTestData() {
     return axios.get(API_URL + 'test_get', { headers: authHeader() });
   }
+
+  
+
   postTestData(field_1 : string, field_2: string, userId: number) {
       const test_data = {
         kolumna_1: field_1,

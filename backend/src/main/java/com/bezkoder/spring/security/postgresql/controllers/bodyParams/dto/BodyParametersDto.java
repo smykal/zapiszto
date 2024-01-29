@@ -11,7 +11,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TestTableDto {
+public class BodyParametersDto {
   private String kolumna_1;
   private String kolumna_2;
+  private int userId;
 }

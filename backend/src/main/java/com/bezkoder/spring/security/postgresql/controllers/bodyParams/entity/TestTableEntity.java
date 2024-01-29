@@ -31,4 +31,7 @@ public class TestTableEntity {
 
   @Column(name = "kolumna_2")
   private String kolumna_2;
+
+  @Column(name = "user_id")
+  private int userId;
 }
