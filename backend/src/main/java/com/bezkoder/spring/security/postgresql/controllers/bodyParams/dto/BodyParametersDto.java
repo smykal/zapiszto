@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.testTable.dto;
+package com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

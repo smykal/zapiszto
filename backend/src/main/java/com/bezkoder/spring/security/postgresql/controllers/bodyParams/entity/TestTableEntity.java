@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.testTable.entity;
+package com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,7 +1,7 @@
-package com.bezkoder.spring.security.postgresql.controllers.testTable.serializer;
+package com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer;
 
-import com.bezkoder.spring.security.postgresql.controllers.testTable.dto.BodyParametersDto;
-import com.bezkoder.spring.security.postgresql.controllers.testTable.entity.TestTableEntity;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParametersDto;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.TestTableEntity;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;

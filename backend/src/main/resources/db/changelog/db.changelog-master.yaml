@@ -17,3 +17,9 @@ databaseChangeLog:
       file: db/changelog/008_add_table_trainings_exercises.xml
   - include:
       file: db/changelog/009_add_data_to_user_roles.xml
+  - include:
+      file: db/changelog/010_add_table_dict_body_params.xml
+  - include:
+      file: db/changelog/011_add_data_to_dict_body_params.xml
+  - include:
+      file: db/changelog/012_add_data_to_dict_body_params.xml

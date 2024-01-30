@@ -11,7 +11,7 @@
         </preConditions>
 
         <createTable tableName="dict_body_params">
-            <column name="id" type="bigserial">
+            <column name="id" type="serial4">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(20)">

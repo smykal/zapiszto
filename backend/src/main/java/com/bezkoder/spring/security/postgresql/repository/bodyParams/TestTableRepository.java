@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.repository.testTable;
+package com.bezkoder.spring.security.postgresql.repository.bodyParams;
 
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.TestTableEntity;
 import java.util.List;

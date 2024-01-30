@@ -1,0 +1,32 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="insertData-dict_body_params" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="dict_body_params" schemaName="public"/>
+        </preConditions>
+
+        <insert tableName="dict_body_params">
+            <column name="name" value="Chest"/>
+            <column name="description" value="Description for Chest"/>
+        </insert>
+
+        <insert tableName="dict_body_params">
+            <column name="name" value="Waist"/>
+            <column name="description" value="Description for Waist"/>
+        </insert>
+
+        <insert tableName="dict_body_params">
+            <column name="name" value="Hip"/>
+            <column name="description" value="Description for Hip"/>
+        </insert>
+
+        <insert tableName="dict_body_params">
+            <column name="name" value="Weight"/>
+            <column name="description" value="Description for Weight"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
