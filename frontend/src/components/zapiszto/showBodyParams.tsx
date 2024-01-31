@@ -35,12 +35,19 @@ export default class ShowBodyParams extends Component<Props, State> {
             )
     }
     render() {
+        const listItemStyle = {
+            marginBottom: "10px",
+            padding: "10px",
+            border: "1px solid #ccc",
+            backgroundColor: "#f9f9f9",
+          };
+
         return (
             <div className="container">
                 <header className="jumbotron">
                     <ul>
                         {this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
-                            <li key={index}>
+                            <li key={index} style={listItemStyle}>
                                 <strong>Kolumna 1:</strong> {item.kolumna_1},{" "}
                                 <strong>Kolumna 2:</strong> {item.kolumna_2},{" "}
                                 <strong>userId:</strong> {item.userId}
