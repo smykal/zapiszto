@@ -1,7 +1,8 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParametersDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.service.TestTableService;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.service.BodyParamsService;
 import com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -22,39 +23,37 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
-public class TestTableController {
+public class BodyParamsController {
 
   @Autowired
-  private TestTableService testTableService;
+  private BodyParamsService bodyParamsService;
 
   @PostMapping("/test_post")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> saveTestItem(
-      @RequestBody BodyParametersDto bodyParametersDto
+      @RequestBody BodyParamsDto bodyParamsDto
       ) {
-    testTableService.saveTestItem(bodyParametersDto);
+    bodyParamsService.saveTestItem(bodyParamsDto);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   @GetMapping("/test_get")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public ResponseEntity<List<BodyParametersDto>> getTestTable() {
+  public ResponseEntity<List<BodyParamsDto>> getTestTable() {
     var userId = extractUserId();
     log.info("user co sie dobieral: {} ", userId);
-    var response = testTableService.getTestTable(userId);
+    var response = bodyParamsService.getTestTable(userId);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 
   @GetMapping("/actual_body_params")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public ResponseEntity<List<BodyParametersDto>> getActualBodyParams() {
+  public ResponseEntity<List<BodyParamsWithNameDto>> getActualBodyParams() {
     var userId = extractUserId();
     log.info("user co sie dobieral: {} ", userId);
-    var response = testTableService.getActualBodyParameters(userId);
+    var response = bodyParamsService.getActualBodyParametersWithName(userId);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
-
-
 
   private Long extractUserId() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

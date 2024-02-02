@@ -11,8 +11,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BodyParametersDto {
-  private String kolumna_1;
-  private String kolumna_2;
+public class BodyParamsDto {
+  private int dict_body_params_id;
+  private String value;
   private int userId;
 }

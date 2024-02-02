@@ -3,8 +3,8 @@ import Service from "../../services/zapiszto"
 
 
 type BodyParamsItem = {
-    kolumna_1: string;
-    kolumna_2: string;
+    dict_body_params_name: string;
+    value: string;
     userId: number;
   };
   
@@ -48,8 +48,8 @@ export default class ShowBodyParams extends Component<Props, State> {
                     <ul>
                         {this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
                             <li key={index} style={listItemStyle}>
-                                <strong>Kolumna 1:</strong> {item.kolumna_1},{" "}
-                                <strong>Kolumna 2:</strong> {item.kolumna_2},{" "}
+                                <strong>Kolumna 1:</strong> {item.dict_body_params_name},{" "}
+                                <strong>Kolumna 2:</strong> {item.value},{" "}
                                 <strong>userId:</strong> {item.userId}
                             </li>
                         ))}
