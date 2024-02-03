@@ -28,12 +28,12 @@ public class BodyParamsController {
   @Autowired
   private BodyParamsService bodyParamsService;
 
-  @PostMapping("/test_post")
+  @PostMapping("/add_body_param")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> saveTestItem(
       @RequestBody BodyParamsDto bodyParamsDto
       ) {
-    bodyParamsService.saveTestItem(bodyParamsDto);
+    bodyParamsService.saveBodyParam(bodyParamsDto);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 

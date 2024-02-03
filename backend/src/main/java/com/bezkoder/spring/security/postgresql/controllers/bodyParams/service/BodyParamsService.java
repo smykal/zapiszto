@@ -25,10 +25,10 @@ public class BodyParamsService {
   @Autowired
   private DictBodyParamsRepository dictBodyParamsRepository;
 
-  public void saveTestItem(BodyParamsDto bodyParamsDto) {
+  public void saveBodyParam(BodyParamsDto bodyParamsDto) {
     var dictBodyParamEntity = dictBodyParamsRepository.getDictBodyParamById(bodyParamsDto.getDict_body_params_id());
-    var testTableEntity = bodyParamsSerializer.getTestTableEntityFromDto(bodyParamsDto, dictBodyParamEntity);
-    testTableRepository.save(testTableEntity);
+    var bodyParamEntity = bodyParamsSerializer.getTestTableEntityFromDto(bodyParamsDto, dictBodyParamEntity);
+    testTableRepository.save(bodyParamEntity);
   }
 
   public List<BodyParamsDto> getTestTable(Long userId) {
