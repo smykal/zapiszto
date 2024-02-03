@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="insertData-dict_body_params" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="dict_body_params" schemaName="public"/>
+        </preConditions>
+
+        <insert tableName="dict_body_params">
+            <column name="name" value="Height"/>
+            <column name="description" value="Description for Height"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

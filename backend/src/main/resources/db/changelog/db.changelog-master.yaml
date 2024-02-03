@@ -23,3 +23,7 @@ databaseChangeLog:
       file: db/changelog/011_add_data_to_dict_body_params.xml
   - include:
       file: db/changelog/012_add_data_to_dict_body_params.xml
+  - include:
+      file: db/changelog/013_add_data_to_dict_body_params.xml
+  - include:
+      file: db/changelog/014_add_table_body_params.xml

@@ -1,0 +1,33 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="createTable-body_params" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="body_params" schemaName="public"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="body_params">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="dict_body_params_id" type="int"/>
+            <column name="value" type="varchar(255)"/>
+            <column name="user_id" type="int"/>
+            <column name="insert_date" type="timestamp" defaultValueDate="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="body_params"
+                baseColumnNames="dict_body_params_id"
+                constraintName="fk_body_params_dict_body_params"
+                referencedTableName="dict_body_params"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+</databaseChangeLog>
