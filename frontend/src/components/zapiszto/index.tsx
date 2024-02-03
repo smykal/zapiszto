@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import TestForm from '../../components/zapiszto/testForm'
+import TestForm from './putBodyParam'
 import ShowBodyParams from "./showBodyParams";
 
 type Props = {};

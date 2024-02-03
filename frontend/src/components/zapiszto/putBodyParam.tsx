@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Formik, Field, Form, ErrorMessage} from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import ZapiszToService from '../../services/zapiszto'
 import AuthService from "../../services/auth.service";
@@ -19,7 +19,7 @@ export default class TestForm extends Component<Props, State> {
     this.handlePost = this.handlePost.bind(this);
 
 
-    
+
     this.state = {
       field_1: '',
       field_2: '',
@@ -54,37 +54,36 @@ export default class TestForm extends Component<Props, State> {
       field_2: Yup.number().required("This field is required!"),
     });
   }
-  
+
 
   handlePost(formValue: { field_1: string; field_2: string }) {
     const { field_1, field_2 } = formValue;
-    ZapiszToService.postTestData(
-      field_1, 
-      field_2, 
+    ZapiszToService.postBodyParam(
+      field_1,
+      field_2,
       this.state.currentUserId
     )
-    
-      window.location.reload();
+
+    window.location.reload();
   }
 
   render() {
 
     const initialValues = {
-        field_1: this.state.field_1,
-        field_2: this.state.field_2
+      field_1: this.state.field_1,
+      field_2: this.state.field_2
     };
 
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
-
-          <Formik
-            initialValues={initialValues}
-            validationSchema={this.validationSchema}
-            onSubmit={this.handlePost}
-          >
-            <Form>
-              <div className="form-group">
+      <div className="container">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={this.validationSchema}
+          onSubmit={this.handlePost}
+        >
+          <Form>
+            <div style={{ display: 'flex' }}>
+              <div style={{ flex: 1, marginRight: '10px' }}>
                 <Field as="select" name="field_1">
                   <option value="" disabled>
                     Select attribute
@@ -96,24 +95,20 @@ export default class TestForm extends Component<Props, State> {
                   ))}
                 </Field>
                 <ErrorMessage name="field_1" component="div" className="error" />
-
               </div>
-              
-              <div className="form-group">
-                <label htmlFor="field_2">Kolumna 2</label>
+              <div style={{ flex: 1, marginRight: '10px' }}>
+                <label htmlFor="field_2">Value</label>
                 <Field name="field_2" type="text" className="form-control" />
                 <ErrorMessage name="field_2" component="div" className="error" />
-
               </div>
-
-              <div className="form-group">
+              <div style={{ flex: 1 }}>
                 <button type="submit" className="btn btn-primary btn-block">
-                  <span>Wyślij</span>
+                  <span>Add</span>
                 </button>
               </div>
-            </Form>
-          </Formik>
-        </div>
+            </div>
+          </Form>
+        </Formik>
       </div>
     );
   }

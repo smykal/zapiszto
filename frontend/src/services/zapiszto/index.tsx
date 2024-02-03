@@ -1,10 +1,7 @@
 import axios from 'axios';
 import authHeader from '../auth-header';
-import TestForm from '../../components/zapiszto/testForm';
 
 const API_URL = 'http://localhost:8080/v1/';
-
-
 
 class ZapiszToService {
 
@@ -20,15 +17,13 @@ class ZapiszToService {
     return axios.get(API_URL + 'test_get', { headers: authHeader() });
   }
 
-  
-
-  postTestData(field_1 : string, field_2: string, userId: number) {
-      const test_data = {
-        kolumna_1: field_1,
-        kolumna_2: field_2,
-        userId: userId
-      };
-    return axios.post(API_URL + 'test_post', test_data, { headers: authHeader()  })
+  postBodyParam(field_1: string, field_2: string, userId: number) {
+    const test_data = {
+      dict_body_params_id: field_1,
+      value: field_2,
+      userId: userId
+    };
+    return axios.post(API_URL + 'add_body_param', test_data, { headers: authHeader() })
       .then(response => {
         console.log('Odpowiedź z serwera:', response.data);
       })
@@ -36,7 +31,5 @@ class ZapiszToService {
         console.error('Błąd podczas wysyłania zapytania:', error);
       });
   }
-
 }
-
 export default new ZapiszToService();

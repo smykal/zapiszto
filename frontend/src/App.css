@@ -45,3 +45,14 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+#bodyParams {
+            padding: "10px";
+            border: "1px solid #ccc";
+            background-color: #007bff;
+}
+ul li {
+  display: flex;
+  margin-bottom: 10px;
+  border-radius: 0.25rem
+}
