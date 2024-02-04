@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TestTableRepository extends JpaRepository<BodyParamsEntity, Integer> {
+public interface BodyParamsRepository extends JpaRepository<BodyParamsEntity, Integer> {
 
   @Query(nativeQuery = true, value = "SELECT * from body_params where user_id = :userId")
   List<BodyParamsEntity> getAllById(

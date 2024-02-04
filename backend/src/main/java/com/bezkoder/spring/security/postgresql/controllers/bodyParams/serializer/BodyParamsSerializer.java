@@ -1,9 +1,11 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer;
 
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
 import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.entity.DictBodyParamsEntity;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -46,5 +48,17 @@ public class BodyParamsSerializer {
             .build())
         .collect(Collectors.toList());
   }
+
+  public List<BodyParamsWithNameAndDateDto> convert(List<BodyParamsEntity> bodyParamsEntityList) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    return bodyParamsEntityList.stream()
+        .map(bodyParamsEntity -> BodyParamsWithNameAndDateDto
+            .builder()
+            .dict_body_params_name(bodyParamsEntity.getDictBodyParams().getName())
+            .value(Integer.parseInt(bodyParamsEntity.getValue()))
+            .insert_date(bodyParamsEntity.getInsert_date())
+            .build())
+        .collect(Collectors.toList());  }
 
 }

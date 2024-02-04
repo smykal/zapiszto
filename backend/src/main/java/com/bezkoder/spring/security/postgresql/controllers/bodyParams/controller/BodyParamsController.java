@@ -1,6 +1,7 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.controller;
 
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.service.BodyParamsService;
 import com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl;
@@ -37,12 +38,12 @@ public class BodyParamsController {
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
-  @GetMapping("/test_get")
+  @GetMapping("/all_body_params")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public ResponseEntity<List<BodyParamsDto>> getTestTable() {
+  public ResponseEntity<List<BodyParamsWithNameAndDateDto>> getTestTable() {
     var userId = extractUserId();
-    log.info("user co sie dobieral: {} ", userId);
-    var response = bodyParamsService.getTestTable(userId);
+    log.info("get all body parameters for user: {} ", userId);
+    var response = bodyParamsService.getAllBodyParameters(userId);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 

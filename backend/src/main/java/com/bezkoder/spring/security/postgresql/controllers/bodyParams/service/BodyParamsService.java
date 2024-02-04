@@ -1,9 +1,10 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.service;
 
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer.BodyParamsSerializer;
-import com.bezkoder.spring.security.postgresql.repository.bodyParams.TestTableRepository;
+import com.bezkoder.spring.security.postgresql.repository.bodyParams.BodyParamsRepository;
 import com.bezkoder.spring.security.postgresql.repository.dictBodyParams.DictBodyParamsRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class BodyParamsService {
 
   @Autowired
-  private TestTableRepository testTableRepository;
+  private BodyParamsRepository bodyParamsRepository;
 
   @Autowired
   private BodyParamsSerializer bodyParamsSerializer;
@@ -28,21 +29,16 @@ public class BodyParamsService {
   public void saveBodyParam(BodyParamsDto bodyParamsDto) {
     var dictBodyParamEntity = dictBodyParamsRepository.getDictBodyParamById(bodyParamsDto.getDict_body_params_id());
     var bodyParamEntity = bodyParamsSerializer.getTestTableEntityFromDto(bodyParamsDto, dictBodyParamEntity);
-    testTableRepository.save(bodyParamEntity);
+    bodyParamsRepository.save(bodyParamEntity);
   }
 
-  public List<BodyParamsDto> getTestTable(Long userId) {
-    var testTableEntityList = testTableRepository.getAllById(userId);
-    return bodyParamsSerializer.convertDtoListoToEntityList(testTableEntityList);
-  }
-
-  public List<BodyParamsDto> getActualBodyParameters(Long userId) {
-    var actualBodyParamsById = testTableRepository.getActualBodyParamsById(userId);
-    return bodyParamsSerializer.convertDtoListoToEntityList(actualBodyParamsById);
+  public List<BodyParamsWithNameAndDateDto> getAllBodyParameters(Long userId) {
+    var allBodyParams = bodyParamsRepository.getAllById(userId);
+    return bodyParamsSerializer.convert(allBodyParams);
   }
 
   public List<BodyParamsWithNameDto> getActualBodyParametersWithName(Long userId) {
-    var actualBodyParamsById = testTableRepository.getActualBodyParamsById(userId);
+    var actualBodyParamsById = bodyParamsRepository.getActualBodyParamsById(userId);
     return bodyParamsSerializer.convertEntityListToDtoWithParamName(actualBodyParamsById);
   }
 }

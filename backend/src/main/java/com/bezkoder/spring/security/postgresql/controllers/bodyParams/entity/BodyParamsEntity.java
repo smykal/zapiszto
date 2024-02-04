@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,4 +39,7 @@ public class BodyParamsEntity {
 
   @Column(name = "user_id")
   private int userId;
+
+  @Column(name = "insert_date")
+  private ZonedDateTime insert_date;
 }
