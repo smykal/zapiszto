@@ -18,15 +18,12 @@ export default class BodyParams extends Component<Props, State> {
           <div className="sa">
             <ShowBodyParams />
           </div>
-          <div className="sa">
+          <div className="sa1">
             <PutBodyParam />
           </div>
-          <div className="sa">
+          <div className="sa2">
             <ShowDiagram />
           </div>
-            
-      
-
       </div>
     );
   }

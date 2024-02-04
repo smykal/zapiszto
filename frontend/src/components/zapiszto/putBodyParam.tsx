@@ -18,8 +18,6 @@ export default class PutBodyParam extends Component<Props, State> {
     super(props);
     this.handlePost = this.handlePost.bind(this);
 
-
-
     this.state = {
       field_1: '',
       field_2: '',
