@@ -34,7 +34,9 @@ public class BodyParamsController {
   public ResponseEntity<String> saveTestItem(
       @RequestBody BodyParamsDto bodyParamsDto
       ) {
+    var userId = extractUserId();
     bodyParamsService.saveBodyParam(bodyParamsDto);
+    log.info("get all body parameters for user: {} ", userId);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
@@ -51,7 +53,7 @@ public class BodyParamsController {
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<BodyParamsWithNameDto>> getActualBodyParams() {
     var userId = extractUserId();
-    log.info("user co sie dobieral: {} ", userId);
+    log.info("get actual body params for user: {} ", userId);
     var response = bodyParamsService.getActualBodyParametersWithName(userId);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }

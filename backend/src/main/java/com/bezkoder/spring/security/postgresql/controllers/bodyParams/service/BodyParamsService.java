@@ -6,6 +6,7 @@ import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyPa
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer.BodyParamsSerializer;
 import com.bezkoder.spring.security.postgresql.repository.bodyParams.BodyParamsRepository;
 import com.bezkoder.spring.security.postgresql.repository.dictBodyParams.DictBodyParamsRepository;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ public class BodyParamsService {
   public void saveBodyParam(BodyParamsDto bodyParamsDto) {
     var dictBodyParamEntity = dictBodyParamsRepository.getDictBodyParamById(bodyParamsDto.getDict_body_params_id());
     var bodyParamEntity = bodyParamsSerializer.getTestTableEntityFromDto(bodyParamsDto, dictBodyParamEntity);
+    bodyParamEntity.setInsert_date(ZonedDateTime.now());
     bodyParamsRepository.save(bodyParamEntity);
   }
 
