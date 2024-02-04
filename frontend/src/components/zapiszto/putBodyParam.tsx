@@ -13,7 +13,7 @@ type State = {
   bodyParameters: { id: string; name: string }[];
 };
 
-export default class TestForm extends Component<Props, State> {
+export default class PutBodyParam extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.handlePost = this.handlePost.bind(this);

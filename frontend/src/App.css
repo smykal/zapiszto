@@ -56,3 +56,8 @@ ul li {
   margin-bottom: 10px;
   border-radius: 0.25rem
 }
+
+.sa {
+  height: 300px; /* Set a specific height or adjust as needed */
+  width: 100%;
+}

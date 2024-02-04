@@ -1,7 +1,8 @@
 import { Component } from "react";
 
-import TestForm from './putBodyParam'
+import PutBodyParam from './putBodyParam'
 import ShowBodyParams from "./showBodyParams";
+import ShowDiagram from "./showDiagram";
 
 type Props = {};
 type State = {};
@@ -18,8 +19,14 @@ export default class BodyParams extends Component<Props, State> {
             <ShowBodyParams />
           </div>
           <div className="sa">
-            <TestForm />
+            <PutBodyParam />
           </div>
+          <div className="sa">
+            <ShowDiagram />
+          </div>
+            
+      
+
       </div>
     );
   }

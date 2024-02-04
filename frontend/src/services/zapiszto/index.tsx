@@ -13,8 +13,8 @@ class ZapiszToService {
     return axios.get(API_URL + 'actual_body_params', { headers: authHeader() });
   }
 
-  getTestData() {
-    return axios.get(API_URL + 'test_get', { headers: authHeader() });
+  getAllBodyParams() {
+    return axios.get(API_URL + 'all_body_params', { headers: authHeader() });
   }
 
   postBodyParam(field_1: string, field_2: string, userId: number) {
@@ -32,4 +32,5 @@ class ZapiszToService {
       });
   }
 }
+
 export default new ZapiszToService();
