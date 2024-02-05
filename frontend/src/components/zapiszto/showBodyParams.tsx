@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Service from "../../services/zapiszto";
 import Collapsible from 'react-collapsible';
-import ShowShow from "./ShowShow";
+import ShowDiagram from "./showDiagramOne";
+import BodyParams from ".";
 
 type BodyParamsItem = {
     dict_body_params_name: string;
@@ -48,7 +49,10 @@ export default class ShowBodyParams extends Component<Props, State> {
         return this.state.expandedItemIndex === index;
     }
 
+    
+
     render() {
+        const allBodyParams = this.state.bodyParams;
         return (
             <div className="container">
                 <header className="jumbotron">
@@ -72,7 +76,7 @@ export default class ShowBodyParams extends Component<Props, State> {
                                         </div>
                                     }
                                 >
-                                    <ShowShow parameter={item.dict_body_params_name} />
+                                    <ShowDiagram param_name={item.dict_body_params_name}></ShowDiagram>
                                 </Collapsible>
                             </li>
                         ))}

@@ -80,9 +80,9 @@ export default class PutBodyParam extends Component<Props, State> {
           onSubmit={this.handlePost}
         >
           <Form>
-            <div style={{ display: 'flex' }}>
-              <div style={{ flex: 1, marginRight: '10px' }}>
-                <Field as="select" name="field_1">
+            <div style={{ display: 'flex', marginBottom: '20px' }}>
+              <div style={{ marginBottom: '10px', marginRight: '10px' }}>
+                <Field as="select" name="field_1" className="form-control">
                   <option value="" disabled>
                     Select attribute
                   </option>
@@ -95,7 +95,6 @@ export default class PutBodyParam extends Component<Props, State> {
                 <ErrorMessage name="field_1" component="div" className="error" />
               </div>
               <div style={{ flex: 1, marginRight: '10px' }}>
-                <label htmlFor="field_2">Value</label>
                 <Field name="field_2" type="text" className="form-control" />
                 <ErrorMessage name="field_2" component="div" className="error" />
               </div>

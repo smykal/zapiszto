@@ -2,7 +2,7 @@ import { Component } from "react";
 
 import PutBodyParam from './putBodyParam'
 import ShowBodyParams from "./showBodyParams";
-import ShowDiagram from "./showDiagram";
+import ShowDiagram from "./showDiagramAll";
 
 type Props = {};
 type State = {};

@@ -50,7 +50,6 @@ export default class ShowDiagram extends Component<Props, State> {
       }
       groupedData[item.dict_body_params_name].push(item);
     });
-    console.log("Grupowane dane:", groupedData);
 
     // Przygotowanie serii danych dla wykresu
     const chartLines = Object.keys(groupedData).map((paramName) => (

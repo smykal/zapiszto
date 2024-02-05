@@ -49,7 +49,8 @@ label {
 #bodyParams {
             padding: "10px";
             border: "1px solid #ccc";
-            background-color: #007bff;
+            background-color: #c0c6cb;
+            border-color: #007bff;
 }
 ul li {
   display: flex;
@@ -68,6 +69,6 @@ ul li {
   width: 100%;
 }
 .lista {
-  height: 50px;
+  /* height: 50px; */
   width: 100%;
 }
