@@ -1,16 +1,13 @@
 import { Component } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import Service from "../../services/zapiszto"
+import Service from "../../services/bodyParams"
+import { BodyParamsItem } from '../../types/types';
 
-type BodyParamsItem = {
-  dict_body_params_name: string;
-  value: number;
-  insert_date: Date;
-};
 
 type Props = {};
 type State = {
-    bodyParams: BodyParamsItem[];
+  bodyParams: BodyParamsItem[];
+  uniqueDates: any,
 };
 
 export default class ShowDiagram extends Component<Props, State> {
@@ -18,7 +15,8 @@ export default class ShowDiagram extends Component<Props, State> {
     super(props);
 
     this.state = {
-        bodyParams: []
+      bodyParams: [],
+      uniqueDates: '',
     };
   }
 
@@ -30,9 +28,15 @@ export default class ShowDiagram extends Component<Props, State> {
           ...item,
           insert_date: new Date(item.insert_date).toISOString().split('T')[0],
         }));
-  
+
+        formattedData.sort((a: any, b: any) => new Date(a.insert_date).getTime() - new Date(b.insert_date).getTime());
+
+        const uniqueDates = Array.from(new Set(formattedData.map((item: BodyParamsItem) => item.insert_date)));
+
+
         this.setState({
           bodyParams: formattedData,
+          uniqueDates: uniqueDates,
         });
       },
       (error) => {
@@ -59,7 +63,7 @@ export default class ShowDiagram extends Component<Props, State> {
         dataKey="value"
         name={paramName}
         data={groupedData[paramName]}
-        stroke={`#${Math.floor(Math.random()*16777215).toString(16)}`} // losowy kolor dla każdej linii
+        stroke={`#${Math.floor(Math.random() * 16777215).toString(16)}`} // losowy kolor dla każdej linii
       />
     ));
 
@@ -77,11 +81,12 @@ export default class ShowDiagram extends Component<Props, State> {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis  
-                    dataKey="insert_date" 
-                   angle={-90} 
-                   textAnchor="end" 
-                   height={100} />
+          <XAxis
+            dataKey="insert_date"
+            angle={-90}
+            textAnchor="end"
+            height={100}
+          />
           <YAxis />
           <Tooltip />
           <Legend />

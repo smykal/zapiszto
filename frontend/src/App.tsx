@@ -13,7 +13,7 @@ import Profile from "./components/profile/profile.component";
 import BoardUser from "./components/board/board-user.component";
 import BoardModerator from "./components/board/board-moderator.component";
 import BoardAdmin from "./components/board/board-admin.component";
-import Zapisz from "./components/zapiszto";
+import BodyParams from "./components/bodyParams";
 
 import EventBus from "./common/EventBus";
 
@@ -106,7 +106,7 @@ class App extends Component<Props, State> {
             {currentUser && (
               <li className="nav-item">
                 <Link to={"/zapisz"} className="nav-link">
-                  zapiszTo
+                  Body Params
                 </Link>
               </li>
             )}
@@ -153,7 +153,7 @@ class App extends Component<Props, State> {
             <Route path="/user" element={<BoardUser />} />
             <Route path="/mod" element={<BoardModerator />} />
             <Route path="/admin" element={<BoardAdmin />} />
-            <Route path="/zapisz" element={<Zapisz />} />
+            <Route path="/zapisz" element={<BodyParams />} />
           </Routes>
         </div>
 

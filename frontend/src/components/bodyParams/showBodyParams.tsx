@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import Service from "../../services/zapiszto";
+import Service from "../../services/bodyParams";
 import Collapsible from 'react-collapsible';
 import ShowDiagram from "./showDiagramOne";
-import BodyParams from ".";
+import { BodyParamsItem } from '../../types/types';
 
-type BodyParamsItem = {
-    dict_body_params_name: string;
-    value: string;
-    userId: number;
-};
 
 type Props = {};
 type State = {
@@ -49,10 +44,7 @@ export default class ShowBodyParams extends Component<Props, State> {
         return this.state.expandedItemIndex === index;
     }
 
-    
-
     render() {
-        const allBodyParams = this.state.bodyParams;
         return (
             <div className="container">
                 <header className="jumbotron">
@@ -71,7 +63,7 @@ export default class ShowBodyParams extends Component<Props, State> {
                                             onClick={() => this.handleItemClick(index)}
                                         >
                                             <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                                {item.dict_body_params_name}:{item.value}
+                                                {item.dict_body_params_name}: {item.value}
                                             </span>
                                         </div>
                                     }

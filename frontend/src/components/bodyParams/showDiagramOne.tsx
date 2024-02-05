@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import Service from "../../services/zapiszto";
+import Service from "../../services/bodyParams";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-type BodyParamsItem = {
-    dict_body_params_name: string;
-    value: number;
-    insert_date: string;
-};
+import { BodyParamsItem } from '../../types/types';
 
 type Props = {
     param_name: string;
@@ -59,16 +54,28 @@ class DisplayBodyParams extends Component<Props, State> {
         }));
 
         return (
-                <ResponsiveContainer width='100%' height={200}>
-                    <LineChart data={chartData}>
-                        <CartesianGrid strokeDasharray="3 3" fill="#ffffff" />
-                        <XAxis dataKey="insert_date" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="value" stroke="#8884d8" />
-                    </LineChart>
-                </ResponsiveContainer>
+            <div style={{ display: 'flex' }}>
+                <div style={{ flex: '1' }}>
+                    <ResponsiveContainer width={300} height={200}>
+                        <LineChart data={chartData}>
+                            <CartesianGrid strokeDasharray="3 3" fill="#ffffff" />
+                            <XAxis dataKey="insert_date" angle={45} tick={{ display: 'none' }} />
+                            <YAxis type="number" domain={['chartData.values - 200', 'chartData.values + 200']} />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
+                <div style={{ flex: '1' }}>
+                    {filteredParams.map((item, index) => (
+                        <p key={index}>
+                            <strong>date: </strong> {item.insert_date}         
+                            <strong> value : </strong> {item.value}
+                        </p>
+                    ))}
+                </div>
+            </div>
         );
     }
 }
