@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="drop_tables" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="dict_category"/>
+                <tableExists tableName="dict_muscle_group"/>
+                <tableExists tableName="exercises"/>
+                <tableExists tableName="trainings"/>
+                <tableExists tableName="trainings_exercises"/>
+            </and>
+        </preConditions>
+
+        <dropTable cascadeConstraints="true" tableName="dict_category"/>
+        <dropTable cascadeConstraints="true" tableName="dict_muscle_group"/>
+        <dropTable cascadeConstraints="true" tableName="exercises"/>
+        <dropTable cascadeConstraints="true" tableName="trainings"/>
+        <dropTable cascadeConstraints="true" tableName="trainings_exercises"/>
+    </changeSet>
+</databaseChangeLog>
