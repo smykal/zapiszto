@@ -14,6 +14,7 @@ import BoardUser from "./components/board/board-user.component";
 import BoardModerator from "./components/board/board-moderator.component";
 import BoardAdmin from "./components/board/board-admin.component";
 import BodyParams from "./components/bodyParams";
+import Training from "./components/training";
 
 import EventBus from "./common/EventBus";
 
@@ -105,8 +106,15 @@ class App extends Component<Props, State> {
             )}
             {currentUser && (
               <li className="nav-item">
-                <Link to={"/zapisz"} className="nav-link">
+                <Link to={"/bodyParams"} className="nav-link">
                   Body Params
+                </Link>
+              </li>
+            )}
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/training"} className="nav-link">
+                  Training
                 </Link>
               </li>
             )}
@@ -153,7 +161,8 @@ class App extends Component<Props, State> {
             <Route path="/user" element={<BoardUser />} />
             <Route path="/mod" element={<BoardModerator />} />
             <Route path="/admin" element={<BoardAdmin />} />
-            <Route path="/zapisz" element={<BodyParams />} />
+            <Route path="/bodyParams" element={<BodyParams />} />
+            <Route path="/training" element={<Training />} />
           </Routes>
         </div>
 
