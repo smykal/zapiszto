@@ -29,3 +29,5 @@ databaseChangeLog:
       file: db/changelog/014_add_table_body_params.xml
   - include:
       file: db/changelog/015_drop_tables.xml
+  - include:
+      file: db/changelog/016_add_table_exercises_book.xml
