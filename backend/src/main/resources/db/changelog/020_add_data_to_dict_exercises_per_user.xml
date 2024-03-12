@@ -1,0 +1,73 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="insertData-dict_exercises_per_user" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="dict_exercises_per_user" schemaName="public"/>
+        </preConditions>
+        <sql>
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('przysiad ze sztangą', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('bulgarian split squad', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie na ławeczce hantlami', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('zginanie przedramion ze sztangą stojąc', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('zginanie przedramion na modlitewniku', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie na ławeczce sztangą', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie na ławce ukośnej sztangą', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('rozpiętki', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('unoszenie talerzy', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie hantli', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wzniosy ramion z hantlami', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('unoszenie ramion w przod ze sztangą', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('podciągnięcia uchwytem wąskim', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('ściąganie drążka z góry za kark', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('trap I raise', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('trap _ raise', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('ściąganie drążka do siebie siedząc', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie na ławeczce skośnej hantlami', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('Prostowanie przedramion w pionie ze sztangielką trzymaną oburącz', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie francuski stojąc', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie sztangi nad głowę', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('przenoszenie hantli zza głowę leżąc', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie francuskie leżąc', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyprosty na wyciągu górnym', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('brzuch na maszynie', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('maszyna dół pleców', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('maszyna nogi', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('opuszczanie nóg w leżeniu na plecach', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('podnoszenie przeciwnej ręki i nogi', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('Unoszenie tułowia w leżeniu na brzuchu', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('Unoszenie nóg w leżeniu na brzuchu', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('maszyna do pleców', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('unoszenie nog na maszynie ', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie na ławeczce skośnej sztangą', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('odwrotne rozpiętki na ławeczce skośnej', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('podciągnięcia nachwytem szerokim', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('przenoszenie hantli zza głowę leżąc 15''', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('Unoszenie tułowia w leżeniu na brzuchu + superman', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('łydki', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('rotowanie barków', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie na ławeczce skośnej hantlami z supinacją', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie francuskie stojąc oburącz', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('ściąganie drążka do klaty', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('rotowanie barków V', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie na ławeczce skośnej w dół sztangą', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('unoszenie ramion w przód z hantlami', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('rower z oparciem', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyprosty na wyciągu górnym linką', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wiosło maszyna nachwytem', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wiosło maszyna młotkowym', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('salsa', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('arnoldki', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wzniosy ramion w oparciu o laweczke', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('orbitrek', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('maszyna 4-rki', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciskanie hantlami na skośnej ławce ', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wyciąganie linki poziomo', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wiosło sztangą', 1);
+            INSERT INTO dict_exercises_per_user (name, user_id) VALUES ('wioślarz', 1);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
