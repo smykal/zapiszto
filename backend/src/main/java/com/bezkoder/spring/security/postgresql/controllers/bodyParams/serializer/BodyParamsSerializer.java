@@ -7,7 +7,6 @@ import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyPa
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
 import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.entity.DictBodyParamsEntity;
-import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -80,16 +79,13 @@ public class BodyParamsSerializer {
     return weight / (heightInMeters * heightInMeters);
   }
 
-  private String getBmiDescription(String value, int height){
+  private String getBmiDescription(String value, int height) {
     var bmi = calculateBmi(value, height);
-    if (bmi < 18.5) {
-      return BmiCategory.UNDERWEIGHT.getDescriptionPL();
-    } else if (bmi < 25) {
-      return BmiCategory.CORRECT_WEIGHT.getDescriptionPL();
-    } else if (bmi < 30) {
-      return BmiCategory.OVERWEIGHT.getDescriptionPL();
-    } else {
-      return BmiCategory.OBESITY.getDescriptionPL();
+    for (BmiCategory category : BmiCategory.values()) {
+      if (bmi >= category.getRange()[0] && bmi < category.getRange()[1]) {
+        return category.getDescriptionPL();
+      }
     }
+    return "Nieznany";
   }
 }
