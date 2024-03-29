@@ -1,10 +1,13 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer;
 
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BmiCategory;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyMassIndexDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
 import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.entity.DictBodyParamsEntity;
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,4 +64,32 @@ public class BodyParamsSerializer {
             .build())
         .collect(Collectors.toList());  }
 
+  public List<BodyMassIndexDto> convert(List<BodyParamsEntity> bodyParamsEntities, int height){
+    return bodyParamsEntities.stream()
+        .map(bodyParamsEntity -> BodyMassIndexDto.builder()
+            .date(bodyParamsEntity.getInsert_date())
+            .value(calculateBmi(bodyParamsEntity.getValue(), height))
+            .description(getBmiDescription(bodyParamsEntity.getValue(), height))
+            .build())
+        .collect(Collectors.toList());
+  }
+
+  private double calculateBmi(String value, int height) {
+    double weight = Double.parseDouble(value);
+    double heightInMeters = height / 100.0;
+    return weight / (heightInMeters * heightInMeters);
+  }
+
+  private String getBmiDescription(String value, int height){
+    var bmi = calculateBmi(value, height);
+    if (bmi < 18.5) {
+      return BmiCategory.UNDERWEIGHT.getDescriptionPL();
+    } else if (bmi < 25) {
+      return BmiCategory.CORRECT_WEIGHT.getDescriptionPL();
+    } else if (bmi < 30) {
+      return BmiCategory.OVERWEIGHT.getDescriptionPL();
+    } else {
+      return BmiCategory.OBESITY.getDescriptionPL();
+    }
+  }
 }

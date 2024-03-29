@@ -1,5 +1,6 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.service;
 
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyMassIndexDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
@@ -42,5 +43,12 @@ public class BodyParamsService {
   public List<BodyParamsWithNameDto> getActualBodyParametersWithName(Long userId) {
     var actualBodyParamsById = bodyParamsRepository.getActualBodyParamsById(userId);
     return bodyParamsSerializer.convertEntityListToDtoWithParamName(actualBodyParamsById);
+  }
+
+  public List<BodyMassIndexDto> getBodyMassIndex(Long userId){
+    var bodyHeight = bodyParamsRepository.getLastHeight(userId);
+    var bodyParamsEntities = bodyParamsRepository.getWeight(userId);
+    return bodyParamsSerializer.convert(bodyParamsEntities, bodyHeight);
+
   }
 }

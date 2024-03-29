@@ -1,6 +1,7 @@
 package com.bezkoder.spring.security.postgresql.repository.bodyParams;
 
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
+import java.time.ZonedDateTime;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,30 +16,51 @@ public interface BodyParamsRepository extends JpaRepository<BodyParamsEntity, In
       @Param("userId") Long userId
   );
 
-  @Query(nativeQuery = true, value = "WITH ranked_rows AS (\n" +
-      "  SELECT\n" +
-      "    bp.id,\n" +
-      "    dbp.id  as dict_body_params_id,\n" +
-      "    value ,\n" +
-      "    user_id,\n" +
-      "    insert_date,\n" +
-      "    ROW_NUMBER() OVER (PARTITION BY dict_body_params_id ORDER BY insert_date DESC) AS row_num\n" +
-      "  FROM\n" +
-      "    public.body_params bp\n" +
-      "    left join public.dict_body_params dbp on dbp.id = bp.dict_body_params_id\n" +
-      ")\n" +
-      "SELECT\n" +
-      "  id,\n" +
-      "  dict_body_params_id, \n" +
-      "  value,\n" +
-      "  user_id,\n" +
-      "  insert_date\n" +
-      "FROM\n" +
-      "  ranked_rows\n" +
-      "where 1=1\n" +
-      " and row_num = 1\n" +
-      " and user_id = :userId\n")
+  @Query(nativeQuery = true, value = """
+  WITH ranked_rows AS (
+    SELECT
+      bp.id,
+      dbp.id  as dict_body_params_id,
+      value ,
+      user_id,
+      insert_date,
+      ROW_NUMBER() OVER (PARTITION BY dict_body_params_id ORDER BY insert_date DESC) AS row_num
+    FROM
+      public.body_params bp
+      left join public.dict_body_params dbp on dbp.id = bp.dict_body_params_id
+  )
+  SELECT
+    id,
+    dict_body_params_id,
+    value,
+    user_id,
+    insert_date
+  FROM
+    ranked_rows
+  where 1=1
+   and row_num = 1
+   and user_id = :userId
+  """)
   List<BodyParamsEntity> getActualBodyParamsById(
       @Param("userId") Long userId
   );
+
+  @Query(nativeQuery = true, value = """
+      select bp.value from body_params bp
+            where bp.user_id = :userId
+            and bp.dict_body_params_id = 9
+            order by insert_date desc
+            limit 1
+      """)
+  int getLastHeight(
+      @Param("userId") Long userId
+  );
+
+  @Query(nativeQuery = true, value = """
+      select * from body_params bp
+      where bp.user_id = :userId
+      and bp.dict_body_params_id = 4
+      order by insert_date asc
+      """)
+  List<BodyParamsEntity> getWeight(@Param("userId") Long userId);
 }

@@ -1,5 +1,6 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.controller;
 
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyMassIndexDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
@@ -55,6 +56,15 @@ public class BodyParamsController {
     var userId = extractUserId();
     log.info("get actual body params for user: {} ", userId);
     var response = bodyParamsService.getActualBodyParametersWithName(userId);
+    return new ResponseEntity<>(response, HttpStatus.OK);
+  }
+
+  @GetMapping("/bmi")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<List<BodyMassIndexDto>> getBmi() {
+    var userId = extractUserId();
+    log.info("get bmi for user: {} ", userId);
+    var response = bodyParamsService.getBodyMassIndex(userId);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 
