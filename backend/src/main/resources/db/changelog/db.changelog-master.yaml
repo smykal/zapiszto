@@ -39,3 +39,9 @@ databaseChangeLog:
       file: db/changelog/019_add_table_dict_exercises_per_user.xml
   - include:
       file: db/changelog/020_add_data_to_dict_exercises_per_user.xml
+  - include:
+      file: db/changelog/021_add_table_dict_sex.xml
+  - include:
+      file: db/changelog/022_add_data_to_dict_sex.xml
+  - include:
+      file: db/changelog/023_add_table_user_sex.xml

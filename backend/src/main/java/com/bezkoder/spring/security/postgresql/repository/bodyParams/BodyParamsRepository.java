@@ -17,30 +17,30 @@ public interface BodyParamsRepository extends JpaRepository<BodyParamsEntity, In
   );
 
   @Query(nativeQuery = true, value = """
-  WITH ranked_rows AS (
-    SELECT
-      bp.id,
-      dbp.id  as dict_body_params_id,
-      value ,
-      user_id,
-      insert_date,
-      ROW_NUMBER() OVER (PARTITION BY dict_body_params_id ORDER BY insert_date DESC) AS row_num
-    FROM
-      public.body_params bp
-      left join public.dict_body_params dbp on dbp.id = bp.dict_body_params_id
-  )
-  SELECT
-    id,
-    dict_body_params_id,
-    value,
-    user_id,
-    insert_date
-  FROM
-    ranked_rows
-  where 1=1
-   and row_num = 1
-   and user_id = :userId
-  """)
+        WITH ranked_rows AS (
+          SELECT
+            bp.id,
+            dbp.id  as dict_body_params_id,
+            value ,
+            user_id,
+            insert_date,
+            ROW_NUMBER() OVER (PARTITION BY dict_body_params_id ORDER BY insert_date DESC) AS row_num
+          FROM
+            public.body_params bp
+            left join public.dict_body_params dbp on dbp.id = bp.dict_body_params_id
+        )
+        SELECT
+          id,
+          dict_body_params_id,
+          value,
+          user_id,
+          insert_date
+        FROM
+          ranked_rows
+        where 1=1
+         and row_num = 1
+         and user_id = :userId
+        """)
   List<BodyParamsEntity> getActualBodyParamsById(
       @Param("userId") Long userId
   );
