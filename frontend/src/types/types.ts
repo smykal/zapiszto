@@ -3,4 +3,11 @@ export type BodyParamsItem = {
     value: number;
     insert_date: string;
   };
+
+export type BmiItem = {
+  value: number;
+  date: string;
+  description: string;
+}
+
   

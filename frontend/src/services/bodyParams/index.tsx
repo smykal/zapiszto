@@ -17,6 +17,11 @@ class ZapiszToService {
     return axios.get(API_URL + 'all_body_params', { headers: authHeader() });
   }
 
+  getBmiParams() {
+    return axios.get(API_URL + 'bmi', { headers: authHeader() });
+
+  }
+
   postBodyParam(field_1: string, field_2: string, userId: number) {
     const test_data = {
       dict_body_params_id: field_1,
