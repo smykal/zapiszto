@@ -60,7 +60,7 @@ public interface BodyParamsRepository extends JpaRepository<BodyParamsEntity, In
       select * from body_params bp
       where bp.user_id = :userId
       and bp.dict_body_params_id = 4
-      order by insert_date asc
+      order by insert_date desc
       """)
   List<BodyParamsEntity> getWeight(@Param("userId") Long userId);
 }

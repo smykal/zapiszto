@@ -21,7 +21,6 @@ public class BodyParamsSerializer {
 
   public BodyParamsEntity getTestTableEntityFromDto(BodyParamsDto bodyParamsDto, DictBodyParamsEntity dictBodyParamsEntity) {
 
-
     return BodyParamsEntity.builder()
         .dictBodyParams(dictBodyParamsEntity)
         .value(bodyParamsDto.getValue())
