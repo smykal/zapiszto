@@ -36,6 +36,16 @@ class ZapiszToService {
         console.error('Błąd podczas wysyłania zapytania:', error);
       });
   }
+
+  postSex(gender: string) {
+    return axios.post(API_URL + 'postSex', { gender: gender }, { headers: authHeader() })
+      .then(response => {
+        console.log('Odpowiedź z serwera:', response.data);
+      })
+      .catch(error => {
+        console.error('Błąd podczas wysyłania zapytania:', error);
+      });
+  }
 }
 
 export default new ZapiszToService();

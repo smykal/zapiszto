@@ -3,6 +3,7 @@ import { Component } from "react";
 import PutBodyParam from './putBodyParam'
 import ShowBodyParams from "./showBodyParams";
 import ShowDiagram from "./showDiagramAll";
+import Gender from "./gender"
 
 
 type Props = {};
@@ -16,6 +17,9 @@ export default class BodyParams extends Component<Props, State> {
   render() {
     return (
       <div className="container">
+          <div className="sa">
+            <Gender />
+          </div>
           <div className="sa">
             <ShowBodyParams />
           </div>
