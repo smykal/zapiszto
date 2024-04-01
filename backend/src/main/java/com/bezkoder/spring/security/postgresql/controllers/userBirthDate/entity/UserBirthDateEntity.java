@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,5 +27,5 @@ public class UserBirthDateEntity {
   private long userId;
 
   @Column(name = "birthdate")
-  private Date birthdate;
+  private ZonedDateTime birthdate;
 }

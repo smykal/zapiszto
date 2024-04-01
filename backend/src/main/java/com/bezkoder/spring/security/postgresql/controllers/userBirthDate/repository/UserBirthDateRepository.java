@@ -1,6 +1,5 @@
 package com.bezkoder.spring.security.postgresql.controllers.userBirthDate.repository;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictSex.entity.DictSexEntity;
 import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.entity.UserBirthDateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

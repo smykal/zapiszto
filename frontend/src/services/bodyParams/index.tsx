@@ -24,7 +24,10 @@ class ZapiszToService {
 
   getGender() {
     return axios.get(API_URL + 'get_sex', { headers: authHeader() });
+  }
 
+  getAge() {
+    return axios.get(API_URL + 'get_age', { headers: authHeader() });
   }
 
   postBodyParam(field_1: string, field_2: string, userId: number) {
@@ -47,6 +50,19 @@ class ZapiszToService {
       gender: sex
     }
     return axios.post(API_URL + 'post_sex', gender, { headers: authHeader() })
+      .then(response => {
+        console.log('Odpowiedź z serwera:', response.data);
+      })
+      .catch(error => {
+        console.error('Błąd podczas wysyłania zapytania:', error);
+      });
+  }
+
+  postBirthDate(date: Date) {
+    const birthdate = {
+      birthDate: date
+    }
+    return axios.post(API_URL + 'post_birthdate', birthdate, { headers: authHeader() })
       .then(response => {
         console.log('Odpowiedź z serwera:', response.data);
       })
