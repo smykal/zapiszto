@@ -5,8 +5,12 @@ import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyPa
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer.BodyParamsSerializer;
+import com.bezkoder.spring.security.postgresql.controllers.dictSex.entity.DictSexEntity;
+import com.bezkoder.spring.security.postgresql.controllers.userSex.entity.UserSexEntity;
 import com.bezkoder.spring.security.postgresql.repository.bodyParams.BodyParamsRepository;
 import com.bezkoder.spring.security.postgresql.repository.dictBodyParams.DictBodyParamsRepository;
+import com.bezkoder.spring.security.postgresql.repository.dictSex.DictSexRepository;
+import com.bezkoder.spring.security.postgresql.repository.userSex.UserSexRepository;
 import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -27,6 +31,8 @@ public class BodyParamsService {
 
   @Autowired
   private DictBodyParamsRepository dictBodyParamsRepository;
+
+
 
   public void saveBodyParam(BodyParamsDto bodyParamsDto) {
     var dictBodyParamEntity = dictBodyParamsRepository.getDictBodyParamById(bodyParamsDto.getDict_body_params_id());
@@ -51,4 +57,6 @@ public class BodyParamsService {
     return bodyParamsSerializer.convert(bodyParamsEntities, bodyHeight);
 
   }
+
+
 }

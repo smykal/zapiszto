@@ -1,7 +1,6 @@
 package com.bezkoder.spring.security.postgresql.repository.bodyParams;
 
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
-import java.time.ZonedDateTime;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

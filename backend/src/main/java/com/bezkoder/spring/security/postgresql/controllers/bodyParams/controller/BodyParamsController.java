@@ -5,6 +5,7 @@ import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyPa
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.service.BodyParamsService;
+import com.bezkoder.spring.security.postgresql.controllers.userSex.service.UserSexService;
 import com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -29,17 +30,6 @@ public class BodyParamsController {
 
   @Autowired
   private BodyParamsService bodyParamsService;
-
-  @PostMapping("/add_body_param")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public ResponseEntity<String> saveTestItem(
-      @RequestBody BodyParamsDto bodyParamsDto
-      ) {
-    var userId = extractUserId();
-    bodyParamsService.saveBodyParam(bodyParamsDto);
-    log.info("get all body parameters for user: {} ", userId);
-    return new ResponseEntity<>(HttpStatus.CREATED);
-  }
 
   @GetMapping("/all_body_params")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
@@ -66,6 +56,17 @@ public class BodyParamsController {
     log.info("get bmi for user: {} ", userId);
     var response = bodyParamsService.getBodyMassIndex(userId);
     return new ResponseEntity<>(response, HttpStatus.OK);
+  }
+
+  @PostMapping("/add_body_param")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> saveTestItem(
+      @RequestBody BodyParamsDto bodyParamsDto
+  ) {
+    var userId = extractUserId();
+    bodyParamsService.saveBodyParam(bodyParamsDto);
+    log.info("post body parameters for user: {} ", userId);
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   private Long extractUserId() {
