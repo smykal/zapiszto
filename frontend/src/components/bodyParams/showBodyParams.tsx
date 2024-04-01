@@ -4,6 +4,7 @@ import Collapsible from 'react-collapsible';
 import ShowDiagram from "./showDiagramOne";
 import ShowBmi from "./showBmi";
 import Gender from "./gender"
+import Age from "./age"
 import { BodyParamsItem } from '../../types/types';
 
 
@@ -12,7 +13,8 @@ type State = {
     bodyParams: BodyParamsItem[];
     expandedItemIndex: number | null;
     bmiExpanded: boolean;
-    genderExponded: boolean;
+    genderExpanded: boolean;
+    ageExpanded: boolean;
 };
 
 export default class ShowBodyParams extends Component<Props, State> {
@@ -22,8 +24,9 @@ export default class ShowBodyParams extends Component<Props, State> {
         this.state = {
             bodyParams: [],
             expandedItemIndex: null,
-            bmiExpanded: false, // Dodanie stanu dla ShowBmi
-            genderExponded: false,
+            bmiExpanded: false,
+            genderExpanded: false,
+            ageExpanded: false,
         };
     }
 
@@ -52,13 +55,24 @@ export default class ShowBodyParams extends Component<Props, State> {
         }));
     }
 
+    handleGenderClick() {
+        this.setState((prevState) => ({
+            genderExpanded: !prevState.genderExpanded, // Odwrócenie stanu dla ShowBmi
+        }));
+    }
+    handleAgeClick() {
+        this.setState((prevState) => ({
+            ageExpanded: !prevState.ageExpanded, // Odwrócenie stanu dla ShowAge
+        }));
+    }
+
     isItemExpanded(index: number): boolean {
         return this.state.expandedItemIndex === index;
     }
 
     render() {
 
-        const { bmiExpanded } = this.state;
+        const { bmiExpanded, genderExpanded, ageExpanded } = this.state;
         return (
             <div className="container">
                 <header className="jumbotron">
@@ -73,16 +87,39 @@ export default class ShowBodyParams extends Component<Props, State> {
                                             flexDirection: 'column',
                                             marginBottom: '10px',
                                         }}
-                                        onClick={() => this.handleBmiClick()}
+                                        onClick={() => this.handleGenderClick()}
                                     >
                                         <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
                                             Gender
                                         </span>
                                     </div>
                                 }
-                                open={bmiExpanded} // Ustawienie czy jest rozwinięty czy nie
+                                open={genderExpanded} // Ustawienie czy jest rozwinięty czy nie
                             >
                                 <Gender />
+                            </Collapsible>
+                        </li>
+                        <li id="bodyParams">
+                            <Collapsible
+                                trigger={
+                                    <div
+                                        style={{
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            marginBottom: '10px',
+                                        }}
+                                        onClick={() => this.handleAgeClick()}
+                                    >
+                                        <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                            Age
+                                        </span>
+                                    </div>
+                                }
+                                open={ageExpanded} // Ustawienie czy jest rozwinięty czy nie
+                            >
+                                <Age />
+                                <p>sad</p>
                             </Collapsible>
                         </li>
                         {this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
@@ -130,11 +167,8 @@ export default class ShowBodyParams extends Component<Props, State> {
                                 <ShowBmi />
                             </Collapsible>
                         </li>
-                        
-
                     </ul>
                 </header>
-                <ShowBmi />
             </div>
         );
     }
