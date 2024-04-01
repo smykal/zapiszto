@@ -47,3 +47,5 @@ databaseChangeLog:
       file: db/changelog/023_add_table_user_sex.xml
   - include:
       file: db/changelog/024_add_table_user_birthdate.xml
+  - include:
+      file: db/changelog/025_modify_table_user_birthdate.xml
