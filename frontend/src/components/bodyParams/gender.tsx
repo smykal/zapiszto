@@ -1,51 +1,58 @@
 import React, { Component } from "react";
 import Service from "../../services/bodyParams";
+import PostGender from "./postGender";
 
 type Props = {};
 
 type State = {
-  gender: string;
+  gender: string | null;
+  loading: boolean;
 };
 
-export default class Gender extends Component<Props, State> {
+export default class GetGender extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      gender: "", // Stan początkowy - brak wybranej płci
+      gender: null,
+      loading: true
     };
-    this.handleGenderChange = this.handleGenderChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleGenderChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ gender: event.target.value });
+  componentDidMount() {
+    this.getGender();
   }
 
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const { gender } = this.state;
-    if (gender) {
-      Service.postSex(gender); // Wysyłanie wybranej płci do metody Service.putAge()
-    } else {
-      console.log("Nie wybrano płci.");
-    }
+  getGender() {
+    Service.getGender()
+      .then(response => {
+        const gender = response.data.gender;
+        this.setState({ gender, loading: false });
+      })
+      .catch(error => {
+        console.log("Błąd pobierania płci:", error);
+        this.setState({ loading: false }); // Ustawienie stanu ładowania na false w przypadku błędu
+
+      });
   }
 
   render() {
-    return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Wybierz płeć:
-            <select value={this.state.gender} onChange={this.handleGenderChange}>
-              <option value="">Wybierz...</option>
-              <option value="male">Mężczyzna</option>
-              <option value="female">Kobieta</option>
-            </select>
-          </label>
-          <button type="submit">Wyślij</button>
-        </form>
-      </div>
-    );
+    const { gender, loading } = this.state;
+
+    // Jeśli dane są nadal ładowane, wyświetl komunikat "Loading..."
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+
+    // Jeśli gender nie jest null, wyświetl go
+    if (gender !== null) {
+      return (
+        <div className="container">
+          <p>Gender: {gender}</p>
+        </div>
+      );
+    }
+
+    // Jeśli gender jest null, wyświetl komponent PostGender
+    return <PostGender />;
   }
 }

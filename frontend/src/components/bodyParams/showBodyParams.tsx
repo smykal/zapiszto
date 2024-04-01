@@ -3,6 +3,7 @@ import Service from "../../services/bodyParams";
 import Collapsible from 'react-collapsible';
 import ShowDiagram from "./showDiagramOne";
 import ShowBmi from "./showBmi";
+import Gender from "./gender"
 import { BodyParamsItem } from '../../types/types';
 
 
@@ -11,6 +12,7 @@ type State = {
     bodyParams: BodyParamsItem[];
     expandedItemIndex: number | null;
     bmiExpanded: boolean;
+    genderExponded: boolean;
 };
 
 export default class ShowBodyParams extends Component<Props, State> {
@@ -21,6 +23,7 @@ export default class ShowBodyParams extends Component<Props, State> {
             bodyParams: [],
             expandedItemIndex: null,
             bmiExpanded: false, // Dodanie stanu dla ShowBmi
+            genderExponded: false,
         };
     }
 
@@ -60,6 +63,28 @@ export default class ShowBodyParams extends Component<Props, State> {
             <div className="container">
                 <header className="jumbotron">
                     <ul>
+                    <li id="bodyParams">
+                            <Collapsible
+                                trigger={
+                                    <div
+                                        style={{
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            marginBottom: '10px',
+                                        }}
+                                        onClick={() => this.handleBmiClick()}
+                                    >
+                                        <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                            Gender
+                                        </span>
+                                    </div>
+                                }
+                                open={bmiExpanded} // Ustawienie czy jest rozwinięty czy nie
+                            >
+                                <Gender />
+                            </Collapsible>
+                        </li>
                         {this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
                             <li key={index} id="bodyParams">
                                 <Collapsible
@@ -105,6 +130,8 @@ export default class ShowBodyParams extends Component<Props, State> {
                                 <ShowBmi />
                             </Collapsible>
                         </li>
+                        
+
                     </ul>
                 </header>
                 <ShowBmi />

@@ -22,6 +22,11 @@ class ZapiszToService {
 
   }
 
+  getGender() {
+    return axios.get(API_URL + 'get_sex', { headers: authHeader() });
+
+  }
+
   postBodyParam(field_1: string, field_2: string, userId: number) {
     const test_data = {
       dict_body_params_id: field_1,
@@ -37,8 +42,11 @@ class ZapiszToService {
       });
   }
 
-  postSex(gender: string) {
-    return axios.post(API_URL + 'postSex', { gender: gender }, { headers: authHeader() })
+  postSex(sex: string) {
+    const gender = {
+      gender: sex
+    }
+    return axios.post(API_URL + 'post_sex', gender, { headers: authHeader() })
       .then(response => {
         console.log('Odpowiedź z serwera:', response.data);
       })
