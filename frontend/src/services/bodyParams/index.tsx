@@ -19,7 +19,6 @@ class ZapiszToService {
 
   getBmiParams() {
     return axios.get(API_URL + 'bmi', { headers: authHeader() });
-
   }
 
   getGender() {
@@ -28,6 +27,10 @@ class ZapiszToService {
 
   getAge() {
     return axios.get(API_URL + 'get_age', { headers: authHeader() });
+  }
+
+  getBmr() {
+    return axios.get(API_URL + 'get_bmr', { headers: authHeader() });
   }
 
   postBodyParam(field_1: string, field_2: string, userId: number) {

@@ -10,4 +10,11 @@ export type BmiItem = {
                         description: string;
 }
 
+export type BmrType = {
+                        userId: number;
+                        insert_date: string;
+                        bmr: number;
+                        category: string;
+}
+
   
