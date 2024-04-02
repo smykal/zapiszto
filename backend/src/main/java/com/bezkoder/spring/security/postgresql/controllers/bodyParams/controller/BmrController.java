@@ -31,8 +31,13 @@ public class BmrController {
       public ResponseEntity<List<BmrDto>> getTestTable() {
         var userId = extractUserId();
         log.info("get all body parameters for user: {} ", userId);
-        var response = bmrService.getBmrByUserId(userId);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        try {
+          var response = bmrService.getBmrByUserId(userId);
+          return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (NullPointerException e) {
+          return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }
+
       }
 
   private Long extractUserId() {

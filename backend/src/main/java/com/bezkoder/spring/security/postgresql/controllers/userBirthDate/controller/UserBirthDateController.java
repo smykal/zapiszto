@@ -37,7 +37,7 @@ public class UserBirthDateController {
           response,
           HttpStatus.OK
       );
-    }catch (NullPointerException e) {
+    } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
