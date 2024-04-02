@@ -5,8 +5,8 @@ import com.bezkoder.spring.security.postgresql.controllers.dictSex.entity.DictSe
 import com.bezkoder.spring.security.postgresql.controllers.userSex.dto.UserSexDto;
 import com.bezkoder.spring.security.postgresql.controllers.userSex.entity.UserSexEntity;
 import com.bezkoder.spring.security.postgresql.controllers.userSex.serializer.UserSexSerializer;
-import com.bezkoder.spring.security.postgresql.repository.dictSex.DictSexRepository;
-import com.bezkoder.spring.security.postgresql.repository.userSex.UserSexRepository;
+import com.bezkoder.spring.security.postgresql.controllers.dictSex.repository.DictSexRepository;
+import com.bezkoder.spring.security.postgresql.controllers.userSex.repository.UserSexRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

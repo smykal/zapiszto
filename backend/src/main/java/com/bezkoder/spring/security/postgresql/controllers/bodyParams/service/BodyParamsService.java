@@ -5,12 +5,8 @@ import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyPa
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer.BodyParamsSerializer;
-import com.bezkoder.spring.security.postgresql.controllers.dictSex.entity.DictSexEntity;
-import com.bezkoder.spring.security.postgresql.controllers.userSex.entity.UserSexEntity;
-import com.bezkoder.spring.security.postgresql.repository.bodyParams.BodyParamsRepository;
-import com.bezkoder.spring.security.postgresql.repository.dictBodyParams.DictBodyParamsRepository;
-import com.bezkoder.spring.security.postgresql.repository.dictSex.DictSexRepository;
-import com.bezkoder.spring.security.postgresql.repository.userSex.UserSexRepository;
+import com.bezkoder.spring.security.postgresql.controllers.bodyParams.repository.BodyParamsRepository;
+import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.repository.DictBodyParamsRepository;
 import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;

@@ -2,7 +2,7 @@ package com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.servi
 
 import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.dto.DictBodyParamsDto;
 import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.serializer.DictBodyParamsSerializer;
-import com.bezkoder.spring.security.postgresql.repository.dictBodyParams.DictBodyParamsRepository;
+import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.repository.DictBodyParamsRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
