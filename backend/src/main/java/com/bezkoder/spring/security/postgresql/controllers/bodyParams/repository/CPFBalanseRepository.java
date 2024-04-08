@@ -1,12 +1,13 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.repository;
 
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CPFBalanseRepository {
+public interface CPFBalanseRepository extends JpaRepository<BodyParamsEntity, Integer> {
 
   @Query(nativeQuery = true, value = """
       select *

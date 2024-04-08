@@ -1,6 +1,5 @@
 package com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto;
 
-import java.time.ZonedDateTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,9 +14,17 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BmrDto {
-  Long userId;
-  String insert_date;
-  int bmr;
-  String category;
+public class CPFDto {
+  String activity_level;
+  String tittle;
+  double kcalMin;
+  double kcalMax;
+  double carbohydrateMin;
+  double carbohydrateMax;
+  double proteinMin;
+  double proteinMax;
+  double fatMin;
+  double fatMax;
+
+
 }
