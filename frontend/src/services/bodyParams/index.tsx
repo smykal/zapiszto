@@ -33,6 +33,10 @@ class ZapiszToService {
     return axios.get(API_URL + 'get_bmr', { headers: authHeader() });
   }
 
+  getCpf() {
+    return axios.get(API_URL + 'cpf', {headers: authHeader() })
+  }
+
   postBodyParam(field_1: string, field_2: string, userId: number) {
     const test_data = {
       dict_body_params_id: field_1,

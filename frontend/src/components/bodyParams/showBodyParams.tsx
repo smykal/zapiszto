@@ -4,6 +4,7 @@ import Collapsible from 'react-collapsible';
 import ShowDiagram from "./showDiagramOne";
 import ShowBmi from "./showBmi";
 import ShowBmr from "./showBmr"
+import ShowCpf from "./showCpf"
 import Gender from "./gender"
 import Age from "./age"
 import { BodyParamsItem } from '../../types/types';
@@ -17,6 +18,7 @@ type State = {
     genderExpanded: boolean;
     ageExpanded: boolean;
     bmrExpanded: boolean;
+    cpfExpanded: boolean;
 };
 
 export default class ShowBodyParams extends Component<Props, State> {
@@ -30,6 +32,7 @@ export default class ShowBodyParams extends Component<Props, State> {
             genderExpanded: false,
             ageExpanded: false,
             bmrExpanded: false,
+            cpfExpanded: false,
         };
     }
 
@@ -76,13 +79,19 @@ export default class ShowBodyParams extends Component<Props, State> {
         }));
     }
 
+    handleCpfClick() {
+        this.setState((prevState) => ({
+            cpfExpanded: !prevState.cpfExpanded, // Odwrócenie stanu dla ShowCpf
+        }));
+    }
+
     isItemExpanded(index: number): boolean {
         return this.state.expandedItemIndex === index;
     }
 
     render() {
 
-        const {bmrExpanded, bmiExpanded, genderExpanded, ageExpanded } = this.state;
+        const {bmrExpanded, bmiExpanded, genderExpanded, ageExpanded, cpfExpanded } = this.state;
         return (
             <div className="container">
                 <header className="jumbotron">
@@ -175,6 +184,29 @@ export default class ShowBodyParams extends Component<Props, State> {
                                 <ShowBmr />
                             </Collapsible>
                         </li>
+                        <li id="bodyParams">
+                            <Collapsible
+                                trigger={
+                                    <div
+                                        style={{
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            marginBottom: '10px',
+                                        }}
+                                        onClick={() => this.handleCpfClick()}
+                                    >
+                                        <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                            CPF
+                                        </span>
+                                    </div>
+                                }
+                                open={cpfExpanded} // Ustawienie czy jest rozwinięty czy nie
+                            >
+                                <ShowCpf />
+                            </Collapsible>
+                        </li>
+
                         {this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
                             <li key={index} id="bodyParams">
                                 <Collapsible

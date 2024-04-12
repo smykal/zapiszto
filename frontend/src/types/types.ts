@@ -17,4 +17,17 @@ export type BmrType = {
                         category: string;
 }
 
+export type CpfType = {
+                      activity_level: string;
+                      tittle: string;
+                      kcalMin: number;
+                      kcalMax: number;
+                      carbohydrateMin: number;
+                      carbohydrateMax: number;
+                      proteinMin: number;
+                      proteinMax: number;
+                      fatMin: number;
+                      fatMax: number;
+}
+
   
