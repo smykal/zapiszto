@@ -25,6 +25,4 @@ public class CPFDto {
   double proteinMax;
   double fatMin;
   double fatMax;
-
-
 }
