@@ -23,6 +23,7 @@ public class WorkbooksSerializer {
 
   public static WorkbooksDto convert(WorkbooksEntity workbooksEntity) {
     return WorkbooksDto.builder()
+        .id(workbooksEntity.getId())
         .name(workbooksEntity.getName())
         .order_number(workbooksEntity.getOrderNumber())
         .insert_date(workbooksEntity.getInsert_date().toString())

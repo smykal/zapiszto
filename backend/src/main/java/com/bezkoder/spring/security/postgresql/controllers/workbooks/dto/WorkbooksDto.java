@@ -15,6 +15,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WorkbooksDto {
+  int id;
   String name;
   int order_number;
   String insert_date;

@@ -77,7 +77,7 @@ export default class Training extends Component<Props, State> {
                                 <p>Id number: {workbook.id}</p>
                                 <p>Order number: {workbook.order_number}</p>
                                 <p>Insert date: {workbook.insert_date}</p>
-                                <p>actual index {index + 1}</p>
+                                <p>actual tab index {index + 1}</p>
                             </TabPanel>
                         ))}
                     </Tabs>

@@ -20,4 +20,9 @@ public interface WorkbooksRepository extends JpaRepository<WorkbooksEntity, Inte
   int getActualOrderNumber(@Param("userId") Long userId);
 
   List<WorkbooksEntity> getAllByUserId(Long userId);
+
+  void deleteByIdAndUserId(
+      Long id,
+      Long userId
+  );
 }
