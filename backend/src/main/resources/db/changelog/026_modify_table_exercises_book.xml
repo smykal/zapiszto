@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="modifyTableName - change exercises_book into workbook and add column" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="exercises_book"/>
+        </preConditions>
+
+        <renameTable
+                oldTableName="exercises_book"
+                newTableName="workbooks"
+        />
+        <addColumn tableName="workbooks">
+            <column name="order_number" type="int4"/>
+        </addColumn>
+
+    </changeSet>
+</databaseChangeLog>

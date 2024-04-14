@@ -1,0 +1,15 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="modifyTableColumn - change user_id from int4 to int8" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="workbooks"/>
+            <columnExists tableName="workbooks" columnName="user_id"/>
+        </preConditions>
+
+        <modifyDataType tableName="workbooks" columnName="user_id" newDataType="bigint"/>
+
+    </changeSet>
+</databaseChangeLog>

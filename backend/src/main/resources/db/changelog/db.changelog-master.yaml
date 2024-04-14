@@ -49,3 +49,9 @@ databaseChangeLog:
       file: db/changelog/024_add_table_user_birthdate.xml
   - include:
       file: db/changelog/025_modify_table_user_birthdate.xml
+  - include:
+      file: db/changelog/026_modify_table_exercises_book.xml
+  - include:
+      file: db/changelog/027_modify_table_workbooks .xml
+  - include:
+      file: db/changelog/028_modify_table_workbooks.xml
