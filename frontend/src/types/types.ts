@@ -30,4 +30,15 @@ export type CpfType = {
                       fatMax: number;
 }
 
+export type Workbook = {
+                    id: number;
+                    name: string;
+                    order_number: number
+                    insert_date: string
+}
+
+export type NewWorkbook = {
+                            name: string;
+}
+
   

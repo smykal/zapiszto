@@ -3,9 +3,6 @@ import { Component } from "react";
 import PutBodyParam from './putBodyParam'
 import ShowBodyParams from "./showBodyParams";
 import ShowDiagram from "./showDiagramAll";
-import PostGender from "./postGender"
-import GetGender from "./gender"
-
 
 type Props = {};
 type State = {};

@@ -46,6 +46,11 @@ label {
   border-radius: 50%;
 }
 
+.input_workbook {
+  display: flex;
+  justify-content: flex-end;
+}
+
 #bodyParams {
             padding: "10px";
             border: "1px solid #ccc";
