@@ -58,5 +58,6 @@ public class WorkbooksService {
       Long userId
   ) {
     workbooksRepository.deleteByIdAndUserId(id,userId);
+    log.info("de workbook with id {} for user {}",id ,userId );
   }
 }
