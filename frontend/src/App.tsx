@@ -14,7 +14,7 @@ import BoardUser from "./components/board/board-user.component";
 import BoardModerator from "./components/board/board-moderator.component";
 import BoardAdmin from "./components/board/board-admin.component";
 import BodyParams from "./components/bodyParams";
-import Training from "./components/training";
+import Training from "./components/workbooks";
 
 import EventBus from "./common/EventBus";
 

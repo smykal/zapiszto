@@ -22,6 +22,19 @@ class WorkbooksService {
         console.error('Błąd podczas wysyłania zapytania:', error);
       });
   }
+
+  deleteWorkbook(id: number) {
+    return axios.delete(API_URL + 'delete_workbook/' + id, { headers: authHeader() })
+      .then(response => {
+        console.log('Workbook deleted successfully');
+        return response.data;
+      })
+      .catch(error => {
+        console.error('Error deleting workbook:', error);
+        throw error;
+      });
+  }
+
 }
 
 export default new WorkbooksService()

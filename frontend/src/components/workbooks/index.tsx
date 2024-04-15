@@ -3,6 +3,7 @@ import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import Service from '../../services/workbooks';
 import 'react-tabs/style/react-tabs.css';
 import { Workbook } from '../../types/types';
+import Wrapper from './workbook'
 
 
 type Props = {};
@@ -73,11 +74,7 @@ export default class Training extends Component<Props, State> {
                         </TabList>
                         {workbooks.map((workbook, index) => (
                             <TabPanel key={index}>
-                                <h2>{workbook.name}</h2>
-                                <p>Id number: {workbook.id}</p>
-                                <p>Order number: {workbook.order_number}</p>
-                                <p>Insert date: {workbook.insert_date}</p>
-                                <p>actual tab index {index + 1}</p>
+                                <Wrapper workbook={workbook} />
                             </TabPanel>
                         ))}
                     </Tabs>
