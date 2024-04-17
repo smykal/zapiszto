@@ -35,6 +35,7 @@ export type Workbook = {
                     name: string;
                     order_number: number
                     insert_date: string
+                    dict_workbook_schema_name: string
 }
 
 export type NewWorkbook = {

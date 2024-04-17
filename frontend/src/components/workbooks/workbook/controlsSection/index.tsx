@@ -33,6 +33,7 @@ class ControlsSection extends Component<Props> {
         <p>Name: {workbook.name}</p>
         <p>Order Number: {workbook.order_number}</p>
         <p>Insert Date: {workbook.insert_date}</p>
+        <p>Workbook Schema name: {workbook.dict_workbook_schema_name}</p>
         <button onClick={this.handleDeleteClick}>Delete Workbook</button>
       </div>
     );
