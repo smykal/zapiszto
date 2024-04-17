@@ -19,4 +19,5 @@ public class WorkbooksDto {
   String name;
   int order_number;
   String insert_date;
+  String dict_workbook_schema_name;
 }

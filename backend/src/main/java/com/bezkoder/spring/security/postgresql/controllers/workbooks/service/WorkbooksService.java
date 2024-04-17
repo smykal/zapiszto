@@ -1,5 +1,7 @@
 package com.bezkoder.spring.security.postgresql.controllers.workbooks.service;
 
+import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.repository.DictWorkbookSchemaRepository;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.AddWorkbookDto;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.WorkbooksDto;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.entity.WorkbooksEntity;
@@ -22,15 +24,21 @@ public class WorkbooksService {
   @Autowired
   WorkbooksRepository workbooksRepository;
 
+  @Autowired
+  DictWorkbookSchemaRepository dictWorkbookSchemaRepository;
+
   public void addWorkbook(
       AddWorkbookDto addWorkbookDto,
       Long userId
   ) {
+    final int DEFAULT_DICT_WORKBOOK_SCHEMA = 1;
+    DictWorkbookSchemaEntity defaultDictWorkbookSchema = dictWorkbookSchemaRepository.getReferenceById(DEFAULT_DICT_WORKBOOK_SCHEMA);
     int maxOrderNumber = getMaxOrderNumber(userId);
     WorkbooksEntity workbooksEntity = WorkbooksSerializer.convert(
         addWorkbookDto,
         userId,
-        maxOrderNumber
+        maxOrderNumber,
+        defaultDictWorkbookSchema
     );
     WorkbooksEntity save = workbooksRepository.save(workbooksEntity);
     int id = save.getId();

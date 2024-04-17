@@ -1,0 +1,15 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="add column dict_workbook_schema_id to workbooks table" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="workbooks"/>
+        </preConditions>
+
+        <addColumn tableName="workbooks">
+            <column name="dict_workbook_schema_id" type="int4" remarks="rodzaj wybranego schematu do zapisu treningu" />
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

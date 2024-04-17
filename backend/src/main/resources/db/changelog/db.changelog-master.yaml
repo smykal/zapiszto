@@ -55,3 +55,13 @@ databaseChangeLog:
       file: db/changelog/027_modify_table_workbooks .xml
   - include:
       file: db/changelog/028_modify_table_workbooks.xml
+  - include:
+      file: db/changelog/029_modify_table_workbooks.xml
+  - include:
+      file: db/changelog/030_add_table_dict_workbook_schema.xml
+  - include:
+      file: db/changelog/031_add_foreign_key_to_workbooks.xml
+  - include:
+      file: db/changelog/032_add_data_to_dict_workbook_schema.xml
+  - include:
+      file: db/changelog/033_modify_table_workbooks.xml
