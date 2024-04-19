@@ -10,7 +10,7 @@ type Props = {};
 type State = {
     workbooks: Workbook[];
     newWorkbookName: string;
-    originalOrder: Workbook[]; 
+    activeTabIndex: number; // Dodajemy stan do przechowywania indeksu aktywnej zakładki
 };
 
 export default class Training extends Component<Props, State> {
@@ -19,20 +19,24 @@ export default class Training extends Component<Props, State> {
         this.state = {
             workbooks: [],
             newWorkbookName: '',
-            originalOrder: [], 
+            activeTabIndex: 0, // Domyślnie ustawiamy pierwszą zakładkę jako aktywną
         };
     }
 
     componentDidMount() {
         this.getWorkbooks();
+        // Sprawdzamy, czy istnieje informacja o ostatniej aktywnej zakładce w localStorage
+        const lastActiveTabIndex = localStorage.getItem('lastActiveTabIndex');
+        if (lastActiveTabIndex !== null) {
+            this.setState({ activeTabIndex: parseInt(lastActiveTabIndex) });
+        }
     }
 
     getWorkbooks() {
         Service.getWorkbooks()
             .then(response => {
                 const workbooks: Workbook[] = response.data;
-                const sortedWorkbooks = [...workbooks].sort((a, b) => a.order_number - b.order_number); // Sortujemy workbooki
-                this.setState({ workbooks: sortedWorkbooks, originalOrder: [...sortedWorkbooks] });
+                this.setState({ workbooks });
             })
             .catch(error => console.error('Error fetching workbooks:', error));
     }
@@ -54,8 +58,14 @@ export default class Training extends Component<Props, State> {
         }
     };
 
+    handleTabSelect = (index: number) => {
+        this.setState({ activeTabIndex: index });
+        // Zapisujemy indeks wybranej zakładki do localStorage
+        localStorage.setItem('lastActiveTabIndex', index.toString());
+    };
+
     render() {
-        const { workbooks, newWorkbookName, originalOrder } = this.state;
+        const { workbooks, newWorkbookName, activeTabIndex } = this.state;
 
         return (
             <div className="container">
@@ -69,9 +79,9 @@ export default class Training extends Component<Props, State> {
                     <button onClick={this.handleAddWorkbook}>Add Workbook</button>
                 </div>
                 <div>
-                    <Tabs>
+                    <Tabs selectedIndex={activeTabIndex} onSelect={this.handleTabSelect}>
                         <TabList>
-                            {originalOrder.map((workbook) => (
+                            {workbooks.map((workbook) => (
                                 <Tab key={workbook.id}>{workbook.name}</Tab>
                             ))}
                         </TabList>
