@@ -3,13 +3,14 @@ import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import Service from '../../services/workbooks';
 import 'react-tabs/style/react-tabs.css';
 import { Workbook } from '../../types/types';
-import Wrapper from './workbook'
+import Wrapper from './workbook';
 
 
 type Props = {};
 type State = {
     workbooks: Workbook[];
-    newWorkbookName: string; 
+    newWorkbookName: string;
+    originalOrder: Workbook[]; 
 };
 
 export default class Training extends Component<Props, State> {
@@ -17,7 +18,8 @@ export default class Training extends Component<Props, State> {
         super(props);
         this.state = {
             workbooks: [],
-            newWorkbookName: ''
+            newWorkbookName: '',
+            originalOrder: [], 
         };
     }
 
@@ -29,30 +31,31 @@ export default class Training extends Component<Props, State> {
         Service.getWorkbooks()
             .then(response => {
                 const workbooks: Workbook[] = response.data;
-                this.setState({ workbooks });
+                const sortedWorkbooks = [...workbooks].sort((a, b) => a.order_number - b.order_number); // Sortujemy workbooki
+                this.setState({ workbooks: sortedWorkbooks, originalOrder: [...sortedWorkbooks] });
             })
             .catch(error => console.error('Error fetching workbooks:', error));
     }
 
     handleNewWorkbookNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ newWorkbookName: event.target.value }); // Aktualizujemy stan nowej nazwy workbooka
+        this.setState({ newWorkbookName: event.target.value });
     };
 
     handleAddWorkbook = () => {
         const { newWorkbookName } = this.state;
-        if (newWorkbookName.trim() !== '') { // Sprawdzamy, czy nazwa jest niepusta
+        if (newWorkbookName.trim() !== '') {
             Service.postNewWorkbook(newWorkbookName)
                 .then(() => {
-                    // Pobieramy zaktualizowaną listę workbooków po dodaniu nowego
-                    this.getWorkbooks();
-                    // Czyścimy pole na nową nazwę workbooka po dodaniu
                     this.setState({ newWorkbookName: '' });
+                })
+                .then(() => {
+                    this.getWorkbooks(); 
                 });
         }
     };
 
     render() {
-        const { workbooks, newWorkbookName } = this.state;
+        const { workbooks, newWorkbookName, originalOrder } = this.state;
 
         return (
             <div className="container">
@@ -60,7 +63,7 @@ export default class Training extends Component<Props, State> {
                     <input
                         type="text"
                         value={newWorkbookName}
-                        onChange={this.handleNewWorkbookNameChange} // Obsługa zmiany w polu tekstowym
+                        onChange={this.handleNewWorkbookNameChange}
                         placeholder="Enter new workbook name"
                     />
                     <button onClick={this.handleAddWorkbook}>Add Workbook</button>
@@ -68,12 +71,12 @@ export default class Training extends Component<Props, State> {
                 <div>
                     <Tabs>
                         <TabList>
-                            {workbooks.map((workbook, index) => (
-                                <Tab key={index}>{workbook.name}</Tab>
+                            {originalOrder.map((workbook) => (
+                                <Tab key={workbook.id}>{workbook.name}</Tab>
                             ))}
                         </TabList>
-                        {workbooks.map((workbook, index) => (
-                            <TabPanel key={index}>
+                        {workbooks.map((workbook) => (
+                            <TabPanel key={workbook.id}>
                                 <Wrapper workbook={workbook} />
                             </TabPanel>
                         ))}

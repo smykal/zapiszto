@@ -38,8 +38,21 @@ export type Workbook = {
                     dict_workbook_schema_name: string
 }
 
+export type WorkbookSchemaIdPut = {
+                                  id: number;
+                                  dict_workbook_schema_id: number;
+}
+
 export type NewWorkbook = {
                             name: string;
 }
+
+export type DictWorkbookSchema = {
+                                  id: number;
+                                  name: string;
+                                  description: string;
+}
+
+
 
   

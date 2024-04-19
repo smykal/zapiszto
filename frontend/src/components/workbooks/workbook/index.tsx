@@ -18,8 +18,12 @@ class Wrapper extends Component<Props> {
     return (
       <div>
         <ControlsSection workbook={workbook} />
-        <DisplaySection />
-        <AnalysisSection />
+        {workbook.dict_workbook_schema_name !== 'brak_schematu' && (
+          <>
+            <DisplaySection />
+            <AnalysisSection />
+          </>
+        )}
       </div>
     );
   }
