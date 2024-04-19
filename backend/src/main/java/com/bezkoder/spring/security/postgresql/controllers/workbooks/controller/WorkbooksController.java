@@ -1,6 +1,7 @@
 package com.bezkoder.spring.security.postgresql.controllers.workbooks.controller;
 
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.AddWorkbookDto;
+import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.PatchWorkbookSchemaDto;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.WorkbooksDto;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.service.WorkbooksService;
 import com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl;
@@ -17,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,6 +65,20 @@ public class WorkbooksController {
     } catch (NoSuchElementException e) {
       return new ResponseEntity<>("Workbook not found", HttpStatus.NOT_FOUND);
     }
+  }
+
+  @PatchMapping("/put_workbook_schema_id")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> patchWorkbook(
+      @RequestBody PatchWorkbookSchemaDto patchWorkbookSchemaDto
+      ){
+    try {
+      workbooksService.updateWorkbookById(patchWorkbookSchemaDto);
+      return new ResponseEntity<>("Workbook updated successfully", HttpStatus.OK);
+    } catch (NoSuchElementException e) {
+      return new ResponseEntity<>("Workbook not found", HttpStatus.NOT_FOUND);
+    }
+
   }
 
 
