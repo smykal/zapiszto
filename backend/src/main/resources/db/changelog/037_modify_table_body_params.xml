@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="modify-table-body_params-by-adding-foreignKey" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+                <tableExists tableName="body_params" schemaName="public"/>
+        </preConditions>
+            <addForeignKeyConstraint baseTableName="body_params"
+                                     baseColumnNames="user_id"
+                                     constraintName="fk_body_params_user_id"
+                                     referencedTableName="users"
+                                     referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

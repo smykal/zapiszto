@@ -65,3 +65,13 @@ databaseChangeLog:
       file: db/changelog/032_add_data_to_dict_workbook_schema.xml
   - include:
       file: db/changelog/033_modify_table_workbooks.xml
+  - include:
+      file: db/changelog/034_add_data_to_dict_workbook_schema.xml
+  - include:
+      file: db/changelog/035_add_table_training.xml
+  - include:
+      file: db/changelog/036_modify_table_training.xml
+  - include:
+      file: db/changelog/037_modify_table_body_params.xml
+  - include:
+      file: db/changelog/038_modify_table_training.xml

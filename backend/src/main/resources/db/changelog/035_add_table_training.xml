@@ -25,11 +25,10 @@
                 <constraints nullable="false"/>
             </column>
 
-
         </createTable>
-        <addForeignKeyConstraint baseTableName="workbook_02"
-                                 baseColumnNames="workbook_id"
-                                 constraintName="fk_workbook_id"
+        <addForeignKeyConstraint baseTableName="training"
+                                 baseColumnNames="workbooks_id"
+                                 constraintName="fk_training_id"
                                  referencedTableName="workbooks"
                                  referencedColumnNames="id"/>
     </changeSet>

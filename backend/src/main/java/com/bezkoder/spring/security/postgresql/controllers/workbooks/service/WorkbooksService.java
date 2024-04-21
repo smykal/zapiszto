@@ -9,7 +9,6 @@ import com.bezkoder.spring.security.postgresql.controllers.workbooks.entity.Work
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.repository.WorkbooksRepository;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.serializer.WorkbooksSerializer;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

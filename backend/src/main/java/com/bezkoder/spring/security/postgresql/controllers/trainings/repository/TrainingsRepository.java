@@ -1,4 +1,9 @@
-package com.bezkoder.spring.security.postgresql.controllers.trainings;
+package com.bezkoder.spring.security.postgresql.controllers.trainings.repository;
 
-public interface TrainingsRepository {
+import com.bezkoder.spring.security.postgresql.controllers.trainings.entity.TrainingEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TrainingsRepository extends JpaRepository<TrainingEntity, Integer> {
 }

@@ -1,10 +1,10 @@
 package com.bezkoder.spring.security.postgresql.controllers.workbooks.controller;
 
+import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.AddWorkbookDto;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.PatchWorkbookSchemaDto;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.WorkbooksDto;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.service.WorkbooksService;
-import com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
-public class WorkbooksController {
+public class WorkbooksController implements ControllerCommon {
 
   @Autowired
   private WorkbooksService workbooksService;
@@ -79,15 +77,5 @@ public class WorkbooksController {
       return new ResponseEntity<>("Workbook not found", HttpStatus.NOT_FOUND);
     }
 
-  }
-
-
-  private Long extractUserId() {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication != null && authentication.getPrincipal() instanceof com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl user) {
-      return ((UserDetailsImpl) authentication.getPrincipal()).getId();
-      //user.getUsername(); // Assuming username is the user ID
-    }
-    return null;
   }
 }
