@@ -57,3 +57,8 @@ export type NewTraining = {
                             workbook_id: number;
                             date: Date;
 }
+
+export type TrainingNotes = {
+                             id: number;
+                             notes: string 
+}
