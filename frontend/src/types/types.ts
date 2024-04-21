@@ -53,6 +53,7 @@ export type DictWorkbookSchema = {
                                   description: string;
 }
 
-
-
-  
+export type NewTraining = {
+                            workbook_id: number;
+                            date: Date;
+}

@@ -78,3 +78,16 @@ ul li {
   width: 100%;
 }
 
+.controls-section {
+  display: flex;
+}
+
+.workbook-info {
+  flex: 1; /* Elastyczny rozmiar, aby elementy były równe szerokości */
+}
+
+.workbook-actions {
+  flex: 1; /* Elastyczny rozmiar, aby elementy były równe szerokości */
+}
+
+

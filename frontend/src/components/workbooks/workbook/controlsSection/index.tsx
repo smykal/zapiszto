@@ -13,7 +13,6 @@ type State = {
   selectedSchemaName: string; // Zmień na selectedSchemaId
 }
 
-
 class ControlsSection extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -72,35 +71,40 @@ class ControlsSection extends Component<Props, State> {
 
   
     return (
-      <div>
-        <p>ID: {workbook.id}</p>
-        <p>Name: {workbook.name}</p>
-        <p>Order Number: {workbook.order_number}</p>
-        <p>Insert Date: {workbook.insert_date}</p>
-        <p>Workbook Schema name: {workbook.dict_workbook_schema_name}</p>
-        <div className='input_workbook'>
-        <Formik initialValues={{ selectedSchemaName: selectedSchemaName }} onSubmit={this.handleUpdateDictWorkbookSchema}>
-            {({ values, handleSubmit }) => (
-              <Form onSubmit={handleSubmit}>
-                <label htmlFor='selectedSchemaName'>Select Workbook Schema:</label>
-                <Field as='select' name='selectedSchemaName'>
-                  <option value=''>Select...</option>
-                  {dictWorkbookSchema.map(schema => (
-                    <option key={schema.id} value={schema.name}>
-                      {schema.name}
-                    </option>
-                  ))}
-                </Field>
-                <ErrorMessage name='selectedSchemaName' component='div' className='error' />
-                <button type='submit'>Update Workbook Schema</button>
-              </Form>
-            )}
-          </Formik>
+      <div className="controls-section">
+        <div className="workbook-info">
+          <p>ID: {workbook.id} 
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+          Order Number: {workbook.order_number}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+          Insert Date: {workbook.insert_date}</p>
+          <p>Name: {workbook.name}</p>
+          <p>Workbook Schema name: {workbook.dict_workbook_schema_name}</p>
         </div>
-        <div className='input_workbook'>
-          <button onClick={this.handleDeleteClick}>Delete Workbook</button>
+        <div className="workbook-actions">
+          <div className='input_workbook'>
+            <Formik initialValues={{ selectedSchemaName: selectedSchemaName }} onSubmit={this.handleUpdateDictWorkbookSchema}>
+              {({ values, handleSubmit }) => (
+                <Form onSubmit={handleSubmit}>
+                  <label htmlFor='selectedSchemaName'>Select Workbook Schema:</label>
+                  <Field as='select' name='selectedSchemaName'>
+                    <option value=''>Select...</option>
+                    {dictWorkbookSchema.map(schema => (
+                      <option key={schema.id} value={schema.name}>
+                        {schema.name}
+                      </option>
+                    ))}
+                  </Field>
+                  <ErrorMessage name='selectedSchemaName' component='div' className='error' />
+                  <button type='submit'>Update Workbook Schema</button>
+                </Form>
+              )}
+            </Formik>
+          </div>
+          <div className='input_workbook'>
+            <button onClick={this.handleDeleteClick}>Delete Workbook</button>
+          </div>
         </div>
-        
       </div>
     );
   }

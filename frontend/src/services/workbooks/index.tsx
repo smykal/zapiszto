@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../auth-header';
-import { DictWorkbookSchema, WorkbookSchemaIdPut,  NewWorkbook } from '../../types/types';
+import { DictWorkbookSchema, WorkbookSchemaIdPut,  NewWorkbook, NewTraining } from '../../types/types';
 
 
 const API_URL = 'http://localhost:8080/v1';
@@ -40,12 +40,12 @@ class WorkbooksService {
   }
 
   putWorkbookSchemaId(workbookId: number, dictWorkbookId: number) {
-    const workbookSchemaPut: WorkbookSchemaIdPut = {
+    const requestBody: WorkbookSchemaIdPut = {
       id: workbookId,
       dict_workbook_schema_id: dictWorkbookId
     };
 
-    return axios.patch(API_URL + '/put_workbook_schema_id', workbookSchemaPut, { headers: authHeader() })
+    return axios.patch(API_URL + '/put_workbook_schema_id', requestBody, { headers: authHeader() })
     .then(response => {
       console.log('Workbook updated successfully');
       return response.data;
@@ -56,7 +56,19 @@ class WorkbooksService {
     });
   }
 
-
+  postNewTraining(workbookId: number, date: Date){
+    const requestBody: NewTraining = {
+      workbook_id: workbookId,
+      date: date
+    }
+    return axios.post(API_URL + '/add_training', requestBody, { headers: authHeader() })
+      .then(response => {
+        console.log('Odpowiedź z serwera:', response.data);
+      })
+      .catch(error => {
+        console.error('Błąd podczas wysyłania zapytania:', error);
+      });
+  }
 }
 
 export default new WorkbooksService()

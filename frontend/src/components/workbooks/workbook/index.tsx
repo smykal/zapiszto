@@ -20,7 +20,7 @@ class Wrapper extends Component<Props> {
         <ControlsSection workbook={workbook} />
         {workbook.dict_workbook_schema_name !== 'brak_schematu' && (
           <>
-            <DisplaySection />
+            <DisplaySection workbook={workbook} />
             <AnalysisSection />
           </>
         )}
