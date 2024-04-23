@@ -75,3 +75,7 @@ databaseChangeLog:
       file: db/changelog/037_modify_table_body_params.xml
   - include:
       file: db/changelog/038_modify_table_training.xml
+  - include:
+      file: db/changelog/039_drop_table.xml
+  - include:
+      file: db/changelog/040_add_table_dict_exercises.xml
