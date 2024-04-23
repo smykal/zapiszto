@@ -62,3 +62,10 @@ export type TrainingNotes = {
                              id: number;
                              notes: string 
 }
+
+export type Training = {
+                        id: number;
+                        workbooks_id: number;
+                        date: string;
+                        notes: string
+}
