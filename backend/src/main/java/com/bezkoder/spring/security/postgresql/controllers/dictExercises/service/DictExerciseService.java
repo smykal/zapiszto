@@ -1,0 +1,82 @@
+package com.bezkoder.spring.security.postgresql.controllers.dictExercises.service;
+
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesBasic.entity.DictExercisesBasicEntity;
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesBasic.repository.DictExercisesBasicRepository;
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesPerUser.entity.DictExercisesPerUserEntity;
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesPerUser.repository.DictExercisesPerUserRepository;
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dto.DictExercisesDto;
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dto.NewDictExerciseDto;
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.entity.DictExercisesEntity;
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.repository.DictExercisesRepository;
+import com.bezkoder.spring.security.postgresql.controllers.dictExercises.serializer.DictExercisesSerializer;
+import java.util.List;
+import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+public class DictExerciseService {
+
+  @Autowired
+  DictExercisesPerUserRepository dictExercisesPerUserRepository;
+
+  @Autowired
+  DictExercisesBasicRepository dictExercisesBasicRepository;
+
+  @Autowired
+  DictExercisesRepository dictExercisesRepository;
+
+  public void addDictExercise(NewDictExerciseDto newDictExerciseDto, Long userId) {
+    var item = DictExercisesPerUserEntity.builder()
+            .name(newDictExerciseDto.getName())
+            .user_id(userId)
+        .build();
+
+    DictExercisesPerUserEntity dictExercisesPerUserEntity = dictExercisesPerUserRepository.save(item);
+
+    log.info("add new item to dict_exercises_per_user: id {}, value {}, user {}",
+        dictExercisesPerUserEntity.getId(),
+        newDictExerciseDto.getName(),
+        userId);
+
+    DictExercisesEntity dictExercisesEntity = DictExercisesEntity.builder()
+        .dictExercisesPerUserEntity(dictExercisesPerUserEntity)
+        .build();
+
+    dictExercisesRepository.save(dictExercisesEntity);
+
+    log.info("updated dict_exercises by new item with id: {}, dict_exercises_per_user_id: {} ",
+        dictExercisesEntity.getId(),
+        dictExercisesEntity.getDictExercisesPerUserEntity().getId());
+  }
+
+  public void addDictExercise(NewDictExerciseDto newDictExerciseDto) {
+    DictExercisesBasicEntity dictExercisesBasicEntity =
+        dictExercisesBasicRepository.save(DictExercisesBasicEntity.builder()
+            .name(newDictExerciseDto.getName())
+            .build());
+
+    log.info("add new item to dict_exercises_basic: id {}, value {}",
+        dictExercisesBasicEntity.getId(),
+        newDictExerciseDto.getName());
+
+    DictExercisesEntity dictExercisesEntity = DictExercisesEntity.builder()
+        .dictExercisesBasicEntity(dictExercisesBasicEntity)
+        .build();
+
+    dictExercisesRepository.save(dictExercisesEntity);
+
+    log.info("updated dict_exercises by new item with id: {}, dict_exercises_basic_id: {} ",
+        dictExercisesEntity.getId(),
+        dictExercisesEntity.getDictExercisesPerUserEntity().getId());
+  }
+
+  public List<DictExercisesDto> getDictExercises(){
+    List<DictExercisesEntity> all = dictExercisesRepository.findAll();
+
+    return all.stream().map(DictExercisesSerializer::convert)
+        .collect(Collectors.toList());
+  }
+}

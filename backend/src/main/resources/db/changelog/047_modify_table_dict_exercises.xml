@@ -1,0 +1,35 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <!-- Sekwencja dla tabeli dict_exercises -->
+    <changeSet id="create-sequence-dict_exercises_id" author="your_author_name">
+        <sql>CREATE SEQUENCE dict_exercises_id_seq;</sql>
+    </changeSet>
+
+    <!-- Związanie sekwencji z kolumną id w tabeli dict_exercises -->
+    <changeSet id="bind-sequence-to-dict_exercises_id" author="your_author_name">
+        <sql>ALTER TABLE dict_exercises ALTER COLUMN id SET DEFAULT nextval('dict_exercises_id_seq');</sql>
+    </changeSet>
+
+    <!-- Sekwencja dla tabeli dict_exercises_basic -->
+    <changeSet id="create-sequence-dict_exercises_basic_id" author="your_author_name">
+        <sql>CREATE SEQUENCE dict_exercises_basic_id_seq;</sql>
+    </changeSet>
+
+    <!-- Związanie sekwencji z kolumną id w tabeli dict_exercises_basic -->
+    <changeSet id="bind-sequence-to-dict_exercises_basic_id" author="your_author_name">
+        <sql>ALTER TABLE dict_exercises_basic ALTER COLUMN id SET DEFAULT nextval('dict_exercises_basic_id_seq');</sql>
+    </changeSet>
+
+    <!-- Sekwencja dla tabeli dict_exercises_per_user -->
+    <changeSet id="create-sequence-dict_exercises_per_user_id" author="your_author_name">
+        <sql>CREATE SEQUENCE dict_exercises_per_user_id_seq;</sql>
+    </changeSet>
+
+    <!-- Związanie sekwencji z kolumną id w tabeli dict_exercises_per_user -->
+    <changeSet id="bind-sequence-to-dict_exercises_per_user_id" author="your_author_name">
+        <sql>ALTER TABLE dict_exercises_per_user ALTER COLUMN id SET DEFAULT nextval('dict_exercises_per_user_id_seq');</sql>
+    </changeSet>
+
+</databaseChangeLog>

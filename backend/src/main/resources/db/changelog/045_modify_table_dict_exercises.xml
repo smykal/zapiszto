@@ -1,0 +1,14 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="remove-column-dict_exercises_basic-description" author="smykalm">
+        <dropColumn tableName="dict_exercises_basic" columnName="description"/>
+    </changeSet>
+
+    <changeSet id="remove-column-dict_exercises_per_user-description" author="smykalm">
+        <dropColumn tableName="dict_exercises_per_user" columnName="description"/>
+    </changeSet>
+
+</databaseChangeLog>
