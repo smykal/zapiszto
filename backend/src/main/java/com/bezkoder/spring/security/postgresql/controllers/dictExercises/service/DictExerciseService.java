@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -28,6 +29,7 @@ public class DictExerciseService {
   @Autowired
   DictExercisesRepository dictExercisesRepository;
 
+  @Transactional
   public void addDictExercise(NewDictExerciseDto newDictExerciseDto, Long userId) {
     var item = DictExercisesPerUserEntity.builder()
             .name(newDictExerciseDto.getName())
@@ -52,11 +54,14 @@ public class DictExerciseService {
         dictExercisesEntity.getDictExercisesPerUserEntity().getId());
   }
 
+  @Transactional
   public void addDictExercise(NewDictExerciseDto newDictExerciseDto) {
-    DictExercisesBasicEntity dictExercisesBasicEntity =
-        dictExercisesBasicRepository.save(DictExercisesBasicEntity.builder()
+    var item = DictExercisesBasicEntity.builder()
             .name(newDictExerciseDto.getName())
-            .build());
+        .build();
+
+    DictExercisesBasicEntity dictExercisesBasicEntity =
+        dictExercisesBasicRepository.save(item);
 
     log.info("add new item to dict_exercises_basic: id {}, value {}",
         dictExercisesBasicEntity.getId(),
@@ -70,7 +75,7 @@ public class DictExerciseService {
 
     log.info("updated dict_exercises by new item with id: {}, dict_exercises_basic_id: {} ",
         dictExercisesEntity.getId(),
-        dictExercisesEntity.getDictExercisesPerUserEntity().getId());
+        dictExercisesEntity.getDictExercisesBasicEntity().getId());
   }
 
   public List<DictExercisesDto> getDictExercises(){

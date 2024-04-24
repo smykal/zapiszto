@@ -32,4 +32,16 @@ public class DictExercisesController implements ControllerCommon {
     dictExerciseService.addDictExercise(newDictExerciseDto, userId);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
+
+  @PostMapping("/add_exercise_basic")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> addExerciseBasic(
+      @RequestBody NewDictExerciseDto newDictExerciseDto
+  ) {
+    var userId = extractUserId();
+    var role = extractUserRole();
+    dictExerciseService.addDictExercise(newDictExerciseDto);
+    return new ResponseEntity<>(HttpStatus.CREATED);
+  }
+
 }
