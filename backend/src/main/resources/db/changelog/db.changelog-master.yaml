@@ -79,3 +79,11 @@ databaseChangeLog:
       file: db/changelog/039_drop_table.xml
   - include:
       file: db/changelog/040_add_table_dict_exercises.xml
+  - include:
+    - file: db/changelog/041_drop_table.xml
+  - include:
+      file: db/changelog/042_add_table_dict_units.xml
+  - include:
+       file: db/changelog/043_add_table_dict_quantity_type.xml
+  - include:
+       file: db/changelog/044_add_table_exercises.xml
