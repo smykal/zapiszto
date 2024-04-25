@@ -1,6 +1,5 @@
 package com.zapiszto.controllers.bodyParams.dto;
 
-import java.time.ZonedDateTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

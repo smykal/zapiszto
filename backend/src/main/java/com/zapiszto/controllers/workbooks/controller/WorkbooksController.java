@@ -1,10 +1,10 @@
 package com.zapiszto.controllers.workbooks.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.AddWorkbookDto;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.PatchWorkbookSchemaDto;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.WorkbooksDto;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.service.WorkbooksService;
+import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.workbooks.dto.AddWorkbookDto;
+import com.zapiszto.controllers.workbooks.dto.PatchWorkbookSchemaDto;
+import com.zapiszto.controllers.workbooks.dto.WorkbooksDto;
+import com.zapiszto.controllers.workbooks.service.WorkbooksService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.extern.slf4j.Slf4j;

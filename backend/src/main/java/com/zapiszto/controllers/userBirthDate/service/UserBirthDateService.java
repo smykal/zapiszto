@@ -1,9 +1,9 @@
 package com.zapiszto.controllers.userBirthDate.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.dto.UserAgeDto;
-import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.dto.UserBirthdateDto;
-import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.entity.UserBirthDateEntity;
-import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.repository.UserBirthDateRepository;
+import com.zapiszto.controllers.userBirthDate.dto.UserAgeDto;
+import com.zapiszto.controllers.userBirthDate.dto.UserBirthdateDto;
+import com.zapiszto.controllers.userBirthDate.entity.UserBirthDateEntity;
+import com.zapiszto.controllers.userBirthDate.repository.UserBirthDateRepository;
 import java.sql.Date;
 import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;

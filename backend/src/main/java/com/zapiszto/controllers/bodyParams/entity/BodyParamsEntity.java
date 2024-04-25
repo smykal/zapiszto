@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.bodyParams.entity;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.entity.DictBodyParamsEntity;
+import com.zapiszto.controllers.dictBodyParams.entity.DictBodyParamsEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

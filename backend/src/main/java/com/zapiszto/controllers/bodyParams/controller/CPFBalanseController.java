@@ -1,8 +1,8 @@
 package com.zapiszto.controllers.bodyParams.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.CPFDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.service.CPFBalanseService;
+import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.bodyParams.dto.CPFDto;
+import com.zapiszto.controllers.bodyParams.service.CPFBalanseService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

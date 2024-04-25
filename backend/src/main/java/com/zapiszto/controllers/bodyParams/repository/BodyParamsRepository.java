@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.bodyParams.repository;
 
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
+import com.zapiszto.controllers.bodyParams.entity.BodyParamsEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

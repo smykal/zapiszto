@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bezkoder.spring.security.postgresql.entity.User;
+import com.zapiszto.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class  UserDetailsImpl implements UserDetails {

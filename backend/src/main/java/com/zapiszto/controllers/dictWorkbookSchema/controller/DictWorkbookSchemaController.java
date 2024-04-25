@@ -1,7 +1,7 @@
 package com.zapiszto.controllers.dictWorkbookSchema.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
-import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.service.DictWorkbookSchemaService;
+import com.zapiszto.controllers.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
+import com.zapiszto.controllers.dictWorkbookSchema.service.DictWorkbookSchemaService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

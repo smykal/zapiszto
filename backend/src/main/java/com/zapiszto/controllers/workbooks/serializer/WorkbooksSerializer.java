@@ -1,9 +1,9 @@
-package com.bezkoder.spring.security.postgresql.controllers.workbooks.serializer;
+package com.zapiszto.controllers.workbooks.serializer;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.AddWorkbookDto;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.WorkbooksDto;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.entity.WorkbooksEntity;
+import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.workbooks.dto.AddWorkbookDto;
+import com.zapiszto.controllers.workbooks.dto.WorkbooksDto;
+import com.zapiszto.controllers.workbooks.entity.WorkbooksEntity;
 import java.time.ZonedDateTime;
 
 public class WorkbooksSerializer {

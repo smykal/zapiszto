@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bezkoder.spring.security.postgresql.entity.User;
-import com.bezkoder.spring.security.postgresql.repository.UserRepository;
+import com.zapiszto.entity.User;
+import com.zapiszto.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

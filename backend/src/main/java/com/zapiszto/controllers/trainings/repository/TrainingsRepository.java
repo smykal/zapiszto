@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.trainings.repository;
 
-import com.bezkoder.spring.security.postgresql.controllers.trainings.entity.TrainingEntity;
+import com.zapiszto.controllers.trainings.entity.TrainingEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
