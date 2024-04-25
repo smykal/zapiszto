@@ -18,6 +18,6 @@ public enum BmiCategory {
   OBESITY_2st_STAGE(new double[]{35, 40}, "Otyłość 2 stopnia"),
   OBESITY_3st_STAGE(new double[]{40, Double.MAX_VALUE}, "Otyłość 3 stopnia");
 
-  double[] range;
-  String descriptionPL;
+  final double[] range;
+  final String descriptionPL;
 }
