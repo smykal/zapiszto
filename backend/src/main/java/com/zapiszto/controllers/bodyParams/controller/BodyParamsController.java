@@ -1,11 +1,11 @@
-package com.bezkoder.spring.security.postgresql.controllers.bodyParams.controller;
+package com.zapiszto.controllers.bodyParams.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyMassIndexDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.service.BodyParamsService;
+import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.bodyParams.dto.BodyMassIndexDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameDto;
+import com.zapiszto.controllers.bodyParams.service.BodyParamsService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

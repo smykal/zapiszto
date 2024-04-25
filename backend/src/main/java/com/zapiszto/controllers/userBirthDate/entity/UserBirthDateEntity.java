@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.userBirthDate.entity;
+package com.zapiszto.controllers.userBirthDate.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

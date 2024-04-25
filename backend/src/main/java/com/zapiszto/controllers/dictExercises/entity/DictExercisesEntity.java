@@ -1,7 +1,7 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictExercises.entity;
+package com.zapiszto.controllers.dictExercises.entity;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesBasic.entity.DictExercisesBasicEntity;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesPerUser.entity.DictExercisesPerUserEntity;
+import com.zapiszto.controllers.dictExercises.dictExercisesBasic.entity.DictExercisesBasicEntity;
+import com.zapiszto.controllers.dictExercises.dictExercisesPerUser.entity.DictExercisesPerUserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

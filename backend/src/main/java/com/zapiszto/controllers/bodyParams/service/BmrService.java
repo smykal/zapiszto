@@ -1,9 +1,9 @@
-package com.bezkoder.spring.security.postgresql.controllers.bodyParams.service;
+package com.zapiszto.controllers.bodyParams.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BmrCategory;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BmrDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.repository.BmrRepository;
-import com.bezkoder.spring.security.postgresql.controllers.userSex.repository.UserSexRepository;
+import com.zapiszto.controllers.bodyParams.dto.BmrCategory;
+import com.zapiszto.controllers.bodyParams.dto.BmrDto;
+import com.zapiszto.controllers.bodyParams.repository.BmrRepository;
+import com.zapiszto.controllers.userSex.repository.UserSexRepository;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;

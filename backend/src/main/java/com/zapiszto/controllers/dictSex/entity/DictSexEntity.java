@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictSex.entity;
+package com.zapiszto.controllers.dictSex.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,7 +1,7 @@
-package com.bezkoder.spring.security.postgresql.controllers.userSex.serializer;
+package com.zapiszto.controllers.userSex.serializer;
 
-import com.bezkoder.spring.security.postgresql.controllers.userSex.dto.UserSexDto;
-import com.bezkoder.spring.security.postgresql.controllers.userSex.entity.UserSexEntity;
+import com.zapiszto.controllers.userSex.dto.UserSexDto;
+import com.zapiszto.controllers.userSex.entity.UserSexEntity;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

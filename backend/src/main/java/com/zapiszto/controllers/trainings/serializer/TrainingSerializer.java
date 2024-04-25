@@ -1,7 +1,7 @@
-package com.bezkoder.spring.security.postgresql.controllers.trainings.serializer;
+package com.zapiszto.controllers.trainings.serializer;
 
-import com.bezkoder.spring.security.postgresql.controllers.trainings.dto.TrainingDto;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.entity.TrainingEntity;
+import com.zapiszto.controllers.trainings.dto.TrainingDto;
+import com.zapiszto.controllers.trainings.entity.TrainingEntity;
 
 public class TrainingSerializer {
 

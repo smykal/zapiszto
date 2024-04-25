@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.entity;
+package com.zapiszto.entity;
 
 import jakarta.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.trainings.repository;
+package com.zapiszto.controllers.trainings.repository;
 
 import com.bezkoder.spring.security.postgresql.controllers.trainings.entity.TrainingEntity;
 import java.util.List;

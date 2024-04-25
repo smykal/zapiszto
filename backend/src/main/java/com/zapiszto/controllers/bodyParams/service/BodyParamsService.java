@@ -1,12 +1,12 @@
-package com.bezkoder.spring.security.postgresql.controllers.bodyParams.service;
+package com.zapiszto.controllers.bodyParams.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyMassIndexDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer.BodyParamsSerializer;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.repository.BodyParamsRepository;
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.repository.DictBodyParamsRepository;
+import com.zapiszto.controllers.bodyParams.dto.BodyMassIndexDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameDto;
+import com.zapiszto.controllers.bodyParams.serializer.BodyParamsSerializer;
+import com.zapiszto.controllers.bodyParams.repository.BodyParamsRepository;
+import com.zapiszto.controllers.dictBodyParams.repository.DictBodyParamsRepository;
 import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;

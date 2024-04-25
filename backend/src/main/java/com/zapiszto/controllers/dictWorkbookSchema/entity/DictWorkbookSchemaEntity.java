@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.entity;
+package com.zapiszto.controllers.dictWorkbookSchema.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

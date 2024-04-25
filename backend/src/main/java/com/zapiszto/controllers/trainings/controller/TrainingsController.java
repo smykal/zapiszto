@@ -1,10 +1,10 @@
-package com.bezkoder.spring.security.postgresql.controllers.trainings.controller;
+package com.zapiszto.controllers.trainings.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.dto.NewTrainingDto;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.dto.TrainingDto;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.dto.TrainingNotesDto;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.service.TrainingsService;
+import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.trainings.dto.NewTrainingDto;
+import com.zapiszto.controllers.trainings.dto.TrainingDto;
+import com.zapiszto.controllers.trainings.dto.TrainingNotesDto;
+import com.zapiszto.controllers.trainings.service.TrainingsService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

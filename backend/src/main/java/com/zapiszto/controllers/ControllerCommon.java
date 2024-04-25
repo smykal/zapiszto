@@ -1,8 +1,6 @@
-package com.bezkoder.spring.security.postgresql.controllers;
+package com.zapiszto.controllers;
 
 import com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 

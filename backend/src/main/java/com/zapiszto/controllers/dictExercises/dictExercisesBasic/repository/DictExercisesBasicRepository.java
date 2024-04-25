@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesBasic.repository;
+package com.zapiszto.controllers.dictExercises.dictExercisesBasic.repository;
 
 import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesBasic.entity.DictExercisesBasicEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

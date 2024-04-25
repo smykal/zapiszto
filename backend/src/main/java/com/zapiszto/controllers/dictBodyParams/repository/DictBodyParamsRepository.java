@@ -1,6 +1,6 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.repository;
+package com.zapiszto.controllers.dictBodyParams.repository;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.entity.DictBodyParamsEntity;
+import com.zapiszto.controllers.dictBodyParams.entity.DictBodyParamsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

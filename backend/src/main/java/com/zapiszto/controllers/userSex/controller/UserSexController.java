@@ -1,9 +1,9 @@
-package com.bezkoder.spring.security.postgresql.controllers.userSex.controller;
+package com.zapiszto.controllers.userSex.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
-import com.bezkoder.spring.security.postgresql.controllers.userSex.dto.GenderDto;
-import com.bezkoder.spring.security.postgresql.controllers.userSex.dto.UserSexDto;
-import com.bezkoder.spring.security.postgresql.controllers.userSex.service.UserSexService;
+import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.userSex.dto.GenderDto;
+import com.zapiszto.controllers.userSex.dto.UserSexDto;
+import com.zapiszto.controllers.userSex.service.UserSexService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

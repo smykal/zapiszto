@@ -1,9 +1,9 @@
-package com.bezkoder.spring.security.postgresql.controllers.bodyParams.service;
+package com.zapiszto.controllers.bodyParams.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BmrDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.CPFDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.repository.CPFBalanseRepository;
+import com.zapiszto.controllers.bodyParams.dto.BmrDto;
+import com.zapiszto.controllers.bodyParams.dto.CPFDto;
+import com.zapiszto.controllers.bodyParams.entity.BodyParamsEntity;
+import com.zapiszto.controllers.bodyParams.repository.CPFBalanseRepository;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;

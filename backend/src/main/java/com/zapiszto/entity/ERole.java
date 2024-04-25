@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.entity;
+package com.zapiszto.entity;
 
 public enum ERole {
   ROLE_USER,

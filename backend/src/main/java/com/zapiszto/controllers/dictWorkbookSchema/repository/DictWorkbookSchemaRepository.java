@@ -1,6 +1,6 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.repository;
+package com.zapiszto.controllers.dictWorkbookSchema.repository;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

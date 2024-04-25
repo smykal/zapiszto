@@ -1,6 +1,6 @@
-package com.bezkoder.spring.security.postgresql.controllers.workbooks.repository;
+package com.zapiszto.controllers.workbooks.repository;
 
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.entity.WorkbooksEntity;
+import com.zapiszto.controllers.workbooks.entity.WorkbooksEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

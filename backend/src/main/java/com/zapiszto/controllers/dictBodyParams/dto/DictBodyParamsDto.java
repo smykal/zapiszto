@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.dto;
+package com.zapiszto.controllers.dictBodyParams.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

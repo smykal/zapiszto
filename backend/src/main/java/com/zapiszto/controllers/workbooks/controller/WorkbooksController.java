@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.workbooks.controller;
+package com.zapiszto.controllers.workbooks.controller;
 
 import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
 import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.AddWorkbookDto;

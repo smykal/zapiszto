@@ -1,7 +1,7 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.serializer;
+package com.zapiszto.controllers.dictWorkbookSchema.serializer;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
-import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
+import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
 import org.springframework.stereotype.Component;
 
 @Component

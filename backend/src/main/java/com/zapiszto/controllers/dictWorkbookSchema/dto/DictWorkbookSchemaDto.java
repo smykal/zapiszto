@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.dto;
+package com.zapiszto.controllers.dictWorkbookSchema.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,14 +1,14 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictExercises.service;
+package com.zapiszto.controllers.dictExercises.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesBasic.entity.DictExercisesBasicEntity;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesBasic.repository.DictExercisesBasicRepository;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesPerUser.entity.DictExercisesPerUserEntity;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesPerUser.repository.DictExercisesPerUserRepository;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dto.DictExercisesDto;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dto.NewDictExerciseDto;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.entity.DictExercisesEntity;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.repository.DictExercisesRepository;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.serializer.DictExercisesSerializer;
+import com.zapiszto.controllers.dictExercises.dictExercisesBasic.entity.DictExercisesBasicEntity;
+import com.zapiszto.controllers.dictExercises.dictExercisesBasic.repository.DictExercisesBasicRepository;
+import com.zapiszto.controllers.dictExercises.dictExercisesPerUser.entity.DictExercisesPerUserEntity;
+import com.zapiszto.controllers.dictExercises.dictExercisesPerUser.repository.DictExercisesPerUserRepository;
+import com.zapiszto.controllers.dictExercises.dto.DictExercisesDto;
+import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
+import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
+import com.zapiszto.controllers.dictExercises.repository.DictExercisesRepository;
+import com.zapiszto.controllers.dictExercises.serializer.DictExercisesSerializer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;

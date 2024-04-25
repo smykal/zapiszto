@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.repository;
+package com.zapiszto.repository;
 
 import java.util.Optional;
 

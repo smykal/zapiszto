@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.payload.request;
+package com.zapiszto.payload.request;
 
 import java.util.Set;
 

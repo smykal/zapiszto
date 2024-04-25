@@ -1,8 +1,8 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.service;
+package com.zapiszto.controllers.dictBodyParams.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.dto.DictBodyParamsDto;
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.serializer.DictBodyParamsSerializer;
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.repository.DictBodyParamsRepository;
+import com.zapiszto.controllers.dictBodyParams.dto.DictBodyParamsDto;
+import com.zapiszto.controllers.dictBodyParams.serializer.DictBodyParamsSerializer;
+import com.zapiszto.controllers.dictBodyParams.repository.DictBodyParamsRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

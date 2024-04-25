@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.userBirthDate.service;
+package com.zapiszto.controllers.userBirthDate.service;
 
 import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.dto.UserAgeDto;
 import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.dto.UserBirthdateDto;

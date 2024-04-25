@@ -1,12 +1,12 @@
-package com.bezkoder.spring.security.postgresql.controllers.bodyParams.serializer;
+package com.zapiszto.controllers.bodyParams.serializer;
 
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BmiCategory;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyMassIndexDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.BodyParamsWithNameDto;
-import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.entity.DictBodyParamsEntity;
+import com.zapiszto.controllers.bodyParams.dto.BmiCategory;
+import com.zapiszto.controllers.bodyParams.dto.BodyMassIndexDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
+import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameDto;
+import com.zapiszto.controllers.bodyParams.entity.BodyParamsEntity;
+import com.zapiszto.controllers.dictBodyParams.entity.DictBodyParamsEntity;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;

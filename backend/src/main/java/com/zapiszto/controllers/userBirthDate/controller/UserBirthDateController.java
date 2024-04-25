@@ -1,9 +1,9 @@
-package com.bezkoder.spring.security.postgresql.controllers.userBirthDate.controller;
+package com.zapiszto.controllers.userBirthDate.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
-import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.dto.UserAgeDto;
-import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.dto.UserBirthdateDto;
-import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.service.UserBirthDateService;
+import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.userBirthDate.dto.UserAgeDto;
+import com.zapiszto.controllers.userBirthDate.dto.UserBirthdateDto;
+import com.zapiszto.controllers.userBirthDate.service.UserBirthDateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

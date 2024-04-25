@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto;
+package com.zapiszto.controllers.bodyParams.dto;
 
 import java.time.ZonedDateTime;
 import lombok.AccessLevel;

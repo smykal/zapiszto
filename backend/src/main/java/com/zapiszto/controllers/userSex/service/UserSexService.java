@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.userSex.service;
+package com.zapiszto.controllers.userSex.service;
 
 import com.bezkoder.spring.security.postgresql.controllers.userSex.dto.GenderDto;
 import com.bezkoder.spring.security.postgresql.controllers.dictSex.entity.DictSexEntity;

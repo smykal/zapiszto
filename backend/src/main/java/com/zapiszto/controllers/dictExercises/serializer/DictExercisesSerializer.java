@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictExercises.serializer;
+package com.zapiszto.controllers.dictExercises.serializer;
 
 import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dto.DictExercisesDto;
 import com.bezkoder.spring.security.postgresql.controllers.dictExercises.entity.DictExercisesEntity;

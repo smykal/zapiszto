@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.userSex.dto;
+package com.zapiszto.controllers.userSex.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

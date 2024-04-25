@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.bodyParams.controller;
+package com.zapiszto.controllers.bodyParams.controller;
 
 import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.dto.CPFDto;

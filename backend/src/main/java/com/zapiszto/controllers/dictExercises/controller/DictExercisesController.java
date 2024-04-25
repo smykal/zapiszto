@@ -1,8 +1,8 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictExercises.controller;
+package com.zapiszto.controllers.dictExercises.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.ControllerCommon;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.dto.NewDictExerciseDto;
-import com.bezkoder.spring.security.postgresql.controllers.dictExercises.service.DictExerciseService;
+import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
+import com.zapiszto.controllers.dictExercises.service.DictExerciseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

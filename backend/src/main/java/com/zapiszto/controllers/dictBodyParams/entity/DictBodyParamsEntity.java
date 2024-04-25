@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.entity;
+package com.zapiszto.controllers.dictBodyParams.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.security.services;
+package com.zapiszto.security.services;
 
 import java.util.Collection;
 import java.util.List;

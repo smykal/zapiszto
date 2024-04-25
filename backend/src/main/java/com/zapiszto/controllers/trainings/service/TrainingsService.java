@@ -1,11 +1,11 @@
-package com.bezkoder.spring.security.postgresql.controllers.trainings.service;
+package com.zapiszto.controllers.trainings.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.trainings.dto.TrainingDto;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.dto.TrainingNotesDto;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.repository.TrainingsRepository;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.dto.NewTrainingDto;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.entity.TrainingEntity;
-import com.bezkoder.spring.security.postgresql.controllers.trainings.serializer.TrainingSerializer;
+import com.zapiszto.controllers.trainings.dto.TrainingDto;
+import com.zapiszto.controllers.trainings.dto.TrainingNotesDto;
+import com.zapiszto.controllers.trainings.repository.TrainingsRepository;
+import com.zapiszto.controllers.trainings.dto.NewTrainingDto;
+import com.zapiszto.controllers.trainings.entity.TrainingEntity;
+import com.zapiszto.controllers.trainings.serializer.TrainingSerializer;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;

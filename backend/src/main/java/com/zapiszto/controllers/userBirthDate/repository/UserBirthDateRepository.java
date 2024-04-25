@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.userBirthDate.repository;
+package com.zapiszto.controllers.userBirthDate.repository;
 
 import com.bezkoder.spring.security.postgresql.controllers.userBirthDate.entity.UserBirthDateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

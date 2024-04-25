@@ -1,7 +1,7 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.controller;
+package com.zapiszto.controllers.dictBodyParams.controller;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.dto.DictBodyParamsDto;
-import com.bezkoder.spring.security.postgresql.controllers.dictBodyParams.service.DictBodyParamsService;
+import com.zapiszto.controllers.dictBodyParams.dto.DictBodyParamsDto;
+import com.zapiszto.controllers.dictBodyParams.service.DictBodyParamsService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

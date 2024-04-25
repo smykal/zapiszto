@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers;
+package com.zapiszto.controllers;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,17 +20,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bezkoder.spring.security.postgresql.entity.ERole;
-import com.bezkoder.spring.security.postgresql.entity.Role;
-import com.bezkoder.spring.security.postgresql.entity.User;
-import com.bezkoder.spring.security.postgresql.payload.request.LoginRequest;
-import com.bezkoder.spring.security.postgresql.payload.request.SignupRequest;
-import com.bezkoder.spring.security.postgresql.payload.response.JwtResponse;
-import com.bezkoder.spring.security.postgresql.payload.response.MessageResponse;
-import com.bezkoder.spring.security.postgresql.repository.RoleRepository;
-import com.bezkoder.spring.security.postgresql.repository.UserRepository;
-import com.bezkoder.spring.security.postgresql.security.jwt.JwtUtils;
-import com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl;
+import com.zapiszto.entity.ERole;
+import com.zapiszto.entity.Role;
+import com.zapiszto.entity.User;
+import com.zapiszto.payload.request.LoginRequest;
+import com.zapiszto.payload.request.SignupRequest;
+import com.zapiszto.payload.response.JwtResponse;
+import com.zapiszto.payload.response.MessageResponse;
+import com.zapiszto.repository.RoleRepository;
+import com.zapiszto.repository.UserRepository;
+import com.zapiszto.security.jwt.JwtUtils;
+import com.zapiszto.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

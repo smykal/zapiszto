@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.controller;
+package com.zapiszto.controllers.dictWorkbookSchema.controller;
 
 import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
 import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.service.DictWorkbookSchemaService;

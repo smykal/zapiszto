@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.trainings.entity;
+package com.zapiszto.controllers.trainings.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

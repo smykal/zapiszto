@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.security;
+package com.zapiszto.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,9 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.bezkoder.spring.security.postgresql.security.jwt.AuthEntryPointJwt;
-import com.bezkoder.spring.security.postgresql.security.jwt.AuthTokenFilter;
-import com.bezkoder.spring.security.postgresql.security.services.UserDetailsServiceImpl;
+import com.zapiszto.security.jwt.AuthEntryPointJwt;
+import com.zapiszto.security.jwt.AuthTokenFilter;
+import com.zapiszto.security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableMethodSecurity

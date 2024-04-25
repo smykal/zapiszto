@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.security.services;
+package com.zapiszto.security.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

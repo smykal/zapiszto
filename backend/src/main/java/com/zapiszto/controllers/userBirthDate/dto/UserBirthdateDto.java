@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.userBirthDate.dto;
+package com.zapiszto.controllers.userBirthDate.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

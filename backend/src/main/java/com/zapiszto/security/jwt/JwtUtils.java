@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.security.jwt;
+package com.zapiszto.security.jwt;
 
 import java.security.Key;
 import java.util.Date;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.bezkoder.spring.security.postgresql.security.services.UserDetailsImpl;
+import com.zapiszto.security.services.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;

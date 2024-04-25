@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.bodyParams.repository;
+package com.zapiszto.controllers.bodyParams.repository;
 
 import com.bezkoder.spring.security.postgresql.controllers.bodyParams.entity.BodyParamsEntity;
 import java.util.List;

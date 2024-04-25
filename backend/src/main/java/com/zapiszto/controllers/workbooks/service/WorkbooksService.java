@@ -1,13 +1,13 @@
-package com.bezkoder.spring.security.postgresql.controllers.workbooks.service;
+package com.zapiszto.controllers.workbooks.service;
 
-import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
-import com.bezkoder.spring.security.postgresql.controllers.dictWorkbookSchema.repository.DictWorkbookSchemaRepository;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.AddWorkbookDto;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.PatchWorkbookSchemaDto;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.dto.WorkbooksDto;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.entity.WorkbooksEntity;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.repository.WorkbooksRepository;
-import com.bezkoder.spring.security.postgresql.controllers.workbooks.serializer.WorkbooksSerializer;
+import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.dictWorkbookSchema.repository.DictWorkbookSchemaRepository;
+import com.zapiszto.controllers.workbooks.dto.AddWorkbookDto;
+import com.zapiszto.controllers.workbooks.dto.PatchWorkbookSchemaDto;
+import com.zapiszto.controllers.workbooks.dto.WorkbooksDto;
+import com.zapiszto.controllers.workbooks.entity.WorkbooksEntity;
+import com.zapiszto.controllers.workbooks.repository.WorkbooksRepository;
+import com.zapiszto.controllers.workbooks.serializer.WorkbooksSerializer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;

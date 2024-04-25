@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.dictExercises.dictExercisesPerUser.entity;
+package com.zapiszto.controllers.dictExercises.dictExercisesPerUser.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.userSex.repository;
+package com.zapiszto.controllers.userSex.repository;
 
 import com.bezkoder.spring.security.postgresql.controllers.userSex.entity.UserSexEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

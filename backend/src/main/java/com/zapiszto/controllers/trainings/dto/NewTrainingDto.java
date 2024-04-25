@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql.controllers.trainings.dto;
+package com.zapiszto.controllers.trainings.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
