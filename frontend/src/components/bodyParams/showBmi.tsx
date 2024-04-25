@@ -45,8 +45,6 @@ export default class ShowBmi extends Component<Props,State> {
                             <strong> Wartość BMI:</strong> {bmi.value}
                             <strong> Opis:</strong> {bmi.description}
                         </p>
-                        <p></p>
-                        <p></p>
                     </div>
                 }
             </div>
