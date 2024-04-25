@@ -1,14 +1,17 @@
 package com.zapiszto.controllers.dictExercises.controller;
 
 import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.dictExercises.dto.DictExercisesDto;
 import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
 import com.zapiszto.controllers.dictExercises.service.DictExerciseService;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,4 +47,12 @@ public class DictExercisesController implements ControllerCommon {
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
+  @GetMapping("/get_exercise_basic")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<List<DictExercisesDto>> getExerciseBasic(
+  ) {
+    var userId = extractUserId();
+    var result = dictExerciseService.getDictExercises(userId);
+    return new ResponseEntity<>(result, HttpStatus.CREATED);
+  }
 }

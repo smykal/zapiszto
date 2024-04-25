@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="modify-columns-dict_quantity" author="smykalm">
+        <sql>
+            ALTER TABLE public.dict_quantity_type
+            ALTER COLUMN dict_quantity_type_basic_id TYPE int8,
+            ALTER COLUMN dict_quantity_type_per_user_id TYPE int8;
+        </sql>
+    </changeSet>
+
+    <changeSet id="drop-columns-description" author="smykalm">
+        <dropColumn tableName="dict_quantity_type_per_user" columnName="description"/>
+        <dropColumn tableName="dict_quantity_type_basic" columnName="description"/>
+    </changeSet>
+
+    <changeSet id="modify-column-id-to-int8" author="smykalm">
+        <sql>
+            ALTER TABLE public.dict_quantity_type_per_user      ALTER COLUMN id TYPE int8;
+            ALTER TABLE public.dict_quantity_type_basic         ALTER COLUMN id TYPE int8;
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-column-user-id" author="smykalm">
+        <addColumn tableName="dict_quantity_type_per_user">
+            <column name="user_id" type="int8"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="dict_quantity_type_per_user"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_dict_quantity_per_user_user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="set-user_id-to-not-null" author="your_name">
+        <sql>ALTER TABLE dict_quantity_type_per_user ALTER COLUMN user_id SET NOT NULL;</sql>
+    </changeSet>
+    <changeSet id="add-sequence-for-dict_quantity_type_basic-id" author="smykalm">
+        <createSequence sequenceName="dict_quantity_type_basic_seq"
+                        incrementBy="1"
+                        startValue="1"/>
+    </changeSet>
+
+    <changeSet id="add-sequence-for-dict_quantity_type_per_user-id" author="your_name">
+        <createSequence sequenceName="dict_quantity_type_per_user_seq"
+                        incrementBy="1"
+                        startValue="1"/>
+    </changeSet>
+    <changeSet id="generate-sequence-dict_quantity_type_seq" author="smykalm">
+        <createSequence sequenceName="dict_quantity_type_seq"
+                        incrementBy="1"
+                        startValue="1"/>
+    </changeSet>
+    <changeSet id="modify-columns-dict_quantity_type" author="smykalm">
+        <sql>
+            ALTER TABLE public.dict_quantity_type                   ALTER COLUMN id SET DEFAULT nextval('dict_quantity_type_seq');
+            ALTER TABLE public.dict_quantity_type_basic             ALTER COLUMN id SET DEFAULT nextval('dict_quantity_type_basic_seq');
+            ALTER TABLE public.dict_quantity_type_per_user          ALTER COLUMN id SET DEFAULT nextval('dict_quantity_type_per_user_seq');
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-foreign-key" author="smykalm">
+              <addForeignKeyConstraint baseTableName="dict_exercises_per_user"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_dict_exercises_per_user_user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

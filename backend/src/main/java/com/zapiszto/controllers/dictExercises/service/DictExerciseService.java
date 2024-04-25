@@ -34,7 +34,7 @@ public class DictExerciseService {
     var item = DictExercisesPerUserEntity.builder()
             .name(newDictExerciseDto.getName())
             .user_id(userId)
-        .build();
+            .build();
 
     DictExercisesPerUserEntity dictExercisesPerUserEntity = dictExercisesPerUserRepository.save(item);
 
@@ -78,8 +78,8 @@ public class DictExerciseService {
         dictExercisesEntity.getDictExercisesBasicEntity().getId());
   }
 
-  public List<DictExercisesDto> getDictExercises(){
-    List<DictExercisesEntity> all = dictExercisesRepository.findAll();
+  public List<DictExercisesDto> getDictExercises(Long userId){
+    List<DictExercisesEntity> all = dictExercisesRepository.getAllForUser(userId);
 
     return all.stream().map(DictExercisesSerializer::convert)
         .collect(Collectors.toList());
