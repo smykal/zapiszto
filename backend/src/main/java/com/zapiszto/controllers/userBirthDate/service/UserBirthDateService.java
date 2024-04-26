@@ -4,7 +4,6 @@ import com.zapiszto.controllers.userBirthDate.dto.UserAgeDto;
 import com.zapiszto.controllers.userBirthDate.dto.UserBirthdateDto;
 import com.zapiszto.controllers.userBirthDate.entity.UserBirthDateEntity;
 import com.zapiszto.controllers.userBirthDate.repository.UserBirthDateRepository;
-import java.sql.Date;
 import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

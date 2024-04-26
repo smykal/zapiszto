@@ -55,4 +55,12 @@ public class DictExercisesController implements ControllerCommon {
     var result = dictExerciseService.getDictExercises(userId);
     return new ResponseEntity<>(result, HttpStatus.CREATED);
   }
+  @GetMapping("/get_exercises_per_user")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<List<DictExercisesDto>> getExercisesPerUser(
+  ) {
+    var userId = extractUserId();
+    var result = dictExerciseService.getDictExercises(userId);
+    return new ResponseEntity<>(result, HttpStatus.CREATED);
+  }
 }

@@ -23,7 +23,7 @@ public class CPFBalanseService {
   BmrService bmrService;
 
   public List<List<CPFDto>> getCPF(long userId) {
-    List<List<CPFDto>> CPFDtos = new ArrayList();
+    List<List<CPFDto>> CPFDtos = new ArrayList<>();
     BodyParamsEntity actualWeightForUser = cpfBalanseRepository.getActualWeightForUser(userId);
     double weight = Double.parseDouble(actualWeightForUser.getValue());
     List<BmrDto> bmrByUserId = bmrService.getBmrByUserId(userId);
@@ -53,7 +53,7 @@ public class CPFBalanseService {
       double weight,
       List<BmrDto> bmrByUserId
   ) {
-    List<CPFDto> list = new ArrayList();
+    List<CPFDto> list = new ArrayList<>();
     String tittle = "mass time";
     for (BmrDto bmr :
         bmrByUserId) {
@@ -92,7 +92,7 @@ public class CPFBalanseService {
       double weight,
       List<BmrDto> bmrByUserId
   ) {
-    List<CPFDto> list = new ArrayList();
+    List<CPFDto> list = new ArrayList<>();
     String tittle = "regular time";
     for (BmrDto bmr :
         bmrByUserId) {
@@ -131,7 +131,7 @@ public class CPFBalanseService {
       double weight,
       List<BmrDto> bmrByUserId
   ) {
-    List<CPFDto> list = new ArrayList();
+    List<CPFDto> list = new ArrayList<>();
     String tittle = "reduction time";
     for (BmrDto bmr :
         bmrByUserId) {

@@ -19,7 +19,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "dict_units")
+@Table(name = "dict_quantity_type")
 @Getter
 @Setter
 @NoArgsConstructor
