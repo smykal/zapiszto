@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Training } from "../../../../types/types";
 import Service from "../../../../services/workbooks";
 import Collapsible from "react-collapsible";
+import Exercises from "./exercises/index"
 
 type Props = {
     workbook_id: number;
@@ -68,18 +69,15 @@ export default class ShowTrainings extends Component<Props, State> {
                                             }}
                                             onClick={() => this.handleItemClick(index)}
                                         >
-                                            <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                                {item.date}: {item.notes}
+                                            <span style={{ marginRight: '10px', width: '350px', textAlign: 'right' }}>
+                                                {item.date}: {item.notes},workbook_id :{item.workbooks_id}, training_id: {item.id} 
                                             </span>
                                         </div>
                                     }
                                     open={this.isItemExpanded(index)}
                                 >
-                                    <p>data: {item.date}</p>
-                                    <p>id: {item.id}</p>
-                                    <p>workbook id: {item.workbooks_id}</p>
-                                    <p>notes: {item.notes}</p>
                                     {/* Treść, którą chcesz wyświetlić po rozwinięciu */}
+                                    <Exercises workbook_id={item.workbooks_id} training_id={item.id} />
                                 </Collapsible>
                             </li>
                         ))}

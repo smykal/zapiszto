@@ -69,3 +69,26 @@ export type Training = {
                         date: string;
                         notes: string
 }
+
+export type DictQuantityType = {
+                                id: number;
+                                dict: string;
+                                dict_id: number;
+                                name: string;
+                                shortcut: string
+}
+
+export type DictUnits = {
+                          id: number;
+                          dict: string;
+                          dict_id: number;
+                          name: string;
+                          shortcut: string
+}
+
+export type DictExercises = {
+                              id: number;
+                              dict: string;
+                              dict_id: number;
+                              name: string
+}
