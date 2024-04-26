@@ -20,6 +20,7 @@ class Exercise extends Component<Props> {
 
     render() {
         const {workbook_id, training_id} = this.props;
+
         return (
             <div>
                 <AddExercise workbook_id={workbook_id} training_id={training_id} />
