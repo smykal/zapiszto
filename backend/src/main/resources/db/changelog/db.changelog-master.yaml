@@ -111,3 +111,5 @@ databaseChangeLog:
       file: db/changelog/055_modify_table_exercises.xml
   - include:
       file: db/changelog/056_modify_typo.xml
+  - include:
+      file: db/changelog/057_modify_trainings_foreign_key.xml
