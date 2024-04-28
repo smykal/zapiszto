@@ -75,3 +75,41 @@ databaseChangeLog:
       file: db/changelog/037_modify_table_body_params.xml
   - include:
       file: db/changelog/038_modify_table_training.xml
+  - include:
+      file: db/changelog/039_drop_table.xml
+  - include:
+      file: db/changelog/040_add_table_dict_exercises.xml
+  - include:
+    - file: db/changelog/041_drop_table.xml
+  - include:
+      file: db/changelog/042_add_table_dict_units.xml
+  - include:
+      file: db/changelog/043_add_table_dict_quantity_type.xml
+  - include:
+      file: db/changelog/044_add_table_exercises.xml
+  - include:
+      file: db/changelog/045_modify_table_dict_exercises.xml
+  - include:
+      file: db/changelog/046_modify_table_dict_exercises_per_user.xml
+  - include:
+      file: db/changelog/047_modify_table_dict_exercises.xml
+  - include:
+      file: db/changelog/048_modify_table_dict_exercises.xml
+  - include:
+      file: db/changelog/049_modify_table_dict_units.xml
+  - include:
+      file: db/changelog/050_modify_table_dict_units.xml
+  - include:
+      file: db/changelog/051_modify_table_dict_units.xml
+  - include:
+      file: db/changelog/052_add_sequence_to_dict_units.xml
+  - include:
+      file: db/changelog/053_modify_table_dict_exercises.xml
+  - include:
+      file: db/changelog/054_modify_table_exercises.xml
+  - include:
+      file: db/changelog/055_modify_table_exercises.xml
+  - include:
+      file: db/changelog/056_modify_typo.xml
+  - include:
+      file: db/changelog/057_modify_trainings_foreign_key.xml

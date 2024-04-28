@@ -1,0 +1,32 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="add-table-exercises" author="smykalm">
+        <createTable tableName="exercises">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="training_id" type="INT">
+                <constraints nullable="false" references="trainings(id)" foreignKeyName="fk_exercises_trainings"/>
+            </column>
+            <column name="dict_exercise_id" type="INT">
+                <constraints nullable="false" references="dict_exercises(id)" foreignKeyName="fk_exercises_dict_exercise"/>
+            </column>
+            <column name="quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_quantity_type_id" type="INT">
+                <constraints nullable="false" references="dict_quantity_type(id)" foreignKeyName="fk_exercises_dict_quantity_type"/>
+            </column>
+            <column name="volume" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_unit" type="INT">
+                <constraints nullable="false" references="dict_units(id)" foreignKeyName="fk_exercises_dict_units"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

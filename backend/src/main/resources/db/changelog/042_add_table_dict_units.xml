@@ -1,0 +1,50 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="add-table-dict_units_basic" author="smykalm">
+        <createTable tableName="dict_units_basic">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shortcut" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-table-dict_units_per_user" author="smykalm">
+        <createTable tableName="dict_units_per_user">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shortcut" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-table-dict_units" author="smykalm">
+        <createTable tableName="dict_units">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dict_units_basic_id" type="INT">
+                <constraints nullable="true" references="dict_units_basic(id)" foreignKeyName="fk_dict_units_basic"/>
+            </column>
+            <column name="dict_units_per_user_id" type="INT">
+                <constraints nullable="true" references="dict_units_per_user(id)" foreignKeyName="fk_dict_units_per_user"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,13 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="changeColumnType-user_id-dict_exercises_per_user" author="smykalm">
+        <sql>
+            ALTER TABLE dict_exercises_per_user
+            ALTER COLUMN user_id TYPE BIGINT;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

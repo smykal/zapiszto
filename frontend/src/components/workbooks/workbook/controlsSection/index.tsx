@@ -13,7 +13,7 @@ type State = {
   selectedSchemaName: string; // Zmień na selectedSchemaId
 }
 
-class ControlsSection extends Component<Props, State> {
+class  ControlsSection extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

@@ -57,3 +57,47 @@ export type NewTraining = {
                             workbook_id: number;
                             date: Date;
 }
+
+export type TrainingNotes = {
+                             id: number;
+                             notes: string 
+}
+
+export type Training = {
+                        id: number;
+                        workbooks_id: number;
+                        date: string;
+                        notes: string
+}
+
+export type DictQuantityType = {
+                                id: number;
+                                dict: string;
+                                dict_id: number;
+                                name: string;
+                                shortcut: string
+}
+
+export type DictUnits = {
+                          id: number;
+                          dict: string;
+                          dict_id: number;
+                          name: string;
+                          shortcut: string
+}
+
+export type DictExercises = {
+                              id: number;
+                              dict: string;
+                              dict_id: number;
+                              name: string
+}
+
+export type Exercise = {
+                        training_id: number | null,
+                        dict_exercise_id: number | null,
+                        quantity: number | null,
+                        dict_quantity_type_id: number | null,
+                        volume: number | null,
+                        dict_unit: number | null,
+}

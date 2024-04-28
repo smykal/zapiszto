@@ -1,0 +1,46 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="add-table-dict_exercises_basic" author="smykalm">
+        <createTable tableName="dict_exercises_basic">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-table-dict_exercises_per_user" author="smykalm">
+        <createTable tableName="dict_exercises_per_user">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="INT"/>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-table-dict_exercises" author="smykalm">
+        <createTable tableName="dict_exercises">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dict_exercises_basic_id" type="INT">
+                <constraints nullable="true" references="dict_exercises_basic(id)" foreignKeyName="fk_dict_exercises_basic"/>
+            </column>
+            <column name="dict_exercises_per_user_id" type="INT">
+                <constraints nullable="true" references="dict_exercises_per_user(id)" foreignKeyName="fk_dict_exercises_per_user"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="edit-typo-with-sequences" author="smykalm">
+        <sql>
+            ALTER TABLE public.dict_units_basic             ALTER COLUMN id SET DEFAULT nextval('dict_units_basic_seq');
+            ALTER TABLE public.exercises                    ALTER COLUMN id SET DEFAULT nextval('exercises_seq');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

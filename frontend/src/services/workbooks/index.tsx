@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../auth-header';
-import { DictWorkbookSchema, WorkbookSchemaIdPut,  NewWorkbook, NewTraining } from '../../types/types';
+import { DictWorkbookSchema, WorkbookSchemaIdPut,  NewWorkbook, NewTraining, TrainingNotes } from '../../types/types';
 
 
 const API_URL = 'http://localhost:8080/v1';
@@ -68,6 +68,24 @@ class WorkbooksService {
       .catch(error => {
         console.error('Błąd podczas wysyłania zapytania:', error);
       });
+  }
+
+  getTrainings(workbookId: number) {
+    return axios.get(API_URL + '/get_trainings/workbook/' + workbookId, { headers: authHeader() });
+  }
+
+  patchTrainingNotes(id: number, notes: string){
+    const requestBody: TrainingNotes = {
+      id: id,
+      notes: notes
+    }
+    return axios.patch(API_URL + '/patch_trening_notes', requestBody, { headers: authHeader() })
+    .then(response => {
+      console.log('Odpowiedź z serwera:', response.data);
+    })
+    .catch(error => {
+      console.error('Błąd podczas wysyłania zapytania:', error);
+    });
   }
 }
 
