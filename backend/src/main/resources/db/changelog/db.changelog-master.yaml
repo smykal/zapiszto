@@ -105,3 +105,9 @@ databaseChangeLog:
       file: db/changelog/052_add_sequence_to_dict_units.xml
   - include:
       file: db/changelog/053_modify_table_dict_exercises.xml
+  - include:
+      file: db/changelog/054_modify_table_exercises.xml
+  - include:
+      file: db/changelog/055_modify_table_exercises.xml
+  - include:
+      file: db/changelog/056_modify_typo.xml
