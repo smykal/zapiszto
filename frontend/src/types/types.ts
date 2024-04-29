@@ -99,5 +99,5 @@ export type Exercise = {
                         quantity: number | null,
                         dict_quantity_type_id: number | null,
                         volume: number | null,
-                        dict_unit: number | null,
+                        dict_unit_id: number | null,
 }

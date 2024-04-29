@@ -14,9 +14,9 @@ type State = {
     dictExercises: DictExercises[],
     dictUnits: DictUnits[],
     dictQuantityTypes: DictQuantityType[],
-    exerciseId: number | null,
-    unitId: number | null,
-    quantityTypeId: number | null,
+    dict_exercise_id: number | null,
+    dict_unit_id: number | null,
+    dict_quantity_type_id: number | null,
 }
 
 class AddExercise extends Component<Props, State> {
@@ -26,9 +26,9 @@ class AddExercise extends Component<Props, State> {
             dictExercises: [],
             dictUnits: [],
             dictQuantityTypes: [],
-            exerciseId: null,
-            unitId: null,
-            quantityTypeId: null,
+            dict_exercise_id: null,
+            dict_unit_id: null,
+            dict_quantity_type_id: null,
         }
     }
     componentDidMount() {
@@ -72,14 +72,14 @@ class AddExercise extends Component<Props, State> {
 
     render() {
         const {workbook_id, training_id} = this.props;
-        const { dictExercises, dictUnits, dictQuantityTypes, exerciseId, unitId, quantityTypeId } = this.state;
+        const { dictExercises, dictUnits, dictQuantityTypes, dict_exercise_id, dict_unit_id, dict_quantity_type_id } = this.state;
         const initialExercise: Exercise = {
             training_id: this.props.training_id,
-            dict_exercise_id: null,
+            dict_exercise_id: 1,
             quantity: null,
-            dict_quantity_type_id: null,
+            dict_quantity_type_id: 1,
             volume: null,
-            dict_unit: null,
+            dict_unit_id: 1,
         };
 
         return (
@@ -111,7 +111,7 @@ class AddExercise extends Component<Props, State> {
                             ))}
                         </Field>
                         <Field name="volume" type="number" />
-                        <Field as="select" name="dict_unit">
+                        <Field as="select" name="dict_unit_id">
                             <option value="" disabled>
                                 Select unit
                             </option>
