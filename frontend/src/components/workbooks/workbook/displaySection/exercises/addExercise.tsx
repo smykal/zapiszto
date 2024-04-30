@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { DictExercises, DictQuantityType, DictUnits, Exercise } from '../../../../../types/types';
+import { DictExercises, DictQuantityType, DictUnits, NewExercise } from '../../../../../types/types';
 import Service from '../../../../../services/exercises'
 import {Formik, Form, Field} from 'formik'
-
 
 
 type Props = {
@@ -13,10 +12,7 @@ type Props = {
 type State = {
     dictExercises: DictExercises[],
     dictUnits: DictUnits[],
-    dictQuantityTypes: DictQuantityType[],
-    dict_exercise_id: number | null,
-    dict_unit_id: number | null,
-    dict_quantity_type_id: number | null,
+    dictQuantityTypes: DictQuantityType[]
 }
 
 class AddExercise extends Component<Props, State> {
@@ -25,10 +21,7 @@ class AddExercise extends Component<Props, State> {
         this.state = {
             dictExercises: [],
             dictUnits: [],
-            dictQuantityTypes: [],
-            dict_exercise_id: null,
-            dict_unit_id: null,
-            dict_quantity_type_id: null,
+            dictQuantityTypes: []
         }
     }
     componentDidMount() {
@@ -66,27 +59,21 @@ class AddExercise extends Component<Props, State> {
                 console.error('Error loading dict quantity types:', error);
             });
     }
-    postExercise = (exercise: Exercise) => {
-        alert(JSON.stringify(exercise))
-        Service.postExercise(this.props.training_id,
-                            exercise.dictExerciseId,
-                            exercise.quantity,
-                            exercise.dictQuantityTypeId,
-                            exercise.volume,
-                            exercise.dictUnitId,
-        )
+    postExercise = (exercise: NewExercise) => {
+        Service.postExercise(exercise)
     }
 
     render() {
         const {workbook_id, training_id} = this.props;
-        const { dictExercises, dictUnits, dictQuantityTypes, dict_exercise_id, dict_unit_id, dict_quantity_type_id } = this.state;
-        const initialExercise: Exercise = {
+        const { dictExercises, dictUnits, dictQuantityTypes} = this.state;
+        const initialExercise: NewExercise = {
             trainingId: this.props.training_id,
             dictExerciseId: 1,
             quantity:  0,
             dictQuantityTypeId: 1,
             volume: 0,
             dictUnitId: 1,
+            notes: 'notes'
         };
 
         return (
@@ -96,7 +83,7 @@ class AddExercise extends Component<Props, State> {
                 onSubmit={this.postExercise}
                 >
                     <Form>
-                        <Field as="select" name="dict_exercise_id">
+                        <Field as="select" name="dictExerciseId">
                             <option value="" disabled>
                                 Select exercise
                             </option>
@@ -107,7 +94,7 @@ class AddExercise extends Component<Props, State> {
                             ))}
                         </Field>
                         <Field name="quantity" type="number" />
-                        <Field as="select" name="dict_quantity_type_id">
+                        <Field as="select" name="dictQuantityTypeId">
                             <option value="" disabled>
                                 Select quantity
                             </option>
@@ -118,7 +105,7 @@ class AddExercise extends Component<Props, State> {
                             ))}
                         </Field>
                         <Field name="volume" type="number" />
-                        <Field as="select" name="dict_unit_id">
+                        <Field as="select" name="dictUnitId">
                             <option value="" disabled>
                                 Select unit
                             </option>
@@ -128,27 +115,14 @@ class AddExercise extends Component<Props, State> {
                                 </option>
                             ))}
                         </Field>
+                        <Field name="notes" type="text" />
                         <button type="submit" className="btn btn-primary btn-block">
                   <span>Add</span>
                 </button>
                     </Form>
                 </Formik>
-                <p>workbook id: {workbook_id}   training id: {training_id}</p>
-                <h2>Dict Units</h2>
-                <ul>
-                    {dictUnits.map(unit => (
-                        <li key={unit.id}>{unit.name}</li>
-                    ))}
-                </ul>
-                <h2>Dict Quantity Types</h2>
-                <ul>
-                    {dictQuantityTypes.map(type => (
-                        <li key={type.id}>{type.name}</li>
-                    ))}
-                </ul>
             </div>
         );
-        
     }
 }
 
