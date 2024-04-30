@@ -66,20 +66,27 @@ class AddExercise extends Component<Props, State> {
                 console.error('Error loading dict quantity types:', error);
             });
     }
-    postExercise(exercise: Exercise) {
+    postExercise = (exercise: Exercise) => {
         alert(JSON.stringify(exercise))
+        Service.postExercise(this.props.training_id,
+                            exercise.dictExerciseId,
+                            exercise.quantity,
+                            exercise.dictQuantityTypeId,
+                            exercise.volume,
+                            exercise.dictUnitId,
+        )
     }
 
     render() {
         const {workbook_id, training_id} = this.props;
         const { dictExercises, dictUnits, dictQuantityTypes, dict_exercise_id, dict_unit_id, dict_quantity_type_id } = this.state;
         const initialExercise: Exercise = {
-            training_id: this.props.training_id,
-            dict_exercise_id: 1,
-            quantity: null,
-            dict_quantity_type_id: 1,
-            volume: null,
-            dict_unit_id: 1,
+            trainingId: this.props.training_id,
+            dictExerciseId: 1,
+            quantity:  0,
+            dictQuantityTypeId: 1,
+            volume: 0,
+            dictUnitId: 1,
         };
 
         return (
