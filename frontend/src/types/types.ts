@@ -93,11 +93,12 @@ export type DictExercises = {
                               name: string
 }
 
-export type Exercise = {
-                        training_id: number | null,
-                        dict_exercise_id: number | null,
-                        quantity: number | null,
-                        dict_quantity_type_id: number | null,
-                        volume: number | null,
-                        dict_unit: number | null,
+export type NewExercise = {
+                        trainingId: number,
+                        dictExerciseId: number,
+                        quantity: number,
+                        dictQuantityTypeId: number,
+                        volume: number,
+                        dictUnitId: number,
+                        notes: string
 }
