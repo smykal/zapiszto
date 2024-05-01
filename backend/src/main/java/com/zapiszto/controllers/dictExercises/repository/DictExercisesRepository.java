@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.dictExercises.repository;
 
 import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,4 +22,5 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
             where user_id is null or user_id = :userId
       """)
   List<DictExercisesEntity> getAllForUser(@Param("userId") Long userId);
+
 }
