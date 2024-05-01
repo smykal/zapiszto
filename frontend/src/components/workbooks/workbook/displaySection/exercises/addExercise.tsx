@@ -61,6 +61,7 @@ class AddExercise extends Component<Props, State> {
     }
     postExercise = (exercise: NewExercise) => {
         Service.postExercise(exercise)
+        window.location.reload();
     }
 
     render() {

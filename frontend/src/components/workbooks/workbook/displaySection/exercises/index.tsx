@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AddExercise from './addExercise';
+import GetExercise from './getExercise';
 
 
 type Props = {
@@ -24,7 +25,7 @@ class Exercise extends Component<Props> {
         return (
             <div>
                 <AddExercise workbook_id={workbook_id} training_id={training_id} />
-                {/* <GetExercises></GetExercises> */}
+                <GetExercise training_id={training_id}></GetExercise>
             </div>
         )
         
