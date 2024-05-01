@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Training } from "../../../../types/types";
 import Service from "../../../../services/workbooks";
 import Collapsible from "react-collapsible";
-import Exercises from "./exercises/index"
+import Exercises from "./exercises/index";
 
 type Props = {
     workbook_id: number;
@@ -40,12 +40,21 @@ export default class ShowTrainings extends Component<Props, State> {
                 }
             }
         );
+        
+        // Odczytujemy indeks rozwiniętego elementu z localStorage i ustawiamy go w stanie komponentu
+        const expandedItemIndex = localStorage.getItem('expandedItemIndex');
+        if (expandedItemIndex !== null) {
+            this.setState({ expandedItemIndex: parseInt(expandedItemIndex) });
+        }
     }
 
     handleItemClick(index: number) {
         this.setState((prevState) => ({
             expandedItemIndex: prevState.expandedItemIndex === index ? null : index
         }));
+
+        // Zapisujemy indeks rozwiniętego elementu do localStorage
+        localStorage.setItem('expandedItemIndex', index.toString());
     }
 
     isItemExpanded(index: number): boolean {
