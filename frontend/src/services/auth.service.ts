@@ -1,7 +1,9 @@
 import axios from "axios";
 
-// const API_URL = 'http://localhost:8080/v1/';
-const API_URL = 'https://zapiszto-service.onrender.com/v1/';
+// const API_URL = "http://localhost:8080/api/auth/";
+
+const API_URL = "https://zapiszto-service.onrender.com/api/auth/";
+
 
 class AuthService {
   login(username: string, password: string) {
