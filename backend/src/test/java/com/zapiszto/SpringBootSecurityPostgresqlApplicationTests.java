@@ -1,4 +1,4 @@
-package com.bezkoder.spring.security.postgresql;
+package com.zapiszto;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

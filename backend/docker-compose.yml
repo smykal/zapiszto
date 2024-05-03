@@ -1,0 +1,25 @@
+services:
+  database:
+    build:
+      dockerfile: ./src/main/resources/docker/database/Dockerfile
+    container_name: zapiszto-database
+    ports:
+      - 5555:5432
+    networks:
+      - zapiszto-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./src/main/resources/docker/backend/Dockerfile
+    container_name: zapiszto-backend
+    depends_on:
+      - database
+    ports:
+      - 8001:8000
+    networks:
+      - zapiszto-network
+
+networks:
+  zapiszto-network:
+    driver: bridge
