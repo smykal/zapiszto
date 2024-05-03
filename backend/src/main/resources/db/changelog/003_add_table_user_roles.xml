@@ -15,11 +15,9 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="role_id" type="int4">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="false" nullable="false"/>
             </column>
         </createTable>
-
-        <addPrimaryKey tableName="user_roles" columnNames="user_id, role_id" />
 
         <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="user_id" constraintName="fk_user_roles_user_id" referencedTableName="users" referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="role_id" constraintName="fk_user_roles_role_id" referencedTableName="roles" referencedColumnNames="id"/>

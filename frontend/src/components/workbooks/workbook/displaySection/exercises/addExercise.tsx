@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { DictExercises, DictQuantityType, DictUnits, NewExercise } from '../../../../../types/types';
 import Service from '../../../../../services/exercises'
-import {Formik, Form, Field} from 'formik'
+import { Formik, Form, Field } from 'formik'
 
 
 type Props = {
@@ -61,15 +61,16 @@ class AddExercise extends Component<Props, State> {
     }
     postExercise = (exercise: NewExercise) => {
         Service.postExercise(exercise)
+        window.location.reload();
     }
 
     render() {
-        const {workbook_id, training_id} = this.props;
-        const { dictExercises, dictUnits, dictQuantityTypes} = this.state;
+        const { workbook_id, training_id } = this.props;
+        const { dictExercises, dictUnits, dictQuantityTypes } = this.state;
         const initialExercise: NewExercise = {
             trainingId: this.props.training_id,
             dictExerciseId: 1,
-            quantity:  0,
+            quantity: 0,
             dictQuantityTypeId: 1,
             volume: 0,
             dictUnitId: 1,
@@ -79,8 +80,8 @@ class AddExercise extends Component<Props, State> {
         return (
             <div>
                 <Formik
-                initialValues={initialExercise}
-                onSubmit={this.postExercise}
+                    initialValues={initialExercise}
+                    onSubmit={this.postExercise}
                 >
                     <Form>
                         <Field as="select" name="dictExerciseId">
@@ -117,8 +118,9 @@ class AddExercise extends Component<Props, State> {
                         </Field>
                         <Field name="notes" type="text" />
                         <button type="submit" className="btn btn-primary btn-block">
-                  <span>Add</span>
-                </button>
+
+                            <span>Add</span>
+                        </button>
                     </Form>
                 </Formik>
             </div>

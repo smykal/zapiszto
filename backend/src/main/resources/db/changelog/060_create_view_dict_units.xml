@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="create_view_dict_units" author="smykalm">
+        <sql>create view view_dict_units as
+            select 	    de.*
+                    ,	COALESCE(deb."name", depu."name") as name
+                    ,	depu.user_id
+                        from dict_units de
+                        left join dict_units_basic deb on deb.id = de.dict_units_basic_id
+                        left join dict_units_per_user depu on depu.id = de.dict_units_per_user_id
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -23,7 +23,10 @@ class ExercisesService {
       .catch(error => {
         console.error('Błąd podczas wysyłania zapytania:', error);
       });
+    }
 
+    getExercises(trainingId: number) {
+      return axios.get(API_URL + '/get_exercise/training/' + trainingId, { headers: authHeader() });
     }
 }
 

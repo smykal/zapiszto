@@ -1,0 +1,6 @@
+FROM postgres
+ENV POSTGRES_DB="zapiszto"
+ENV POSTGRES_USER="postgres"
+ENV POSTGRES_PASSWORD="12345Mateusz"
+
+

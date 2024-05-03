@@ -113,3 +113,11 @@ databaseChangeLog:
       file: db/changelog/056_modify_typo.xml
   - include:
       file: db/changelog/057_modify_trainings_foreign_key.xml
+  - include:
+      file: db/changelog/058_create_view_dict_exercises.xml
+  - include:
+      file: db/changelog/059_create_view_dict_quantity_type.xml
+  - include:
+      file: db/changelog/060_create_view_dict_units.xml
+  - include:
+      file: db/changelog/061_modify_table_dict_exercises.xml
