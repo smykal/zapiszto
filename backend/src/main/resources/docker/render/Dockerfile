@@ -7,6 +7,6 @@ COPY target/zapiszTo-6.9.6-SNAPSHOT.jar .
 ENV SPRING_CONFIG_LOCATION=file:/app/application.properties
 
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD java -jar zapiszTo-6.9.6-SNAPSHOT.jar --envname=prod
