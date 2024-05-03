@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
-import AddExercise from './addExercise';
-import GetExercises from '../exercises/';
-import { Exercise } from '../../../../../types/types'; 
+import { Component } from 'react';
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+
+import { Exercise } from '../../../../../types/types';
 import ExercisesService from '../../../../../services/exercises'
 
 type Props = {
@@ -40,20 +45,35 @@ class GetExercise extends Component<Props, State> {
 
         return (
             <div>
-                <ul>
-                    {exercises.map((exercise, index) => (
-                        <li key={index}>
-                            <div>Exercise ID: {exercise.exerciseId}</div>
-                            <div>Training ID: {exercise.trainingId}</div>
-                            <div>Exercise Name: {exercise.dictExerciseName}</div>
-                            <div>Quantity: {exercise.quantity}</div>
-                            <div>Quantity Type Name: {exercise.dictQuantityTypeName}</div>
-                            <div>Volume: {exercise.volume}</div>
-                            <div>Unit Name: {exercise.dictUnitName}</div>
-                            <div>Notes: {exercise.notes}</div>
-                        </li>
-                    ))}
-                </ul>
+                <TableContainer>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Exercise</TableCell>
+                                <TableCell>Quantity</TableCell>
+                                <TableCell>Type</TableCell>
+                                <TableCell>Volume</TableCell>
+                                <TableCell>Unit</TableCell>
+                                <TableCell>Notes</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {exercises.map((row) => (
+                                <TableRow
+                                    key={row.dictExerciseName}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell component='th' scope="row"> {row.dictExerciseName}</TableCell>
+                                    <TableCell>{row.quantity}</TableCell>
+                                    <TableCell>{row.dictQuantityTypeName}</TableCell>
+                                    <TableCell>{row.volume}</TableCell>
+                                    <TableCell>{row.dictUnitName}</TableCell>
+                                    <TableCell>{row.notes}</TableCell>
+                                </TableRow>
+                            ))}
+
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </div>
         );
     }
