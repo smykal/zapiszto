@@ -33,6 +33,5 @@ public class CPFBalanseController implements ControllerCommon {
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
-
   }
 }

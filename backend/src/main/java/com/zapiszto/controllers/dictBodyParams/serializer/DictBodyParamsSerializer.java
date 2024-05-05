@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.dictBodyParams.serializer;
 
 import com.zapiszto.controllers.dictBodyParams.dto.DictBodyParamsDto;
+import com.zapiszto.controllers.dictBodyParams.dto.NewDictBodyParamDto;
 import com.zapiszto.controllers.dictBodyParams.entity.DictBodyParamsEntity;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,5 +23,12 @@ public class DictBodyParamsSerializer {
             .description(dictBodyParamsEntity.getDescription())
             .build())
         .collect(Collectors.toList());
+  }
+
+  public DictBodyParamsEntity convert (NewDictBodyParamDto dictBodyParamDto) {
+    return DictBodyParamsEntity.builder()
+        .name(dictBodyParamDto.getName())
+        .description(dictBodyParamDto.getDescription())
+        .build();
   }
 }
