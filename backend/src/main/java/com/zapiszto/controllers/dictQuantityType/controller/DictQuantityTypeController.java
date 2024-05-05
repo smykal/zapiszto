@@ -55,12 +55,11 @@ public class DictQuantityTypeController implements ControllerCommon {
   public ResponseEntity<List<DictQuantityTypeDto>> getQuantityTypePerUser(
   ) {
     var userId = extractUserId();
-
-    var result = dictQuantityTypeService.getDictQuantityType(userId);
-    if (!result.isEmpty()) {
+    try {
+      var result = dictQuantityTypeService.getDictQuantityType(userId);
       return new ResponseEntity<>(result, HttpStatus.CREATED);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
   }
 }

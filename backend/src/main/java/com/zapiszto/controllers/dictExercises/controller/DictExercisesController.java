@@ -52,15 +52,25 @@ public class DictExercisesController implements ControllerCommon {
   public ResponseEntity<List<DictExercisesDto>> getExerciseBasic(
   ) {
     var userId = extractUserId();
-    var result = dictExerciseService.getDictExercises(userId);
-    return new ResponseEntity<>(result, HttpStatus.CREATED);
+    try {
+      var result = dictExerciseService.getDictExercises(userId);
+      return new ResponseEntity<>(result, HttpStatus.CREATED);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
   }
   @GetMapping("/get_exercises_per_user")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictExercisesDto>> getExercisesPerUser(
   ) {
     var userId = extractUserId();
-    var result = dictExerciseService.getDictExercises(userId);
-    return new ResponseEntity<>(result, HttpStatus.CREATED);
+    try {
+      var result = dictExerciseService.getDictExercises(userId);
+      return new ResponseEntity<>(result, HttpStatus.CREATED);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
   }
 }

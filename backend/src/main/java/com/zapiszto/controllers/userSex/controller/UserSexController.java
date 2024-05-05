@@ -29,8 +29,12 @@ public class UserSexController implements ControllerCommon {
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<UserSexDto> getUserSex() {
     var userId = extractUserId();
-    var response = userSexService.getUserSex(userId);
-    return new ResponseEntity<>(response, HttpStatus.OK);
+    try {
+      var response = userSexService.getUserSex(userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
   }
 
 

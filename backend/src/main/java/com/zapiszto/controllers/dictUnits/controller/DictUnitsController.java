@@ -30,7 +30,7 @@ public class DictUnitsController implements ControllerCommon {
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addUnitsPerUser(
       @RequestBody NewDictUnitDto newDictUnitDto
-      ) {
+  ) {
     var userId = extractUserId();
     dictUnitsService.addDictUnit(newDictUnitDto, userId);
     return new ResponseEntity<>(HttpStatus.CREATED);
@@ -42,9 +42,13 @@ public class DictUnitsController implements ControllerCommon {
       @RequestBody NewDictUnitDto newDictUnitDto
   ) {
     var role = extractUserRole();
-    if (role.contains("ADMIN")){
-      dictUnitsService.addDictUnit(newDictUnitDto);
-      return new ResponseEntity<>(HttpStatus.CREATED);
+    if (role.contains("ADMIN")) {
+      try {
+        dictUnitsService.addDictUnit(newDictUnitDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+      } catch (NullPointerException e) {
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+      }
     } else {
       return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
@@ -55,12 +59,11 @@ public class DictUnitsController implements ControllerCommon {
   public ResponseEntity<List<DictUnitsDto>> getUnitsPerUser(
   ) {
     var userId = extractUserId();
-
-    var result = dictUnitsService.getDictUnits(userId);
-    if (!result.isEmpty()) {
-      return new ResponseEntity<>(result,HttpStatus.CREATED);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    try {
+      var result = dictUnitsService.getDictUnits(userId);
+      return new ResponseEntity<>(result, HttpStatus.CREATED);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
   }
 }

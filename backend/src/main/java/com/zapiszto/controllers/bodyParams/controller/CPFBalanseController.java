@@ -27,7 +27,12 @@ public class CPFBalanseController implements ControllerCommon {
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<List<CPFDto>>> getCPF() {
     var userId = extractUserId();
-    var response = cpfBalanseService.getCPF(userId);
-    return new ResponseEntity<>(response, HttpStatus.OK);
+    try {
+      var response = cpfBalanseService.getCPF(userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
   }
 }

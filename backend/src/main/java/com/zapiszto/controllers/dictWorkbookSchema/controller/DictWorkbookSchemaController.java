@@ -25,7 +25,11 @@ public class DictWorkbookSchemaController {
   @GetMapping("/get_dict_workbook_schema")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictWorkbookSchemaDto>> getDictWorkbookSchema() {
-    var result = dictWorkbookSchemaService.getAll();
-    return new ResponseEntity<>(result, HttpStatus.OK);
+    try {
+      var result = dictWorkbookSchemaService.getAll();
+      return new ResponseEntity<>(result, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
   }
 }

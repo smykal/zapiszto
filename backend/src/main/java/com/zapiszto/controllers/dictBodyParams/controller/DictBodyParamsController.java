@@ -25,9 +25,14 @@ public class DictBodyParamsController {
   @GetMapping("/dictBodyParams")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictBodyParamsDto>> getDictBodyParams() {
-    var dictBodyParams = dictBodyParamsService.getDictBodyParams();
-    return new ResponseEntity<>(dictBodyParams,
-                                HttpStatus.OK
-    );
+    try {
+      var dictBodyParams = dictBodyParamsService.getDictBodyParams();
+      return new ResponseEntity<>(
+          dictBodyParams,
+          HttpStatus.OK
+      );
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
   }
 }

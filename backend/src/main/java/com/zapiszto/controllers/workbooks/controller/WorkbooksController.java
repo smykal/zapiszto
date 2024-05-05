@@ -49,8 +49,12 @@ public class WorkbooksController implements ControllerCommon {
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<WorkbooksDto>> getWorkbooks() {
     var userId = extractUserId();
-    var result = workbooksService.getWorkbooksForUser(userId);
-    return new ResponseEntity<>(result, HttpStatus.OK);
+    try {
+      var result = workbooksService.getWorkbooksForUser(userId);
+      return new ResponseEntity<>(result, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
   }
 
   @DeleteMapping("/delete_workbook/{id}")
@@ -76,6 +80,5 @@ public class WorkbooksController implements ControllerCommon {
     } catch (NoSuchElementException e) {
       return new ResponseEntity<>("Workbook not found", HttpStatus.NOT_FOUND);
     }
-
   }
 }

@@ -33,8 +33,12 @@ public class BodyParamsController implements ControllerCommon {
   public ResponseEntity<List<BodyParamsWithNameAndDateDto>> getTestTable() {
     var userId = extractUserId();
     log.info("get all body parameters for user: {} ", userId);
-    var response = bodyParamsService.getAllBodyParameters(userId);
-    return new ResponseEntity<>(response, HttpStatus.OK);
+    try {
+      var response = bodyParamsService.getAllBodyParameters(userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
   }
 
   @GetMapping("/actual_body_params")
@@ -42,17 +46,26 @@ public class BodyParamsController implements ControllerCommon {
   public ResponseEntity<List<BodyParamsWithNameDto>> getActualBodyParams() {
     var userId = extractUserId();
     log.info("get actual body params for user: {} ", userId);
-    var response = bodyParamsService.getActualBodyParametersWithName(userId);
-    return new ResponseEntity<>(response, HttpStatus.OK);
+    try {
+      var response = bodyParamsService.getActualBodyParametersWithName(userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
   }
 
   @GetMapping("/bmi")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<BodyMassIndexDto>> getBmi() {
     var userId = extractUserId();
-    log.info("get bmi for user: {} ", userId);
-    var response = bodyParamsService.getBodyMassIndex(userId);
-    return new ResponseEntity<>(response, HttpStatus.OK);
+    try {
+      var response = bodyParamsService.getBodyMassIndex(userId);
+      log.info("get bmi for user: {} ", userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
   }
 
   @PostMapping("/add_body_param")
@@ -61,8 +74,12 @@ public class BodyParamsController implements ControllerCommon {
       @RequestBody BodyParamsDto bodyParamsDto
   ) {
     var userId = extractUserId();
-    bodyParamsService.saveBodyParam(bodyParamsDto);
-    log.info("post body parameters for user: {} ", userId);
-    return new ResponseEntity<>(HttpStatus.CREATED);
+    try {
+      bodyParamsService.saveBodyParam(bodyParamsDto);
+      log.info("post body parameters for user: {} ", userId);
+      return new ResponseEntity<>(HttpStatus.CREATED);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+    }
   }
 }
