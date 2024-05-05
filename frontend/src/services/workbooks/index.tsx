@@ -1,10 +1,7 @@
 import axios from 'axios';
 import authHeader from '../auth-header';
 import { DictWorkbookSchema, WorkbookSchemaIdPut,  NewWorkbook, NewTraining, TrainingNotes } from '../../types/types';
-
-
-// const API_URL = 'http://localhost:8080/v1';
-const API_URL = 'https://zapiszto-service.onrender.com/v1';
+import {API_URL} from '../../constants/api'
 
 class WorkbooksService {
   getWorkbooks() {

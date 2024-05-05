@@ -35,7 +35,7 @@ export default class Age extends Component<Props, State> {
                 }
             })
             .catch(error => {
-                console.log("Błąd pobierania płci:", error);
+                console.log("Błąd pobierania wieku:", error);
                 this.setState({ loading: false });
             });
     }

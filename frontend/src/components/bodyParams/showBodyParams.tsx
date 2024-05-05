@@ -66,7 +66,7 @@ export default class ShowBodyParams extends Component<Props, State> {
             genderExpanded: !prevState.genderExpanded, // Odwrócenie stanu dla ShowBmi
         }));
     }
-    
+
     handleAgeClick() {
         this.setState((prevState) => ({
             ageExpanded: !prevState.ageExpanded, // Odwrócenie stanu dla ShowAge
@@ -90,13 +90,12 @@ export default class ShowBodyParams extends Component<Props, State> {
     }
 
     render() {
-
-        const {bmrExpanded, bmiExpanded, genderExpanded, ageExpanded, cpfExpanded } = this.state;
-        return (
+        const { bmrExpanded, bmiExpanded, genderExpanded, ageExpanded, cpfExpanded} = this.state;
+    return (
             <div className="container">
                 <header className="jumbotron">
                     <ul>
-                    <li id="bodyParams">
+                        <li id="bodyParams">
                             <Collapsible
                                 trigger={
                                     <div
@@ -206,34 +205,35 @@ export default class ShowBodyParams extends Component<Props, State> {
                                 <ShowCpf />
                             </Collapsible>
                         </li>
-
-                        {this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
-                            <li key={index} id="bodyParams">
-                                <Collapsible
-                                    trigger={
-                                        <div
-                                            style={{
-                                                cursor: 'pointer',
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                marginBottom: '10px',
-                                            }}
-                                            onClick={() => this.handleItemClick(index)}
-                                        >
-                                            <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                                {item.dict_body_params_name}: {item.value}
-                                            </span>
-                                        </div>
-                                    }
-                                >
-                                    <ShowDiagram param_name={item.dict_body_params_name}></ShowDiagram>
-                                </Collapsible>
-                            </li>
-                        ))}
-                        
+                        {this.state.bodyParams.length > 0 && (
+                            this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
+                                <li key={index} id="bodyParams">
+                                    <Collapsible
+                                        trigger={
+                                            <div
+                                                style={{
+                                                    cursor: 'pointer',
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    marginBottom: '10px',
+                                                }}
+                                                onClick={() => this.handleItemClick(index)}
+                                            >
+                                                <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                                    {item.dict_body_params_name}: {item.value}
+                                                </span>
+                                            </div>
+                                        }
+                                    >
+                                        <ShowDiagram param_name={item.dict_body_params_name}></ShowDiagram>
+                                    </Collapsible>
+                                </li>
+                            ))
+                        )}
                     </ul>
                 </header>
             </div>
         );
+        
     }
 }
