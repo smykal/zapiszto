@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import AddExercise from './addExercise';
 import GetExercise from './getExercise';
 
@@ -7,10 +7,6 @@ type Props = {
     workbook_id: number,
     training_id: number
 }
-
-
-
-
 
 class Exercise extends Component<Props> {
     constructor(props: Props) {

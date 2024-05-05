@@ -53,7 +53,7 @@ export default class Training extends Component<Props, State> {
                     this.setState({ newWorkbookName: '' });
                 })
                 .then(() => {
-                    this.getWorkbooks(); 
+                    this.getWorkbooks();
                 });
         }
     };
