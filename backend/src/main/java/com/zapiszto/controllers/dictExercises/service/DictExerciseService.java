@@ -84,4 +84,14 @@ public class DictExerciseService {
     return all.stream().map(DictExercisesSerializer::convert)
         .collect(Collectors.toList());
   }
+
+  @Transactional
+  public String deleteDictExercise(Long userId, int itemToDelete) {
+    dictExercisesRepository.deleteExercise(itemToDelete);
+    dictExercisesRepository.deleteExercisePerUser(itemToDelete, userId);
+
+    log.info("deleted dict_exercises_per_user with id: {}, user: {}", itemToDelete, userId);
+
+    return null;
+  }
 }

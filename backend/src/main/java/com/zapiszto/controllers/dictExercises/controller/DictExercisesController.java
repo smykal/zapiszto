@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,6 +73,18 @@ public class DictExercisesController implements ControllerCommon {
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
-
+  }
+  @DeleteMapping("/delete_exercise_per_user/{itemToDelete}")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> deleteExercisePerUser(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userId = extractUserId();
+    try {
+      var result = dictExerciseService.deleteDictExercise(userId, itemToDelete);
+      return new ResponseEntity<>( HttpStatus.CREATED);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
   }
 }
