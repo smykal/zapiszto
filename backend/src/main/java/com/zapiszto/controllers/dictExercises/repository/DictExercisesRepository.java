@@ -28,7 +28,7 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
   @Modifying
   @Query(nativeQuery = true, value = """
       DELETE FROM public.dict_exercises
-        WHERE dict_exercises_per_user_id = :itemToDelete;
+        WHERE dict_exercises_per_user_id = :itemToDelete
       """)
   void deleteExercise(@Param("itemToDelete") int itemToDelete);
 

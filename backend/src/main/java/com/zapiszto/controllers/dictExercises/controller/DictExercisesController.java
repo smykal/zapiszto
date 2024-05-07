@@ -6,6 +6,7 @@ import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
 import com.zapiszto.controllers.dictExercises.service.DictExerciseService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -74,6 +75,7 @@ public class DictExercisesController implements ControllerCommon {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
   }
+
   @DeleteMapping("/delete_exercise_per_user/{itemToDelete}")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExercisePerUser(
@@ -81,9 +83,9 @@ public class DictExercisesController implements ControllerCommon {
   ) {
     var userId = extractUserId();
     try {
-      var result = dictExerciseService.deleteDictExercise(userId, itemToDelete);
+      dictExerciseService.deleteDictExercise(userId, itemToDelete);
       return new ResponseEntity<>( HttpStatus.CREATED);
-    } catch (NullPointerException e) {
+    } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
   }

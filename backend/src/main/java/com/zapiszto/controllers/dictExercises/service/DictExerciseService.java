@@ -9,10 +9,12 @@ import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
 import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictExercises.repository.DictExercisesRepository;
 import com.zapiszto.controllers.dictExercises.serializer.DictExercisesSerializer;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -87,11 +89,14 @@ public class DictExerciseService {
 
   @Transactional
   public String deleteDictExercise(Long userId, int itemToDelete) {
-    dictExercisesRepository.deleteExercise(itemToDelete);
-    dictExercisesRepository.deleteExercisePerUser(itemToDelete, userId);
-
-    log.info("deleted dict_exercises_per_user with id: {}, user: {}", itemToDelete, userId);
-
-    return null;
+    try {
+      dictExercisesRepository.deleteExercise(itemToDelete);
+      dictExercisesRepository.deleteExercisePerUser(itemToDelete, userId);
+      log.info("deleted dict_exercises_per_user with id: {}, user: {}", itemToDelete, userId);
+      return "ok";
+    }  catch (DataIntegrityViolationException e) {
+      log.error("Error deleting exercise: {}", e.getMessage());
+      throw new RuntimeException("Cannot delete exercise due to data integrity violation");
+    }
   }
 }
