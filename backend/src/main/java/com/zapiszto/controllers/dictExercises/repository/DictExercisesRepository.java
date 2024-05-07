@@ -1,14 +1,12 @@
 package com.zapiszto.controllers.dictExercises.repository;
 
 import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
-import java.util.HashMap;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface DictExercisesRepository extends JpaRepository<DictExercisesEntity, Integer> {
@@ -30,7 +28,7 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
       DELETE FROM public.dict_exercises
         WHERE dict_exercises_per_user_id = :itemToDelete
       """)
-  void deleteExercise(@Param("itemToDelete") int itemToDelete);
+  void deleteExercisePerUser(@Param("itemToDelete") int itemToDelete);
 
 
   @Modifying
@@ -40,5 +38,21 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
         AND user_id = :userId
       """)
   void deleteExercisePerUser(@Param("itemToDelete") int itemToDelete,
+                             @Param("userId") Long userId);
+
+  @Modifying
+  @Query(nativeQuery = true, value = """
+      DELETE FROM public.dict_exercises
+        WHERE dict_exercises_basic_id = :itemToDelete
+      """)
+  void deleteExerciseBasic(@Param("itemToDelete") int itemToDelete);
+
+
+  @Modifying
+  @Query(nativeQuery = true, value = """
+      DELETE FROM public.dict_exercises_basic
+        WHERE id = :itemToDelete
+      """)
+  void deleteExerciseBasic(@Param("itemToDelete") int itemToDelete,
                              @Param("userId") Long userId);
 }

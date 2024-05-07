@@ -6,7 +6,6 @@ import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
 import com.zapiszto.controllers.dictExercises.service.DictExerciseService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,10 +82,29 @@ public class DictExercisesController implements ControllerCommon {
   ) {
     var userId = extractUserId();
     try {
-      dictExerciseService.deleteDictExercise(userId, itemToDelete);
+      dictExerciseService.deleteDictExercisePerUser(userId, itemToDelete);
       return new ResponseEntity<>( HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @DeleteMapping("/delete_exercise_basic/{itemToDelete}")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> deleteExerciseBasic(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userRole = extractUserRole();
+    var userId = extractUserId();
+    if (userRole.contains("ADMIN")) {
+      try {
+        dictExerciseService.deleteDictExercisePerUser(userId, itemToDelete);
+        return new ResponseEntity<>( HttpStatus.CREATED);
+      } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+      }
+    } else {
+      return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
   }
 }
