@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { DictQuantityType } from "../../../types/types";
 import Service from '../../../services/exercises'
+import AddDictQuantityTypePerUser from "./AddDictQuantityTypePerUser";
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -39,6 +40,7 @@ export default class ShowDictQuantityType extends Component<Props, State> {
         const {dictQuantityTypes} = this.state;
         return (
             <div>
+                <AddDictQuantityTypePerUser dictQuantityType={dictQuantityTypes} />
                 <TableContainer>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>

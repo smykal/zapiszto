@@ -80,12 +80,23 @@ export type DictQuantityType = {
                                 shortcut: string
 }
 
+export type NewDictQuantityType = {
+                                    name: string,
+                                    shortcut: string
+
+}
+
 export type DictUnits = {
                           id: number;
                           dict: string;
                           dict_id: number;
                           name: string;
                           shortcut: string
+}
+
+export type NewDictUnit = {
+                            name: string,
+                            shortcut: string
 }
 
 export type DictExercises = {
