@@ -95,6 +95,10 @@ export type DictExercises = {
                               name: string
 }
 
+export type NewDictExercises = {
+                                name: string
+}
+
 export type NewExercise = {
                         trainingId: number,
                         dictExerciseId: number,
