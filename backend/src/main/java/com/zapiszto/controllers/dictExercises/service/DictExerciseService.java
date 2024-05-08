@@ -89,8 +89,8 @@ public class DictExerciseService {
   @Transactional
   public String deleteDictExercisePerUser(Long userId, int itemToDelete) {
     try {
-      dictExercisesRepository.deleteExercisePerUser(itemToDelete);
-      dictExercisesRepository.deleteExercisePerUser(itemToDelete, userId);
+      dictExercisesRepository.deleteDictExercisePerUser(itemToDelete);
+      dictExercisesRepository.deleteDictExercisePerUser(itemToDelete, userId);
       log.info("deleted dict_exercises_per_user with id: {}, user: {}", itemToDelete, userId);
       return "ok";
     }  catch (DataIntegrityViolationException e) {
@@ -102,8 +102,8 @@ public class DictExerciseService {
   @Transactional
   public String deleteDictExerciseBasic(Long userId, int itemToDelete) {
     try {
-      dictExercisesRepository.deleteExerciseBasic(itemToDelete);
-      dictExercisesRepository.deleteExerciseBasic(itemToDelete, userId);
+      dictExercisesRepository.deleteDictExercise(itemToDelete);
+      dictExercisesRepository.deleteDictExerciseBasic(itemToDelete);
       log.info("deleted dict_exercises_per_user with id: {}, user: {}", itemToDelete, userId);
       return "ok";
     }  catch (DataIntegrityViolationException e) {

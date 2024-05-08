@@ -28,7 +28,7 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
       DELETE FROM public.dict_exercises
         WHERE dict_exercises_per_user_id = :itemToDelete
       """)
-  void deleteExercisePerUser(@Param("itemToDelete") int itemToDelete);
+  void deleteDictExercisePerUser(@Param("itemToDelete") int itemToDelete);
 
 
   @Modifying
@@ -37,15 +37,15 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
         WHERE id = :itemToDelete
         AND user_id = :userId
       """)
-  void deleteExercisePerUser(@Param("itemToDelete") int itemToDelete,
-                             @Param("userId") Long userId);
+  void deleteDictExercisePerUser(@Param("itemToDelete") int itemToDelete,
+                                 @Param("userId") Long userId);
 
   @Modifying
   @Query(nativeQuery = true, value = """
       DELETE FROM public.dict_exercises
         WHERE dict_exercises_basic_id = :itemToDelete
       """)
-  void deleteExerciseBasic(@Param("itemToDelete") int itemToDelete);
+  void deleteDictExerciseBasic(@Param("itemToDelete") int itemToDelete);
 
 
   @Modifying
@@ -53,6 +53,5 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
       DELETE FROM public.dict_exercises_basic
         WHERE id = :itemToDelete
       """)
-  void deleteExerciseBasic(@Param("itemToDelete") int itemToDelete,
-                             @Param("userId") Long userId);
+  void deleteDictExercise(@Param("itemToDelete") int itemToDelete);
 }
