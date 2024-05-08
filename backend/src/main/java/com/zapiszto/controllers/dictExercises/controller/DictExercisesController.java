@@ -98,7 +98,7 @@ public class DictExercisesController implements ControllerCommon {
     var userId = extractUserId();
     if (userRole.contains("ADMIN")) {
       try {
-        dictExerciseService.deleteDictExercisePerUser(userId, itemToDelete);
+        dictExerciseService.deleteDictExerciseBasic(userId, itemToDelete);
         return new ResponseEntity<>( HttpStatus.CREATED);
       } catch (Exception e) {
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);

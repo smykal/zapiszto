@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -86,5 +87,31 @@ public class DictUnitsService {
 
     return all.stream().map(DictUnitsSerializer::convert)
         .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public String deleteDictUnitPerUser(Long userId, int itemToDelete) {
+    try {
+      dictUnitsRepository.deleteDictUnitPerUser(itemToDelete);
+      dictUnitsRepository.deleteDictUnitPerUser(itemToDelete, userId);
+      log.info("deleted dict_unit_per_user with id: {}, user: {}", itemToDelete, userId);
+      return "ok";
+    }  catch (DataIntegrityViolationException e) {
+      log.error("Error deleting dict unit: {}", e.getMessage());
+      throw new RuntimeException("Cannot delete dict unit due to data integrity violation");
+    }
+  }
+
+  @Transactional
+  public String deleteDictUnitBasic(Long userId, int itemToDelete) {
+    try {
+      dictUnitsRepository.deleteDictUnit(itemToDelete);
+      dictUnitsRepository.deleteDictUnitBasic(itemToDelete);
+      log.info("deleted dict_unit_basic with id: {}, user: {}", itemToDelete, userId);
+      return "ok";
+    }  catch (DataIntegrityViolationException e) {
+      log.error("Error deleting dict unit: {}", e.getMessage());
+      throw new RuntimeException("Cannot delete dict unit due to data integrity violation");
+    }
   }
 }
