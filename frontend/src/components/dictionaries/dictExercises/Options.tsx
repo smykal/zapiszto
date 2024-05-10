@@ -25,7 +25,7 @@ export default class Options extends Component<Props, State> {
         const { item } = this.props
         return (
             <div>
-                <button  onClick={() => this.delete(item)}>Delete {item}</button>
+                <button onClick={() => this.delete(item)}>Delete {item}</button>
                 <button>Edit {item}</button>
                 <button>Archive {item}</button>
             </div>

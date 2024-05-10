@@ -117,9 +117,8 @@ class AddExercise extends Component<Props, State> {
                             ))}
                         </Field>
                         <Field name="notes" type="text" />
-                        <button type="submit" className="btn btn-primary btn-block">
-
-                            <span>Add</span>
+                        <button type="submit">
+                            <span>Add exercise</span>
                         </button>
                     </Form>
                 </Formik>

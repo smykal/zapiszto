@@ -13,6 +13,7 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -31,7 +32,10 @@ public class ExercisesService {
   DictUnitsRepository dictUnitsRepository;
 
   public void addExercise(NewExerciseDto newExerciseDto, Long userId) {
+    int trainingId = newExerciseDto.getTrainingId();
+    int orderNumber = exerciseRepository.getOrderNumber(userId, trainingId);
     ExerciseEntity exerciseEntity = ExerciseSerializer.convert(newExerciseDto);
+    exerciseEntity.setOrderNumber(orderNumber);
     ExerciseEntity save = exerciseRepository.save(exerciseEntity);
     log.info("add new exercise with id {}, trening_id {}, user {}", save.getId(), save.getTrainingId(), userId);
   }
@@ -50,5 +54,16 @@ public class ExercisesService {
         dictQuantityType,
         dictUnits
     );
+  }
+
+  @Transactional
+  public void deleteExercise(Long userId, int trainingId, int exerciseId) {
+    try {
+      ExerciseEntity exerciseEntity = exerciseRepository.getByUserIdTrainingIdExerciseId(userId, trainingId, exerciseId);
+      exerciseRepository.delete(exerciseEntity);
+      log.info("deleted exercise with id {}, training {}, user {}", exerciseId, trainingId, userId);
+    } catch (Exception e) {
+      log.error("could't delete exercise with id {}, training {}, user {}", exerciseId, trainingId, userId);
+    }
   }
 }

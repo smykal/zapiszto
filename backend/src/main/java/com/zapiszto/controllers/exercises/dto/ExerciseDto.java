@@ -23,4 +23,5 @@ public class ExerciseDto {
   int volume;
   String dictUnitName;
   String notes;
+  int orderNumber;
 }

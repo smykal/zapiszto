@@ -16,9 +16,39 @@ public interface ExerciseRepository extends JpaRepository<ExerciseEntity, Intege
                 left join workbooks w on w.id = t.workbooks_id
                           where w.user_id = :userId
                           and e.training_id = :trainingId
+                order by e.order_number asc
       """)
   List<ExerciseEntity> getExercisesByTrainingId(
       @Param("userId") Long userId,
       @Param("trainingId") int trainingId
   );
+
+  @Query(nativeQuery = true, value = """
+      select e.*
+        from workbooks w
+      		inner join trainings t on t.workbooks_id = w.id
+      		inner join exercises e on e.training_id = t.id
+      		where w.user_id = :userId
+      		and e.training_id = :trainingId
+      		and e.id = :exerciseId
+      """)
+  ExerciseEntity getByUserIdTrainingIdExerciseId(
+      @Param("userId") Long userId,
+      @Param("trainingId") int trainingId,
+      @Param("exerciseId") int exerciseId
+  );
+
+  @Query(nativeQuery = true, value = """
+      select case
+      	when max(e.order_number) is null then 1
+      	else max(e.order_number) + 1
+      end
+        from workbooks w
+      		inner join trainings t on t.workbooks_id = w.id
+      		inner join exercises e on e.training_id = t.id
+      		where w.user_id = :userId
+      		and e.training_id = :trainingId
+      """)
+  Integer getOrderNumber(@Param("userId") Long userId,
+                         @Param("trainingId") int trainingId);
 }

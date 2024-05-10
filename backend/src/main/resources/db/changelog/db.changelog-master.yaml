@@ -121,3 +121,5 @@ databaseChangeLog:
       file: db/changelog/060_create_view_dict_units.xml
   - include:
       file: db/changelog/061_modify_table_dict_exercises.xml
+  - include:
+      file: db/changelog/062_add_column_order_to_exercises.xml

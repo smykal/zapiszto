@@ -7,7 +7,6 @@ import com.zapiszto.controllers.exercises.dto.ExerciseDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +42,7 @@ public class ExerciseSerializer {
           .volume(exercise.getVolume())
           .dictUnitName(getUnitName(dictUnits, exercise.getDictUnitId()))
           .notes(exercise.getNotes())
+          .orderNumber(exercise.getOrderNumber())
           .build();
 
       exercises.add(exerciseDto);
@@ -58,9 +58,11 @@ public class ExerciseSerializer {
     if (exerciseOptional.isPresent()) {
       DictExercisesEntity exercise = exerciseOptional.get();
       if (exercise.getDictExercisesBasicEntity() != null) {
-        return exercise.getDictExercisesBasicEntity().getName();
+        return exercise.getDictExercisesBasicEntity()
+            .getName();
       } else if (exercise.getDictExercisesPerUserEntity() != null) {
-        return exercise.getDictExercisesPerUserEntity().getName();
+        return exercise.getDictExercisesPerUserEntity()
+            .getName();
       }
     }
 
@@ -75,9 +77,11 @@ public class ExerciseSerializer {
     if (quantityTypeEntity.isPresent()) {
       DictQuantityTypeEntity quantityType = quantityTypeEntity.get();
       if (quantityType.getDictQuantityTypeBasicEntity() != null) {
-        return quantityType.getDictQuantityTypeBasicEntity().getName();
+        return quantityType.getDictQuantityTypeBasicEntity()
+            .getName();
       } else if (quantityType.getDictQuantityTypePerUserEntity() != null) {
-        return quantityType.getDictQuantityTypePerUserEntity().getName();
+        return quantityType.getDictQuantityTypePerUserEntity()
+            .getName();
       }
     }
 
@@ -92,9 +96,11 @@ public class ExerciseSerializer {
     if (unitEntity.isPresent()) {
       DictUnitsEntity dictUnitsEntity = unitEntity.get();
       if (dictUnitsEntity.getDictUnitsBasicEntity() != null) {
-        return dictUnitsEntity.getDictUnitsBasicEntity().getName();
+        return dictUnitsEntity.getDictUnitsBasicEntity()
+            .getName();
       } else if (dictUnitsEntity.getDictUnitsPerUserEntity() != null) {
-        return dictUnitsEntity.getDictUnitsPerUserEntity().getName();
+        return dictUnitsEntity.getDictUnitsPerUserEntity()
+            .getName();
       }
     }
 
