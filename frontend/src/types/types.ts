@@ -128,5 +128,6 @@ export type Exercise = {
                         dictQuantityTypeName: string,
                         volume: number,
                         dictUnitName: string,
-                        notes: number
+                        notes: number,
+                        orderNumber: number
 }

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Options from './Options';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -46,7 +47,7 @@ class GetExercise extends Component<Props, State> {
         return (
             <div>
                 <TableContainer>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Exercise</TableCell>
@@ -55,6 +56,8 @@ class GetExercise extends Component<Props, State> {
                                 <TableCell>Volume</TableCell>
                                 <TableCell>Unit</TableCell>
                                 <TableCell>Notes</TableCell>
+                                <TableCell>OrderNumber</TableCell>
+                                <TableCell>Options</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -68,6 +71,8 @@ class GetExercise extends Component<Props, State> {
                                     <TableCell>{row.volume}</TableCell>
                                     <TableCell>{row.dictUnitName}</TableCell>
                                     <TableCell>{row.notes}</TableCell>
+                                    <TableCell>{row.orderNumber}</TableCell>
+                                    <TableCell><Options exerciseId={row.exerciseId} trainingId={row.trainingId} /></TableCell>
                                 </TableRow>
                             ))}
 
