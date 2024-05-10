@@ -1,6 +1,5 @@
-import { Component } from "react";
+import { Component, ReactNode } from "react";
 import Service from '../../../services/exercises'
-
 
 type Props = {
     item: number,
@@ -11,8 +10,9 @@ export default class Options extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
     }
+
     delete = (item: number) => {
-        Service.deleteDictExercise(item)
+        Service.deleteDictQuantityType(item)
             .then(() => {
                 window.location.reload();
             })
@@ -25,10 +25,11 @@ export default class Options extends Component<Props, State> {
         const { item } = this.props
         return (
             <div>
-                <button  onClick={() => this.delete(item)}>Delete {item}</button>
-                <button>Edit {item}</button>
-                <button>Archive {item}</button>
+                <button onClick={() => this.delete(item)}>Delete</button>
+                <button>Edit</button>
+                <button>Archive</button>
             </div>
-        )  
+        )
+
     }
 }

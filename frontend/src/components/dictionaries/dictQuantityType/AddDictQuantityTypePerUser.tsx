@@ -26,6 +26,7 @@ export default class AddDictQuantityTypePerUser extends Component<Props, State> 
             // Zakładając, że funkcja postDictQuantityTypePerUser przyjmuje tylko jeden argument - obiekt nowego typu ćwiczeń.
             Service.postDictQuantityTypePerUser(newDictQuantityType);
             console.log("Wysłano nowy typ ćwiczeń:", values.newDictQuantityTypeName);
+            window.location.reload();
         } else {
             console.log("Nazwa już istnieje:", values.newDictQuantityTypeName);
         }

@@ -58,7 +58,7 @@ export default class ShowDictExercises extends Component<Props, State> {
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component='th' scope="row"> {row.id}</TableCell>                                   
                                 <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.dict === "PER_USER" ? <Delete itemToDelete={row.dict_id} /> : "menu niedostępne"}</TableCell>                                                          
+                                <TableCell>{row.dict === "PER_USER" ? <Delete item={row.dict_id} /> : "menu niedostępne"}</TableCell>                                                          
                             </TableRow>
                         ))}
                         </TableBody>

@@ -22,6 +22,7 @@ export default class AddDictExercisePerUser extends Component<Props, State> {
             const newDictExercise: NewDictExercises = { name: values.newDictExercise }
             Service.postDictExercisePerUser(newDictExercise)
             console.log("Wysłano nowe ćwiczenie:", values.newDictExercise);
+            window.location.reload();
         } else {
             console.log("Nazwa już istnieje:", values.newDictExercise);
         }

@@ -25,6 +25,7 @@ export default class AddDictUnitPerUser extends Component<Props, State> {
             };
             Service.postDictUnitPerUser(newDictUnit);
             console.log("Wysłano nowy typ jednostki:", values.newDictUnitName);
+            window.location.reload();
         } else {
             console.log("Nazwa już istnieje:", values.newDictUnitName);
         }

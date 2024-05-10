@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import Options from './Options'
 
 type Props = {};
 type State = {
@@ -59,7 +60,7 @@ export default class ShowDictQuantityType extends Component<Props, State> {
                                 <TableCell component='th' scope="row"> {row.id}</TableCell>                                   
                                 <TableCell>{row.name}</TableCell>
                                 <TableCell>{row.shortcut}</TableCell>
-                                <TableCell>{row.dict === "PER_USER" ? "menu" : "menu niedostępne"}</TableCell>                                                          
+                                <TableCell>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</TableCell>                                                          
                             </TableRow>
                         ))}
                         </TableBody>

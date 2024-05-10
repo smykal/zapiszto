@@ -1,7 +1,6 @@
 import { Component } from "react";
 import Service from '../../../services/exercises'
 
-
 type Props = {
     item: number,
 };
@@ -11,13 +10,14 @@ export default class Options extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
     }
+
     delete = (item: number) => {
-        Service.deleteDictExercise(item)
+        Service.deleteDictUnits(item)
             .then(() => {
                 window.location.reload();
             })
             .catch(error => {
-                console.error('Error deleting exercise:', error);
+                console.error('Error deleting unit:', error);
             });
     }
 
@@ -25,10 +25,10 @@ export default class Options extends Component<Props, State> {
         const { item } = this.props
         return (
             <div>
-                <button  onClick={() => this.delete(item)}>Delete {item}</button>
+                <button onClick={() => this.delete(item)}>Delete {item}</button>
                 <button>Edit {item}</button>
                 <button>Archive {item}</button>
             </div>
-        )  
+        )
     }
 }

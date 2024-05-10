@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import ShowDictExercises from './dictExercises/ShowDictExercises'
 import ShowDictQuantityTypes from './dictQuantityType/ShowDictQuantityType'
@@ -6,34 +6,43 @@ import ShowDictUnits from "./dictUnits/ShowDictUnits";
 
 type Props = {};
 type State = {
-    activeDictTabIndex: number; // Dodajemy stan do przechowywania indeksu aktywnej zakładki
+    activeDictTabIndex: number;
 };
-
-
 
 export default class Training extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            activeDictTabIndex: 0, // Domyślnie ustawiamy pierwszą zakładkę jako aktywną
+            activeDictTabIndex: 0,
         };
     }
+
     componentDidMount() {
-        // Sprawdzamy, czy istnieje informacja o ostatniej aktywnej zakładce w localStorage
-        const lastActiveDictTabIndex = localStorage.getItem('lastActiveTabIndex');
+        const lastActiveDictTabIndex = localStorage.getItem('lastActiveDictTabIndex');
         if (lastActiveDictTabIndex !== null) {
-            this.setState({ activeDictTabIndex: parseInt(lastActiveDictTabIndex) });
+            this.setState({ activeDictTabIndex: parseInt(lastActiveDictTabIndex, 10) });
         }
+
+        // Obsługa odświeżania strony
+        window.addEventListener('beforeunload', this.handleBeforeUnload);
     }
+
+    componentWillUnmount() {
+        // Usuń nasłuchiwanie zdarzenia przed odmontowaniem komponentu
+        window.removeEventListener('beforeunload', this.handleBeforeUnload);
+    }
+
+    handleBeforeUnload = () => {
+        // Zapisz indeks aktywnej zakładki przed odświeżeniem strony
+        localStorage.setItem('lastActiveDictTabIndex', this.state.activeDictTabIndex.toString());
+    };
 
     handleTabSelect = (index: number) => {
         this.setState({ activeDictTabIndex: index });
-        // Zapisujemy indeks wybranej zakładki do localStorage
-        localStorage.setItem('lastActiveDictTabIndex', index.toString());
     };
 
     render() {
-        const { activeDictTabIndex} = this.state;
+        const { activeDictTabIndex } = this.state;
 
         return (
             <div>
