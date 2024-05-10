@@ -71,6 +71,12 @@ class ExercisesService {
   getExercises(trainingId: number) {
     return axios.get(API_URL + '/get_exercise/training/' + trainingId, { headers: authHeader() });
   }
+
+  deleteExercise(trainingId: number,
+                 exerciseId: number) {
+    return axios.delete(API_URL + '/delete_exercise/' + exerciseId + '/' + trainingId, { headers: authHeader() });
+  }
+
 }
 
 export default new ExercisesService()
