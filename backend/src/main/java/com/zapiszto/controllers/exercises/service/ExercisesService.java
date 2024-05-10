@@ -61,9 +61,24 @@ public class ExercisesService {
     try {
       ExerciseEntity exerciseEntity = exerciseRepository.getByUserIdTrainingIdExerciseId(userId, trainingId, exerciseId);
       exerciseRepository.delete(exerciseEntity);
+      reorder(trainingId);
       log.info("deleted exercise with id {}, training {}, user {}", exerciseId, trainingId, userId);
     } catch (Exception e) {
       log.error("could't delete exercise with id {}, training {}, user {}", exerciseId, trainingId, userId);
     }
+  }
+
+  @Transactional
+  public void reorder(int trainingId) {
+    // Pobierz wszystkie ćwiczenia dla danego trainingId, posortowane według orderNumber
+    List<ExerciseEntity> exercises = exerciseRepository.findByTrainingIdOrderByOrderNumber(trainingId);
+
+    // Przypisz nowe wartości do kolumny orderNumber na podstawie nowego porządku
+    for (int i = 0; i < exercises.size(); i++) {
+      exercises.get(i).setOrderNumber(i + 1);
+    }
+
+    // Zapisz zmiany w bazie danych
+    exerciseRepository.saveAll(exercises);
   }
 }

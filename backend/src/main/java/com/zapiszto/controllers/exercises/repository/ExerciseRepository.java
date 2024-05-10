@@ -51,4 +51,6 @@ public interface ExerciseRepository extends JpaRepository<ExerciseEntity, Intege
       """)
   Integer getOrderNumber(@Param("userId") Long userId,
                          @Param("trainingId") int trainingId);
+
+  List<ExerciseEntity> findByTrainingIdOrderByOrderNumber(int trainingId);
 }
