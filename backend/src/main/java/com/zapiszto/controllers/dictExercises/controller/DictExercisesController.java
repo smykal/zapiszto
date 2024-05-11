@@ -30,12 +30,12 @@ public class DictExercisesController implements ControllerCommon {
 
   @PostMapping("/add_exercise_per_user")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public ResponseEntity<String> addExercisePerUser(
+  public ResponseEntity<DictExercisesDto> addExercisePerUser(
       @RequestBody NewDictExerciseDto newDictExerciseDto
   ) {
     var userId = extractUserId();
-    dictExerciseService.addDictExercise(newDictExerciseDto, userId);
-    return new ResponseEntity<>(HttpStatus.CREATED);
+    DictExercisesDto result = dictExerciseService.addDictExercise(newDictExerciseDto, userId);
+    return new ResponseEntity<>(result, HttpStatus.CREATED);
   }
 
   @PostMapping("/add_exercise_basic")
@@ -83,7 +83,7 @@ public class DictExercisesController implements ControllerCommon {
     var userId = extractUserId();
     try {
       dictExerciseService.deleteDictExercisePerUser(userId, itemToDelete);
-      return new ResponseEntity<>( HttpStatus.CREATED);
+      return new ResponseEntity<>( HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
@@ -99,7 +99,7 @@ public class DictExercisesController implements ControllerCommon {
     if (userRole.contains("ADMIN")) {
       try {
         dictExerciseService.deleteDictExerciseBasic(userId, itemToDelete);
-        return new ResponseEntity<>( HttpStatus.CREATED);
+        return new ResponseEntity<>( HttpStatus.OK);
       } catch (Exception e) {
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
       }

@@ -31,7 +31,7 @@ public class DictExerciseService {
   DictExercisesRepository dictExercisesRepository;
 
   @Transactional
-  public void addDictExercise(NewDictExerciseDto newDictExerciseDto, Long userId) {
+  public DictExercisesDto addDictExercise(NewDictExerciseDto newDictExerciseDto, Long userId) {
     var item = DictExercisesPerUserEntity.builder()
             .name(newDictExerciseDto.getName())
             .user_id(userId)
@@ -48,11 +48,15 @@ public class DictExerciseService {
         .dictExercisesPerUserEntity(dictExercisesPerUserEntity)
         .build();
 
-    dictExercisesRepository.save(dictExercisesEntity);
+    DictExercisesEntity entity = dictExercisesRepository.save(dictExercisesEntity);
+
+
 
     log.info("updated dict_exercises by new item with id: {}, dict_exercises_per_user_id: {} ",
         dictExercisesEntity.getId(),
         dictExercisesEntity.getDictExercisesPerUserEntity().getId());
+
+    return DictExercisesSerializer.convert(entity);
   }
 
   @Transactional
