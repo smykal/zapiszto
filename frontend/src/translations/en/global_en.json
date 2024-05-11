@@ -1,0 +1,18 @@
+{
+    "header": {
+        "message": "Welcome in english"
+    },
+    "home": {
+        "body": "some body in english"
+    },
+    "navigation": {
+        "home": "home",
+        "user": "user",
+        "body_params": "body params",
+        "training": "training",
+        "dictionaries": "dictionaries",
+        "log_in": "log in",
+        "log_out": "log out",
+        "sign_in": "sing in"
+    }
+}

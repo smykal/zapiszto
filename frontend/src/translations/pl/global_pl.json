@@ -1,0 +1,18 @@
+{
+    "header": {
+        "message": "Witaj po angielsku"
+    },
+    "home": {
+        "body": "Jakiś tekst po angielsku"
+    },
+    "navigation": {
+        "home": "Strona główna",
+        "user": "Użytkownik",
+        "body_params": "Parametry ciała",
+        "training": "Trening",
+        "dictionaries": "Słowniki",
+        "log_in": "Zaloguj się",
+        "log_out": "Wyloguj się",
+        "sign_in": "Zarejestruj się"
+    }
+}
