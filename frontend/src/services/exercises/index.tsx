@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../auth-header';
-import { DictExercises, DictQuantityType, DictUnits, NewDictExercises, NewDictQuantityType, NewExercise, NewDictUnit } from '../../types/types'
+import { NewDictExercises, NewDictQuantityType, NewExercise, NewDictUnit } from '../../types/types'
 import { API_URL } from '../../constants/api'
 
 class ExercisesService {
@@ -76,7 +76,6 @@ class ExercisesService {
                  exerciseId: number) {
     return axios.delete(API_URL + '/delete_exercise/' + exerciseId + '/' + trainingId, { headers: authHeader() });
   }
-
 }
 
 export default new ExercisesService()
