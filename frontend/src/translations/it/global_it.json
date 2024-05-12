@@ -1,18 +1,29 @@
 {
-    "header": {
-        "message": "Benvenuto in inglese"
-    },
-    "home": {
-        "body": "Qualche testo in inglese"
-    },
     "navigation": {
-        "home": "Home",
-        "user": "Utente",
-        "body_params": "Parametri corporei",
-        "training": "Allenamento",
-        "dictionaries": "Dizionari",
-        "log_in": "Accedi",
-        "log_out": "Esci",
-        "sign_in": "Registrati"
+        "home": "pagina iniziale",
+        "user": "utente",
+        "body_params": "parametri corporei",
+        "training": "formazione",
+        "dictionaries": "dizionari",
+        "log_in": "accedere",
+        "log_out": "uscire",
+        "sign_in": "registrati"
+    },
+    "dictionaries": {
+        "dict_exercise": "esercizi di dizionario",
+        "dict_quantity_type": "tipo di quantità di dizionario",
+        "dict_units": "unità di dizionario"
+    },
+    "buttons": {
+        "add": "aggiungi",
+        "delete": "elimina",
+        "edit": "modifica",
+        "archive": "archivio"
+    },
+    "table": {
+        "id": "identificativo",
+        "name": "nome",
+        "shortcut": "scorciatoia",
+        "options": "opzioni"
     }
 }

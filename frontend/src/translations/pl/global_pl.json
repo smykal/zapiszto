@@ -1,18 +1,29 @@
 {
-    "header": {
-        "message": "Witaj po angielsku"
-    },
-    "home": {
-        "body": "Jakiś tekst po angielsku"
-    },
     "navigation": {
-        "home": "Strona główna",
-        "user": "Użytkownik",
-        "body_params": "Parametry ciała",
-        "training": "Trening",
-        "dictionaries": "Słowniki",
-        "log_in": "Zaloguj się",
-        "log_out": "Wyloguj się",
-        "sign_in": "Zarejestruj się"
+        "home": "strona główna",
+        "user": "użytkownik",
+        "body_params": "parametry ciała",
+        "training": "trening",
+        "dictionaries": "słowniki",
+        "log_in": "zaloguj się",
+        "log_out": "wyloguj się",
+        "sign_in": "zarejestruj się"
+    },
+    "dictionaries": {
+        "dict_exercise": "ćwiczenia słownikowe",
+        "dict_quantity_type": "typy ilości w słowniku",
+        "dict_units": "jednostki słownikowe"
+    },
+    "buttons": {
+        "add": "dodaj",
+        "delete": "usuń",
+        "edit": "edytuj",
+        "archive": "archiwum"
+    },
+    "table": {
+        "id": "identyfikator",
+        "name": "nazwa",
+        "shortcut": "skrót",
+        "options": "opcje"
     }
 }

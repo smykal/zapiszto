@@ -1,10 +1,4 @@
 {
-    "header": {
-        "message": "Welcome in english"
-    },
-    "home": {
-        "body": "some body in english"
-    },
     "navigation": {
         "home": "home",
         "user": "user",
@@ -14,5 +8,22 @@
         "log_in": "log in",
         "log_out": "log out",
         "sign_in": "sing in"
+    },
+    "dictionaries": {
+        "dict_exercise": "dict exercises",
+        "dict_quantity_type": "dict quantity type",
+        "dict units": "dict units"
+    },
+    "buttons": {
+        "add": "add",
+        "delete": "delete",
+        "edit": "edit",
+        "archive": "archive"
+    },
+    "table": {
+        "id": "id",
+        "name": "name",
+        "shortcut": "shortcut",
+        "options": "options"
     }
 }
