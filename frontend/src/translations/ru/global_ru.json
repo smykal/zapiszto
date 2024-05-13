@@ -4,26 +4,60 @@
         "user": "пользователь",
         "body_params": "параметры тела",
         "training": "тренировка",
-        "dictionaries": "словари",
+        "dictionaries": "настройки",
         "log_in": "войти",
         "log_out": "выйти",
         "sign_in": "зарегистрироваться"
     },
     "dictionaries": {
-        "dict_exercise": "словарные упражнения",
+        "dict_exercise": "упражнения",
         "dict_quantity_type": "типы количества в словаре",
         "dict_units": "словарные единицы"
+    },
+    "body_params": {
+        "gender": "пол",
+        "age": "возраст",
+        "bmi": "ИМТ",
+        "body_mass_index": "индекс массы тела",
+        "bmr": "базовый обмен",
+        "basal metabolic rate": "базальный метаболизм",
+        "cpf": "cpf",
+        "cpf_reduction": "уменьшение",
+        "cpf_regular": "регулярный",
+        "cpf_mass": "масса",
+        "carbs_fat_protein": "углеводы жиры белки",
+        "kcal": "кал",
+        "carbs": "углеводы",
+        "protein": "белки",
+        "waist": "талия",
+        "hip": "бедро",
+        "biceps": "бицепс",
+        "calf": "икра",
+        "fat": "жир",
+        "height": "рост"
     },
     "buttons": {
         "add": "добавить",
         "delete": "удалить",
         "edit": "редактировать",
-        "archive": "архив"
+        "archive": "архивировать",
+        "select": "выбрать",
+        "select_attribute": "выбрать атрибут",
+        "select_gender": "выбрать пол",
+        "select_birthdate": "выберите дату рождения",
+        "female": "женский",
+        "male": "мужской"
+    },
+    "validation": {
+        "this_field_is_required": "это поле обязательно"
     },
     "table": {
-        "id": "идентификатор",
+        "id": "#",
         "name": "название",
         "shortcut": "сокращение",
-        "options": "опции"
+        "options": "опции",
+        "date": "дата",
+        "bmi_value": "значение ИМТ",
+        "description": "описание"
     }
 }

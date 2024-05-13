@@ -14,16 +14,50 @@
         "dict_quantity_type": "dict quantity type",
         "dict units": "dict units"
     },
+    "body_params": {
+        "gender": "gender",
+        "age": "age",
+        "bmi": "bmi",
+        "body_mass_index": "body mass index",
+        "bmr": "bmr",
+        "basal_metabolic_rate": "basal metabolic rate",
+        "cpf": "cpf",
+        "cpf_reduction": "reduction",
+        "cpf_regular": "regular",
+        "cpf_mass": "mass",
+        "carbs_fat_protein": "carbs fat protein",
+        "kcal": "kcal",
+        "carbs": "carbs",
+        "protein": "protein",
+        "waist": "waist",
+        "hip": "hip",
+        "biceps": "biceps",
+        "calf": "calf",
+        "fat": "fat",
+        "height": "height"
+    },
     "buttons": {
         "add": "add",
         "delete": "delete",
         "edit": "edit",
-        "archive": "archive"
+        "archive": "archive",
+        "select": "select",
+        "select_attribute": "select attribute",
+        "select_gender": "select gender",
+        "select_birthdate": "select birthdate",
+        "female": "female",
+        "male": "male"
+    },
+    "validation": {
+        "this_field_is_required": "this field is required"
     },
     "table": {
         "id": "id",
         "name": "name",
         "shortcut": "shortcut",
-        "options": "options"
+        "options": "options",
+        "date": "date",
+        "bmi_value": "bmi value",
+        "description": "description"
     }
 }

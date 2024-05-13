@@ -3,16 +3,19 @@ import Service from "../../services/bodyParams";
 import { CpfType } from "../../types/types"; 
 import Collapsible from "react-collapsible";
 import ShowSingleCpf from "./showSingleCpf";
+import { withTranslation } from "react-i18next";
 
-type Props = {};
+
+type Props = {
+    t: any;
+};
 type State = {
     cpfReduction: CpfType[]; 
     cpfRegular: CpfType[];
     cpfMass: CpfType[];
     expandedItemIndex: number | null;
 }
-
-export default class GetCpf extends Component<Props, State> {
+class GetCpf extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
@@ -26,20 +29,20 @@ export default class GetCpf extends Component<Props, State> {
 
     componentDidMount() {
         Service.getCpf().then(
-          (response) => {
-            const cpfList = response.data;
-            if (cpfList.length >= 3) { // Upewnij się, że dostajesz trzy listy danych
-              const cpfReduction = cpfList[0];
-              const cpfRegular = cpfList[1];
-              const cpfMass = cpfList[2];
-              this.setState({ cpfReduction, cpfRegular, cpfMass });
-            } else {
-              console.log('Błąd: Nieprawidłowy format danych CPF');
+            (response) => {
+                const cpfList = response.data;
+                if (cpfList.length >= 3) {
+                    const cpfReduction = cpfList[0];
+                    const cpfRegular = cpfList[1];
+                    const cpfMass = cpfList[2];
+                    this.setState({ cpfReduction, cpfRegular, cpfMass });
+                } else {
+                    console.log('Error: Invalid CPF data format');
+                }
+            },
+            (error) => {
+                console.log("Error:", error);
             }
-          },
-          (error) => {
-            console.log("Błąd:", error);
-          }
         );
     }
 
@@ -51,10 +54,12 @@ export default class GetCpf extends Component<Props, State> {
 
     render() {
         const { cpfReduction, cpfRegular, cpfMass } = this.state;
+        const { t } = this.props;
+
         return (
             <div className="container" style={{ display: 'flex' }}>
                 <div className="left" style={{ flex: '1', marginRight: '10px' }}>
-                    <p>redukcja</p>
+                    <p>{t("body_params.cpf_reduction")}</p>
                     {cpfReduction.map((item: CpfType, index: number) => (
                         <li key={index} id="bodyParams">
                             <Collapsible
@@ -81,7 +86,7 @@ export default class GetCpf extends Component<Props, State> {
                     ))}
                 </div>
                 <div className="middle" style={{ flex: '1', marginRight: '10px' }}>
-                    <p>regular</p>
+                    <p>{t("body_params.cpf_regular")}</p>
                     {cpfRegular.map((item: CpfType, index: number) => (
                         <li key={index} id="bodyParams">
                             <Collapsible
@@ -108,7 +113,7 @@ export default class GetCpf extends Component<Props, State> {
                     ))}
                 </div>
                 <div className="right" style={{ flex: '1' }}>
-                    <p> mass</p>
+                    <p>{t("body_params.cpf_mass")}</p>
                     {cpfMass.map((item: CpfType, index: number) => (
                         <li key={index} id="bodyParams">
                             <Collapsible
@@ -138,3 +143,5 @@ export default class GetCpf extends Component<Props, State> {
         );
     }
 }
+
+export default withTranslation("global")(GetCpf);

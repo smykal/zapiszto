@@ -14,16 +14,50 @@
         "dict_quantity_type": "tipo di quantità di dizionario",
         "dict_units": "unità di dizionario"
     },
+    "body_params": {
+        "gender": "genere",
+        "age": "età",
+        "bmi": "bmi",
+        "body_mass_index": "indice di massa corporea",
+        "bmr": "tbm",
+        "basal metabolic rate": "tasso metabolico basale",
+        "cpf": "cpf",
+        "cpf_reduction": "riduzione",
+        "cpf_regular": "regolare",
+        "cpf_mass": "massa",
+        "carbs_fat_protein": "carboidrati grassi proteine",
+        "kcal": "kcal",
+        "carbs": "carboidrati",
+        "protein": "proteine",
+        "waist": "vita",
+        "hip": "anca",
+        "biceps": "bicipiti",
+        "calf": "polpaccio",
+        "fat": "grasso",
+        "height": "altezza"
+    },
     "buttons": {
         "add": "aggiungi",
         "delete": "elimina",
         "edit": "modifica",
-        "archive": "archivio"
+        "archive": "archivio",
+        "select": "seleziona",
+        "select_attribute": "seleziona attributo",
+        "select_gender": "seleziona genere",
+        "select_birthdate": "seleziona data di nascita",
+        "female": "femmina",
+        "male": "maschio"
+    },
+    "validation": {
+        "this_field_is_required": "questo campo è obbligatorio"
     },
     "table": {
         "id": "identificativo",
         "name": "nome",
         "shortcut": "scorciatoia",
-        "options": "opzioni"
+        "options": "opzioni",
+        "date": "data",
+        "bmi_value": "valore BMI",
+        "description": "descrizione"
     }
 }

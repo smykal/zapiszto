@@ -1,13 +1,17 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
+
 import Service from "../../services/bodyParams";
 import { BmiItem } from "../../types/types";
 
-type Props = {};
+type Props = {
+    t: any;
+};
 type State = {
     bmi: BmiItem | null;
 }
 
-export default class ShowBmi extends Component<Props,State> {
+class ShowBmi extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
@@ -21,7 +25,6 @@ export default class ShowBmi extends Component<Props,State> {
             (response) => {
                 if (response.data.length > 0) {
                     const bmiData = response.data[0];
-                    // Konwersja formatu daty
                     bmiData.date = new Date(bmiData.date).toISOString().split('T')[0];
                     this.setState({
                         bmi: bmiData
@@ -36,14 +39,16 @@ export default class ShowBmi extends Component<Props,State> {
 
     render()  {
         const { bmi } = this.state;
+        const { t } = this.props;
+
         return (
             <div className="container">
                 {bmi &&
                     <div>
                         <p>
-                            <strong>Data:</strong> {bmi.date}
-                            <strong> Wartość BMI:</strong> {bmi.value}
-                            <strong> Opis:</strong> {bmi.description}
+                            <strong>{t("table.date")}:</strong> {bmi.date}
+                            <strong>{t("table.bmi_value")}:</strong> {bmi.value}
+                            <strong>{t("table.description")}:</strong> {bmi.description}
                         </p>
                     </div>
                 }
@@ -51,3 +56,5 @@ export default class ShowBmi extends Component<Props,State> {
         )
     }
 }
+
+export default withTranslation("global")(ShowBmi);

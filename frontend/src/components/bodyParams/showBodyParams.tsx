@@ -8,9 +8,13 @@ import ShowCpf from "./showCpf"
 import Gender from "./gender"
 import Age from "./age"
 import { BodyParamsItem } from '../../types/types';
+import { withTranslation } from "react-i18next";
 
 
-type Props = {};
+
+type Props = {  
+    t: any;
+};
 type State = {
     bodyParams: BodyParamsItem[];
     expandedItemIndex: number | null;
@@ -21,7 +25,7 @@ type State = {
     cpfExpanded: boolean;
 };
 
-export default class ShowBodyParams extends Component<Props, State> {
+class ShowBodyParams extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
@@ -91,6 +95,8 @@ export default class ShowBodyParams extends Component<Props, State> {
 
     render() {
         const { bmrExpanded, bmiExpanded, genderExpanded, ageExpanded, cpfExpanded} = this.state;
+        const { t } = this.props;
+
     return (
             <div className="container">
                 <header className="jumbotron">
@@ -108,7 +114,7 @@ export default class ShowBodyParams extends Component<Props, State> {
                                         onClick={() => this.handleGenderClick()}
                                     >
                                         <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            Gender
+                                            {t("body_params.gender")}
                                         </span>
                                     </div>
                                 }
@@ -130,7 +136,7 @@ export default class ShowBodyParams extends Component<Props, State> {
                                         onClick={() => this.handleAgeClick()}
                                     >
                                         <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            Age
+                                            {t("body_params.age")}
                                         </span>
                                     </div>
                                 }
@@ -152,7 +158,7 @@ export default class ShowBodyParams extends Component<Props, State> {
                                         onClick={() => this.handleBmiClick()}
                                     >
                                         <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            BMI
+                                        {t("body_params.body_mass_index")}
                                         </span>
                                     </div>
                                 }
@@ -174,7 +180,7 @@ export default class ShowBodyParams extends Component<Props, State> {
                                         onClick={() => this.handleBmrClick()}
                                     >
                                         <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            BMR
+                                            {t("body_params.basal_metabolic_rate")}
                                         </span>
                                     </div>
                                 }
@@ -196,7 +202,7 @@ export default class ShowBodyParams extends Component<Props, State> {
                                         onClick={() => this.handleCpfClick()}
                                     >
                                         <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            CPF
+                                            {t("body_params.carbs_fat_protein")}
                                         </span>
                                     </div>
                                 }
@@ -237,3 +243,5 @@ export default class ShowBodyParams extends Component<Props, State> {
         
     }
 }
+
+export default  withTranslation("global")(ShowBodyParams)

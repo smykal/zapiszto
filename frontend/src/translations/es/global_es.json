@@ -14,16 +14,50 @@
         "dict_quantity_type": "tipo de cantidad de diccionario",
         "dict units": "unidades de diccionario"
     },
+    "body_params": {
+        "gender": "género",
+        "age": "edad",
+        "bmi": "imc",
+        "body_mass_index": "índice de masa corporal",
+        "bmr": "tmb",
+        "basal metabolic rate": "tasa metabólica basal",
+        "cpf": "cpf",
+        "cpf_reduction": "reducción",
+        "cpf_regular": "regular",
+        "cpf_mass": "masa",
+        "carbs_fat_protein": "carbohidratos grasas proteínas",
+        "kcal": "kcal",
+        "carbs": "carbohidratos",
+        "protein": "proteínas",
+        "waist": "cintura",
+        "hip": "cadera",
+        "biceps": "bíceps",
+        "calf": "pantorrilla",
+        "fat": "grasa",
+        "height": "altura"
+    },
     "buttons": {
         "add": "añadir",
         "delete": "borrar",
         "edit": "editar",
-        "archive": "archivar"
+        "archive": "archivar",
+        "select": "seleccionar",
+        "select_attribute": "seleccionar atributo",
+        "select_gender": "seleccionar género",
+        "select_birthdate": "seleccionar fecha de nacimiento",
+        "female": "mujer",
+        "male": "hombre"
+    },
+    "validation": {
+        "this_field_is_required": "este campo es obligatorio"
     },
     "table": {
         "id": "identificación",
         "name": "nombre",
         "shortcut": "atajo",
-        "options": "opciones"
+        "options": "opciones",
+        "date": "fecha",
+        "bmi_value": "valor de IMC",
+        "description": "descripción"
     }
 }

@@ -4,26 +4,60 @@
         "user": "користувач",
         "body_params": "параметри тіла",
         "training": "тренування",
-        "dictionaries": "словники",
+        "dictionaries": "налаштування",
         "log_in": "увійти",
         "log_out": "вийти",
         "sign_in": "зареєструватися"
     },
     "dictionaries": {
-        "dict_exercise": "словникові вправи",
+        "dict_exercise": "вправи",
         "dict_quantity_type": "типи кількості у словнику",
         "dict_units": "словникові одиниці"
+    },
+    "body_params": {
+        "gender": "стать",
+        "age": "вік",
+        "bmi": "ІМТ",
+        "body_mass_index": "індекс маси тіла",
+        "bmr": "базовий обмін",
+        "basal metabolic rate": "базальний метаболізм",
+        "cpf": "cpf",
+        "cpf_reduction": "зменшення",
+        "cpf_regular": "регулярне",
+        "cpf_mass": "маса",
+        "carbs_fat_protein": "вуглеводи жири білки",
+        "kcal": "ккал",
+        "carbs": "вуглеводи",
+        "protein": "білки",
+        "waist": "талія",
+        "hip": "стегно",
+        "biceps": "біцепс",
+        "calf": "лижка",
+        "fat": "жир",
+        "height": "зріст"
+    },
+    "validation": {
+        "this_field_is_required": "це поле обов'язкове"
     },
     "buttons": {
         "add": "додати",
         "delete": "видалити",
         "edit": "редагувати",
-        "archive": "архів"
+        "archive": "архівувати",
+        "select": "вибрати",
+        "select_attribute": "вибрати атрибут",
+        "select_gender": "вибрати стать",
+        "select_birthdate": "виберіть дату народження",
+        "female": "жіночий",
+        "male": "чоловічий"
     },
     "table": {
-        "id": "ідентифікатор",
+        "id": "#",
         "name": "назва",
         "shortcut": "скорочення",
-        "options": "опції"
+        "options": "опції",
+        "date": "дата",
+        "bmi_value": "значення ІМТ",
+        "description": "опис"
     }
 }

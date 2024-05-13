@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DictExercises } from "../../../types/types";
 import { useTranslation } from "react-i18next";
-import Delete from "./Options";
+import Options from "./Options";
 import AddDictExercisePerUser from "./AddDictExercisePerUser";
 import Service from '../../../services/exercises'
 import TableContainer from '@mui/material/TableContainer';
@@ -48,7 +48,7 @@ const ShowDictExercises = () => {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell component='th' scope="row"> {row.id}</TableCell>                                   
                             <TableCell>{row.name}</TableCell>
-                            <TableCell>{row.dict === "PER_USER" ? <Delete item={row.dict_id} /> : "menu niedostępne"}</TableCell>                                                          
+                            <TableCell>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</TableCell>                                                          
                         </TableRow>
                     ))}
                     </TableBody>
