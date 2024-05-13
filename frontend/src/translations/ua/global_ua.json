@@ -20,7 +20,7 @@
         "bmi": "ІМТ",
         "body_mass_index": "індекс маси тіла",
         "bmr": "базовий обмін",
-        "basal metabolic rate": "базальний метаболізм",
+        "basal_metabolic_rate": "базальний метаболізм",
         "cpf": "cpf",
         "cpf_reduction": "зменшення",
         "cpf_regular": "регулярне",

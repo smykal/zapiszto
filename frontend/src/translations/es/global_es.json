@@ -20,7 +20,7 @@
         "bmi": "imc",
         "body_mass_index": "índice de masa corporal",
         "bmr": "tmb",
-        "basal metabolic rate": "tasa metabólica basal",
+        "basal_metabolic_rate": "tasa metabólica basal",
         "cpf": "cpf",
         "cpf_reduction": "reducción",
         "cpf_regular": "regular",

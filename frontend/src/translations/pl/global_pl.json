@@ -20,7 +20,7 @@
         "bmi": "BMI",
         "body_mass_index": "wskaźnik masy ciała",
         "bmr": "BMR",
-        "basal metabolic rate": "podstawowa przemiana materii",
+        "basal_metabolic_rate": "podstawowa przemiana materii",
         "cpf": "CPF",
         "cpf_reduction": "redukcja",
         "cpf_regular": "regularne",
