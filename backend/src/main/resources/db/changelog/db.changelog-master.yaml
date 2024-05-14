@@ -123,3 +123,9 @@ databaseChangeLog:
       file: db/changelog/061_modify_table_dict_exercises.xml
   - include:
       file: db/changelog/062_add_column_order_to_exercises.xml
+  - include:
+      file: db/changelog/063_add_table_dict_category.xml
+  - include:
+      file: db/changelog/064_modify_dict_exercises.xml
+  - include:
+      file: db/changelog/065_modify_dict_category_per_user.xml

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add_fk_user_id_to_dict_category_per_user" author="smykalm">
+        <addForeignKeyConstraint baseTableName="dict_category_per_user" baseColumnNames="user_id"
+                                 constraintName="fk_dict_category_per_user_user_id"
+                                 referencedTableName="users" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>
