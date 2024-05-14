@@ -36,6 +36,20 @@
         "fat": "fat",
         "height": "height"
     },
+    "workbooks": {
+        "add_workbook": "add workbook",
+        "enter_new_workbook_name": "enter new workbook name",
+        "workbook_name": "workbook name",
+        "schema_name": "schema name",
+        "select_workbook_schema": "select workbook schema",
+        "select_training_date": "select training date",
+        "select_exercise": "select exercise",
+        "select_quantity": "select quantity",
+        "select_unit": "select unit",
+        "add_training": "add training",
+        "any_schema_selected": "any schema selected",
+        "start_date": "start date"
+    },
     "buttons": {
         "add": "add",
         "delete": "delete",
@@ -46,7 +60,9 @@
         "select_gender": "select gender",
         "select_birthdate": "select birthdate",
         "female": "female",
-        "male": "male"
+        "male": "male",
+        "move_up": "move up",
+        "move_down": "move down"
     },
     "validation": {
         "this_field_is_required": "this field is required"
@@ -58,6 +74,13 @@
         "options": "options",
         "date": "date",
         "bmi_value": "bmi value",
-        "description": "description"
+        "description": "description",
+        "order_number": "order number",
+        "exercise": "exercise",
+        "quantity": "quantity",
+        "type": "type",
+        "volume": "volume",
+        "unit": "unit",
+        "notes": "notes"
     }
 }

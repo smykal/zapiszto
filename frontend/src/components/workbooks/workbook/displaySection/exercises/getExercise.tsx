@@ -8,10 +8,13 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 
 import { Exercise } from '../../../../../types/types';
+import { withTranslation } from "react-i18next";
+
 import ExercisesService from '../../../../../services/exercises'
 
 type Props = {
     training_id: number
+    t: any
 }
 
 type State = {
@@ -43,6 +46,7 @@ class GetExercise extends Component<Props, State> {
 
     render() {
         const { exercises } = this.state;
+        const { t } = this.props;
 
         return (
             <div>
@@ -50,14 +54,14 @@ class GetExercise extends Component<Props, State> {
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Exercise</TableCell>
-                                <TableCell>Quantity</TableCell>
-                                <TableCell>Type</TableCell>
-                                <TableCell>Volume</TableCell>
-                                <TableCell>Unit</TableCell>
-                                <TableCell>Notes</TableCell>
-                                <TableCell>OrderNumber</TableCell>
-                                <TableCell>Options</TableCell>
+                                <TableCell>{t("table.exercise")}</TableCell>
+                                <TableCell>{t("table.quantity")}</TableCell>
+                                <TableCell>{t("table.type")}</TableCell>
+                                <TableCell>{t("table.volume")}</TableCell>
+                                <TableCell>{t("table.unit")}</TableCell>
+                                <TableCell>{t("table.notes")}</TableCell>
+                                <TableCell>{t("table.order_number")}</TableCell>
+                                <TableCell>{t("table.options")}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -84,4 +88,4 @@ class GetExercise extends Component<Props, State> {
     }
 }
 
-export default GetExercise;
+export default withTranslation("global")(GetExercise)

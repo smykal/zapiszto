@@ -36,6 +36,20 @@
         "fat": "tłuszcz",
         "height": "wzrost"
     },
+    "workbooks": {
+        "add_workbook": "Dodaj zeszyt treningowy",
+        "enter_new_workbook_name": "Wprowadź nazwę nowego zeszytu treningowego",
+        "workbook_name": "Nazwa zeszytu treningowego",
+        "schema_name": "nazwa schematu",
+        "select_workbook_schema": "Wybierz schemat zeszytu treningowego",
+        "select_training_date": "Wybierz datę treningu",
+        "select_exercise": "wybierz ćwiczenie",
+        "select_quantity": "wybierz ilość",
+        "select_unit": "wybierz jednostkę",
+        "add_training": "Dodaj trening",
+        "any_schema_selected": "nie wybrano schematu",
+        "start_date": "data rozpoczęcia"
+    },
     "buttons": {
         "add": "dodaj",
         "delete": "usuń",
@@ -46,7 +60,9 @@
         "select_gender": "wybierz płeć",
         "select_birthdate": "wybierz datę urodzenia",
         "female": "kobieta",
-        "male": "mężczyzna"
+        "male": "mężczyzna",
+        "move_up": "Przenieś w górę",
+        "move_down": "Przenieś w dół"
     },
     "validation": {
         "this_field_is_required": "to pole jest wymagane"
@@ -58,6 +74,13 @@
         "options": "opcje",
         "date": "data",
         "bmi_value": "wartość BMI",
-        "description": "opis"
+        "description": "opis",
+        "order_number": "numer",
+        "exercise": "ćwiczenie",
+        "quantity": "ilość",
+        "type": "typ",
+        "volume": "objętość",
+        "unit": "jednostka",
+        "notes": "notatki"
     }
 }

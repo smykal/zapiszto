@@ -36,6 +36,20 @@
         "fat": "жир",
         "height": "зріст"
     },
+    "workbooks": {
+        "add_workbook": "додати робочий зошит",
+        "enter_new_workbook_name": "введіть нову назву робочого зошита",
+        "workbook_name": "назва робочого зошита",
+        "schema_name": "назва схеми",
+        "select_workbook_schema": "вибрати схему робочого зошита",
+        "select_training_date": "вибрати дату тренування",
+        "select_exercise": "виберіть вправу",
+        "select_quantity": "виберіть кількість",
+        "select_unit": "виберіть одиницю",
+        "add_training": "додати тренування",
+        "any_schema_selected": "будь-яка обрана схема",
+        "start_date": "дата початку"
+    },
     "validation": {
         "this_field_is_required": "це поле обов'язкове"
     },
@@ -49,7 +63,9 @@
         "select_gender": "вибрати стать",
         "select_birthdate": "виберіть дату народження",
         "female": "жіночий",
-        "male": "чоловічий"
+        "male": "чоловічий",
+        "move_up": "підняти",
+        "move_down": "опустити"
     },
     "table": {
         "id": "#",
@@ -58,6 +74,13 @@
         "options": "опції",
         "date": "дата",
         "bmi_value": "значення ІМТ",
-        "description": "опис"
+        "description": "опис",
+        "order_number": "номер замовлення",
+        "exercise": "вправа",
+        "quantity": "кількість",
+        "type": "тип",
+        "volume": "об'єм",
+        "unit": "одиниця",
+        "notes": "примітки"
     }
 }

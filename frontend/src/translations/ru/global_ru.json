@@ -36,6 +36,20 @@
         "fat": "жир",
         "height": "рост"
     },
+    "workbooks": {
+        "add_workbook": "добавить рабочую тетрадь",
+        "enter_new_workbook_name": "введите новое имя рабочей тетради",
+        "workbook_name": "название рабочей тетради",
+        "schema_name": "название схемы",
+        "select_workbook_schema": "выбрать схему рабочей тетради",
+        "select_training_date": "выбрать дату тренировки",
+        "select_exercise": "выберите упражнение",
+        "select_quantity": "выберите количество",
+        "select_unit": "выберите единицу измерения",
+        "add_training": "добавить тренировку",
+        "any_schema_selected": "любая выбранная схема",
+        "start_date": "дата начала"
+    },
     "buttons": {
         "add": "добавить",
         "delete": "удалить",
@@ -46,7 +60,9 @@
         "select_gender": "выбрать пол",
         "select_birthdate": "выберите дату рождения",
         "female": "женский",
-        "male": "мужской"
+        "male": "мужской",
+        "move_up": "поднять",
+        "move_down": "опустить"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно"
@@ -58,6 +74,13 @@
         "options": "опции",
         "date": "дата",
         "bmi_value": "значение ИМТ",
-        "description": "описание"
+        "description": "описание",
+        "order_number": "номер заказа",
+        "exercise": "упражнение",
+        "quantity": "количество",
+        "type": "тип",
+        "volume": "объем",
+        "unit": "единица",
+        "notes": "заметки"
     }
 }

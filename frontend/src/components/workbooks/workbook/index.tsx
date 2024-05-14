@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Workbook } from '../../../types/types';
+
 import ControlsSection from './controlsSection';
 import DisplaySection from './displaySection';
 import AnalysisSection from './analysisSection';
@@ -29,4 +30,4 @@ class Wrapper extends Component<Props> {
   }
 }
 
-export default Wrapper;
+export default (Wrapper)

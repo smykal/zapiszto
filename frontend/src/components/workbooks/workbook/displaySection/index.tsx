@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Workbook } from '../../../../types/types';
 import PostTraining from './postTraining';
 import ShowTrainings from './showTrainings';

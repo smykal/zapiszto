@@ -1,28 +1,33 @@
 import { Component } from "react";
 import Service from '../../../../../services/exercises'
+import { withTranslation } from "react-i18next";
+
 
 
 type Props = {
-    exerciseId: number,
+    exerciseId: number
     trainingId: number
+    t: any
 };
 type State = {};
 
-export default class Options extends Component<Props, State> {
+class Options extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
     }
     render() {
-        const { exerciseId, trainingId } = this.props
+        const { exerciseId, trainingId , t } = this.props
         return (
             <div>
                 {/* <button onClick={() => this.delete(item)}>Delete {item}</button> */}
-                <button>Delete</button>
-                <button>Edit {exerciseId}</button>
-                <button>Move Up</button>
-                <button>Move Down</button>
-                <button>Archive {exerciseId}</button>
+                <button>{t("buttons.delete")}               </button>
+                <button>{t("buttons.edit")}     {exerciseId}</button>
+                <button>{t("buttons.move_up")}              </button>
+                <button>{t("buttons.move_down")}            </button>
+                <button>{t("buttons.archive")} {exerciseId}</button>
             </div>
         )  
     }
 }
+
+export default withTranslation("global")(Options)

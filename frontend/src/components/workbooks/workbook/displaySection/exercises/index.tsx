@@ -10,11 +10,9 @@ type Props = {
 
 class Exercise extends Component<Props> {
     constructor(props: Props) {
-        super(props)
-        
+        super(props) 
     }
     
-
     render() {
         const {workbook_id, training_id} = this.props;
 

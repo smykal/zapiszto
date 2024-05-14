@@ -2,11 +2,14 @@ import { Component } from 'react';
 import { DictExercises, DictQuantityType, DictUnits, NewExercise } from '../../../../../types/types';
 import Service from '../../../../../services/exercises'
 import { Formik, Form, Field } from 'formik'
+import { withTranslation } from "react-i18next";
+
 
 
 type Props = {
-    workbook_id: number,
+    workbook_id: number
     training_id: number
+    t: any
 }
 
 type State = {
@@ -65,7 +68,7 @@ class AddExercise extends Component<Props, State> {
     }
 
     render() {
-        const { workbook_id, training_id } = this.props;
+        const { workbook_id, training_id, t } = this.props;
         const { dictExercises, dictUnits, dictQuantityTypes } = this.state;
         const initialExercise: NewExercise = {
             trainingId: this.props.training_id,
@@ -86,7 +89,7 @@ class AddExercise extends Component<Props, State> {
                     <Form>
                         <Field as="select" name="dictExerciseId">
                             <option value="" disabled>
-                                Select exercise
+                                {t("workbooks.select_exercise")}
                             </option>
                             {this.state.dictExercises.map((exercise) => (
                                 <option key={exercise.id} value={exercise.id}>
@@ -97,7 +100,7 @@ class AddExercise extends Component<Props, State> {
                         <Field name="quantity" type="number" />
                         <Field as="select" name="dictQuantityTypeId">
                             <option value="" disabled>
-                                Select quantity
+                               {t("workbooks.select_quantity")} 
                             </option>
                             {this.state.dictQuantityTypes.map((quantity) => (
                                 <option key={quantity.id} value={quantity.id}>
@@ -108,7 +111,7 @@ class AddExercise extends Component<Props, State> {
                         <Field name="volume" type="number" />
                         <Field as="select" name="dictUnitId">
                             <option value="" disabled>
-                                Select unit
+                            {t("workbooks.select_unit")} 
                             </option>
                             {this.state.dictUnits.map((unit) => (
                                 <option key={unit.id} value={unit.id}>
@@ -117,9 +120,7 @@ class AddExercise extends Component<Props, State> {
                             ))}
                         </Field>
                         <Field name="notes" type="text" />
-                        <button type="submit">
-                            <span>Add exercise</span>
-                        </button>
+                        <button type="submit">{t("buttons.add")}</button>
                     </Form>
                 </Formik>
             </div>
@@ -127,4 +128,4 @@ class AddExercise extends Component<Props, State> {
     }
 }
 
-export default AddExercise;
+export default withTranslation("global")(AddExercise)

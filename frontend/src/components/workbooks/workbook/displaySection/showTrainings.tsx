@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Training } from "../../../../types/types";
 import Service from "../../../../services/workbooks";
 import Collapsible from "react-collapsible";
