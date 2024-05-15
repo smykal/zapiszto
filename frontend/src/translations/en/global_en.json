@@ -10,6 +10,7 @@
         "sign_in": "sing in"
     },
     "dictionaries": {
+        "dict_category": "dict category",
         "dict_exercise": "dict exercises",
         "dict_quantity_type": "dict quantity type",
         "dict units": "dict units"
@@ -65,7 +66,8 @@
         "move_down": "move down"
     },
     "validation": {
-        "this_field_is_required": "this field is required"
+        "this_field_is_required": "this field is required",
+        "name_already_exists": "name already exists"
     },
     "table": {
         "id": "id",

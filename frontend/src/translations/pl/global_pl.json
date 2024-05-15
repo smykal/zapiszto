@@ -10,6 +10,7 @@
         "sign_in": "zarejestruj się"
     },
     "dictionaries": {
+        "dict_category": "kategoria ćwiczeń",
         "dict_exercise": "ćwiczenia słownikowe",
         "dict_quantity_type": "typy ilości w słowniku",
         "dict_units": "jednostki słownikowe"
@@ -65,7 +66,8 @@
         "move_down": "Przenieś w dół"
     },
     "validation": {
-        "this_field_is_required": "to pole jest wymagane"
+        "this_field_is_required": "to pole jest wymagane",
+        "name_already_exists": "nazwa już istnieje"
     },
     "table": {
         "id": "identyfikator",

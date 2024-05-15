@@ -10,6 +10,7 @@
         "sign_in": "зареєструватися"
     },
     "dictionaries": {
+        "dict_category": "категорія вправ",
         "dict_exercise": "вправи",
         "dict_quantity_type": "типи кількості у словнику",
         "dict_units": "словникові одиниці"
@@ -51,7 +52,8 @@
         "start_date": "дата початку"
     },
     "validation": {
-        "this_field_is_required": "це поле обов'язкове"
+        "this_field_is_required": "це поле обов'язкове",
+        "name_already_exists": "ім'я вже існує"
     },
     "buttons": {
         "add": "додати",

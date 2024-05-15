@@ -10,6 +10,7 @@
         "sign_in": "registrati"
     },
     "dictionaries": {
+        "dict_category": "categoria degli esercizi",
         "dict_exercise": "esercizi di dizionario",
         "dict_quantity_type": "tipo di quantità di dizionario",
         "dict_units": "unità di dizionario"
@@ -65,7 +66,8 @@
         "move_down": "muovi giù"
     },
     "validation": {
-        "this_field_is_required": "questo campo è obbligatorio"
+        "this_field_is_required": "questo campo è obbligatorio",
+        "name_already_exists": "il nome esiste già"
     },
     "table": {
         "id": "identificativo",

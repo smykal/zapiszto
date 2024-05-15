@@ -99,6 +99,19 @@ export type NewDictUnit = {
                             shortcut: string
 }
 
+export type NewDictCategory = {
+                                name: string,
+                                description: string
+}
+
+export type DictCategories = {
+                          id: number;
+                          dict: string;
+                          dict_id: number;
+                          name: string;
+                          description: string
+}
+
 export type DictExercises = {
                               id: number;
                               dict: string;

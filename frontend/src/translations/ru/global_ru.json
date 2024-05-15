@@ -10,6 +10,7 @@
         "sign_in": "зарегистрироваться"
     },
     "dictionaries": {
+        "dict_category": "категория упражнений",
         "dict_exercise": "упражнения",
         "dict_quantity_type": "типы количества в словаре",
         "dict_units": "словарные единицы"
@@ -65,7 +66,8 @@
         "move_down": "опустить"
     },
     "validation": {
-        "this_field_is_required": "это поле обязательно"
+        "this_field_is_required": "это поле обязательно",
+        "name_already_exists": "имя уже существует"
     },
     "table": {
         "id": "#",

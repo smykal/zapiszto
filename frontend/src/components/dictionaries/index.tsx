@@ -3,6 +3,7 @@ import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import ShowDictExercises from './dictExercises/ShowDictExercises'
 import ShowDictQuantityTypes from './dictQuantityType/ShowDictQuantityType'
 import ShowDictUnits from "./dictUnits/ShowDictUnits";
+import ShowDictCategory from "./dictCategory/ShowDictCategory";
 import { useTranslation } from "react-i18next";
 
 const Training = () => {
@@ -25,10 +26,12 @@ const Training = () => {
         <div>
             <Tabs selectedIndex={activeDictTabIndex} onSelect={handleTabSelect}>
                 <TabList>
+                    <Tab>{t("dictionaries.dict_category")}</Tab>
                     <Tab>{t("dictionaries.dict_exercise")}</Tab>
                     <Tab>{t("dictionaries.dict_quantity_type")}</Tab>
                     <Tab>{t("dictionaries.dict_units")}</Tab>
                 </TabList>
+                <TabPanel><ShowDictCategory /></TabPanel>
                 <TabPanel><ShowDictExercises /></TabPanel>
                 <TabPanel><ShowDictQuantityTypes /></TabPanel>
                 <TabPanel><ShowDictUnits /></TabPanel>
