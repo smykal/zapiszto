@@ -35,6 +35,7 @@ public class DictCategoryService {
     var item = DictCategoryPerUserEntity.builder()
         .name(newDictCategoryDto.getName())
         .user_id(userId)
+        .description(newDictCategoryDto.getDescription())
         .build();
 
     DictCategoryPerUserEntity dictCategoryPerUserEntity = dictCategoryPerUserRepository.save(item);
@@ -66,7 +67,8 @@ public class DictCategoryService {
   @Transactional
   public void addDictCategory(NewDictCategoryDto newDictCategoryDto) {
     var item = DictCategoryBasicEntity.builder()
-            .name(newDictCategoryDto.getName())
+        .name(newDictCategoryDto.getName())
+        .description(newDictCategoryDto.getDescription())
         .build();
 
     DictCategoryBasicEntity dictCategoryBasicEntity =

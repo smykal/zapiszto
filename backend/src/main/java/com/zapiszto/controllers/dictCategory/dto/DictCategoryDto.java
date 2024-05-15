@@ -19,4 +19,5 @@ public class DictCategoryDto {
   String dict;
   long dict_id;
   String name;
+  String description;
 }

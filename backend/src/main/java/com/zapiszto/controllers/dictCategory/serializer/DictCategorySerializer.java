@@ -17,6 +17,8 @@ public class DictCategorySerializer {
               .getId())
           .name(dictCategoryEntity.getDictCategoryBasicEntity()
               .getName())
+          .description(dictCategoryEntity.getDictCategoryBasicEntity()
+              .getDescription())
           .build();
     } else {
       return DictCategoryDto.builder()
@@ -26,6 +28,8 @@ public class DictCategorySerializer {
               .getId())
           .name(dictCategoryEntity.getDictCategoryPerUserEntity()
               .getName())
+          .description(dictCategoryEntity.getDictCategoryPerUserEntity()
+              .getDescription())
           .build();
     }
   }
