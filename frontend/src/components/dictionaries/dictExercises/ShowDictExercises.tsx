@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DictExercises } from "../../../types/types";
+import { DictCategories, DictExercises } from "../../../types/types";
 import { useTranslation } from "react-i18next";
 import Options from "./Options";
 import AddDictExercisePerUser from "./AddDictExercisePerUser";
@@ -13,10 +13,12 @@ import TableCell from '@mui/material/TableCell';
 
 const ShowDictExercises = () => {
     const [dictExercises, setDictExercises] = useState<DictExercises[]>([]);
+    const [dictCategories, setDictCategories] = useState<DictCategories[]>([]);
     const { t } = useTranslation("global");
 
     useEffect(() => {
         loadDictExercises();
+        loadDictCategories();
     }, []);
 
     const loadDictExercises = () => {
@@ -29,15 +31,26 @@ const ShowDictExercises = () => {
             });
     };
 
+    const loadDictCategories = () => {
+        Service.getDictCategory()
+        .then(response => {
+            setDictCategories(response.data);
+        })
+        .catch(error => {
+            console.error('Error loading dict categories:', error);
+        });
+    }
+
     return (
         <div>
-            <AddDictExercisePerUser dictExercises={dictExercises} />
+            <AddDictExercisePerUser dictExercises={dictExercises} dictCategories={dictCategories} />
             <TableContainer>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>{t("table.id")}</TableCell>
                             <TableCell>{t("table.name")}</TableCell>
+                            <TableCell>{t("table.category")}</TableCell>
                             <TableCell>{t("table.options")}</TableCell>
                         </TableRow>
                     </TableHead>
@@ -48,6 +61,7 @@ const ShowDictExercises = () => {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell component='th' scope="row"> {row.id}</TableCell>                                   
                             <TableCell>{row.name}</TableCell>
+                            <TableCell>{row.category_name}</TableCell>
                             <TableCell>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</TableCell>                                                          
                         </TableRow>
                     ))}
