@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.dictCategory.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictCategory.dto.DictCategoryDto;
 import com.zapiszto.controllers.dictCategory.dto.NewDictCategoryDto;
 import com.zapiszto.controllers.dictCategory.service.DictCategoryService;

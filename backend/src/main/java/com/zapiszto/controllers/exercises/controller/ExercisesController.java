@@ -1,10 +1,9 @@
 package com.zapiszto.controllers.exercises.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.exercises.dto.ExerciseDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseDto;
 import com.zapiszto.controllers.exercises.service.ExercisesService;
-import com.zapiszto.controllers.trainings.dto.TrainingDto;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

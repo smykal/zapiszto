@@ -32,7 +32,7 @@ public class DictCategoryEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  int id;
+  long id;
 
   @ManyToOne
   @JoinColumn(name = "dict_category_basic_id", referencedColumnName = "id")

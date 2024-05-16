@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.dictQuantityType.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictQuantityType.dto.NewDictQuantityTypeDto;
 import com.zapiszto.controllers.dictQuantityType.service.DictQuantityTypeService;
 import com.zapiszto.controllers.dictQuantityType.dto.DictQuantityTypeDto;

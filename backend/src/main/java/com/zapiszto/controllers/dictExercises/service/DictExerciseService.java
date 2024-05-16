@@ -1,5 +1,7 @@
 package com.zapiszto.controllers.dictExercises.service;
 
+import com.zapiszto.controllers.dictCategory.entity.DictCategoryEntity;
+import com.zapiszto.controllers.dictCategory.repository.DictCategoryRepository;
 import com.zapiszto.controllers.dictExercises.dictExercisesBasic.entity.DictExercisesBasicEntity;
 import com.zapiszto.controllers.dictExercises.dictExercisesBasic.repository.DictExercisesBasicRepository;
 import com.zapiszto.controllers.dictExercises.dictExercisesPerUser.entity.DictExercisesPerUserEntity;
@@ -30,19 +32,27 @@ public class DictExerciseService {
   @Autowired
   DictExercisesRepository dictExercisesRepository;
 
+  @Autowired
+  DictCategoryRepository dictCategoryRepository;
+
   @Transactional
   public DictExercisesDto addDictExercise(NewDictExerciseDto newDictExerciseDto, Long userId) {
     var item = DictExercisesPerUserEntity.builder()
-            .name(newDictExerciseDto.getName())
-            .user_id(userId)
-            .build();
+        .name(newDictExerciseDto.getName())
+        .user_id(userId)
+        .dictCategoryId(newDictExerciseDto.getCategoryId())
+        .build();
 
     DictExercisesPerUserEntity dictExercisesPerUserEntity = dictExercisesPerUserRepository.save(item);
 
-    log.info("add new item to dict_exercises_per_user: id {}, value {}, user {}",
+    log.info(
+        "add new item to dict_exercises_per_user: id {}, value {}, user {}",
         dictExercisesPerUserEntity.getId(),
         newDictExerciseDto.getName(),
-        userId);
+        userId
+    );
+
+
 
     DictExercisesEntity dictExercisesEntity = DictExercisesEntity.builder()
         .dictExercisesPerUserEntity(dictExercisesPerUserEntity)
@@ -51,10 +61,16 @@ public class DictExerciseService {
     DictExercisesEntity entity = dictExercisesRepository.save(dictExercisesEntity);
 
 
+    DictCategoryEntity dictCategoryEntity = dictCategoryRepository.getReferenceById(newDictExerciseDto.getCategoryId().intValue());
+    dictExercisesPerUserEntity.setDictCategoryEntity(dictCategoryEntity);
+    entity.setDictExercisesPerUserEntity(dictExercisesPerUserEntity);
 
-    log.info("updated dict_exercises by new item with id: {}, dict_exercises_per_user_id: {} ",
+    log.info(
+        "updated dict_exercises by new item with id: {}, dict_exercises_per_user_id: {} ",
         dictExercisesEntity.getId(),
-        dictExercisesEntity.getDictExercisesPerUserEntity().getId());
+        dictExercisesEntity.getDictExercisesPerUserEntity()
+            .getId()
+    );
 
     return DictExercisesSerializer.convert(entity);
   }
@@ -68,9 +84,11 @@ public class DictExerciseService {
     DictExercisesBasicEntity dictExercisesBasicEntity =
         dictExercisesBasicRepository.save(item);
 
-    log.info("add new item to dict_exercises_basic: id {}, value {}",
+    log.info(
+        "add new item to dict_exercises_basic: id {}, value {}",
         dictExercisesBasicEntity.getId(),
-        newDictExerciseDto.getName());
+        newDictExerciseDto.getName()
+    );
 
     DictExercisesEntity dictExercisesEntity = DictExercisesEntity.builder()
         .dictExercisesBasicEntity(dictExercisesBasicEntity)
@@ -78,15 +96,19 @@ public class DictExerciseService {
 
     dictExercisesRepository.save(dictExercisesEntity);
 
-    log.info("updated dict_exercises by new item with id: {}, dict_exercises_basic_id: {} ",
+    log.info(
+        "updated dict_exercises by new item with id: {}, dict_exercises_basic_id: {} ",
         dictExercisesEntity.getId(),
-        dictExercisesEntity.getDictExercisesBasicEntity().getId());
+        dictExercisesEntity.getDictExercisesBasicEntity()
+            .getId()
+    );
   }
 
-  public List<DictExercisesDto> getDictExercises(Long userId){
+  public List<DictExercisesDto> getDictExercises(Long userId) {
     List<DictExercisesEntity> all = dictExercisesRepository.getAllForUser(userId);
 
-    return all.stream().map(DictExercisesSerializer::convert)
+    return all.stream()
+        .map(DictExercisesSerializer::convert)
         .collect(Collectors.toList());
   }
 
@@ -97,7 +119,7 @@ public class DictExerciseService {
       dictExercisesRepository.deleteDictExercisePerUser(itemToDelete, userId);
       log.info("deleted dict_exercises_per_user with id: {}, user: {}", itemToDelete, userId);
       return "ok";
-    }  catch (DataIntegrityViolationException e) {
+    } catch (DataIntegrityViolationException e) {
       log.error("Error deleting exercise: {}", e.getMessage());
       throw new RuntimeException("Cannot delete exercise due to data integrity violation");
     }
@@ -110,7 +132,7 @@ public class DictExerciseService {
       dictExercisesRepository.deleteDictExerciseBasic(itemToDelete);
       log.info("deleted dict_exercises_per_user with id: {}, user: {}", itemToDelete, userId);
       return "ok";
-    }  catch (DataIntegrityViolationException e) {
+    } catch (DataIntegrityViolationException e) {
       log.error("Error deleting exercise: {}", e.getMessage());
       throw new RuntimeException("Cannot delete exercise due to data integrity violation");
     }

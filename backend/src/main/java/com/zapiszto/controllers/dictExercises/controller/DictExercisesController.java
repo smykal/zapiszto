@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.dictExercises.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictExercises.dto.DictExercisesDto;
 import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
 import com.zapiszto.controllers.dictExercises.service.DictExerciseService;

@@ -15,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DictCategoryDto {
-  int id;
+  long id;
   String dict;
   long dict_id;
   String name;

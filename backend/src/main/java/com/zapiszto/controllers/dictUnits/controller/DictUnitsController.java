@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.dictUnits.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictUnits.dto.DictUnitsDto;
 import com.zapiszto.controllers.dictUnits.dto.NewDictUnitDto;
 import com.zapiszto.controllers.dictUnits.service.DictUnitsService;

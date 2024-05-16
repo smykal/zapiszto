@@ -117,10 +117,14 @@ export type DictExercises = {
                               dict: string;
                               dict_id: number;
                               name: string
+                              category_type: string
+                              category_id: number
+                              category_name: string
 }
 
 export type NewDictExercises = {
                                 name: string
+                                categoryId: number
 }
 
 export type NewExercise = {

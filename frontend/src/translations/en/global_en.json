@@ -83,6 +83,7 @@
         "type": "type",
         "volume": "volume",
         "unit": "unit",
-        "notes": "notes"
+        "notes": "notes",
+        "category": "category"
     }
 }

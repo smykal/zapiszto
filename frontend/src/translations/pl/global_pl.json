@@ -83,6 +83,7 @@
         "type": "typ",
         "volume": "objętość",
         "unit": "jednostka",
-        "notes": "notatki"
+        "notes": "notatki",
+        "kategoria": "kategoria"
     }
 }

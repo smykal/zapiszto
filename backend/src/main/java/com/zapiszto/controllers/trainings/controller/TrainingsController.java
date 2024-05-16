@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.trainings.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.trainings.dto.NewTrainingDto;
 import com.zapiszto.controllers.trainings.dto.TrainingDto;
 import com.zapiszto.controllers.trainings.dto.TrainingNotesDto;
