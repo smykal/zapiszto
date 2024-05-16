@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="changeConstraintForRolesTable" author="smykalm">
+        <sql>ALTER TABLE roles DROP CONSTRAINT roles_name_check;</sql>
+        <sql>ALTER TABLE roles ADD CONSTRAINT roles_name_check CHECK (((name)::text = ANY ((ARRAY['ROLE_USER'::character varying, 'ROLE_MODERATOR'::character varying, 'ROLE_ADMIN'::character varying, 'ROLE_TRAINER'::character varying])::text[])));</sql>
+    </changeSet>
+
+</databaseChangeLog>

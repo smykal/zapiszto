@@ -11,6 +11,3 @@
     </changeSet>
 
 </databaseChangeLog>
-
-
-        (((name)::text = ANY ((ARRAY['ROLE_USER'::character varying, 'ROLE_MODERATOR'::character varying, 'ROLE_ADMIN'::character varying])::text[])))
