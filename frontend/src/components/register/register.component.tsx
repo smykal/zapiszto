@@ -11,7 +11,8 @@ type State = {
   email: string,
   password: string,
   successful: boolean,
-  message: string
+  message: string,
+  role: string[]
 };
 
 export default class Register extends Component<Props, State> {
@@ -24,7 +25,8 @@ export default class Register extends Component<Props, State> {
       email: "",
       password: "",
       successful: false,
-      message: ""
+      message: "",
+      role: []
     };
   }
 
@@ -53,11 +55,12 @@ export default class Register extends Component<Props, State> {
             val.toString().length <= 40
         )
         .required("This field is required!"),
+      role: Yup.string().required("This field is required!")
     });
   }
 
-  handleRegister(formValue: { username: string; email: string; password: string }) {
-    const { username, email, password } = formValue;
+  handleRegister(formValue: { username: string; email: string; password: string; role: string }) {
+    const { username, email, password, role } = formValue;
 
     this.setState({
       message: "",
@@ -67,7 +70,8 @@ export default class Register extends Component<Props, State> {
     AuthService.register(
       username,
       email,
-      password
+      password,
+      role
     ).then(
       response => {
         this.setState({
@@ -98,6 +102,7 @@ export default class Register extends Component<Props, State> {
       username: "",
       email: "",
       password: "",
+      role: "ROLE_USER"
     };
 
     return (
@@ -150,6 +155,20 @@ export default class Register extends Component<Props, State> {
                       className="alert alert-danger"
                     />
                   </div>
+                  <div className="form-group">
+                    <label htmlFor="role user">
+                      <Field type="radio" name="role" value="user" /> ROLE_USER
+                    </label>
+                    <label htmlFor="role trener">
+                      <Field type="radio" name="role" value="trainer" /> ROLE_TRENER
+                    </label>
+                    <label htmlFor="role admin">
+                      <Field type="radio" name="role" value="admin" /> ROLE_ADMIN
+                    </label>
+
+
+                  </div>
+
 
                   <div className="form-group">
                     <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
