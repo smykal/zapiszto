@@ -1,16 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet id="changeConstraintForRolesTable" author="smykalm">
+    <changeSet id="add data to user roles - TRAINER" author="smykalm">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="1">SELECT COUNT(*) FROM information_schema.table_constraints WHERE table_name = 'roles' AND constraint_name = 'roles_name_check';</sqlCheck>
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM roles WHERE name = 'ROLE_TRAINER'</sqlCheck>
         </preConditions>
-        <sql>ALTER TABLE roles DROP CONSTRAINT roles_name_check;</sql>
-        <sql>ALTER TABLE roles ADD CONSTRAINT roles_name_check CHECK (((name)::text = ANY ((ARRAY['ROLE_USER'::character varying, 'ROLE_MODERATOR'::character varying, 'ROLE_ADMIN'::character varying, 'ROLE_TRAINER'::character varying])::text[])));</sql>
+        <sql>INSERT INTO roles(name) VALUES('ROLE_TRAINER');</sql>
     </changeSet>
 
 </databaseChangeLog>
