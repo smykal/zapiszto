@@ -1,0 +1,27 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="create_invitations_status_table" author="smykalm">
+        <createTable tableName="invitations_status">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="invitations_id" type="uuid" remarks="ID of the invitation from invitations table"/>
+            <column name="insert_date" type="date" remarks="date of assigned status" defaultValue="now()"/>
+            <column name="dict_invitations_status_id" type="int8" remarks="status from dict_invitations_status" />
+        </createTable>
+        <addForeignKeyConstraint baseTableName="invitations_status"
+                                 baseColumnNames="invitations_id"
+                                 constraintName="invitations_id_fk"
+                                 referencedTableName="invitations"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="invitations_status"
+                                 baseColumnNames="dict_invitations_status_id"
+                                 constraintName="dict_invitations_status_id_fk"
+                                 referencedTableName="dict_invitations_status"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -137,3 +137,11 @@ databaseChangeLog:
       file: db/changelog/068_edit_roles_constraint.xml
   - include:
       file: db/changelog/069_modify_table_dict_category.xml
+  - include:
+      file: db/changelog/070_add_data_to_user_roles.xml
+  - include:
+      file: db/changelog/071_add_table_invitations.xml
+  - include:
+      file: db/changelog/072_add_table_dict_invitation_status.xml
+  - include:
+      file: db/changelog/073_add_table_invitations_status.xml

@@ -7,7 +7,10 @@
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">SELECT COUNT(*) FROM roles WHERE name = 'ROLE_TRAINER'</sqlCheck>
         </preConditions>
-        <sql>INSERT INTO roles(name) VALUES('ROLE_TRAINER');</sql>
+        <insert tableName="roles">
+            <column name="id" valueNumeric="4"/>
+            <column name="name" value="ROLE_TRAINER"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
