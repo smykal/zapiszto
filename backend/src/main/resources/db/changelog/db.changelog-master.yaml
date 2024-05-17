@@ -135,3 +135,5 @@ databaseChangeLog:
       file: db/changelog/067_add_data_to_dict_category.xml
   - include:
       file: db/changelog/068_edit_roles_constraint.xml
+  - include:
+      file: db/changelog/069_modify_table_dict_category.xml
