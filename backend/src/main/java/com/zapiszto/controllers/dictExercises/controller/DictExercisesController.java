@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.dictExercises.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictExercises.dto.DictExercisesDto;
 import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
 import com.zapiszto.controllers.dictExercises.service.DictExerciseService;
@@ -30,12 +30,12 @@ public class DictExercisesController implements ControllerCommon {
 
   @PostMapping("/add_exercise_per_user")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public ResponseEntity<String> addExercisePerUser(
+  public ResponseEntity<DictExercisesDto> addExercisePerUser(
       @RequestBody NewDictExerciseDto newDictExerciseDto
   ) {
     var userId = extractUserId();
-    dictExerciseService.addDictExercise(newDictExerciseDto, userId);
-    return new ResponseEntity<>(HttpStatus.CREATED);
+    DictExercisesDto result = dictExerciseService.addDictExercise(newDictExerciseDto, userId);
+    return new ResponseEntity<>(result, HttpStatus.CREATED);
   }
 
   @PostMapping("/add_exercise_basic")
@@ -74,6 +74,7 @@ public class DictExercisesController implements ControllerCommon {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
   }
+
   @DeleteMapping("/delete_exercise_per_user/{itemToDelete}")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExercisePerUser(
@@ -81,10 +82,29 @@ public class DictExercisesController implements ControllerCommon {
   ) {
     var userId = extractUserId();
     try {
-      var result = dictExerciseService.deleteDictExercise(userId, itemToDelete);
-      return new ResponseEntity<>( HttpStatus.CREATED);
-    } catch (NullPointerException e) {
+      dictExerciseService.deleteDictExercisePerUser(userId, itemToDelete);
+      return new ResponseEntity<>( HttpStatus.OK);
+    } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @DeleteMapping("/delete_exercise_basic/{itemToDelete}")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> deleteExerciseBasic(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userRole = extractUserRole();
+    var userId = extractUserId();
+    if (userRole.contains("ADMIN")) {
+      try {
+        dictExerciseService.deleteDictExerciseBasic(userId, itemToDelete);
+        return new ResponseEntity<>( HttpStatus.OK);
+      } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+      }
+    } else {
+      return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
   }
 }

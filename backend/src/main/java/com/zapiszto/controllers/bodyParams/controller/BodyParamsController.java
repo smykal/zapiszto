@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.bodyParams.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.bodyParams.dto.BodyMassIndexDto;
 import com.zapiszto.controllers.bodyParams.dto.BodyParamsDto;
 import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;

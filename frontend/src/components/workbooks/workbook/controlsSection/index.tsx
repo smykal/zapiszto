@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Workbook } from '../../../../types/types';
 import Service from '../../../../services/workbooks'
 import { DictWorkbookSchema } from '../../../../types/types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { withTranslation } from "react-i18next";
+
 
 type Props = {
   workbook: Workbook;
+  t: any;
 };
 
 type State = {
@@ -13,7 +16,7 @@ type State = {
   selectedSchemaName: string; // Zmień na selectedSchemaId
 }
 
-class  ControlsSection extends Component<Props, State> {
+class ControlsSection extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -31,7 +34,7 @@ class  ControlsSection extends Component<Props, State> {
       .catch(error => {
         console.error('Error fetching dictWorkbookSchema:', error);
       });
-    
+
   }
 
   handleDeleteClick = () => {
@@ -66,29 +69,27 @@ class  ControlsSection extends Component<Props, State> {
   }
 
   render() {
-    const { workbook } = this.props;
+    const { workbook, t } = this.props;
     const { dictWorkbookSchema, selectedSchemaName } = this.state;
 
-  
+
     return (
       <div className="controls-section">
         <div className="workbook-info">
-          <p>ID: {workbook.id} 
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-          Order Number: {workbook.order_number}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-          Insert Date: {workbook.insert_date}</p>
-          <p>Name: {workbook.name}</p>
-          <p>Workbook Schema name: {workbook.dict_workbook_schema_name}</p>
+          <p>{t("table.id")}: {workbook.id} </p>
+          <p>{t("table.order_number")}: {workbook.order_number}</p>
+          <p>{t("workbooks.start_date")}: {workbook.insert_date}</p>
+          <p>{t("table.name")}: {workbook.name}</p>
+          <p>{t("workbooks.schema_name")}: {workbook.dict_workbook_schema_name}</p>
         </div>
         <div className="workbook-actions">
           <div className='input_workbook'>
             <Formik initialValues={{ selectedSchemaName: selectedSchemaName }} onSubmit={this.handleUpdateDictWorkbookSchema}>
               {({ values, handleSubmit }) => (
                 <Form onSubmit={handleSubmit}>
-                  <label htmlFor='selectedSchemaName'>Select Workbook Schema:</label>
+                  <label htmlFor='selectedSchemaName'>{t("workbooks.select_workbook_schema")}:</label>
                   <Field as='select' name='selectedSchemaName'>
-                    <option value=''>Select...</option>
+                    <option value=''>{t("buttons.select")}</option>
                     {dictWorkbookSchema.map(schema => (
                       <option key={schema.id} value={schema.name}>
                         {schema.name}
@@ -96,13 +97,13 @@ class  ControlsSection extends Component<Props, State> {
                     ))}
                   </Field>
                   <ErrorMessage name='selectedSchemaName' component='div' className='error' />
-                  <button type='submit'>Update Workbook Schema</button>
+                  <button type='submit'>{t("buttons.add")}</button>
                 </Form>
               )}
             </Formik>
           </div>
           <div className='input_workbook'>
-            <button onClick={this.handleDeleteClick}>Delete Workbook</button>
+            <button onClick={this.handleDeleteClick}>{t("buttons.delete")}</button>
           </div>
         </div>
       </div>
@@ -110,4 +111,4 @@ class  ControlsSection extends Component<Props, State> {
   }
 }
 
-export default ControlsSection;
+export default withTranslation("global")(ControlsSection)

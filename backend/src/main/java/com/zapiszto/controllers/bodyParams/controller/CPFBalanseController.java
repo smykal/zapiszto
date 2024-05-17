@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.bodyParams.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.bodyParams.dto.CPFDto;
 import com.zapiszto.controllers.bodyParams.service.CPFBalanseService;
 import java.util.List;

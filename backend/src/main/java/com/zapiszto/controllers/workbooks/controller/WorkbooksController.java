@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.workbooks.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.workbooks.dto.AddWorkbookDto;
 import com.zapiszto.controllers.workbooks.dto.PatchWorkbookSchemaDto;
 import com.zapiszto.controllers.workbooks.dto.WorkbooksDto;

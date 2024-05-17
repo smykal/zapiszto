@@ -1,0 +1,89 @@
+{
+    "navigation": {
+        "home": "головна",
+        "user": "користувач",
+        "body_params": "параметри тіла",
+        "training": "тренування",
+        "dictionaries": "налаштування",
+        "log_in": "увійти",
+        "log_out": "вийти",
+        "sign_in": "зареєструватися"
+    },
+    "dictionaries": {
+        "dict_category": "категорія вправ",
+        "dict_exercise": "вправи",
+        "dict_quantity_type": "типи кількості у словнику",
+        "dict_units": "словникові одиниці"
+    },
+    "body_params": {
+        "gender": "стать",
+        "age": "вік",
+        "bmi": "ІМТ",
+        "body_mass_index": "індекс маси тіла",
+        "bmr": "базовий обмін",
+        "basal_metabolic_rate": "базальний метаболізм",
+        "cpf": "cpf",
+        "cpf_reduction": "зменшення",
+        "cpf_regular": "регулярне",
+        "cpf_mass": "маса",
+        "carbs_fat_protein": "вуглеводи жири білки",
+        "kcal": "ккал",
+        "carbs": "вуглеводи",
+        "protein": "білки",
+        "waist": "талія",
+        "hip": "стегно",
+        "biceps": "біцепс",
+        "calf": "лижка",
+        "fat": "жир",
+        "height": "зріст"
+    },
+    "workbooks": {
+        "add_workbook": "додати робочий зошит",
+        "enter_new_workbook_name": "введіть нову назву робочого зошита",
+        "workbook_name": "назва робочого зошита",
+        "schema_name": "назва схеми",
+        "select_workbook_schema": "вибрати схему робочого зошита",
+        "select_training_date": "вибрати дату тренування",
+        "select_exercise": "виберіть вправу",
+        "select_quantity": "виберіть кількість",
+        "select_unit": "виберіть одиницю",
+        "add_training": "додати тренування",
+        "any_schema_selected": "будь-яка обрана схема",
+        "start_date": "дата початку"
+    },
+    "validation": {
+        "this_field_is_required": "це поле обов'язкове",
+        "name_already_exists": "ім'я вже існує"
+    },
+    "buttons": {
+        "add": "додати",
+        "delete": "видалити",
+        "edit": "редагувати",
+        "archive": "архівувати",
+        "select": "вибрати",
+        "select_attribute": "вибрати атрибут",
+        "select_gender": "вибрати стать",
+        "select_birthdate": "виберіть дату народження",
+        "female": "жіночий",
+        "male": "чоловічий",
+        "move_up": "підняти",
+        "move_down": "опустити"
+    },
+    "table": {
+        "id": "#",
+        "name": "назва",
+        "shortcut": "скорочення",
+        "options": "опції",
+        "date": "дата",
+        "bmi_value": "значення ІМТ",
+        "description": "опис",
+        "order_number": "номер замовлення",
+        "exercise": "вправа",
+        "quantity": "кількість",
+        "type": "тип",
+        "volume": "об'єм",
+        "unit": "одиниця",
+        "notes": "примітки",
+        "категорія": "категорія"
+    }
+}

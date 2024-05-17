@@ -1,0 +1,56 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="add-table-dict_category_basic" author="smykalm">
+        <createTable tableName="dict_category_basic">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-table-dict_category_per_user" author="smykalm">
+        <createTable tableName="dict_category_per_user">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-table-dict_category" author="smykalm">
+        <createTable tableName="dict_category">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dict_category_basic_id" type="INT8">
+                <constraints nullable="true" references="dict_category_basic(id)" foreignKeyName="fk_dict_category_basic"/>
+            </column>
+            <column name="dict_category_per_user_id" type="INT8">
+                <constraints nullable="true" references="dict_category_per_user(id)" foreignKeyName="fk_dict_category_per_user"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-sequence-to-dict_category_id" author="smykalm">
+        <sql>CREATE SEQUENCE dict_category_id_seq;</sql>
+        <sql>ALTER TABLE dict_exercises ALTER COLUMN id SET DEFAULT nextval('dict_category_id_seq');</sql>
+        <sql>CREATE SEQUENCE dict_category_basic_id_seq;</sql>
+        <sql>ALTER TABLE dict_exercises_basic ALTER COLUMN id SET DEFAULT nextval('dict_category_basic_id_seq');</sql>
+        <sql>CREATE SEQUENCE dict_category_per_user_id_seq;</sql>
+        <sql>ALTER TABLE dict_exercises_per_user ALTER COLUMN id SET DEFAULT nextval('dict_category_per_user_id_seq');</sql>
+    </changeSet>
+
+</databaseChangeLog>

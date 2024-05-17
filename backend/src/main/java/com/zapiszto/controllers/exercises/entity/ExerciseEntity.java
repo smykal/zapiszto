@@ -72,4 +72,6 @@ public class ExerciseEntity {
   @Column(name = "notes")
   String notes;
 
+  @Column(name = "order_number")
+  int orderNumber;
 }

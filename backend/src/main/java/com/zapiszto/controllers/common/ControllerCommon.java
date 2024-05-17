@@ -1,4 +1,4 @@
-package com.zapiszto.controllers;
+package com.zapiszto.controllers.common;
 
 import com.zapiszto.security.services.UserDetailsImpl;
 import org.springframework.security.core.Authentication;

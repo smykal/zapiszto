@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="addSequenceToDictCategoryId" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <sequenceExists sequenceName="dict_category_id_seq"/>
+        </preConditions>
+        <sql>ALTER TABLE dict_category ALTER COLUMN id SET DEFAULT nextval('dict_category_id_seq');</sql>
+    </changeSet>
+
+    <changeSet id="addSequenceToDictCategoryBasicId" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <sequenceExists sequenceName="dict_category_basic_id_seq"/>
+        </preConditions>
+        <sql>ALTER TABLE dict_category_basic ALTER COLUMN id SET DEFAULT nextval('dict_category_basic_id_seq');</sql>
+    </changeSet>
+
+    <changeSet id="addSequenceToDictCategoryPerUserId" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <sequenceExists sequenceName="dict_category_per_user_id_seq"/>
+        </preConditions>
+        <sql>ALTER TABLE dict_category_per_user ALTER COLUMN id SET DEFAULT nextval('dict_category_per_user_id_seq');</sql>
+    </changeSet>
+
+</databaseChangeLog>
+
+
+
+

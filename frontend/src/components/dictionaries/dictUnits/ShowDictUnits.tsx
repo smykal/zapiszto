@@ -1,12 +1,15 @@
 import { Component } from "react";
 import { DictUnits } from "../../../types/types";
 import Service from '../../../services/exercises'
+import AddDictUnitPerUser from "./AddDictUnitPerUser";
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import Options from "./Options";
+
 
 type Props = {};
 type State = {
@@ -36,9 +39,11 @@ export default class ShowDictUnits extends Component<Props, State> {
     }
 
     render() {
-        const {dictUnits} = this.state;
+        const { dictUnits } = this.state;
         return (
-            <TableContainer>
+            <div>
+                <AddDictUnitPerUser dictUnit={dictUnits} />
+                <TableContainer>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
@@ -49,19 +54,20 @@ export default class ShowDictUnits extends Component<Props, State> {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                        {dictUnits.map((row) => (
-                            <TableRow
-                            key={row.id}
+                            {dictUnits.map((row) => (
+                                <TableRow
+                                    key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component='th' scope="row"> {row.id}</TableCell>                                   
-                                <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.shortcut}</TableCell>
-                                <TableCell>{row.dict === "PER_USER" ? "menu" : "menu niedostępne"}</TableCell>                                                          
-                            </TableRow>
-                        ))}
+                                    <TableCell component='th' scope="row"> {row.id}</TableCell>
+                                    <TableCell>{row.name}</TableCell>
+                                    <TableCell>{row.shortcut}</TableCell>
+                                    <TableCell>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</TableCell>                                                          
+                                </TableRow>
+                            ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
+            </div>
         )
     }
 }

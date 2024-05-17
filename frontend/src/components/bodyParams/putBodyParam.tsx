@@ -3,8 +3,12 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import ZapiszToService from '../../services/bodyParams'
 import AuthService from "../../services/auth.service";
+import { withTranslation } from "react-i18next";
 
-type Props = {};
+
+type Props = {
+  t: any;
+};
 
 type State = {
   field_1: string,
@@ -13,7 +17,7 @@ type State = {
   bodyParameters: { id: string; name: string }[];
 };
 
-export default class PutBodyParam extends Component<Props, State> {
+class PutBodyParam extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.handlePost = this.handlePost.bind(this);
@@ -66,6 +70,7 @@ export default class PutBodyParam extends Component<Props, State> {
   }
 
   render() {
+    const { t } = this.props;
 
     const initialValues = {
       field_1: this.state.field_1,
@@ -84,7 +89,7 @@ export default class PutBodyParam extends Component<Props, State> {
               <div style={{ marginBottom: '10px', marginRight: '10px' }}>
                 <Field as="select" name="field_1" className="form-control">
                   <option value="" disabled>
-                    Select attribute
+                    {t("buttons.select_attribute")}
                   </option>
                   {this.state.bodyParameters.map((param) => (
                     <option key={param.id} value={param.id}>
@@ -110,3 +115,4 @@ export default class PutBodyParam extends Component<Props, State> {
     );
   }
 }
+export default  withTranslation("global")(PutBodyParam)

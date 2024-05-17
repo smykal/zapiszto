@@ -80,6 +80,12 @@ export type DictQuantityType = {
                                 shortcut: string
 }
 
+export type NewDictQuantityType = {
+                                    name: string,
+                                    shortcut: string
+
+}
+
 export type DictUnits = {
                           id: number;
                           dict: string;
@@ -88,11 +94,37 @@ export type DictUnits = {
                           shortcut: string
 }
 
+export type NewDictUnit = {
+                            name: string,
+                            shortcut: string
+}
+
+export type NewDictCategory = {
+                                name: string,
+                                description: string
+}
+
+export type DictCategories = {
+                          id: number;
+                          dict: string;
+                          dict_id: number;
+                          name: string;
+                          description: string
+}
+
 export type DictExercises = {
                               id: number;
                               dict: string;
                               dict_id: number;
                               name: string
+                              category_type: string
+                              category_id: number
+                              category_name: string
+}
+
+export type NewDictExercises = {
+                                name: string
+                                categoryId: number
 }
 
 export type NewExercise = {
@@ -113,5 +145,6 @@ export type Exercise = {
                         dictQuantityTypeName: string,
                         volume: number,
                         dictUnitName: string,
-                        notes: number
+                        notes: number,
+                        orderNumber: number
 }

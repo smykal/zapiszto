@@ -1,0 +1,89 @@
+{
+    "navigation": {
+        "home": "pagina iniziale",
+        "user": "utente",
+        "body_params": "parametri corporei",
+        "training": "formazione",
+        "dictionaries": "dizionari",
+        "log_in": "accedere",
+        "log_out": "uscire",
+        "sign_in": "registrati"
+    },
+    "dictionaries": {
+        "dict_category": "categoria degli esercizi",
+        "dict_exercise": "esercizi di dizionario",
+        "dict_quantity_type": "tipo di quantità di dizionario",
+        "dict_units": "unità di dizionario"
+    },
+    "body_params": {
+        "gender": "genere",
+        "age": "età",
+        "bmi": "bmi",
+        "body_mass_index": "indice di massa corporea",
+        "bmr": "tbm",
+        "basal_metabolic_rate": "tasso metabolico basale",
+        "cpf": "cpf",
+        "cpf_reduction": "riduzione",
+        "cpf_regular": "regolare",
+        "cpf_mass": "massa",
+        "carbs_fat_protein": "carboidrati grassi proteine",
+        "kcal": "kcal",
+        "carbs": "carboidrati",
+        "protein": "proteine",
+        "waist": "vita",
+        "hip": "anca",
+        "biceps": "bicipiti",
+        "calf": "polpaccio",
+        "fat": "grasso",
+        "height": "altezza"
+    },
+    "workbooks": {
+        "add_workbook": "aggiungi workbook",
+        "enter_new_workbook_name": "inserisci il nome del nuovo workbook",
+        "workbook_name": "nome del workbook",
+        "schema_name": "nome dello schema",
+        "select_workbook_schema": "seleziona lo schema del workbook",
+        "select_training_date": "seleziona la data dell'allenamento",
+        "select_exercise": "seleziona esercizio",
+        "select_quantity": "seleziona quantità",
+        "select_unit": "seleziona unità",
+        "add_training": "aggiungi allenamento",
+        "any_schema_selected": "qualsiasi schema selezionato",
+        "start_date": "data di inizio"
+    },
+    "buttons": {
+        "add": "aggiungi",
+        "delete": "elimina",
+        "edit": "modifica",
+        "archive": "archivio",
+        "select": "seleziona",
+        "select_attribute": "seleziona attributo",
+        "select_gender": "seleziona genere",
+        "select_birthdate": "seleziona data di nascita",
+        "female": "femmina",
+        "male": "maschio",
+        "move_up": "muovi su",
+        "move_down": "muovi giù"
+    },
+    "validation": {
+        "this_field_is_required": "questo campo è obbligatorio",
+        "name_already_exists": "il nome esiste già"
+    },
+    "table": {
+        "id": "identificativo",
+        "name": "nome",
+        "shortcut": "scorciatoia",
+        "options": "opzioni",
+        "date": "data",
+        "bmi_value": "valore BMI",
+        "description": "descrizione",
+        "order_number": "numero d'ordine",
+        "exercise": "esercizio",
+        "quantity": "quantità",
+        "type": "tipo",
+        "volume": "volume",
+        "unit": "unità",
+        "notes": "note",
+        "categoria": "categoria"
+    }
+}

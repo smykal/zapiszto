@@ -1,0 +1,89 @@
+{
+    "navigation": {
+        "home": "inicio",
+        "user": "usuario",
+        "body_params": "parámetros del cuerpo",
+        "training": "entrenamiento",
+        "dictionaries": "diccionarios",
+        "log_in": "iniciar sesión",
+        "log_out": "cerrar sesión",
+        "sign_in": "registrarse"
+    },
+    "dictionaries": {
+        "dict_category": "categoría de ejercicios",
+        "dict_exercise": "ejercicios de diccionario",
+        "dict_quantity_type": "tipo de cantidad de diccionario",
+        "dict units": "unidades de diccionario"
+    },
+    "body_params": {
+        "gender": "género",
+        "age": "edad",
+        "bmi": "imc",
+        "body_mass_index": "índice de masa corporal",
+        "bmr": "tmb",
+        "basal_metabolic_rate": "tasa metabólica basal",
+        "cpf": "cpf",
+        "cpf_reduction": "reducción",
+        "cpf_regular": "regular",
+        "cpf_mass": "masa",
+        "carbs_fat_protein": "carbohidratos grasas proteínas",
+        "kcal": "kcal",
+        "carbs": "carbohidratos",
+        "protein": "proteínas",
+        "waist": "cintura",
+        "hip": "cadera",
+        "biceps": "bíceps",
+        "calf": "pantorrilla",
+        "fat": "grasa",
+        "height": "altura"
+    },
+    "workbooks": {
+        "add_workbook": "añadir cuaderno de trabajo",
+        "enter_new_workbook_name": "introducir el nombre del nuevo cuaderno de trabajo",
+        "workbook_name": "nombre del cuaderno de trabajo",
+        "schema_name": "nombre del esquema",
+        "select_workbook_schema": "seleccionar esquema de cuaderno de trabajo",
+        "select_training_date": "seleccionar fecha de entrenamiento",
+        "select_exercise": "seleccionar ejercicio",
+        "select_quantity": "seleccionar cantidad",
+        "select_unit": "seleccionar unidad",
+        "add_training": "añadir entrenamiento",
+        "any_schema_selected": "cualquier esquema seleccionado",
+        "start_date": "fecha de inicio"
+    },
+    "buttons": {
+        "add": "añadir",
+        "delete": "borrar",
+        "edit": "editar",
+        "archive": "archivar",
+        "select": "seleccionar",
+        "select_attribute": "seleccionar atributo",
+        "select_gender": "seleccionar género",
+        "select_birthdate": "seleccionar fecha de nacimiento",
+        "female": "mujer",
+        "male": "hombre",
+        "move_up": "mover hacia arriba",
+        "move_down": "mover hacia abajo"
+    },
+    "validation": {
+        "this_field_is_required": "este campo es obligatorio",
+        "name_already_exists": "el nombre ya existe"
+    },
+    "table": {
+        "id": "identificación",
+        "name": "nombre",
+        "shortcut": "atajo",
+        "options": "opciones",
+        "date": "fecha",
+        "bmi_value": "valor de IMC",
+        "description": "descripción",
+        "order_number": "número de orden",
+        "exercise": "ejercicio",
+        "quantity": "cantidad",
+        "type": "tipo",
+        "volume": "volumen",
+        "unit": "unidad",
+        "notes": "notas",
+        "categoría": "categoría"
+    }
+}

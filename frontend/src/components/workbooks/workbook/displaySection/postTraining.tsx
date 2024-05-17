@@ -1,17 +1,19 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Service from "../../../../services/workbooks";
 
 type Props = {
     workbook_id: number
+    t: any
 };
 
 type State = {
   date: Date | null;
 };
 
-export default class PostTraining extends Component<Props, State> {
+class PostTraining extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -37,19 +39,23 @@ export default class PostTraining extends Component<Props, State> {
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
-        <label> Wybierz datę treningu: </label>
+        <label>{t("workbooks.select_training_date")}: </label>
             <DatePicker
               selected={this.state.date}
               onChange={this.handleDateChange}
               dateFormat="yyyy-MM-dd"
             />
             <br/>
-            <button type="submit">Dodaj trening</button>
+            <button type="submit">{t("buttons.add")}</button>
         </form>
       </div>
     );
   }
 }
+
+export default withTranslation("global")(PostTraining)

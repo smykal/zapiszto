@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -88,4 +89,31 @@ public class DictQuantityTypeService {
     return all.stream().map(DictQuantityTypeSerializer::convert)
         .collect(Collectors.toList());
   }
+
+  @Transactional
+  public String deleteDictQuantityTypePerUser(Long userId, int itemToDelete) {
+    try {
+      dictQuantityTypeRepository.deleteDictQuantityTypePerUser(itemToDelete);
+      dictQuantityTypeRepository.deleteDictQuantityTypePerUser(itemToDelete, userId);
+      log.info("deleted dict_quantity_type_per_user with id: {}, user: {}", itemToDelete, userId);
+      return "ok";
+    }  catch (DataIntegrityViolationException e) {
+      log.error("Error deleting quantity type: {}", e.getMessage());
+      throw new RuntimeException("Cannot delete quantity type due to data integrity violation");
+    }
+  }
+
+  @Transactional
+  public String deleteDictQuantityTypeBasic(Long userId, int itemToDelete) {
+    try {
+      dictQuantityTypeRepository.deleteDictQuantityType(itemToDelete);
+      dictQuantityTypeRepository.deleteDictQuantityTypeBasic(itemToDelete);
+      log.info("deleted dict_quantity_type_per_user with id: {}, user: {}", itemToDelete, userId);
+      return "ok";
+    }  catch (DataIntegrityViolationException e) {
+      log.error("Error deleting dict quantity type: {}", e.getMessage());
+      throw new RuntimeException("Cannot delete dict quantity type due to data integrity violation");
+    }
+  }
+
 }

@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.dictUnits.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictUnits.dto.DictUnitsDto;
 import com.zapiszto.controllers.dictUnits.dto.NewDictUnitDto;
 import com.zapiszto.controllers.dictUnits.service.DictUnitsService;
@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,6 +66,39 @@ public class DictUnitsController implements ControllerCommon {
       return new ResponseEntity<>(result, HttpStatus.CREATED);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @DeleteMapping("/delete_unit_per_user/{itemToDelete}")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> deleteExercisePerUser(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userId = extractUserId();
+    try {
+      dictUnitsService.deleteDictUnitPerUser(userId, itemToDelete);
+      return new ResponseEntity<>( HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @DeleteMapping("/delete_unit_basic/{itemToDelete}")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> deleteExerciseBasic(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userRole = extractUserRole();
+    var userId = extractUserId();
+    if (userRole.contains("ADMIN")) {
+      try {
+        dictUnitsService.deleteDictUnitBasic(userId, itemToDelete);
+        return new ResponseEntity<>( HttpStatus.CREATED);
+      } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+      }
+    } else {
+      return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
   }
 }

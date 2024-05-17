@@ -19,4 +19,7 @@ public class DictExercisesDto {
   String dict;
   long dict_id;
   String name;
+  String category_type;
+  long category_id;
+  String category_name;
 }

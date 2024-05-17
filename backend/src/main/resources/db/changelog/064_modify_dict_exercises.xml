@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add_dict_category_id_to_dict_exercises_basic" author="smykalm">
+        <addColumn tableName="dict_exercises_basic">
+            <column name="dict_category_id" type="int8"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="dict_exercises_basic" baseColumnNames="dict_category_id"
+                                 constraintName="fk_dict_exercises_basic_dict_category"
+                                 referencedTableName="dict_category" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="add_dict_category_id_to_dict_exercises_per_user" author="smykalm">
+        <addColumn tableName="dict_exercises_per_user">
+            <column name="dict_category_id" type="int8"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="dict_exercises_per_user" baseColumnNames="dict_category_id"
+                                 constraintName="fk_dict_exercises_per_user_dict_category"
+                                 referencedTableName="dict_category" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

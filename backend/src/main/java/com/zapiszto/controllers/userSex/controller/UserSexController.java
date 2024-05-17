@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.userSex.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.userSex.dto.GenderDto;
 import com.zapiszto.controllers.userSex.dto.UserSexDto;
 import com.zapiszto.controllers.userSex.service.UserSexService;

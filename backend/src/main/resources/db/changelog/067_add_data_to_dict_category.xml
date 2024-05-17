@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="insertData-dict_category_basic" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="dict_sex" schemaName="public"/>
+        </preConditions>
+        <sql>
+            INSERT INTO dict_category_basic (id, name) VALUES (1, 'chest');
+            INSERT INTO dict_category_basic (id, name) VALUES (2, 'legs');
+            INSERT INTO dict_category_basic (id, name) VALUES (3, 'back');
+            INSERT INTO dict_category_basic (id, name) VALUES (4, 'arms');
+            INSERT INTO dict_category_basic (id, name) VALUES (5, 'biceps');
+            INSERT INTO dict_category_basic (id, name) VALUES (6, 'triceps');
+        </sql>
+    </changeSet>
+
+    <changeSet id="insertData-dict_category" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="dict_sex" schemaName="public"/>
+        </preConditions>
+        <sql>
+            INSERT INTO dict_category (id, dict_category_basic_id) VALUES (1, 1);
+            INSERT INTO dict_category (id, dict_category_basic_id) VALUES (2, 2);
+            INSERT INTO dict_category (id, dict_category_basic_id) VALUES (3, 3);
+            INSERT INTO dict_category (id, dict_category_basic_id) VALUES (4, 4);
+            INSERT INTO dict_category (id, dict_category_basic_id) VALUES (5, 5);
+            INSERT INTO dict_category (id, dict_category_basic_id) VALUES (6, 6);
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

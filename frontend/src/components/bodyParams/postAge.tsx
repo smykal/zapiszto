@@ -1,55 +1,43 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Service from "../../services/bodyParams";
 
-type Props = {};
+const PostBirthDate = () => {
+  const [birthdate, setBirthdate] = useState<Date | null>(null);
 
-type State = {
-  birthdate: Date | null;
-};
+  const handleDateChange = (date: Date | null) => {
+    setBirthdate(date);
+  };
 
-export default class PostBirthDate extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      birthdate: null,
-    };
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleDateChange(date: Date | null) {
-    this.setState({ birthdate: date });
-  }
-
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { birthdate } = this.state;
     if (birthdate !== null) {
-      // Wysłanie daty urodzenia do serwisu
       Service.postBirthDate(birthdate);
     } else {
       console.log("Wybierz datę urodzenia.");
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Wybierz datę urodzenia:
-            <DatePicker
-              selected={this.state.birthdate}
-              onChange={this.handleDateChange}
-              dateFormat="yyyy-MM-dd"
-            />
-          </label>
-          <br />
-          <button type="submit">Wyślij</button>
-        </form>
-      </div>
-    );
-  }
-}
+  const { t } = useTranslation("global");
+
+  return (
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+        <label>
+          {t("buttons.select_birthdate")}:
+          <DatePicker
+            selected={birthdate}
+            onChange={handleDateChange}
+            dateFormat="yyyy-MM-dd"
+          />
+        </label>
+        <br />
+        <button type="submit">{t("buttons.add")}</button>
+      </form>
+    </div>
+  );
+};
+
+export default PostBirthDate;

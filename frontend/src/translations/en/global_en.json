@@ -1,0 +1,89 @@
+{
+    "navigation": {
+        "home": "home",
+        "user": "user",
+        "body_params": "body params",
+        "training": "training",
+        "dictionaries": "dictionaries",
+        "log_in": "log in",
+        "log_out": "log out",
+        "sign_in": "sing in"
+    },
+    "dictionaries": {
+        "dict_category": "dict category",
+        "dict_exercise": "dict exercises",
+        "dict_quantity_type": "dict quantity type",
+        "dict units": "dict units"
+    },
+    "body_params": {
+        "gender": "gender",
+        "age": "age",
+        "bmi": "bmi",
+        "body_mass_index": "body mass index",
+        "bmr": "bmr",
+        "basal_metabolic_rate": "basal metabolic rate",
+        "cpf": "cpf",
+        "cpf_reduction": "reduction",
+        "cpf_regular": "regular",
+        "cpf_mass": "mass",
+        "carbs_fat_protein": "carbs fat protein",
+        "kcal": "kcal",
+        "carbs": "carbs",
+        "protein": "protein",
+        "waist": "waist",
+        "hip": "hip",
+        "biceps": "biceps",
+        "calf": "calf",
+        "fat": "fat",
+        "height": "height"
+    },
+    "workbooks": {
+        "add_workbook": "add workbook",
+        "enter_new_workbook_name": "enter new workbook name",
+        "workbook_name": "workbook name",
+        "schema_name": "schema name",
+        "select_workbook_schema": "select workbook schema",
+        "select_training_date": "select training date",
+        "select_exercise": "select exercise",
+        "select_quantity": "select quantity",
+        "select_unit": "select unit",
+        "add_training": "add training",
+        "any_schema_selected": "any schema selected",
+        "start_date": "start date"
+    },
+    "buttons": {
+        "add": "add",
+        "delete": "delete",
+        "edit": "edit",
+        "archive": "archive",
+        "select": "select",
+        "select_attribute": "select attribute",
+        "select_gender": "select gender",
+        "select_birthdate": "select birthdate",
+        "female": "female",
+        "male": "male",
+        "move_up": "move up",
+        "move_down": "move down"
+    },
+    "validation": {
+        "this_field_is_required": "this field is required",
+        "name_already_exists": "name already exists"
+    },
+    "table": {
+        "id": "id",
+        "name": "name",
+        "shortcut": "shortcut",
+        "options": "options",
+        "date": "date",
+        "bmi_value": "bmi value",
+        "description": "description",
+        "order_number": "order number",
+        "exercise": "exercise",
+        "quantity": "quantity",
+        "type": "type",
+        "volume": "volume",
+        "unit": "unit",
+        "notes": "notes",
+        "category": "category"
+    }
+}

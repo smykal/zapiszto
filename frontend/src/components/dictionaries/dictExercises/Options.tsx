@@ -1,20 +1,16 @@
-import { Component } from "react";
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import React from "react";
+import { useTranslation } from "react-i18next";
 import Service from '../../../services/exercises'
 
-
 type Props = {
-    itemToDelete: number,
+    item: number,
 };
-type State = {};
 
-export default class Delete extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-    }
-    deleteExercise = (itemToDelete: number) => {
-        Service.deleteDictExercise(itemToDelete)
+const Options: React.FC<Props> = ({ item }) => {
+    const { t } = useTranslation("global");
+
+    const deleteExercise = (itemId: number) => {
+        Service.deleteDictExercise(itemId)
             .then(() => {
                 window.location.reload();
             })
@@ -23,15 +19,13 @@ export default class Delete extends Component<Props, State> {
             });
     }
 
-    render() {
-        const { itemToDelete } = this.props
-        return (
-            <div>
-                <Stack direction="row" spacing= {1}>
-                <Button variant="outlined" onClick={() => this.deleteExercise(itemToDelete)}>Delete {itemToDelete}</Button>
-                    <Button variant="outlined"> Edit {itemToDelete}</Button>                
-                </Stack>
-            </div>
-        )  
-    }
-}
+    return (
+        <div>
+            <button onClick={() => deleteExercise(item)}>{t('buttons.delete')} {item}</button>
+            <button>{t('buttons.edit')} {item}</button>
+            <button>{t('buttons.archive')} {item}</button>
+        </div>
+    );
+};
+
+export default Options;

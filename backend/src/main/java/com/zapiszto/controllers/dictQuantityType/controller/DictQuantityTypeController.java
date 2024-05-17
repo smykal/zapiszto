@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.dictQuantityType.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictQuantityType.dto.NewDictQuantityTypeDto;
 import com.zapiszto.controllers.dictQuantityType.service.DictQuantityTypeService;
 import com.zapiszto.controllers.dictQuantityType.dto.DictQuantityTypeDto;
@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +62,39 @@ public class DictQuantityTypeController implements ControllerCommon {
       return new ResponseEntity<>(result, HttpStatus.CREATED);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @DeleteMapping("/delete_quantity_type_per_user/{itemToDelete}")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> deleteExercisePerUser(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userId = extractUserId();
+    try {
+      dictQuantityTypeService.deleteDictQuantityTypePerUser(userId, itemToDelete);
+      return new ResponseEntity<>( HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @DeleteMapping("/delete_quantity_type_basic/{itemToDelete}")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<String> deleteExerciseBasic(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userRole = extractUserRole();
+    var userId = extractUserId();
+    if (userRole.contains("ADMIN")) {
+      try {
+        dictQuantityTypeService.deleteDictQuantityTypeBasic(userId, itemToDelete);
+        return new ResponseEntity<>( HttpStatus.CREATED);
+      } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+      }
+    } else {
+      return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
   }
 }

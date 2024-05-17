@@ -1,0 +1,89 @@
+{
+    "navigation": {
+        "home": "strona główna",
+        "user": "użytkownik",
+        "body_params": "parametry ciała",
+        "training": "trening",
+        "dictionaries": "słowniki",
+        "log_in": "zaloguj się",
+        "log_out": "wyloguj się",
+        "sign_in": "zarejestruj się"
+    },
+    "dictionaries": {
+        "dict_category": "kategoria ćwiczeń",
+        "dict_exercise": "ćwiczenia słownikowe",
+        "dict_quantity_type": "typy ilości w słowniku",
+        "dict_units": "jednostki słownikowe"
+    },
+    "body_params": {
+        "gender": "płeć",
+        "age": "wiek",
+        "bmi": "BMI",
+        "body_mass_index": "wskaźnik masy ciała",
+        "bmr": "BMR",
+        "basal_metabolic_rate": "podstawowa przemiana materii",
+        "cpf": "CPF",
+        "cpf_reduction": "redukcja",
+        "cpf_regular": "regularne",
+        "cpf_mass": "masa",
+        "carbs_fat_protein": "węglowodany tłuszcze białka",
+        "kcal": "kcal",
+        "carbs": "węglowodany",
+        "protein": "białko",
+        "waist": "talia",
+        "hip": "biodra",
+        "biceps": "biceps",
+        "calf": "łydka",
+        "fat": "tłuszcz",
+        "height": "wzrost"
+    },
+    "workbooks": {
+        "add_workbook": "Dodaj zeszyt treningowy",
+        "enter_new_workbook_name": "Wprowadź nazwę nowego zeszytu treningowego",
+        "workbook_name": "Nazwa zeszytu treningowego",
+        "schema_name": "nazwa schematu",
+        "select_workbook_schema": "Wybierz schemat zeszytu treningowego",
+        "select_training_date": "Wybierz datę treningu",
+        "select_exercise": "wybierz ćwiczenie",
+        "select_quantity": "wybierz ilość",
+        "select_unit": "wybierz jednostkę",
+        "add_training": "Dodaj trening",
+        "any_schema_selected": "nie wybrano schematu",
+        "start_date": "data rozpoczęcia"
+    },
+    "buttons": {
+        "add": "dodaj",
+        "delete": "usuń",
+        "edit": "edytuj",
+        "archive": "archiwum",
+        "select": "wybierz",
+        "select_attribute": "wybierz atrybut",
+        "select_gender": "wybierz płeć",
+        "select_birthdate": "wybierz datę urodzenia",
+        "female": "kobieta",
+        "male": "mężczyzna",
+        "move_up": "Przenieś w górę",
+        "move_down": "Przenieś w dół"
+    },
+    "validation": {
+        "this_field_is_required": "to pole jest wymagane",
+        "name_already_exists": "nazwa już istnieje"
+    },
+    "table": {
+        "id": "identyfikator",
+        "name": "nazwa",
+        "shortcut": "skrót",
+        "options": "opcje",
+        "date": "data",
+        "bmi_value": "wartość BMI",
+        "description": "opis",
+        "order_number": "numer",
+        "exercise": "ćwiczenie",
+        "quantity": "ilość",
+        "type": "typ",
+        "volume": "objętość",
+        "unit": "jednostka",
+        "notes": "notatki",
+        "kategoria": "kategoria"
+    }
+}

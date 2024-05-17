@@ -80,7 +80,7 @@ databaseChangeLog:
   - include:
       file: db/changelog/040_add_table_dict_exercises.xml
   - include:
-    - file: db/changelog/041_drop_table.xml
+      - file: db/changelog/041_drop_table.xml
   - include:
       file: db/changelog/042_add_table_dict_units.xml
   - include:
@@ -121,3 +121,19 @@ databaseChangeLog:
       file: db/changelog/060_create_view_dict_units.xml
   - include:
       file: db/changelog/061_modify_table_dict_exercises.xml
+  - include:
+      file: db/changelog/062_add_column_order_to_exercises.xml
+  - include:
+      file: db/changelog/063_add_table_dict_category.xml
+  - include:
+      file: db/changelog/064_modify_dict_exercises.xml
+  - include:
+      file: db/changelog/065_modify_dict_category_per_user.xml
+  - include:
+      file: db/changelog/066_add_sequence_to_id.xml
+  - include:
+      file: db/changelog/067_add_data_to_dict_category.xml
+  - include:
+      file: db/changelog/068_edit_roles_constraint.xml
+  - include:
+      file: db/changelog/069_add_data_to_user_roles.xml

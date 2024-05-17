@@ -1,53 +1,43 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import ShowDictExercises from './dictExercises/ShowDictExercises'
 import ShowDictQuantityTypes from './dictQuantityType/ShowDictQuantityType'
 import ShowDictUnits from "./dictUnits/ShowDictUnits";
+import ShowDictCategory from "./dictCategory/ShowDictCategory";
+import { useTranslation } from "react-i18next";
 
-type Props = {};
-type State = {
-    activeDictTabIndex: number; // Dodajemy stan do przechowywania indeksu aktywnej zakładki
-};
+const Training = () => {
+    const [activeDictTabIndex, setActiveDictTabIndex] = useState(0);
+    const { t } = useTranslation("global");
 
-
-
-export default class Training extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            activeDictTabIndex: 0, // Domyślnie ustawiamy pierwszą zakładkę jako aktywną
-        };
-    }
-    componentDidMount() {
-        // Sprawdzamy, czy istnieje informacja o ostatniej aktywnej zakładce w localStorage
-        const lastActiveDictTabIndex = localStorage.getItem('lastActiveTabIndex');
+    useEffect(() => {
+        const lastActiveDictTabIndex = localStorage.getItem('lastActiveDictTabIndex');
         if (lastActiveDictTabIndex !== null) {
-            this.setState({ activeDictTabIndex: parseInt(lastActiveDictTabIndex) });
+            setActiveDictTabIndex(parseInt(lastActiveDictTabIndex, 10));
         }
-    }
+    }, []); // Empty dependency array to run only once after initial render
 
-    handleTabSelect = (index: number) => {
-        this.setState({ activeDictTabIndex: index });
-        // Zapisujemy indeks wybranej zakładki do localStorage
+    const handleTabSelect = (index: number) => {
+        setActiveDictTabIndex(index);
         localStorage.setItem('lastActiveDictTabIndex', index.toString());
     };
 
-    render() {
-        const { activeDictTabIndex} = this.state;
+    return (
+        <div>
+            <Tabs selectedIndex={activeDictTabIndex} onSelect={handleTabSelect}>
+                <TabList>
+                    <Tab>{t("dictionaries.dict_category")}</Tab>
+                    <Tab>{t("dictionaries.dict_exercise")}</Tab>
+                    <Tab>{t("dictionaries.dict_quantity_type")}</Tab>
+                    <Tab>{t("dictionaries.dict_units")}</Tab>
+                </TabList>
+                <TabPanel><ShowDictCategory /></TabPanel>
+                <TabPanel><ShowDictExercises /></TabPanel>
+                <TabPanel><ShowDictQuantityTypes /></TabPanel>
+                <TabPanel><ShowDictUnits /></TabPanel>
+            </Tabs>
+        </div>
+    );
+};
 
-        return (
-            <div>
-                <Tabs selectedIndex={activeDictTabIndex} onSelect={this.handleTabSelect}>
-                    <TabList>
-                        <Tab key={1}>Dict Exercises</Tab>
-                        <Tab key={2}>Dict Quantity Types</Tab>
-                        <Tab key={3}>Dict Units</Tab>
-                    </TabList>
-                    <TabPanel key={1}><ShowDictExercises /></TabPanel>
-                    <TabPanel key={2}><ShowDictQuantityTypes /></TabPanel>
-                    <TabPanel key={3}><ShowDictUnits /></TabPanel>
-                </Tabs>
-            </div>
-        )
-    }
-}
+export default Training;

@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.userBirthDate.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.userBirthDate.dto.UserAgeDto;
 import com.zapiszto.controllers.userBirthDate.dto.UserBirthdateDto;
 import com.zapiszto.controllers.userBirthDate.service.UserBirthDateService;

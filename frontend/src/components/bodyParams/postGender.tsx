@@ -1,51 +1,39 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Service from "../../services/bodyParams";
 
-type Props = {};
+const PostGender = () => {
+  const [gender, setGender] = useState<string>("");
+  const { t } = useTranslation("global");
 
-type State = {
-  gender: string;
-};
+  const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setGender(event.target.value);
+  };
 
-export default class PostGender extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      gender: "", // Stan początkowy - brak wybranej płci
-    };
-    this.handleGenderChange = this.handleGenderChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleGenderChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ gender: event.target.value });
-  }
-
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { gender } = this.state;
     if (gender) {
-      Service.postSex(gender); // Wysyłanie wybranej płci do metody Service.putAge()
+      Service.postSex(gender);
     } else {
       console.log("Nie wybrano płci.");
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Wybierz płeć:
-            <select value={this.state.gender} onChange={this.handleGenderChange}>
-              <option value="">Wybierz...</option>
-              <option value="Male">Mężczyzna</option>
-              <option value="Female">Kobieta</option>
-            </select>
-          </label>
-          <button type="submit">Wyślij</button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+        <label>
+          {t("buttons.select_gender")}:
+          <select value={gender} onChange={handleGenderChange}>
+            <option value="">{t("buttons.select")}</option>
+            <option value="Male">{t("buttons.male")}</option>
+            <option value="Female">{t("buttons.female")}</option>
+          </select>
+        </label>
+        <button type="submit">{t("buttons.add")}</button>
+      </form>
+    </div>
+  );
+};
+
+export default PostGender;

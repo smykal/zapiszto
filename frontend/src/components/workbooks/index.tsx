@@ -4,16 +4,20 @@ import Service from '../../services/workbooks';
 import 'react-tabs/style/react-tabs.css';
 import { Workbook } from '../../types/types';
 import Wrapper from './workbook';
+import { withTranslation } from "react-i18next";
 
 
-type Props = {};
+
+type Props = {
+    t: any;
+};
 type State = {
     workbooks: Workbook[];
     newWorkbookName: string;
     activeTabIndex: number; // Dodajemy stan do przechowywania indeksu aktywnej zakładki
 };
 
-export default class Training extends Component<Props, State> {
+class Training extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -66,6 +70,7 @@ export default class Training extends Component<Props, State> {
 
     render() {
         const { workbooks, newWorkbookName, activeTabIndex } = this.state;
+        const { t } = this.props;
 
         return (
             <div className="container">
@@ -74,9 +79,9 @@ export default class Training extends Component<Props, State> {
                         type="text"
                         value={newWorkbookName}
                         onChange={this.handleNewWorkbookNameChange}
-                        placeholder="Enter new workbook name"
+                        placeholder={t("workbooks.enter_new_workbook_name")}
                     />
-                    <button onClick={this.handleAddWorkbook}>Add Workbook</button>
+                    <button onClick={this.handleAddWorkbook}>{t("buttons.add")}</button>
                 </div>
                 <div>
                     <Tabs selectedIndex={activeTabIndex} onSelect={this.handleTabSelect}>
@@ -96,3 +101,5 @@ export default class Training extends Component<Props, State> {
         );
     }
 }
+
+export default withTranslation("global")(Training)

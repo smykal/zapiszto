@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.bodyParams.controller;
 
-import com.zapiszto.controllers.ControllerCommon;
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.bodyParams.dto.BmrDto;
 import com.zapiszto.controllers.bodyParams.service.BmrService;
 import java.util.List;
