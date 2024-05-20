@@ -1,0 +1,10 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="change_column_insert_date_type" author="smykalm">
+        <sql>ALTER TABLE public.invitations_status ALTER COLUMN insert_date TYPE timestamp;</sql>
+    </changeSet>
+
+</databaseChangeLog>
