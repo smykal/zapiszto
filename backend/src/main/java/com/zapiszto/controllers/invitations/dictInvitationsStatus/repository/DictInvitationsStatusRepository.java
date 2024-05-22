@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DictInvitationsStatusRepository extends JpaRepository<DictInvitationsStatusEntity, Integer> {
+
+  DictInvitationsStatusEntity getByName(String status);
 }

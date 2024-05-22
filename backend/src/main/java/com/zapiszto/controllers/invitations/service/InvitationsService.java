@@ -1,8 +1,13 @@
 package com.zapiszto.controllers.invitations.service;
 
+import com.zapiszto.controllers.invitations.dictInvitationsStatus.entity.DictInvitationsStatusEntity;
+import com.zapiszto.controllers.invitations.dictInvitationsStatus.repository.DictInvitationsStatusRepository;
 import com.zapiszto.controllers.invitations.entity.InvitationsEntity;
+import com.zapiszto.controllers.invitations.invitationsStatus.entity.InvitationsStatusEntity;
+import com.zapiszto.controllers.invitations.invitationsStatus.repository.InvitationsStatusRepository;
 import com.zapiszto.controllers.invitations.repository.InvitationsRepository;
 import com.zapiszto.repository.UserRepository;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +20,22 @@ import org.springframework.transaction.annotation.Transactional;
 public class InvitationsService {
 
   @Autowired
+  private DictInvitationsStatusRepository dictInvitationsStatusRepository;
+
+  @Autowired
   InvitationsRepository invitationsRepository;
 
   @Autowired
+  InvitationsStatusRepository invitationsStatusRepository;
+
+  @Autowired
   UserRepository userRepository;
+
+  private final String SENT = "SENT";
+  private final String APPROVED = "APPROVED";
+  private final String REJECTED = "REJECTED";
+  private final String RESENT = "RESENT";
+  private final String TERMINATED = "TERMINATED";
 
   @Transactional
   public String addInvitation(Long inviterId, String inviterRole, String inviteeEmail) {
@@ -35,7 +52,26 @@ public class InvitationsService {
           .invitee(userRepository.idByEmail(inviteeEmail))
           .build();
       invitationsRepository.save(invitationsEntity);
-      return invitationsEntity.getId().toString();
+      log.info("add invitation with id {} sent by user {}, to {}", invitationsEntity.getId(), invitationsEntity.getInviter(), invitationsEntity.getInvitee());
+
+
+      DictInvitationsStatusEntity status = dictInvitationsStatusRepository.getByName(SENT);
+
+      InvitationsStatusEntity invitationsStatusEntity = InvitationsStatusEntity.builder()
+          .id(UUID.randomUUID())
+          .invitations_id(invitationsEntity)
+          .insert_date(ZonedDateTime.now())
+          .dictInvitationsStatusEntity(status)
+          .build();
+      invitationsStatusRepository.save(invitationsStatusEntity);
+      log.info("add invitation Status with id: {}, invitation_id: {}, status: {}",
+          invitationsStatusEntity.getId(),
+          invitationsStatusEntity.getInvitations_id(),
+          invitationsStatusEntity.getDictInvitationsStatusEntity().getName());
+
+
+      return invitationsEntity.getId()
+          .toString();
     }
 
 
@@ -45,7 +81,8 @@ public class InvitationsService {
   private boolean checkIfRolesAreDifferent(String inviterRole, String inviteeEmail) {
     Long userIdByEmail = userRepository.idByEmail(inviteeEmail);
     String inviteeRole = userRepository.roleById(userIdByEmail);
-    inviterRole = inviterRole.replace("[", "").replace("]","");
+    inviterRole = inviterRole.replace("[", "")
+        .replace("]", "");
     return !Objects.equals(inviterRole, inviteeRole);
   }
 

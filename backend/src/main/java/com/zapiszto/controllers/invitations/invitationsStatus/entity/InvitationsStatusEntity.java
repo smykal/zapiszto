@@ -31,7 +31,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class InvitationsStatusEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   UUID id;
 
@@ -45,4 +44,7 @@ public class InvitationsStatusEntity {
   @ManyToOne
   @JoinColumn(name = "dict_invitations_status_id", referencedColumnName = "id")
   DictInvitationsStatusEntity dictInvitationsStatusEntity;
+
+  @Column(name = "dict_invitations_status_id", insertable=false, updatable=false)
+  Long dictInvitationsStatusId;
 }
