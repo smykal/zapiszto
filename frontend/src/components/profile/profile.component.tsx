@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Navigate } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import IUser from "../../types/user.type";
+import SendInvitation from "./invitations/SendInvitation";
 
 type Props = {};
 
@@ -64,6 +65,7 @@ export default class Profile extends Component<Props, State> {
                 currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
             </ul>
           </div> : null}
+          <SendInvitation />
       </div>
     );
   }

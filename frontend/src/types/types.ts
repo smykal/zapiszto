@@ -148,3 +148,7 @@ export type Exercise = {
                         notes: number,
                         orderNumber: number
 }
+
+export type NewInvitation = {
+                              email: string;
+}

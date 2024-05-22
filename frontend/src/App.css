@@ -90,4 +90,19 @@ ul li {
   flex: 1; /* Elastyczny rozmiar, aby elementy były równe szerokości */
 }
 
+.myButton {
+  background-color: #343a40;
+  color: #e4e8ebdd;
+  padding: 2px 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition-duration: 0.4s;
+}
+
+.myButton:hover {
+  background-color: #212529;
+  color: white;
+
+}
 
