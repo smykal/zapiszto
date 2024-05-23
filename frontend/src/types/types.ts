@@ -160,5 +160,6 @@ export type Invitation = {
                           inviterEmail: string,
                           inviteeId: number,
                           inviteeName: string,
-                          inviteeEmail: string
+                          inviteeEmail: string,
+                          status: string
 }

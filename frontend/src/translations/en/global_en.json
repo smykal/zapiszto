@@ -89,6 +89,10 @@
     "invitations": {
         "title": "invitations",
         "from": "from",
-        "to": "to"
+        "to": "to",
+        "title_recived": "recived",
+        "title_sent": "sent",
+        "title_approved": "accepted",
+        "title_rejected": "rejected"
     }
 }

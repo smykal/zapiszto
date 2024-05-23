@@ -89,6 +89,10 @@
     "invitations": {
         "title": "inviti",
         "from": "da",
-        "to": "a"
-    }    
+        "to": "a",
+        "title_recived": "ricevuto",
+        "title_sent": "inviato",
+        "title_approved": "inviti accettati",
+        "title_rejected": "inviti respinti"
+    }
 }

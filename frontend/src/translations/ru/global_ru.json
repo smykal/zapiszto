@@ -89,6 +89,10 @@
     "invitations": {
         "title": "приглашения",
         "from": "от",
-        "to": "до"
+        "to": "до",
+        "title_recived": "получено",
+        "title_sent": "отправлено",
+        "title_approved": "приглашения приняты",
+        "title_rejected": "приглашения отклонены"
     }
 }

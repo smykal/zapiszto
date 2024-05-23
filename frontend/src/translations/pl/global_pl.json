@@ -89,6 +89,10 @@
     "invitations": {
         "title": "zaproszenia",
         "from": "od",
-        "to": "do"
-    }    
+        "to": "do",
+        "title_recived": "odebrane",
+        "title_sent": "wysłane",
+        "title_approved": "zaproszenia zaakceptowane",
+        "title_rejected": "zaproszenia odrzucone"
+    }
 }

@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
 import { Invitation } from '../../../types/types';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import Service from '../../../services/invitations/';
+import SingleInvitation from './SingleInvitation';
 
 type Props = {
     t: any
 };
 
 type State = {
-    invitations: Invitation[]
+    invitations: Invitation[];
+    invitationsSent: Invitation[];
+    invitationsRecived: Invitation[];
+    invitationsAccepted: Invitation[];
+    invitationsRejected: Invitation[];
 };
 
 class GetInvitations extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            invitations: []
+            invitations: [],
+            invitationsSent: [],
+            invitationsRecived: [],
+            invitationsAccepted: [],
+            invitationsRejected: []
         };
     }
 
@@ -27,30 +34,62 @@ class GetInvitations extends Component<Props, State> {
 
     getInvitations() {
         Service.getInvitations()
-        .then(response => {
-            this.setState({ invitations: response.data })
-        })
-        .catch(error => {
-            console.error('Błąd podczas pobierania zaproszeń:', error);
-        });
+            .then(response => {
+                const invitations = response.data;
+                this.setState({
+                    invitations,
+                    invitationsSent: invitations.filter((invitation: Invitation) => invitation.status === 'SENT'),
+                    invitationsRecived: invitations.filter((invitation: Invitation) => invitation.status === 'RECIVED'),
+                    invitationsAccepted: invitations.filter((invitation: Invitation) => invitation.status === 'ACCEPTED'),
+                    invitationsRejected: invitations.filter((invitation: Invitation) => invitation.status === 'REJECTED')
+                });
+            })
+            .catch(error => {
+                console.error('Błąd podczas pobierania zaproszeń:', error);
+            });
     }
 
     render() {
         const { t } = this.props;
-        const { invitations } = this.state;
+        const { invitationsSent, invitationsRecived, invitationsAccepted, invitationsRejected } = this.state;
 
         return (
             <div>
                 <h2>{t("invitations.title")}</h2>
+
+                <h3>{t("invitations.title_sent")}</h3>
                 <ul>
-                    {invitations.map(invitation => (
+                    {invitationsSent.map(invitation => (
                         <li key={invitation.id}>
-                            <div>
-                                <strong>{t("invitations.from")}: </strong>{invitation.inviterName} ({invitation.inviterEmail})
-                            </div>
-                            <div>
-                                <strong>{t("invitations.to")}: </strong>{invitation.inviteeName} ({invitation.inviteeEmail})
-                            </div>
+                            <SingleInvitation invitation={invitation} />
+                        </li>
+                    ))}
+                </ul>
+
+
+                <h3>{t("invitations.title_recived")}</h3>
+                <ul>
+                    {invitationsRecived.map(invitation => (
+                        <li key={invitation.id}>
+                            <SingleInvitation invitation={invitation} />
+                        </li>
+                    ))}
+                </ul>
+
+                <h3>{t("invitations.title_approved")}</h3>
+                <ul>
+                    {invitationsAccepted.map(invitation => (
+                        <li key={invitation.id}>
+                            <SingleInvitation invitation={invitation} />
+                        </li>
+                    ))}
+                </ul>
+
+                <h3>{t("invitations.title_rejected")}</h3>
+                <ul>
+                    {invitationsRejected.map(invitation => (
+                        <li key={invitation.id}>
+                            <SingleInvitation invitation={invitation} />
                         </li>
                     ))}
                 </ul>
