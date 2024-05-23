@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import IUser from "../../types/user.type";
 import SendInvitation from "./invitations/SendInvitation";
+import GetInvitations from "./invitations/GetInvitations";
 
 type Props = {};
 
@@ -66,6 +67,8 @@ export default class Profile extends Component<Props, State> {
             </ul>
           </div> : null}
           <SendInvitation />
+          <GetInvitations />
+          
       </div>
     );
   }

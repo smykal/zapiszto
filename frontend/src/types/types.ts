@@ -152,3 +152,13 @@ export type Exercise = {
 export type NewInvitation = {
                               email: string;
 }
+
+export type Invitation = {
+                          id: string,
+                          inviterId: number,
+                          inviterName: string,
+                          inviterEmail: string,
+                          inviteeId: number,
+                          inviteeName: string,
+                          inviteeEmail: string
+}

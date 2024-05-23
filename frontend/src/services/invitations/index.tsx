@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../auth-header';
-import { NewInvitation } from '../../types/types';
+import { NewInvitation, Invitation } from '../../types/types';
 import {API_URL} from '../../constants/api'
 
 class InvitationsService {
@@ -13,6 +13,10 @@ class InvitationsService {
           .catch(error => {
             console.error('Błąd podczas wysyłania zapytania:', error);
           });
+      }
+    
+      getInvitations() {
+        return axios.get(API_URL + '/get_invitations', { headers: authHeader() });
       }
 }
 

@@ -1,15 +1,20 @@
 package com.zapiszto.controllers.invitations.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
+import com.zapiszto.controllers.exercises.dto.ExerciseDto;
+import com.zapiszto.controllers.invitations.dto.InvitationDto;
 import com.zapiszto.controllers.invitations.dto.NewInvitation;
 import com.zapiszto.controllers.invitations.service.InvitationsService;
 import com.zapiszto.repository.UserRepository;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +30,7 @@ public class InvitationsController implements ControllerCommon {
   InvitationsService invitationsService;
 
   @PostMapping("/add_invitation")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
   public ResponseEntity<String> addInvitation(
       @RequestBody NewInvitation newInvitation
       ) {
@@ -34,5 +39,20 @@ public class InvitationsController implements ControllerCommon {
     String response = invitationsService.addInvitation(userId, userRole, newInvitation.getEmail());
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
+
+  @GetMapping("/get_invitations")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<List<InvitationDto>> getInvitations(
+  ) {
+    var userId = extractUserId();
+    try {
+      List<InvitationDto> result = invitationsService.getInvitations(userId);
+      return new ResponseEntity<>(result, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+
 
 }

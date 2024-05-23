@@ -2,14 +2,18 @@ package com.zapiszto.controllers.invitations.service;
 
 import com.zapiszto.controllers.invitations.dictInvitationsStatus.entity.DictInvitationsStatusEntity;
 import com.zapiszto.controllers.invitations.dictInvitationsStatus.repository.DictInvitationsStatusRepository;
+import com.zapiszto.controllers.invitations.dto.InvitationDto;
 import com.zapiszto.controllers.invitations.entity.InvitationsEntity;
 import com.zapiszto.controllers.invitations.invitationsStatus.entity.InvitationsStatusEntity;
 import com.zapiszto.controllers.invitations.invitationsStatus.repository.InvitationsStatusRepository;
 import com.zapiszto.controllers.invitations.repository.InvitationsRepository;
+import com.zapiszto.controllers.invitations.serializer.InvitationsSerializer;
 import com.zapiszto.repository.UserRepository;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,8 +56,10 @@ public class InvitationsService {
           .invitee(userRepository.idByEmail(inviteeEmail))
           .build();
       invitationsRepository.save(invitationsEntity);
-      log.info("add invitation with id {} sent by user {}, to {}", invitationsEntity.getId(), invitationsEntity.getInviter(), invitationsEntity.getInvitee());
-
+      log.info("add invitation with id {} sent by user {}, to {}",
+          invitationsEntity.getId(),
+          invitationsEntity.getInviter(),
+          invitationsEntity.getInvitee());
 
       DictInvitationsStatusEntity status = dictInvitationsStatusRepository.getByName(SENT);
 
@@ -69,11 +75,9 @@ public class InvitationsService {
           invitationsStatusEntity.getInvitations_id(),
           invitationsStatusEntity.getDictInvitationsStatusEntity().getName());
 
-
       return invitationsEntity.getId()
           .toString();
     }
-
 
     return null;
   }
@@ -93,5 +97,12 @@ public class InvitationsService {
 
   private boolean checkIfEmailExists(String inviteeEmail) {
     return userRepository.existsByEmail(inviteeEmail);
+  }
+
+  public List<InvitationDto> getInvitations(Long userId) {
+    List<InvitationsStatusEntity> invitationsEntity = invitationsStatusRepository.getInvitations(userId);
+
+    return invitationsEntity.stream().map(InvitationsSerializer::convert)
+        .collect(Collectors.toList());
   }
 }

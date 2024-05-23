@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.invitations.entity;
 
+import com.zapiszto.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +17,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.core.userdetails.User;
 
 @Entity
 @Table(name = "invitations")
@@ -32,9 +32,17 @@ public class InvitationsEntity {
   @Column(name = "id")
   UUID id;
 
-  @Column
+  @ManyToOne
+  @JoinColumn(name = "inviter", referencedColumnName = "id", insertable = false, updatable = false)
+  User inviterEntity;
+
+  @Column(name = "inviter", nullable = false)
   Long inviter;
 
-  @Column
+  @ManyToOne
+  @JoinColumn(name = "invitee", referencedColumnName = "id", insertable = false, updatable = false)
+  User inviteeEntity;
+
+  @Column(name = "invitee", nullable = false)
   Long invitee;
 }
