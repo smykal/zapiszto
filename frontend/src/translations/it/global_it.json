@@ -85,5 +85,10 @@
         "unit": "unità",
         "notes": "note",
         "categoria": "categoria"
-    }
+    },
+    "invitations": {
+        "title": "inviti",
+        "from": "da",
+        "to": "a"
+    }    
 }
