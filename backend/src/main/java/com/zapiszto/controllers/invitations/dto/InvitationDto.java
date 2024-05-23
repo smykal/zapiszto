@@ -24,5 +24,6 @@ public class InvitationDto {
   long inviteeId;
   String inviteeName;
   String inviteeEmail;
+  String status;
 
 }

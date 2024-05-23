@@ -102,7 +102,9 @@ public class InvitationsService {
   public List<InvitationDto> getInvitations(Long userId) {
     List<InvitationsStatusEntity> invitationsEntity = invitationsStatusRepository.getInvitations(userId);
 
-    return invitationsEntity.stream().map(InvitationsSerializer::convert)
+    return invitationsEntity.stream()
+        .map(InvitationsSerializer::convert)
+        .map(invitationDto -> InvitationsSerializer.setRecivedAndSent(invitationDto, userId))
         .collect(Collectors.toList());
   }
 }
