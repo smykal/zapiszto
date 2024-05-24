@@ -1,12 +1,9 @@
 package com.zapiszto.controllers.invitations.invitationsStatus.entity;
 
-import com.zapiszto.controllers.dictBodyParams.entity.DictBodyParamsEntity;
 import com.zapiszto.controllers.invitations.dictInvitationsStatus.entity.DictInvitationsStatusEntity;
 import com.zapiszto.controllers.invitations.entity.InvitationsEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -36,7 +33,7 @@ public class InvitationsStatusEntity {
 
   @ManyToOne
   @JoinColumn(name = "invitations_id", referencedColumnName = "id")
-  InvitationsEntity invitations_id;
+  InvitationsEntity invitationsEntity;
 
   @Column(name = "insert_date")
   ZonedDateTime insert_date;
@@ -44,7 +41,4 @@ public class InvitationsStatusEntity {
   @ManyToOne
   @JoinColumn(name = "dict_invitations_status_id", referencedColumnName = "id")
   DictInvitationsStatusEntity dictInvitationsStatusEntity;
-
-  @Column(name = "dict_invitations_status_id", insertable=false, updatable=false)
-  Long dictInvitationsStatusId;
 }

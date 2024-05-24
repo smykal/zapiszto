@@ -56,24 +56,29 @@ public class InvitationsService {
           .invitee(userRepository.idByEmail(inviteeEmail))
           .build();
       invitationsRepository.save(invitationsEntity);
-      log.info("add invitation with id {} sent by user {}, to {}",
+      log.info(
+          "add invitation with id {} sent by user {}, to {}",
           invitationsEntity.getId(),
           invitationsEntity.getInviter(),
-          invitationsEntity.getInvitee());
+          invitationsEntity.getInvitee()
+      );
 
       DictInvitationsStatusEntity status = dictInvitationsStatusRepository.getByName(SENT);
 
       InvitationsStatusEntity invitationsStatusEntity = InvitationsStatusEntity.builder()
           .id(UUID.randomUUID())
-          .invitations_id(invitationsEntity)
+          .invitationsEntity(invitationsEntity)
           .insert_date(ZonedDateTime.now())
           .dictInvitationsStatusEntity(status)
           .build();
       invitationsStatusRepository.save(invitationsStatusEntity);
-      log.info("add invitation Status with id: {}, invitation_id: {}, status: {}",
+      log.info(
+          "add invitation Status with id: {}, invitation_id: {}, status: {}",
           invitationsStatusEntity.getId(),
-          invitationsStatusEntity.getInvitations_id(),
-          invitationsStatusEntity.getDictInvitationsStatusEntity().getName());
+          invitationsStatusEntity.getInvitationsEntity(),
+          invitationsStatusEntity.getDictInvitationsStatusEntity()
+              .getName()
+      );
 
       return invitationsEntity.getId()
           .toString();
@@ -106,5 +111,37 @@ public class InvitationsService {
         .map(InvitationsSerializer::convert)
         .map(invitationDto -> InvitationsSerializer.setRecivedAndSent(invitationDto, userId))
         .collect(Collectors.toList());
+  }
+  @Transactional
+  public String approveInvitation(InvitationDto invitationDto, Long userId) {
+    var checkIfInvitationIsAddressToUser = checkIfInvitationIsAddressToUser(invitationDto.getInviteeId(), userId);
+    var checkIfLastStatusIsSent = checkIfLastStatusIsSent(invitationDto);
+    if (checkIfInvitationIsAddressToUser &&
+        checkIfLastStatusIsSent) {
+      DictInvitationsStatusEntity status = dictInvitationsStatusRepository.getByName(APPROVED);
+      InvitationsEntity invitation = invitationsRepository.getById(invitationDto.getId());
+      InvitationsStatusEntity invitationsStatusEntity = InvitationsStatusEntity.builder()
+          .id(UUID.randomUUID())
+          .invitationsEntity(invitation)
+          .insert_date(ZonedDateTime.now())
+          .dictInvitationsStatusEntity(status)
+          .build();
+
+      invitationsStatusRepository.save(invitationsStatusEntity);
+      log.info(
+          "add invitation Status with id: {}, invitation_id: {}, status: APPROVED",
+          invitationsStatusEntity.getId(),
+          invitationsStatusEntity.getInvitationsEntity());
+    }
+    return null;
+  }
+
+  private boolean checkIfLastStatusIsSent(InvitationDto invitationDto) {
+    UUID invitationId = invitationDto.getId();
+    return SENT.equals(invitationsStatusRepository.getLastStatus(invitationId));
+  }
+
+  private boolean checkIfInvitationIsAddressToUser(long inviteeId, Long userId) {
+    return inviteeId == userId;
   }
 }

@@ -7,7 +7,7 @@ import com.zapiszto.controllers.invitations.invitationsStatus.entity.Invitations
 
 public class InvitationsSerializer implements SerializerCommon {
   public static InvitationDto convert(InvitationsStatusEntity invitationsStatusEntity) {
-    InvitationsEntity invitation = invitationsStatusEntity.getInvitations_id();
+    InvitationsEntity invitation = invitationsStatusEntity.getInvitationsEntity();
 
     return InvitationDto.builder()
         .id(invitation.getId())

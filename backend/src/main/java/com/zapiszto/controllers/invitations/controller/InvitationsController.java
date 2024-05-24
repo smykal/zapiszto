@@ -40,6 +40,17 @@ public class InvitationsController implements ControllerCommon {
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
 
+  @PostMapping("/approve_invitation")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<String> approveInvitation(
+      @RequestBody InvitationDto invitationDto
+  ){
+    var userId = extractUserId();
+    String response = invitationsService.approveInvitation(invitationDto, userId);
+    return new ResponseEntity<>(response, HttpStatus.OK);
+  }
+
+
   @GetMapping("/get_invitations")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
   public ResponseEntity<List<InvitationDto>> getInvitations(
