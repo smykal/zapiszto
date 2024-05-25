@@ -63,7 +63,9 @@
         "female": "female",
         "male": "male",
         "move_up": "move up",
-        "move_down": "move down"
+        "move_down": "move down",
+        "approve": "approve",
+        "reject": "reject"
     },
     "validation": {
         "this_field_is_required": "this field is required",

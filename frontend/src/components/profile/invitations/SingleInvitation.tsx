@@ -22,7 +22,7 @@ class SingleInvitation extends Component<Props> {
                 </div>
                 WHEN status is ?? then select from :
                 Usuń Zaproszenie | Zaakceptuj | odrzuć | wyślij ponownie
-                TERMINATE | RESENT | APPROVE | REJECT  
+                TERMINATE | RESENT | DELETE 
             </div>
         );
     }

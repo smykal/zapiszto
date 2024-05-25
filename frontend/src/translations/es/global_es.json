@@ -63,7 +63,9 @@
         "female": "mujer",
         "male": "hombre",
         "move_up": "mover hacia arriba",
-        "move_down": "mover hacia abajo"
+        "move_down": "mover hacia abajo",
+        "approve": "aprobar",
+        "reject": "rechazar"
     },
     "validation": {
         "this_field_is_required": "este campo es obligatorio",

@@ -3,6 +3,9 @@ import { withTranslation } from "react-i18next";
 import { Invitation } from '../../../types/types';
 import Service from '../../../services/invitations/';
 import SingleInvitation from './SingleInvitation';
+import ApproveInvitation from './ApproveInvitation';
+import App from '../../../App';
+import RejectInvitation from './RejectInvitation';
 
 type Props = {
     t: any
@@ -40,7 +43,7 @@ class GetInvitations extends Component<Props, State> {
                     invitations,
                     invitationsSent: invitations.filter((invitation: Invitation) => invitation.status === 'SENT'),
                     invitationsRecived: invitations.filter((invitation: Invitation) => invitation.status === 'RECIVED'),
-                    invitationsAccepted: invitations.filter((invitation: Invitation) => invitation.status === 'ACCEPTED'),
+                    invitationsAccepted: invitations.filter((invitation: Invitation) => invitation.status === 'APPROVED'),
                     invitationsRejected: invitations.filter((invitation: Invitation) => invitation.status === 'REJECTED')
                 });
             })
@@ -72,6 +75,8 @@ class GetInvitations extends Component<Props, State> {
                     {invitationsRecived.map(invitation => (
                         <li key={invitation.id}>
                             <SingleInvitation invitation={invitation} />
+                            <ApproveInvitation invitation={invitation} />
+                            <RejectInvitation invitation={invitation} />
                         </li>
                     ))}
                 </ul>

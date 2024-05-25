@@ -131,7 +131,31 @@ public class InvitationsService {
       log.info(
           "add invitation Status with id: {}, invitation_id: {}, status: APPROVED",
           invitationsStatusEntity.getId(),
-          invitationsStatusEntity.getInvitationsEntity());
+          invitation.getId());
+    }
+    return null;
+  }
+
+  @Transactional
+  public String rejectInvitation(InvitationDto invitationDto, Long userId) {
+    var checkIfInvitationIsAddressToUser = checkIfInvitationIsAddressToUser(invitationDto.getInviteeId(), userId);
+    var checkIfLastStatusIsSent = checkIfLastStatusIsSent(invitationDto);
+    if (checkIfInvitationIsAddressToUser &&
+        checkIfLastStatusIsSent) {
+      DictInvitationsStatusEntity status = dictInvitationsStatusRepository.getByName(REJECTED);
+      InvitationsEntity invitation = invitationsRepository.getById(invitationDto.getId());
+      InvitationsStatusEntity invitationsStatusEntity = InvitationsStatusEntity.builder()
+          .id(UUID.randomUUID())
+          .invitationsEntity(invitation)
+          .insert_date(ZonedDateTime.now())
+          .dictInvitationsStatusEntity(status)
+          .build();
+
+      invitationsStatusRepository.save(invitationsStatusEntity);
+      log.info(
+          "add invitation Status with id: {}, invitation_id: {}, status: REJECTED",
+          invitationsStatusEntity.getId(),
+          invitation.getId());
     }
     return null;
   }

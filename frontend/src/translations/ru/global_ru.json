@@ -63,7 +63,9 @@
         "female": "женский",
         "male": "мужской",
         "move_up": "поднять",
-        "move_down": "опустить"
+        "move_down": "опустить",
+        "approve": "утвердить",
+        "reject": "отклонить"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",

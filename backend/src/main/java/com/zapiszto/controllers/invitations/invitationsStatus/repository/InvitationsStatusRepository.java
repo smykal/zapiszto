@@ -12,13 +12,14 @@ import org.springframework.stereotype.Repository;
 public interface InvitationsStatusRepository extends JpaRepository<InvitationsStatusEntity, Integer> {
 
   @Query(nativeQuery = true, value = """
-      select
-      	status.*
-      	from invitations_status status
-      	left join invitations i on i.id = status.invitations_id\s
-      where
-      	(i.inviter = :userId
-      		or i.invitee = :userId)
+      select * from (
+                      select 	status.*
+                            , row_number() over (partition by status.invitations_id order by status.insert_date desc) as r
+            	                from invitations_status status
+            	                left join invitations i on i.id = status.invitations_id
+                              where (i.inviter = :userId or i.invitee = :userId)
+            		    ) as foo
+            		      where foo.r = 1
       """)
   List<InvitationsStatusEntity> getInvitations(@Param("userId") Long userId);
 
