@@ -9,6 +9,13 @@
         "log_out": "log out",
         "sign_in": "sing in"
     },
+    "login": {
+        "username": "username",
+        "password": "password",
+        "email": "email",
+        "login": "Login",
+        "register": "sign up"
+    },
     "dictionaries": {
         "dict_category": "dict category",
         "dict_exercise": "dict exercises",

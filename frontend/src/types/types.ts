@@ -163,3 +163,12 @@ export type Invitation = {
                           inviteeEmail: string,
                           status: string
 }
+
+export type UserDetails = {
+                            languageCode: string,
+                            languageLabel: string
+}
+
+export type UserDetailsLanguage = {
+                                    languageCode: string
+}

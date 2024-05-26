@@ -9,6 +9,13 @@
         "log_out": "wyloguj się",
         "sign_in": "zarejestruj się"
     },
+    "login": {
+        "username": "nazwa użytkownika",
+        "password": "hasło",
+        "email": "email",
+        "login": "zaloguj się",
+        "register": "zarejestruj się"
+    },
     "dictionaries": {
         "dict_category": "kategoria ćwiczeń",
         "dict_exercise": "ćwiczenia słownikowe",

@@ -9,6 +9,13 @@
         "log_out": "выйти",
         "sign_in": "зарегистрироваться"
     },
+    "login": {
+        "username": "имя пользователя",
+        "password": "пароль",
+        "email": "электронная почта",
+        "login": "войти",
+        "register": "зарегистрироваться"
+    },
     "dictionaries": {
         "dict_category": "категория упражнений",
         "dict_exercise": "упражнения",

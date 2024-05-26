@@ -9,6 +9,13 @@
         "log_out": "вийти",
         "sign_in": "зареєструватися"
     },
+    "login": {
+        "username": "ім'я користувача",
+        "password": "пароль",
+        "email": "електронна пошта",
+        "login": "увійти",
+        "register": "зареєструватися"
+    },
     "dictionaries": {
         "dict_category": "категорія вправ",
         "dict_exercise": "вправи",

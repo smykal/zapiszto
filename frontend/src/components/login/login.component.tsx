@@ -2,10 +2,14 @@ import { Component } from "react";
 import { Navigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { withTranslation } from "react-i18next";
+
 
 import AuthService from "../../services/auth.service";
 
-type Props = {};
+type Props = {
+  t: any;
+};
 
 type State = {
   redirect: string | null,
@@ -15,7 +19,7 @@ type State = {
   message: string
 };
 
-export default class Login extends Component<Props, State> {
+class Login extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
@@ -83,7 +87,7 @@ export default class Login extends Component<Props, State> {
     if (this.state.redirect) {
       return <Navigate to={this.state.redirect} />
     }
-
+    const { t } = this.props;
     const { loading, message } = this.state;
 
     const initialValues = {
@@ -107,7 +111,7 @@ export default class Login extends Component<Props, State> {
           >
             <Form>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">{t("login.username")}</label>
                 <Field name="username" type="text" className="form-control" />
                 <ErrorMessage
                   name="username"
@@ -117,7 +121,7 @@ export default class Login extends Component<Props, State> {
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">{t("login.password")}</label>
                 <Field name="password" type="password" className="form-control" />
                 <ErrorMessage
                   name="password"
@@ -131,7 +135,7 @@ export default class Login extends Component<Props, State> {
                   {loading && (
                     <span className="spinner-border spinner-border-sm"></span>
                   )}
-                  <span>Login</span>
+                  <span>{t("login.login")}</span>
                 </button>
               </div>
 
@@ -149,3 +153,4 @@ export default class Login extends Component<Props, State> {
     );
   }
 }
+export default withTranslation("global")(Login)

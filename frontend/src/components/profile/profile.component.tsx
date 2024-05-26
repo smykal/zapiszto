@@ -3,15 +3,19 @@ import { Navigate } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import IUser from "../../types/user.type";
 import GetInvitations from "./invitations/GetInvitations";
+import { withTranslation } from "react-i18next";
 
-type Props = {};
+
+type Props = {
+  t: any;
+};
 
 type State = {
   redirect: string | null,
   userReady: boolean,
   currentUser: IUser & { accessToken: string }
 }
-export default class Profile extends Component<Props, State> {
+class Profile extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -31,9 +35,11 @@ export default class Profile extends Component<Props, State> {
   }
 
   render() {
+
     if (this.state.redirect) {
       return <Navigate to={this.state.redirect} />
     }
+    const { t } = this.props;
 
     const { currentUser } = this.state;
 
@@ -72,3 +78,4 @@ export default class Profile extends Component<Props, State> {
     );
   }
 }
+export default withTranslation("global")(Profile)
