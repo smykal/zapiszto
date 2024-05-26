@@ -1,0 +1,40 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="add data to dict_languages" author="smykalm">
+
+        <insert tableName="dict_languages">
+            <column name="code" value="en"/>
+            <column name="label" value="English"/>
+            <column name="name" value="English"/>
+        </insert>
+        <insert tableName="dict_languages">
+            <column name="code" value="es"/>
+            <column name="label" value="Español"/>
+            <column name="name" value="Spain"/>
+        </insert>
+        <insert tableName="dict_languages">
+            <column name="code" value="it"/>
+            <column name="label" value="Italiano"/>
+            <column name="name" value="Italy"/>
+        </insert>
+        <insert tableName="dict_languages">
+            <column name="code" value="pl"/>
+            <column name="label" value="Polski"/>
+            <column name="name" value="Polish"/>
+        </insert>
+        <insert tableName="dict_languages">
+            <column name="code" value="ru"/>
+            <column name="label" value="Русский"/>
+            <column name="name" value="Russian"/>
+        </insert>
+        <insert tableName="dict_languages">
+            <column name="code" value="ua"/>
+            <column name="label" value="Українська"/>
+            <column name="name" value="Ukrainian"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
