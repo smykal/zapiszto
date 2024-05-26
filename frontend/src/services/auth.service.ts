@@ -1,20 +1,39 @@
 import axios from "axios";
+import authHeader from './auth-header';
+import i18n from '../translations/i18n';
+import LanguageService from '../services/languages/';
 import { AUTH_URL } from '../constants/api'
 
 class AuthService {
-  login(username: string, password: string) {
-    return axios
-      .post(AUTH_URL + "signin", {
+  async login(username: string, password: string) {
+    try {
+      const response = await axios.post(AUTH_URL + 'signin', {
         username,
-        password
-      })
-      .then(response => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
-
-        return response.data;
+        password,
       });
+
+      if (response.data.accessToken) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+
+        // Fetch and set user language preference after login
+        try {
+          const res = await LanguageService.getLanguage();
+          const langCode = res.data.languageCode;
+
+          console.log('Fetched language code:', langCode); // Log fetched language code
+          
+          await i18n.changeLanguage(langCode); // Change the language
+          console.log('Language changed to:', langCode); // Log after changing language
+        } catch (err) {
+          console.error('Error fetching user language:', err);
+        }
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    }
   }
 
   logout() {

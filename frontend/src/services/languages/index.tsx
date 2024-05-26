@@ -8,7 +8,7 @@ class LanguageService {
     return axios.get(API_URL + '/get_language', { headers: authHeader() });
   }
 
-  postLanguage(requestBody: UserDetailsLanguage) {
+  postLanguage(requestBody: { languageCode: string }) {
     return axios.post(API_URL + '/post_language', requestBody, { headers: authHeader() })
       .then(response => {
         console.log('Odpowiedź z serwera:', response.data);
@@ -19,4 +19,4 @@ class LanguageService {
   }
 }
 
-export default new LanguageService()
+export default new LanguageService();
