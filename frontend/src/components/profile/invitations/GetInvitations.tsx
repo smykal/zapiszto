@@ -4,8 +4,10 @@ import { Invitation } from '../../../types/types';
 import Service from '../../../services/invitations/';
 import SingleInvitation from './SingleInvitation';
 import ApproveInvitation from './ApproveInvitation';
-import App from '../../../App';
 import RejectInvitation from './RejectInvitation';
+import Collapsible from 'react-collapsible';
+import SendInvitation from "../invitations/SendInvitation";
+
 
 type Props = {
     t: any
@@ -32,7 +34,7 @@ class GetInvitations extends Component<Props, State> {
     }
 
     componentDidMount(): void {
-        this.getInvitations()
+        this.getInvitations();
     }
 
     getInvitations() {
@@ -57,47 +59,69 @@ class GetInvitations extends Component<Props, State> {
         const { invitationsSent, invitationsRecived, invitationsAccepted, invitationsRejected } = this.state;
 
         return (
-            <div>
-                <h2>{t("invitations.title")}</h2>
+            <div className="container">
+                <header className="jumbotron">
+                    <h3>{t("invitations.title")}</h3>
+                    <SendInvitation />
 
-                <h3>{t("invitations.title_sent")}</h3>
-                <ul>
-                    {invitationsSent.map(invitation => (
-                        <li key={invitation.id}>
-                            <SingleInvitation invitation={invitation} />
-                        </li>
-                    ))}
-                </ul>
+                    <Collapsible trigger={`${t("invitations.title_sent")} (${invitationsSent.length})`} open={false}>
+                        <ul>
+                            {invitationsSent.length > 0 ? (
+                                invitationsSent.map(invitation => (
+                                    <li key={invitation.id}>
+                                        <SingleInvitation invitation={invitation} />
+                                    </li>
+                                ))
+                            ) : (
+                                <li>{t("invitations.no_sent")}</li>
+                            )}
+                        </ul>
+                    </Collapsible>
 
+                    <Collapsible trigger={`${t("invitations.title_recived")} (${invitationsRecived.length})`} open={false}>
+                        <ul>
+                            {invitationsRecived.length > 0 ? (
+                                invitationsRecived.map(invitation => (
+                                    <li key={invitation.id}>
+                                        <SingleInvitation invitation={invitation} />
+                                        <ApproveInvitation invitation={invitation} />
+                                        <RejectInvitation invitation={invitation} />
+                                    </li>
+                                ))
+                            ) : (
+                                <li>{t("invitations.no_recived")}</li>
+                            )}
+                        </ul>
+                    </Collapsible>
 
-                <h3>{t("invitations.title_recived")}</h3>
-                <ul>
-                    {invitationsRecived.map(invitation => (
-                        <li key={invitation.id}>
-                            <SingleInvitation invitation={invitation} />
-                            <ApproveInvitation invitation={invitation} />
-                            <RejectInvitation invitation={invitation} />
-                        </li>
-                    ))}
-                </ul>
+                    <Collapsible trigger={`${t("invitations.title_approved")} (${invitationsAccepted.length})`} open={false}>
+                        <ul>
+                            {invitationsAccepted.length > 0 ? (
+                                invitationsAccepted.map(invitation => (
+                                    <li key={invitation.id}>
+                                        <SingleInvitation invitation={invitation} />
+                                    </li>
+                                ))
+                            ) : (
+                                <li>{t("invitations.no_approved")}</li>
+                            )}
+                        </ul>
+                    </Collapsible>
 
-                <h3>{t("invitations.title_approved")}</h3>
-                <ul>
-                    {invitationsAccepted.map(invitation => (
-                        <li key={invitation.id}>
-                            <SingleInvitation invitation={invitation} />
-                        </li>
-                    ))}
-                </ul>
-
-                <h3>{t("invitations.title_rejected")}</h3>
-                <ul>
-                    {invitationsRejected.map(invitation => (
-                        <li key={invitation.id}>
-                            <SingleInvitation invitation={invitation} />
-                        </li>
-                    ))}
-                </ul>
+                    <Collapsible trigger={`${t("invitations.title_rejected")} (${invitationsRejected.length})`} open={false}>
+                        <ul>
+                            {invitationsRejected.length > 0 ? (
+                                invitationsRejected.map(invitation => (
+                                    <li key={invitation.id}>
+                                        <SingleInvitation invitation={invitation} />
+                                    </li>
+                                ))
+                            ) : (
+                                <li>{t("invitations.no_rejected")}</li>
+                            )}
+                        </ul>
+                    </Collapsible>
+                </header>
             </div>
         );
     }

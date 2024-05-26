@@ -1,8 +1,8 @@
 export const LANGUAGES = [
-    { label: "Polish", code: "pl" },
-    { label: "English", code: "en" },
-    { label: "Ukrainian", code: "ua" },
-    { label: "Russianian", code: "ru" },
-    { label: "Spanish", code: "es" },
-    { label: "Italian", code: "it" },
-  ];
+  { code: "en", label: "English" },
+  { code: "es", label: "Español" },
+  { code: "it", label: "Italiano" },
+  { code: "pl", label: "Polski" },
+  { code: "ru", label: "Русский" },
+  { code: "ua", label: "Українська" },
+];

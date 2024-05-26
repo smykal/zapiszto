@@ -2,7 +2,6 @@ import { Component } from "react";
 import { Navigate } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import IUser from "../../types/user.type";
-import SendInvitation from "./invitations/SendInvitation";
 import GetInvitations from "./invitations/GetInvitations";
 
 type Props = {};
@@ -25,7 +24,7 @@ export default class Profile extends Component<Props, State> {
 
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
-    
+
 
     if (!currentUser) this.setState({ redirect: "/home" });
     this.setState({ currentUser: currentUser, userReady: true })
@@ -41,10 +40,10 @@ export default class Profile extends Component<Props, State> {
     return (
       <div className="container">
         {(this.state.userReady) ?
-          <div>
+          <div className="alinka" >
             <header className="jumbotron">
               <h3>
-                <strong>{currentUser.username}</strong> Profile
+                <strong >{currentUser.username}</strong> Profile
               </h3>
             </header>
             <p>
@@ -66,9 +65,9 @@ export default class Profile extends Component<Props, State> {
                 currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
             </ul>
           </div> : null}
-          <SendInvitation />
-          <GetInvitations />
-          
+
+        <GetInvitations />
+
       </div>
     );
   }

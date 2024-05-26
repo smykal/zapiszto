@@ -59,7 +59,7 @@ class SendInvitation extends Component<Props, State> {
                         <Form>
                             <Field name="email" type="email" />
                             <ErrorMessage name="email" component="div" />
-                            <button className='myButton' type="submit" disabled={formik.isSubmitting}>{t("buttons.add")}</button>
+                            <button type="submit" disabled={formik.isSubmitting}>{t("buttons.add")}</button>
                             {invitationSent && <div>Zaproszenie zostało wysłane.</div>}
                         </Form>
                     )}

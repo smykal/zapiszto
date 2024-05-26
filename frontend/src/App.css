@@ -1,22 +1,10 @@
-body {
-  background-image: 'public\images\IMG_20230828_172406806.jpg';
-  background-size: cover; /* Dodano, aby obraz zawsze wypełniał cały obszar tła */
-  background-repeat: no-repeat; /* Zapobiega powtarzaniu obrazu */
-  background-position: center center; /* Ustala pozycję obrazu na środku tła */
-
-  /* Dostosuj szerokość do 100% szerokości strony */
-  width: 100%;
-  /* Dostosuj wysokość do 100% wysokości strony (opcjonalne, jeśli chcesz, aby obraz również wypełniał całą wysokość strony) */
-  height: 100vh;
-}
-
 label {
   display: block;
   margin-top: 10px;
 }
 
 .card-container.card {
-  max-width: 350px !important;
+  max-width: 300px !important;
   padding: 40px 40px;
 }
 
@@ -34,6 +22,12 @@ label {
 }
 .container {
   background-color: #f7f7f7;
+}
+
+.alinka {
+  background-image: url('/public/images/IMG_20230828_172406806.jpg');
+  background-size: cover;
+  /* background-color: red; */
 }
 
 .profile-img-card {
@@ -98,11 +92,13 @@ ul li {
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition-duration: 0.4s;
+  padding: 3px;
 }
 
 .myButton:hover {
   background-color: #212529;
   color: white;
+  padding: 4px;
 
 }
 

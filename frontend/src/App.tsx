@@ -133,7 +133,7 @@ const App = () => {
         <Menu />
       </nav>
 
-      <div className="container mt-3">
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

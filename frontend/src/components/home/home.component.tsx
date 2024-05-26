@@ -41,6 +41,7 @@ export default class Home extends Component<Props, State> {
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
         </header>
+         <img src="//public/images/IMG_20230828_172406806.jpg" alt="Image" />
       </div>
     );
   }
