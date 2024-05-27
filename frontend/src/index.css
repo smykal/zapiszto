@@ -59,3 +59,45 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #f1f1f1;
 }
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #343a40;
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.nav-item {
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  color: #cccccc;
+  font-size: 1.05rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Menu } from "./components/language/Menu";
 import { useTranslation } from "react-i18next";
@@ -46,11 +45,11 @@ const App = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <nav className="navbar">
         <Link to={"/"} className="navbar-brand">
           zapiszTo
         </Link>
-        <div className="navbar-nav mr-auto">
+        <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               {t("navigation.home")}
@@ -73,38 +72,33 @@ const App = () => {
             </li>
           )}
           {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                {t("navigation.user")}
-              </Link>
-            </li>
+            <>
+              <li className="nav-item">
+                <Link to={"/user"} className="nav-link">
+                  {t("navigation.user")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/bodyParams"} className="nav-link">
+                  {t("navigation.body_params")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/training"} className="nav-link">
+                  {t("navigation.training")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/dictionaries"} className="nav-link">
+                  {t("navigation.dictionaries")}
+                </Link>
+              </li>
+            </>
           )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/bodyParams"} className="nav-link">
-                {t("navigation.body_params")}
-              </Link>
-            </li>
-          )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/training"} className="nav-link">
-                {t("navigation.training")}
-              </Link>
-            </li>
-          )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/dictionaries"} className="nav-link">
-                {t("navigation.dictionaries")}
-              </Link>
-            </li>
-          )}
-        </div>
-
+        </ul>
 
         {currentUser ? (
-          <div className="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
                 {currentUser.username}
@@ -115,9 +109,9 @@ const App = () => {
                 {t("navigation.log_out")}
               </a>
             </li>
-          </div>
+          </ul>
         ) : (
-          <div className="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/login"} className="nav-link">
                 {t("navigation.log_in")}
@@ -128,7 +122,7 @@ const App = () => {
                 {t("navigation.sign_in")}
               </Link>
             </li>
-          </div>
+          </ul>
         )}
         <Menu />
       </nav>
