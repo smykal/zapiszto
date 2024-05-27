@@ -25,6 +25,7 @@ export const Menu = () => {
   return (
     <nav>
       <select defaultValue={i18n.language} onChange={onChangeLang}>
+      <option value="" disabled selected>Select language</option>
         {LANGUAGES.map(({ code, label }) => (
           <option key={code} value={code}>
             {label}

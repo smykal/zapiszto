@@ -7,7 +7,8 @@
         "dictionaries": "dictionaries",
         "log_in": "log in",
         "log_out": "log out",
-        "sign_in": "sing in"
+        "sign_in": "sing in",
+        "select_language": "select language"
     },
     "login": {
         "username": "username",

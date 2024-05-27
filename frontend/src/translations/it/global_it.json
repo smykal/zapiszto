@@ -7,7 +7,8 @@
         "dictionaries": "dizionari",
         "log_in": "accedere",
         "log_out": "uscire",
-        "sign_in": "registrati"
+        "sign_in": "registrati",
+        "select_language": "seleziona lingua"
     },
     "login": {
         "username": "nome utente",
