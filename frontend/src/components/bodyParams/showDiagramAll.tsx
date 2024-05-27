@@ -68,31 +68,33 @@ export default class ShowDiagram extends Component<Props, State> {
     ));
 
     return (
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={300}
-          data={this.state.bodyParams}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="insert_date"
-            angle={-90}
-            textAnchor="end"
-            height={100}
-          />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          {chartLines}
-        </LineChart>
-      </ResponsiveContainer>
+      <div className="sa2">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            width={500}
+            height={300}
+            data={this.state.bodyParams}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="insert_date"
+              angle={-90}
+              textAnchor="end"
+              height={100}
+            />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            {chartLines}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     );
   }
 }

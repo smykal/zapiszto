@@ -12,7 +12,7 @@ import { withTranslation } from "react-i18next";
 
 
 
-type Props = {  
+type Props = {
     t: any;
 };
 type State = {
@@ -85,7 +85,7 @@ class ShowBodyParams extends Component<Props, State> {
 
     handleCpfClick() {
         this.setState((prevState) => ({
-            cpfExpanded: !prevState.cpfExpanded, // Odwrócenie stanu dla ShowCpf
+            cpfExpanded: !prevState.cpfExpanded,
         }));
     }
 
@@ -94,154 +94,152 @@ class ShowBodyParams extends Component<Props, State> {
     }
 
     render() {
-        const { bmrExpanded, bmiExpanded, genderExpanded, ageExpanded, cpfExpanded} = this.state;
+        const { bmrExpanded, bmiExpanded, genderExpanded, ageExpanded, cpfExpanded } = this.state;
         const { t } = this.props;
 
-    return (
-            <div className="container">
-                <header className="jumbotron">
-                    <ul>
-                        <li id="bodyParams">
-                            <Collapsible
-                                trigger={
-                                    <div
-                                        style={{
-                                            cursor: 'pointer',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            marginBottom: '10px',
-                                        }}
-                                        onClick={() => this.handleGenderClick()}
-                                    >
-                                        <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            {t("body_params.gender")}
-                                        </span>
-                                    </div>
-                                }
-                                open={genderExpanded} // Ustawienie czy jest rozwinięty czy nie
-                            >
-                                <Gender />
-                            </Collapsible>
-                        </li>
-                        <li id="bodyParams">
-                            <Collapsible
-                                trigger={
-                                    <div
-                                        style={{
-                                            cursor: 'pointer',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            marginBottom: '10px',
-                                        }}
-                                        onClick={() => this.handleAgeClick()}
-                                    >
-                                        <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            {t("body_params.age")}
-                                        </span>
-                                    </div>
-                                }
-                                open={ageExpanded} // Ustawienie czy jest rozwinięty czy nie
-                            >
-                                <Age />
-                            </Collapsible>
-                        </li>
-                        <li id="bodyParams">
-                            <Collapsible
-                                trigger={
-                                    <div
-                                        style={{
-                                            cursor: 'pointer',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            marginBottom: '10px',
-                                        }}
-                                        onClick={() => this.handleBmiClick()}
-                                    >
-                                        <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+        return (
+            <div>
+                <ul>
+                    <li id="bodyParams">
+                        <Collapsible
+                            trigger={
+                                <div
+                                    style={{
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginBottom: '10px',
+                                    }}
+                                    onClick={() => this.handleGenderClick()}
+                                >
+                                    <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                        {t("body_params.gender")}
+                                    </span>
+                                </div>
+                            }
+                            open={genderExpanded} // Ustawienie czy jest rozwinięty czy nie
+                        >
+                            <Gender />
+                        </Collapsible>
+                    </li>
+                    <li id="bodyParams">
+                        <Collapsible
+                            trigger={
+                                <div
+                                    style={{
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginBottom: '10px',
+                                    }}
+                                    onClick={() => this.handleAgeClick()}
+                                >
+                                    <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                        {t("body_params.age")}
+                                    </span>
+                                </div>
+                            }
+                            open={ageExpanded} // Ustawienie czy jest rozwinięty czy nie
+                        >
+                            <Age />
+                        </Collapsible>
+                    </li>
+                    <li id="bodyParams">
+                        <Collapsible
+                            trigger={
+                                <div
+                                    style={{
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginBottom: '10px',
+                                    }}
+                                    onClick={() => this.handleBmiClick()}
+                                >
+                                    <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
                                         {t("body_params.body_mass_index")}
-                                        </span>
-                                    </div>
-                                }
-                                open={bmiExpanded} // Ustawienie czy jest rozwinięty czy nie
-                            >
-                                <ShowBmi />
-                            </Collapsible>
-                        </li>
-                        <li id="bodyParams">
-                            <Collapsible
-                                trigger={
-                                    <div
-                                        style={{
-                                            cursor: 'pointer',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            marginBottom: '10px',
-                                        }}
-                                        onClick={() => this.handleBmrClick()}
-                                    >
-                                        <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            {t("body_params.basal_metabolic_rate")}
-                                        </span>
-                                    </div>
-                                }
-                                open={bmrExpanded} // Ustawienie czy jest rozwinięty czy nie
-                            >
-                                <ShowBmr />
-                            </Collapsible>
-                        </li>
-                        <li id="bodyParams">
-                            <Collapsible
-                                trigger={
-                                    <div
-                                        style={{
-                                            cursor: 'pointer',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            marginBottom: '10px',
-                                        }}
-                                        onClick={() => this.handleCpfClick()}
-                                    >
-                                        <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                            {t("body_params.carbs_fat_protein")}
-                                        </span>
-                                    </div>
-                                }
-                                open={cpfExpanded} // Ustawienie czy jest rozwinięty czy nie
-                            >
-                                <ShowCpf />
-                            </Collapsible>
-                        </li>
-                        {this.state.bodyParams.length > 0 && (
-                            this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
-                                <li key={index} id="bodyParams">
-                                    <Collapsible
-                                        trigger={
-                                            <div
-                                                style={{
-                                                    cursor: 'pointer',
-                                                    display: 'flex',
-                                                    flexDirection: 'column',
-                                                    marginBottom: '10px',
-                                                }}
-                                                onClick={() => this.handleItemClick(index)}
-                                            >
-                                                <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
-                                                    {item.dict_body_params_name}: {item.value}
-                                                </span>
-                                            </div>
-                                        }
-                                    >
-                                        <ShowDiagram param_name={item.dict_body_params_name}></ShowDiagram>
-                                    </Collapsible>
-                                </li>
-                            ))
-                        )}
-                    </ul>
-                </header>
+                                    </span>
+                                </div>
+                            }
+                            open={bmiExpanded} // Ustawienie czy jest rozwinięty czy nie
+                        >
+                            <ShowBmi />
+                        </Collapsible>
+                    </li>
+                    <li id="bodyParams">
+                        <Collapsible
+                            trigger={
+                                <div
+                                    style={{
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginBottom: '10px',
+                                    }}
+                                    onClick={() => this.handleBmrClick()}
+                                >
+                                    <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                        {t("body_params.basal_metabolic_rate")}
+                                    </span>
+                                </div>
+                            }
+                            open={bmrExpanded} // Ustawienie czy jest rozwinięty czy nie
+                        >
+                            <ShowBmr />
+                        </Collapsible>
+                    </li>
+                    <li id="bodyParams">
+                        <Collapsible
+                            trigger={
+                                <div
+                                    style={{
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginBottom: '10px',
+                                    }}
+                                    onClick={() => this.handleCpfClick()}
+                                >
+                                    <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                        {t("body_params.carbs_fat_protein")}
+                                    </span>
+                                </div>
+                            }
+                            open={cpfExpanded} // Ustawienie czy jest rozwinięty czy nie
+                        >
+                            <ShowCpf />
+                        </Collapsible>
+                    </li>
+                    {this.state.bodyParams.length > 0 && (
+                        this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
+                            <li key={index} id="bodyParams">
+                                <Collapsible
+                                    trigger={
+                                        <div
+                                            style={{
+                                                cursor: 'pointer',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                marginBottom: '10px',
+                                            }}
+                                            onClick={() => this.handleItemClick(index)}
+                                        >
+                                            <span style={{ marginRight: '10px', width: '150px', textAlign: 'right' }}>
+                                                {item.dict_body_params_name}: {item.value}
+                                            </span>
+                                        </div>
+                                    }
+                                >
+                                    <ShowDiagram param_name={item.dict_body_params_name}></ShowDiagram>
+                                </Collapsible>
+                            </li>
+                        ))
+                    )}
+                </ul>
             </div>
         );
-        
+
     }
 }
 
-export default  withTranslation("global")(ShowBodyParams)
+export default withTranslation("global")(ShowBodyParams)
