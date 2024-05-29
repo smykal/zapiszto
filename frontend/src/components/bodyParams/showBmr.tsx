@@ -56,7 +56,7 @@ class GetBmr extends Component<Props, State> {
         }
 
         return (
-            <div className="container">
+            <div>
                 {date && <p><strong>{t("bmr_values_calculated_for")}:</strong> {date}</p>}
                 {bmrList.map((bmr, index) => (
                     <div key={index}>

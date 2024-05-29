@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
 public class DictQuantityTypeController implements ControllerCommon {
 
   @Autowired
   DictQuantityTypeService dictQuantityTypeService;
 
   @PostMapping("/add_quantity_type_per_user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addQuantityTypePerUser(
       @RequestBody NewDictQuantityTypeDto newDictUnitDto
   ) {
@@ -39,7 +39,6 @@ public class DictQuantityTypeController implements ControllerCommon {
   }
 
   @PostMapping("/add_quantity_type_basic")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addQuantityTypeBasic(
       @RequestBody NewDictQuantityTypeDto newDictUnitDto
   ) {
@@ -53,7 +52,6 @@ public class DictQuantityTypeController implements ControllerCommon {
   }
 
   @GetMapping("/get_quantity_type_per_user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictQuantityTypeDto>> getQuantityTypePerUser(
   ) {
     var userId = extractUserId();
@@ -66,7 +64,6 @@ public class DictQuantityTypeController implements ControllerCommon {
   }
 
   @DeleteMapping("/delete_quantity_type_per_user/{itemToDelete}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExercisePerUser(
       @PathVariable("itemToDelete") int itemToDelete
   ) {
@@ -80,7 +77,6 @@ public class DictQuantityTypeController implements ControllerCommon {
   }
 
   @DeleteMapping("/delete_quantity_type_basic/{itemToDelete}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExerciseBasic(
       @PathVariable("itemToDelete") int itemToDelete
   ) {

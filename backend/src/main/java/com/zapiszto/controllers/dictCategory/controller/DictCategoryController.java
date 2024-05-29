@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
 public class DictCategoryController implements ControllerCommon {
 
   @Autowired
   DictCategoryService dictCategoryService;
 
   @PostMapping("/add_category_per_user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<DictCategoryDto> addCategoryPerUser(
       @RequestBody NewDictCategoryDto newDictCategoryDto
   ) {
@@ -39,7 +39,6 @@ public class DictCategoryController implements ControllerCommon {
   }
 
   @PostMapping("/add_category_basic")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addCategoryBasic(
       @RequestBody NewDictCategoryDto newDictCategoryDto
   ) {
@@ -50,7 +49,6 @@ public class DictCategoryController implements ControllerCommon {
   }
 
   @GetMapping("/get_category_basic")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictCategoryDto>> getExerciseBasic(
   ) {
     var userId = extractUserId();
@@ -64,7 +62,6 @@ public class DictCategoryController implements ControllerCommon {
   }
 
   @GetMapping("/get_category_per_user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictCategoryDto>> getExercisesPerUser(
   ) {
     var userId = extractUserId();
@@ -77,7 +74,6 @@ public class DictCategoryController implements ControllerCommon {
   }
 
   @DeleteMapping("/delete_category_per_user/{itemToDelete}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteCategoryPerUser(
       @PathVariable("itemToDelete") int itemToDelete
   ) {
@@ -91,7 +87,6 @@ public class DictCategoryController implements ControllerCommon {
   }
 
   @DeleteMapping("/delete_category_basic/{itemToDelete}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteCategoryBasic(
       @PathVariable("itemToDelete") int itemToDelete
   ) {

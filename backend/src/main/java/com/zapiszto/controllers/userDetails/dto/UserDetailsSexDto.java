@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.userSex.dto;
+package com.zapiszto.controllers.userDetails.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GenderDto {
+public class UserDetailsSexDto {
   String gender;
 }

@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.userBirthDate.dto;
+package com.zapiszto.controllers.userDetails.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserBirthdateDto {
-  String birthDate;
+public class UserDetailsAgeDto {
+  int age;
+
 }

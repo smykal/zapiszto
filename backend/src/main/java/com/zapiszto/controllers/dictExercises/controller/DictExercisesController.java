@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
 public class DictExercisesController implements ControllerCommon {
 
   @Autowired
   DictExerciseService dictExerciseService;
 
   @PostMapping("/add_exercise_per_user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<DictExercisesDto> addExercisePerUser(
       @RequestBody NewDictExerciseDto newDictExerciseDto
   ) {
@@ -39,7 +39,6 @@ public class DictExercisesController implements ControllerCommon {
   }
 
   @PostMapping("/add_exercise_basic")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addExerciseBasic(
       @RequestBody NewDictExerciseDto newDictExerciseDto
   ) {
@@ -50,7 +49,6 @@ public class DictExercisesController implements ControllerCommon {
   }
 
   @GetMapping("/get_exercise_basic")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictExercisesDto>> getExerciseBasic(
   ) {
     var userId = extractUserId();
@@ -63,7 +61,6 @@ public class DictExercisesController implements ControllerCommon {
 
   }
   @GetMapping("/get_exercises_per_user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictExercisesDto>> getExercisesPerUser(
   ) {
     var userId = extractUserId();
@@ -76,7 +73,6 @@ public class DictExercisesController implements ControllerCommon {
   }
 
   @DeleteMapping("/delete_exercise_per_user/{itemToDelete}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExercisePerUser(
       @PathVariable("itemToDelete") int itemToDelete
   ) {
@@ -90,7 +86,6 @@ public class DictExercisesController implements ControllerCommon {
   }
 
   @DeleteMapping("/delete_exercise_basic/{itemToDelete}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExerciseBasic(
       @PathVariable("itemToDelete") int itemToDelete
   ) {

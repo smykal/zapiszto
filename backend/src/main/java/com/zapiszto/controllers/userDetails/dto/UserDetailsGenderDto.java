@@ -14,8 +14,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserDetailsDto {
-  String languageCode;
-  String languageLabel;
-
+public class UserDetailsGenderDto {
+  String gender;
 }

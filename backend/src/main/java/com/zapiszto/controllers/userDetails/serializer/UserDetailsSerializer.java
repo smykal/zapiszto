@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.userDetails.serializer;
 
 import com.zapiszto.controllers.userDetails.dto.UserDetailsDto;
+import com.zapiszto.controllers.userDetails.dto.UserDetailsSexDto;
 import com.zapiszto.controllers.userDetails.entity.UserDetailsEntity;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,5 +16,9 @@ public class UserDetailsSerializer {
         .languageCode(userDetailsEntity.getDictLanguagesEntity().getCode())
         .languageLabel(userDetailsEntity.getDictLanguagesEntity().getLabel())
         .build();
+  }
+
+  public UserDetailsSexDto convert(String gender) {
+    return UserDetailsSexDto.builder().gender(gender).build();
   }
 }

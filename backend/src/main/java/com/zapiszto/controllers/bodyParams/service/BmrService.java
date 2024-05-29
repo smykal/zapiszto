@@ -3,7 +3,7 @@ package com.zapiszto.controllers.bodyParams.service;
 import com.zapiszto.controllers.bodyParams.dto.BmrCategory;
 import com.zapiszto.controllers.bodyParams.dto.BmrDto;
 import com.zapiszto.controllers.bodyParams.repository.BmrRepository;
-import com.zapiszto.controllers.userSex.repository.UserSexRepository;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class BmrService {
   BmrRepository bmrRepository;
 
   @Autowired
-  UserSexRepository userSexRepository;
+  UserDetailsRepository userDetailsRepository;
 
   public List<BmrDto> getBmrByUserId(Long userId) {
     String bmrData = bmrRepository.getBmrData(userId);
@@ -62,7 +62,7 @@ public class BmrService {
   }
 
   private double getConstForUser(Long userId) {
-    String genderByUserId = userSexRepository.findGenderByUserId(userId);
+    String genderByUserId = userDetailsRepository.findGenderByUserId(userId);
     return genderByUserId.equalsIgnoreCase("Female") ? -161 : 5;
   }
 }

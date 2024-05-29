@@ -1,5 +1,6 @@
-package com.zapiszto.controllers.userSex.dto;
+package com.zapiszto.controllers.clients.dto;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +15,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserSexDto {
-  String gender;
+public class ClientDto {
+  UUID id;
+  String clientName;
+  long userId;
 }

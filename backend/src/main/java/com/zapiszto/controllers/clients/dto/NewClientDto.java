@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.userBirthDate.dto;
+package com.zapiszto.controllers.clients.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserAgeDto {
-  int age;
+public class NewClientDto {
+  String id;
+  String clientName;
+  Long userId;
 }

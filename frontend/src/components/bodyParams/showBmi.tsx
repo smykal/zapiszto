@@ -42,7 +42,7 @@ class ShowBmi extends Component<Props, State> {
         const { t } = this.props;
 
         return (
-            <div className="container">
+            <div>
                 {bmi &&
                     <div>
                         <p>

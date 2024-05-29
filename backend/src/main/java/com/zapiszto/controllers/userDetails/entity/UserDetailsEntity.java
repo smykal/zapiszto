@@ -1,13 +1,14 @@
 package com.zapiszto.controllers.userDetails.entity;
 
-import com.zapiszto.controllers.dictSex.entity.DictSexEntity;
 import com.zapiszto.controllers.userDetails.dictLanguages.entity.DictLanguagesEntity;
+import com.zapiszto.controllers.userDetails.dictSex.entity.DictSexEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,5 +32,11 @@ public class UserDetailsEntity {
   @JoinColumn(name = "dict_language_id", referencedColumnName = "id")
   private DictLanguagesEntity dictLanguagesEntity;
 
+  @Column(name = "birthdate")
+  private ZonedDateTime birthdate;
+
+  @ManyToOne
+  @JoinColumn(name = "dict_sex_id", referencedColumnName = "id")
+  private DictSexEntity dictSex;
 
 }

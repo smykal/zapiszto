@@ -40,7 +40,7 @@ export default class ShowTrainings extends Component<Props, State> {
                 }
             }
         );
-        
+
         // Odczytujemy indeks rozwiniętego elementu z localStorage i ustawiamy go w stanie komponentu
         const expandedItemIndex = localStorage.getItem('expandedItemIndex');
         if (expandedItemIndex !== null) {
@@ -63,34 +63,34 @@ export default class ShowTrainings extends Component<Props, State> {
 
     render() {
         return (
-            <div className="container">
-                    <ul>
-                        {this.state.trainings.map((item: Training, index: number) => (
-                            <li key={index} id="bodyParams">
-                                <Collapsible
-                                    trigger={
-                                        <div
-                                            style={{
-                                                cursor: 'pointer',
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                marginBottom: '10px',
-                                            }}
-                                            onClick={() => this.handleItemClick(index)}
-                                        >
-                                            <span style={{ marginRight: '10px', width: '350px', textAlign: 'right' }}>
-                                                {item.date}: {item.notes},workbook_id :{item.workbooks_id}, training_id: {item.id} 
-                                            </span>
-                                        </div>
-                                    }
-                                    open={this.isItemExpanded(index)}
-                                >
-                                    {/* Treść, którą chcesz wyświetlić po rozwinięciu */}
-                                    <Exercises workbook_id={item.workbooks_id} training_id={item.id} />
-                                </Collapsible>
-                            </li>
-                        ))}
-                    </ul>
+            <div>
+                <ul>
+                    {this.state.trainings.map((item: Training, index: number) => (
+                        <li key={index} id="bodyParams">
+                            <Collapsible
+                                trigger={
+                                    <div
+                                        style={{
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            marginBottom: '10px',
+                                        }}
+                                        onClick={() => this.handleItemClick(index)}
+                                    >
+                                        <span style={{ marginRight: '10px', width: '350px', textAlign: 'right' }}>
+                                            {item.date}: {item.notes},workbook_id :{item.workbooks_id}, training_id: {item.id}
+                                        </span>
+                                    </div>
+                                }
+                                open={this.isItemExpanded(index)}
+                            >
+                                {/* Treść, którą chcesz wyświetlić po rozwinięciu */}
+                                <Exercises workbook_id={item.workbooks_id} training_id={item.id} />
+                            </Collapsible>
+                        </li>
+                    ))}
+                </ul>
             </div>
         );
     }

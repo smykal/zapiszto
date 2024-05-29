@@ -1,8 +1,12 @@
 package com.zapiszto.controllers.userDetails.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
+import com.zapiszto.controllers.userDetails.dto.UserDetailsAgeDto;
+import com.zapiszto.controllers.userDetails.dto.UserDetailsBirthdateDto;
 import com.zapiszto.controllers.userDetails.dto.UserDetailsDto;
+import com.zapiszto.controllers.userDetails.dto.UserDetailsGenderDto;
 import com.zapiszto.controllers.userDetails.dto.UserDetailsLanguageDto;
+import com.zapiszto.controllers.userDetails.dto.UserDetailsSexDto;
 import com.zapiszto.controllers.userDetails.service.UserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +31,7 @@ public class UserDetailsController implements ControllerCommon {
   UserDetailsService userDetailsService;
 
   @GetMapping("/get_language")
-  public ResponseEntity<UserDetailsDto> getUserSex() {
+  public ResponseEntity<UserDetailsDto> getUserLanguage() {
     var userId = extractUserId();
     try {
       var response = userDetailsService.getUserDetails(userId);
@@ -43,6 +47,50 @@ public class UserDetailsController implements ControllerCommon {
   ) {
     var userId = extractUserId();
     userDetailsService.saveOrUpdate(userId, userDetailsLanguageDto);
+    return new ResponseEntity<>(null, HttpStatus.OK);
+  }
+
+  @GetMapping("/get_sex")
+  public ResponseEntity<UserDetailsSexDto> getUserSex() {
+    var userId = extractUserId();
+    try {
+      var response = userDetailsService.getUserSex(userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @PostMapping("/post_sex")
+  public ResponseEntity<String> saveUserSex(
+      @RequestBody UserDetailsGenderDto gender
+  ) {
+    var userId = extractUserId();
+    userDetailsService.saveUserSex(userId, gender);
+    return new ResponseEntity<>(null, HttpStatus.OK);
+  }
+
+  @GetMapping("/get_age")
+  public ResponseEntity<UserDetailsAgeDto> getUserAge() {
+    var userId = extractUserId();
+    try {
+      var response = userDetailsService.getUserAge(userId);
+      return new ResponseEntity<>(
+          response,
+          HttpStatus.OK
+      );
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+  }
+
+  @PostMapping("/post_birthdate")
+  public ResponseEntity<String> saveUserBirthdate(
+      @RequestBody UserDetailsBirthdateDto birthdate
+  ) {
+    var userId = extractUserId();
+    userDetailsService.saveUserBirthDate(userId, birthdate);
     return new ResponseEntity<>(null, HttpStatus.OK);
   }
 }

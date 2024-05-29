@@ -23,7 +23,7 @@ const PostBirthDate = () => {
   const { t } = useTranslation("global");
 
   return (
-    <div className="container">
+    <div>
       <form onSubmit={handleSubmit}>
         <label>
           {t("buttons.select_birthdate")}:

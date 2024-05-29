@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictSex.entity;
+package com.zapiszto.controllers.userDetails.dictSex.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -68,9 +68,8 @@ class Profile extends Component<Props, State> {
     }
 
     return (
-      <div className="container">
-        <div className="alinka">
-          <header className="jumbotron">
+      <div className="alinka">
+          <header>
             <h3>
               <strong>{currentUser.username}</strong> Profile
             </h3>
@@ -93,7 +92,6 @@ class Profile extends Component<Props, State> {
             {currentUser.roles &&
               currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
           </ul>
-        </div>
         <GetInvitations />
       </div>
     );

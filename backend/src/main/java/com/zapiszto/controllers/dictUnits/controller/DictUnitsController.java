@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
 public class DictUnitsController implements ControllerCommon {
 
   @Autowired
   DictUnitsService dictUnitsService;
 
   @PostMapping("/add_units_per_user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addUnitsPerUser(
       @RequestBody NewDictUnitDto newDictUnitDto
   ) {
@@ -39,7 +39,6 @@ public class DictUnitsController implements ControllerCommon {
   }
 
   @PostMapping("/add_units_basic")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addUnitsBasic(
       @RequestBody NewDictUnitDto newDictUnitDto
   ) {
@@ -57,7 +56,6 @@ public class DictUnitsController implements ControllerCommon {
   }
 
   @GetMapping("/get_units_per_user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictUnitsDto>> getUnitsPerUser(
   ) {
     var userId = extractUserId();
@@ -70,7 +68,6 @@ public class DictUnitsController implements ControllerCommon {
   }
 
   @DeleteMapping("/delete_unit_per_user/{itemToDelete}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExercisePerUser(
       @PathVariable("itemToDelete") int itemToDelete
   ) {
@@ -84,7 +81,6 @@ public class DictUnitsController implements ControllerCommon {
   }
 
   @DeleteMapping("/delete_unit_basic/{itemToDelete}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExerciseBasic(
       @PathVariable("itemToDelete") int itemToDelete
   ) {

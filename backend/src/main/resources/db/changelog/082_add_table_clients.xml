@@ -1,0 +1,27 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="create_clients_table" author="smykalm">
+        <createTable tableName="clients">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="trainer_id" type="int8" remarks="ID of the trainer"/>
+            <column name="client_name" type="varchar" remarks="nickname for client" />
+            <column name="user_id" type="int8" remarks="ID of the user"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="clients"
+                                 baseColumnNames="trainer_id"
+                                 constraintName="trainer_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="clients"
+                                 baseColumnNames="user_id"
+                                 constraintName="user_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

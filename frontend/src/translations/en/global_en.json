@@ -5,6 +5,7 @@
         "body_params": "body params",
         "training": "training",
         "dictionaries": "dictionaries",
+        "clients": "clients",
         "log_in": "log in",
         "log_out": "log out",
         "sign_in": "sing in",
@@ -21,7 +22,7 @@
         "dict_category": "dict category",
         "dict_exercise": "dict exercises",
         "dict_quantity_type": "dict quantity type",
-        "dict units": "dict units"
+        "dict_units": "dict units"
     },
     "body_params": {
         "gender": "gender",

@@ -78,7 +78,7 @@ class PutBodyParam extends Component<Props, State> {
     };
 
     return (
-      <div className="container">
+      <div>
         <Formik
           initialValues={initialValues}
           validationSchema={this.validationSchema}

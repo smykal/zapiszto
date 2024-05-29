@@ -155,3 +155,11 @@ databaseChangeLog:
       file: db/changelog/077_add_data_to_dict_languages.xml
   - include:
       file: db/changelog/078_add_table_user_details.xml
+  - include:
+      file: db/changelog/079_modify_table_user_details.xml
+  - include:
+      file: db/changelog/080_drop_table_user_sex.xml
+  - include:
+      file: db/changelog/081_drop_table_user_birthdate.xml
+  - include:
+      file: db/changelog/082_add_table_clients.xml
