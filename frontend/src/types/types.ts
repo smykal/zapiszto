@@ -172,3 +172,15 @@ export type UserDetails = {
 export type UserDetailsLanguage = {
                                     languageCode: string
 }
+
+export type Client = {
+                      id: string,
+                      clientName: string,
+                      userId: number
+}
+
+export type NewClient = {
+                          id: string,
+                          clientName: string,
+                          userId: number
+}

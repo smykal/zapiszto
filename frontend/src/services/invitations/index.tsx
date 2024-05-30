@@ -19,6 +19,10 @@ class InvitationsService {
     return axios.get(API_URL + '/get_invitations', { headers: authHeader() });
   }
 
+  getAcceptedInvitations() {
+    return axios.get(API_URL + '/get_accepted_invitations', { headers: authHeader() });
+  }
+
   postApproveInvitation(requestBody: Invitation) {
     return axios.post(API_URL + '/approve_invitation', requestBody, { headers: authHeader() })
       .then(response => {

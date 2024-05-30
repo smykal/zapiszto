@@ -62,6 +62,7 @@
     },
     "buttons": {
         "add": "dodaj",
+        "add_client": "Dodaj klienta",
         "delete": "usuń",
         "edit": "edytuj",
         "archive": "archiwum",
@@ -105,5 +106,14 @@
         "title_sent": "wysłane",
         "title_approved": "zaproszenia zaakceptowane",
         "title_rejected": "zaproszenia odrzucone"
+    },
+    "clients": {
+        "select_client_message": "Dodaj nowego klienta lub wybierz",
+        "client_name": "nazwa klienta",
+        "client_details": "Szczegóły klienta",
+        "client_assigned_user": "przypisany użytkownik",
+        "client_assign_user": "przypisz użytkownika",
+        "select_user_to_assign": "wybierz użytkownika do przypisania",
+        "user_is_not_assigned": "użytkownik nie przypisany"
     }
 }

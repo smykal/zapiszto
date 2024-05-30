@@ -62,6 +62,7 @@
     },
     "buttons": {
         "add": "add",
+        "add_client": "add client",
         "delete": "delete",
         "edit": "edit",
         "archive": "archive",
@@ -105,5 +106,14 @@
         "title_sent": "sent",
         "title_approved": "accepted",
         "title_rejected": "rejected"
+    },
+    "clients": {
+        "select_client_message": "Add new client or select",
+        "client_name": "client name",
+        "client_details": "Client details",
+        "client_assigned_user": "assigned user",
+        "client_assign_user": "assign user",
+        "select_user_to_assign": "select user to assign",
+        "user_is_not_assigned": "user is not assigned"
     }
 }
