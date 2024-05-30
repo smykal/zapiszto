@@ -38,8 +38,6 @@ public class InvitationsService {
   private final String SENT = "SENT";
   private final String APPROVED = "APPROVED";
   private final String REJECTED = "REJECTED";
-  private final String RESENT = "RESENT";
-  private final String TERMINATED = "TERMINATED";
 
   @Transactional
   public String addInvitation(Long inviterId, String inviterRole, String inviteeEmail) {
@@ -112,6 +110,16 @@ public class InvitationsService {
         .map(invitationDto -> InvitationsSerializer.setRecivedAndSent(invitationDto, userId))
         .collect(Collectors.toList());
   }
+
+  public List<InvitationDto> getAcceptedInvitations(Long userId) {
+    List<InvitationsStatusEntity> invitationsEntity = invitationsStatusRepository.getAcceptedInvitations(userId);
+
+    return invitationsEntity.stream()
+        .map(InvitationsSerializer::convert)
+        .map(invitationDto -> InvitationsSerializer.setRecivedAndSent(invitationDto, userId))
+        .collect(Collectors.toList());
+  }
+
   @Transactional
   public String approveInvitation(InvitationDto invitationDto, Long userId) {
     var checkIfInvitationIsAddressToUser = checkIfInvitationIsAddressToUser(invitationDto.getInviteeId(), userId);

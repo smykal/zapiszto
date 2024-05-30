@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
 public class InvitationsController implements ControllerCommon {
 
   @Autowired
   InvitationsService invitationsService;
 
   @PostMapping("/add_invitation")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
   public ResponseEntity<String> addInvitation(
       @RequestBody NewInvitation newInvitation
-      ) {
+  ) {
     var userId = extractUserId();
     var userRole = extractUserRole();
     String response = invitationsService.addInvitation(userId, userRole, newInvitation.getEmail());
@@ -38,20 +38,18 @@ public class InvitationsController implements ControllerCommon {
   }
 
   @PostMapping("/approve_invitation")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
   public ResponseEntity<String> approveInvitation(
       @RequestBody InvitationDto invitationDto
-  ){
+  ) {
     var userId = extractUserId();
     String response = invitationsService.approveInvitation(invitationDto, userId);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 
   @PostMapping("/reject_invitation")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
   public ResponseEntity<String> rejectInvitation(
       @RequestBody InvitationDto invitationDto
-  ){
+  ) {
     var userId = extractUserId();
     String response = invitationsService.rejectInvitation(invitationDto, userId);
     return new ResponseEntity<>(response, HttpStatus.OK);
@@ -59,7 +57,6 @@ public class InvitationsController implements ControllerCommon {
 
 
   @GetMapping("/get_invitations")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
   public ResponseEntity<List<InvitationDto>> getInvitations(
   ) {
     var userId = extractUserId();
@@ -71,6 +68,17 @@ public class InvitationsController implements ControllerCommon {
     }
   }
 
+  @GetMapping("/get_accepted_invitations")
+  public ResponseEntity<List<InvitationDto>> getAcceptedInvitations(
+  ) {
+    var userId = extractUserId();
+    try {
+      List<InvitationDto> result = invitationsService.getAcceptedInvitations(userId);
+      return new ResponseEntity<>(result, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
 
 
 }

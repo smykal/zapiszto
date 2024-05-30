@@ -15,7 +15,7 @@ public class ClientsSerializer {
     return ClientDto.builder()
         .id(clientEntity.getId())
         .clientName(clientEntity.getClientName())
-        .userId(clientEntity.getUserId())
+        .userId(clientEntity.getUserId() != null ? clientEntity.getUserId() : 0) // Handling null userId
         .build();
   }
 }
