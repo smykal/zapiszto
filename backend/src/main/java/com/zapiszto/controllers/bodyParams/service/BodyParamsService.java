@@ -41,8 +41,19 @@ public class BodyParamsService {
     var allBodyParams = bodyParamsRepository.getAllById(userId);
     return bodyParamsSerializer.convert(allBodyParams);
   }
+  public List<BodyParamsWithNameAndDateDto> getAllBodyParameters(Long userId, Long trainerId) {
+    //TODO Check If user belongs to trainer before allow to get details
+    var allBodyParams = bodyParamsRepository.getAllById(userId);
+    return bodyParamsSerializer.convert(allBodyParams);
+  }
 
   public List<BodyParamsWithNameDto> getActualBodyParametersWithName(Long userId) {
+    var actualBodyParamsById = bodyParamsRepository.getActualBodyParamsById(userId);
+    return bodyParamsSerializer.convertEntityListToDtoWithParamName(actualBodyParamsById);
+  }
+
+  public List<BodyParamsWithNameDto> getActualBodyParametersWithName(Long userId, Long trainerId) {
+    //TODO Check If user belongs to trainer before allow to get details
     var actualBodyParamsById = bodyParamsRepository.getActualBodyParamsById(userId);
     return bodyParamsSerializer.convertEntityListToDtoWithParamName(actualBodyParamsById);
   }

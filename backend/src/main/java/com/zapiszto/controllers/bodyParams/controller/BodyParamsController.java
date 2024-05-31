@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +31,26 @@ public class BodyParamsController implements ControllerCommon {
 
   @GetMapping("/all_body_params")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public ResponseEntity<List<BodyParamsWithNameAndDateDto>> getTestTable() {
+  public ResponseEntity<List<BodyParamsWithNameAndDateDto>> getAllBodyParams() {
     var userId = extractUserId();
     log.info("get all body parameters for user: {} ", userId);
     try {
       var response = bodyParamsService.getAllBodyParameters(userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @GetMapping("/all_body_params/{userId}")
+  @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<List<BodyParamsWithNameAndDateDto>> getAllBodyParamsById(
+      @PathVariable("userId") Long userId
+  ) {
+    var trainerId = extractUserId();
+    log.info("get all body params for user: {}  by trainer with id: {}", userId, trainerId);
+    try {
+      var response = bodyParamsService.getAllBodyParameters(userId, trainerId);
       return new ResponseEntity<>(response, HttpStatus.OK);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
@@ -48,6 +64,21 @@ public class BodyParamsController implements ControllerCommon {
     log.info("get actual body params for user: {} ", userId);
     try {
       var response = bodyParamsService.getActualBodyParametersWithName(userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @GetMapping("/actual_body_params/{userId}")
+  @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<List<BodyParamsWithNameDto>> getActualBodyParamsById(
+      @PathVariable("userId") Long userId
+  ) {
+    var trainerId = extractUserId();
+    log.info("get actual body params for user: {}  by trainer with id: {}", userId, trainerId);
+    try {
+      var response = bodyParamsService.getActualBodyParametersWithName(userId, trainerId);
       return new ResponseEntity<>(response, HttpStatus.OK);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
