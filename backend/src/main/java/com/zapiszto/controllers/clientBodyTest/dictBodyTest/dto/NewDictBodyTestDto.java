@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictCategory.dto;
+package com.zapiszto.controllers.clientBodyTest.dictBodyTest.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,11 +14,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DictCategoryDto {
-  long id;
-  String dict;
-  long dict_id;
+public class NewDictBodyTestDto {
   String name;
   String description;
   String purpose;
+
 }

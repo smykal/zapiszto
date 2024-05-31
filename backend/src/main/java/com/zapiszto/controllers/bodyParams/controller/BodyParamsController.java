@@ -52,7 +52,7 @@ public class BodyParamsController implements ControllerCommon {
     try {
       var response = bodyParamsService.getAllBodyParameters(userId, trainerId);
       return new ResponseEntity<>(response, HttpStatus.OK);
-    } catch (NullPointerException e) {
+    } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
   }
@@ -80,7 +80,7 @@ public class BodyParamsController implements ControllerCommon {
     try {
       var response = bodyParamsService.getActualBodyParametersWithName(userId, trainerId);
       return new ResponseEntity<>(response, HttpStatus.OK);
-    } catch (NullPointerException e) {
+    } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
   }

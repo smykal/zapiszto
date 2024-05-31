@@ -163,3 +163,15 @@ databaseChangeLog:
       file: db/changelog/081_drop_table_user_birthdate.xml
   - include:
       file: db/changelog/082_add_table_clients.xml
+  - include:
+      file: db/changelog/083_add_table_client_body_tests.xml
+  - include:
+      file: db/changelog/084_add_foreign_key_to_dict_body_test_per_user.xml
+  - include:
+      file: db/changelog/085_add_column_to_dict_body_test.xml
+  - include:
+      file: db/changelog/086_modify_table_dict_body_test.xml
+  - include:
+      file: db/changelog/087_add_sequence_to_dict_body_test.xml
+  - include:
+      file: db/changelog/088_modify_not_null_dict_body_test.xml

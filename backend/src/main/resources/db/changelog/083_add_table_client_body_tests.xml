@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add table dict_body_test_basic" author="smykalm">
+        <createTable tableName="dict_body_test_basic">
+            <column name="id" type="int8">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add table dict_body_test_per_user" author="smykalm">
+        <createTable tableName="dict_body_test_per_user">
+            <column name="id" type="int8">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add table dict_body_test" author="smykalm">
+        <createTable tableName="dict_body_test">
+            <column name="id" type="int8">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dict_body_test_basic_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_body_test_per_user" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseColumnNames="dict_body_test_basic_id"
+                baseTableName="dict_body_test"
+                constraintName="fk_dict_body_test_basic"
+                referencedColumnNames="id"
+                referencedTableName="dict_body_test_basic"/>
+        <addForeignKeyConstraint
+                baseColumnNames="dict_body_test_per_user"
+                baseTableName="dict_body_test"
+                constraintName="fk_dict_body_test_per_user"
+                referencedColumnNames="id"
+                referencedTableName="dict_body_test_per_user"/>
+    </changeSet>
+
+    <changeSet id="add table client_body_tests" author="smykalm">
+        <createTable tableName="client_body_tests">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="client_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_body_test_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="result" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseColumnNames="client_id"
+                baseTableName="client_body_tests"
+                constraintName="fk_client_body_tests_client"
+                referencedColumnNames="id"
+                referencedTableName="clients"/>
+        <addForeignKeyConstraint
+                baseColumnNames="dict_body_test_id"
+                baseTableName="client_body_tests"
+                constraintName="fk_client_body_tests_dict_body_test"
+                referencedColumnNames="id"
+                referencedTableName="dict_body_test"/>
+    </changeSet>
+
+</databaseChangeLog>

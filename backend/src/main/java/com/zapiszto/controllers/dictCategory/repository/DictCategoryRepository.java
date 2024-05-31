@@ -1,7 +1,6 @@
 package com.zapiszto.controllers.dictCategory.repository;
 
 import com.zapiszto.controllers.dictCategory.entity.DictCategoryEntity;
-import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

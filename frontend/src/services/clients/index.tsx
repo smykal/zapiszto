@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../auth-header';
-import { Client, NewClient } from '../../types/types'
+import { Client, NewClient, NewDictBodyTest} from '../../types/types'
 import { API_URL } from '../../constants/api'
 
 class ClientsService {
@@ -29,6 +29,16 @@ class ClientsService {
           throw error;
         });
       }
+
+      postNewDictBodyTest(requestBody: NewDictBodyTest) {
+        return axios.post(API_URL + '/add_body_test_per_user', requestBody, { headers: authHeader() })
+            .then(response => {
+                console.log('Odpowiedź z serwera:', response.data);
+            })
+            .catch(error => {
+                console.error('Błąd podczas wysyłania zapytania:', error);
+            });
+    }
 }
 
 export default new ClientsService();

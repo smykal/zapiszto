@@ -184,3 +184,9 @@ export type NewClient = {
                           clientName: string,
                           userId: number
 }
+
+export type NewDictBodyTest = {
+                                name: string,
+                                description: string,
+                                purpose: string
+}
