@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Client } from '../../../types/types';
+import ClientInformations from './ClientInformations';
+import ClientBody from './ClientBody';
 
 interface ClientDetailsProps {
   client: Client;
@@ -10,10 +12,8 @@ const ClientDetails: React.FC<ClientDetailsProps> = ({ client }) => {
   const { t } = useTranslation('global');
   return (
     <div>
-      <h2>{t('clients.client_details')}</h2>
-      <p>ID: {client.id}</p>
-      <p>{t('clients.client_name')}: {client.clientName}</p>
-      <p>{t('clients.client_assigned_user')}: {client.userId === 0 ? t('clients.user_is_not_assigned') : client.userId}</p>
+      <ClientInformations client={client} />
+      <ClientBody client={client} />
     </div>
   );
 };

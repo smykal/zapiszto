@@ -11,9 +11,16 @@ class ZapiszToService {
   getActualBodyParams() {
     return axios.get(API_URL + '/actual_body_params', { headers: authHeader() });
   }
+  getActualBodyParamsByUserId(userId: number) {
+    return axios.get(API_URL + '/actual_body_params/' + userId, { headers: authHeader() });
+  }
 
   getAllBodyParams() {
     return axios.get(API_URL + '/all_body_params', { headers: authHeader() });
+  }
+
+  getAllBodyParamsByUserId(userId: number) {
+    return axios.get(API_URL + '/all_body_params/' + userId, { headers: authHeader() });
   }
 
   getBmiParams() {
@@ -33,7 +40,7 @@ class ZapiszToService {
   }
 
   getCpf() {
-    return axios.get(API_URL + '/cpf', {headers: authHeader() })
+    return axios.get(API_URL + '/cpf', {headers: authHeader() });
   }
 
   postBodyParam(field_1: string, field_2: string, userId: number) {
