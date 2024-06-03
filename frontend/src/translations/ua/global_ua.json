@@ -3,6 +3,7 @@
         "home": "головна",
         "user": "користувач",
         "body_params": "параметри тіла",
+        "body_tests": "тестування тіла",
         "training": "тренування",
         "dictionaries": "налаштування",
         "clients": "клієнти",
@@ -22,7 +23,10 @@
         "dict_category": "категорія вправ",
         "dict_exercise": "вправи",
         "dict_quantity_type": "типи кількості у словнику",
-        "dict_units": "словникові одиниці"
+        "dict_units": "словникові одиниці",
+        "body_tests_name": "назва тесту",
+        "body_tests_description": "опис тесту",
+        "body_tests_purpose": "мета тесту"
     },
     "body_params": {
         "gender": "стать",

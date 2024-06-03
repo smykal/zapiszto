@@ -3,6 +3,7 @@
         "home": "inicio",
         "user": "usuario",
         "body_params": "parámetros del cuerpo",
+        "body_tests": "pruebas corporales",
         "training": "entrenamiento",
         "dictionaries": "diccionarios",
         "clients": "clientes",
@@ -22,7 +23,10 @@
         "dict_category": "categoría de ejercicios",
         "dict_exercise": "ejercicios de diccionario",
         "dict_quantity_type": "tipo de cantidad de diccionario",
-        "dict units": "unidades de diccionario"
+        "dict units": "unidades de diccionario",
+        "body_tests_name": "nombre del test",
+        "body_tests_description": "descripción del test",
+        "body_tests_purpose": "propósito del test"
     },
     "body_params": {
         "gender": "género",

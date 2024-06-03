@@ -4,13 +4,22 @@ import ShowDictExercises from './dictExercises/ShowDictExercises'
 import ShowDictQuantityTypes from './dictQuantityType/ShowDictQuantityType'
 import ShowDictUnits from "./dictUnits/ShowDictUnits";
 import ShowDictCategory from "./dictCategory/ShowDictCategory";
+import ShowDictBodyTest from "./dictBodyTests/ShowDictBodyTest";
 import { useTranslation } from "react-i18next";
+import AuthService from "../../services/auth.service";
+import IUser from '../../types/user.type';
 
 const Training = () => {
     const [activeDictTabIndex, setActiveDictTabIndex] = useState(0);
+    const [currentUser, setCurrentUser] = useState<IUser | null>(null);
     const { t } = useTranslation("global");
 
     useEffect(() => {
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            setCurrentUser(user);
+        }
+        
         const lastActiveDictTabIndex = localStorage.getItem('lastActiveDictTabIndex');
         if (lastActiveDictTabIndex !== null) {
             setActiveDictTabIndex(parseInt(lastActiveDictTabIndex, 10));
@@ -22,6 +31,10 @@ const Training = () => {
         localStorage.setItem('lastActiveDictTabIndex', index.toString());
     };
 
+    const hasRole = (role: string): boolean => {
+        return currentUser?.roles?.includes(role) ?? false;
+    };
+
     return (
         <div>
             <Tabs selectedIndex={activeDictTabIndex} onSelect={handleTabSelect}>
@@ -30,11 +43,17 @@ const Training = () => {
                     <Tab>{t("dictionaries.dict_exercise")}</Tab>
                     <Tab>{t("dictionaries.dict_quantity_type")}</Tab>
                     <Tab>{t("dictionaries.dict_units")}</Tab>
+                    {(hasRole("ROLE_TRAINER") || hasRole("ROLE_ADMIN")) && (
+                        <Tab>{t("dictionaries.dict_body_tests")}</Tab>
+                    )}
                 </TabList>
                 <TabPanel><ShowDictCategory /></TabPanel>
                 <TabPanel><ShowDictExercises /></TabPanel>
                 <TabPanel><ShowDictQuantityTypes /></TabPanel>
                 <TabPanel><ShowDictUnits /></TabPanel>
+                {(hasRole("ROLE_TRAINER") || hasRole("ROLE_ADMIN")) && (
+                    <TabPanel><ShowDictBodyTest /></TabPanel>
+                )}
             </Tabs>
         </div>
     );

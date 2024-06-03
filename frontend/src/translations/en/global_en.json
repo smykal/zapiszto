@@ -3,6 +3,7 @@
         "home": "home",
         "user": "user",
         "body_params": "body params",
+        "body_tests": "body tests",
         "training": "training",
         "dictionaries": "dictionaries",
         "clients": "clients",
@@ -22,7 +23,10 @@
         "dict_category": "dict category",
         "dict_exercise": "dict exercises",
         "dict_quantity_type": "dict quantity type",
-        "dict_units": "dict units"
+        "dict_units": "dict units",
+        "body_tests_name": "test name",
+        "body_tests_description": "description for test",
+        "body_tests_purpose": "purpose for test"
     },
     "body_params": {
         "gender": "gender",

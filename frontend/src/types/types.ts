@@ -190,3 +190,12 @@ export type NewDictBodyTest = {
                                 description: string,
                                 purpose: string
 }
+
+export type DictBodyTest = {
+                            id: number,
+                            dict: string,
+                            dict_id: number,
+                            name: string,
+                            description: string,
+                            purpose: string
+}
