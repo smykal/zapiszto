@@ -24,6 +24,7 @@
         "dict_exercise": "esercizi di dizionario",
         "dict_quantity_type": "tipo di quantità di dizionario",
         "dict_units": "unità di dizionario",
+        "dict_body_test": "test del corpo",
         "body_tests_name": "nome del test",
         "body_tests_description": "descrizione del test",
         "body_tests_purpose": "scopo del test"
@@ -100,7 +101,8 @@
         "volume": "volume",
         "unit": "unità",
         "notes": "note",
-        "categoria": "categoria"
+        "categoria": "categoria",
+        "purpose": "scopo"
     },
     "invitations": {
         "title": "inviti",

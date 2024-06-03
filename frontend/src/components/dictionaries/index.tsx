@@ -44,7 +44,7 @@ const Training = () => {
                     <Tab>{t("dictionaries.dict_quantity_type")}</Tab>
                     <Tab>{t("dictionaries.dict_units")}</Tab>
                     {(hasRole("ROLE_TRAINER") || hasRole("ROLE_ADMIN")) && (
-                        <Tab>{t("dictionaries.dict_body_tests")}</Tab>
+                        <Tab>{t("dictionaries.dict_body_test")}</Tab>
                     )}
                 </TabList>
                 <TabPanel><ShowDictCategory /></TabPanel>

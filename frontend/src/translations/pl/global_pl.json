@@ -24,6 +24,7 @@
         "dict_exercise": "ćwiczenia słownikowe",
         "dict_quantity_type": "typy ilości w słowniku",
         "dict_units": "jednostki słownikowe",
+        "dict_body_test": "testy ciała",
         "body_tests_name": "nazwa testu",
         "body_tests_description": "opis testu",
         "body_tests_purpose": "cel testu"
@@ -100,7 +101,8 @@
         "volume": "objętość",
         "unit": "jednostka",
         "notes": "notatki",
-        "kategoria": "kategoria"
+        "kategoria": "kategoria",
+        "purpose": "cel"
     },
     "invitations": {
         "title": "zaproszenia",

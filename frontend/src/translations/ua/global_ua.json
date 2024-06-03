@@ -24,6 +24,7 @@
         "dict_exercise": "вправи",
         "dict_quantity_type": "типи кількості у словнику",
         "dict_units": "словникові одиниці",
+        "dict_body_test": "тести тіла",
         "body_tests_name": "назва тесту",
         "body_tests_description": "опис тесту",
         "body_tests_purpose": "мета тесту"
@@ -100,7 +101,8 @@
         "volume": "об'єм",
         "unit": "одиниця",
         "notes": "примітки",
-        "категорія": "категорія"
+        "категорія": "категорія",
+        "purpose": "мета"
     },
     "invitations": {
         "title": "запрошення",
