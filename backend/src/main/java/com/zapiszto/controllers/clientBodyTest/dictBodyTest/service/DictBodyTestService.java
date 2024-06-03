@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -100,5 +101,31 @@ public class DictBodyTestService {
     return all.stream()
         .map(DictBodyTestSerializer::convert)
         .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public String deleteDictBodyTestPerUser(Long userId, int itemToDelete) {
+    try {
+      dictBodyTestRepository.deleteDictBodyTestPerUser(itemToDelete);
+      dictBodyTestRepository.deleteDictBodyTestPerUser(itemToDelete, userId);
+      log.info("deleted dict_body_test_per_user with id: {}, user: {}", itemToDelete, userId);
+      return "ok";
+    } catch (DataIntegrityViolationException e) {
+      log.error("Error deleting exercise: {}", e.getMessage());
+      throw new RuntimeException("Cannot delete body test due to data integrity violation");
+    }
+  }
+
+  @Transactional
+  public String deleteDictBodyTestBasic(Long userId, int itemToDelete) {
+    try {
+      dictBodyTestRepository.deleteDictBodyTest(itemToDelete);
+      dictBodyTestRepository.deleteDictBodyTestBasic(itemToDelete);
+      log.info("deleted dict_body_test_per_user with id: {}, user: {}", itemToDelete, userId);
+      return "ok";
+    } catch (DataIntegrityViolationException e) {
+      log.error("Error deleting exercise: {}", e.getMessage());
+      throw new RuntimeException("Cannot delete exercise due to data integrity violation");
+    }
   }
 }

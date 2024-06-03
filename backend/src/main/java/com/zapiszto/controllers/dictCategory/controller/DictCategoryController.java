@@ -58,7 +58,6 @@ public class DictCategoryController implements ControllerCommon {
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
-
   }
 
   @GetMapping("/get_category_per_user")

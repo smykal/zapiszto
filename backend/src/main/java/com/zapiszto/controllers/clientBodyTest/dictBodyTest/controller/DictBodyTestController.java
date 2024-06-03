@@ -7,12 +7,16 @@ import com.zapiszto.controllers.clientBodyTest.dictBodyTest.service.DictBodyTest
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictCategory.dto.DictCategoryDto;
 import com.zapiszto.controllers.dictCategory.dto.NewDictCategoryDto;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,5 +49,60 @@ public class DictBodyTestController implements ControllerCommon {
     var role = extractUserRole();
     dictBodyTestService.addDictBodyTest(newDictBodyTestDto);
     return new ResponseEntity<>(HttpStatus.CREATED);
+  }
+
+  @GetMapping("/get_body_test_basic")
+  public ResponseEntity<List<DictBodyTestDto>> getExerciseBasic(
+  ) {
+    var userId = extractUserId();
+    try {
+      var result = dictBodyTestService.getDictBodyTest(userId);
+      return new ResponseEntity<>(result, HttpStatus.CREATED);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @GetMapping("/get_body_test_per_user")
+  public ResponseEntity<List<DictBodyTestDto>> getExercisesPerUser(
+  ) {
+    var userId = extractUserId();
+    try {
+      var result = dictBodyTestService.getDictBodyTest(userId);
+      return new ResponseEntity<>(result, HttpStatus.CREATED);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @DeleteMapping("/delete_body_test_per_user/{itemToDelete}")
+  public ResponseEntity<String> deleteCategoryPerUser(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userId = extractUserId();
+    try {
+      dictBodyTestService.deleteDictBodyTestPerUser(userId, itemToDelete);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @DeleteMapping("/delete_body_test_basic/{itemToDelete}")
+  public ResponseEntity<String> deleteCategoryBasic(
+      @PathVariable("itemToDelete") int itemToDelete
+  ) {
+    var userRole = extractUserRole();
+    var userId = extractUserId();
+    if (userRole.contains("ADMIN")) {
+      try {
+        dictBodyTestService.deleteDictBodyTestBasic(userId, itemToDelete);
+        return new ResponseEntity<>(HttpStatus.OK);
+      } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+      }
+    } else {
+      return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+    }
   }
 }
