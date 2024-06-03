@@ -38,8 +38,11 @@ public class ClientBodyTestsEntity {
   UUID clientId;
 
   @ManyToOne
-  @JoinColumn(name = "dict_body_test_id", referencedColumnName = "id")
-  DictBodyTestEntity dictBodyTest;
+  @JoinColumn(name = "dict_body_test_id", referencedColumnName = "id", insertable = false, updatable = false)
+  DictBodyTestEntity dictBodyTestEntity;
+
+  @Column(name = "dict_body_test_id", nullable = false)
+  int dictBodyTestId;
 
   @Column(name = "result")
   String result;

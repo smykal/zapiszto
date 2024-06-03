@@ -4,8 +4,6 @@ import com.zapiszto.controllers.clients.dto.ClientDto;
 import com.zapiszto.controllers.clients.dto.NewClientDto;
 import com.zapiszto.controllers.clients.service.ClientsService;
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.dictBodyParams.dto.DictBodyParamsDto;
-import com.zapiszto.controllers.dictBodyParams.dto.NewDictBodyParamDto;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

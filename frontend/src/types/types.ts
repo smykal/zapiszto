@@ -199,3 +199,10 @@ export type DictBodyTest = {
                             description: string,
                             purpose: string
 }
+
+export type NewClientBodyTest = {
+                            id: string,
+                            clientId: string,
+                            dictBodyTestId: number,
+                            result: string
+}
