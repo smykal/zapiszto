@@ -5,6 +5,7 @@ import com.zapiszto.controllers.dictionaries.dictBodyParams.entity.DictBodyParam
 import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.trainings.entity.TrainingEntity;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -33,7 +35,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GoalEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   UUID id;
 
@@ -49,21 +50,21 @@ public class GoalEntity {
   DictBodyParamsEntity dictBodyParamsEntity;
 
   @Column(name = "dict_body_param_id", nullable = false)
-  int dictBodyParamsId;
+  Integer dictBodyParamsId;
 
   @ManyToOne
   @JoinColumn(name = "dict_body_test_id", referencedColumnName = "id", insertable = false, updatable = false)
   DictBodyTestEntity dictBodyTestEntity;
 
   @Column(name = "dict_body_test_id")
-  int dictBodyTestId;
+  Integer dictBodyTestId;
 
   @ManyToOne
   @JoinColumn(name = "dict_unit_id", referencedColumnName = "id", insertable = false, updatable = false)
   DictUnitsEntity dictUnitsEntity;
 
   @Column(name = "dict_unit_id")
-  int dictUnitsId;
+  Integer dictUnitsId;
 
   @Column(name = "action")
   String action;
@@ -72,7 +73,7 @@ public class GoalEntity {
   String value;
 
   @Column(name = "goal_date")
-  ZonedDateTime goalDate;
+  LocalDate goalDate;
 
   @Column(name = "insert_date")
   ZonedDateTime insertDate;

@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.goals.dto;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -24,5 +25,5 @@ public class NewGoalDto {
   int dictUnitId;
   String action;
   String value;
-  ZonedDateTime goalDate;
+  LocalDate goalDate;
 }
