@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.dictWorkbookSchema.serializer;
+package com.zapiszto.controllers.dictionaries.dictWorkbookSchema.serializer;
 
-import com.zapiszto.controllers.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
-import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
 import org.springframework.stereotype.Component;
 
 @Component

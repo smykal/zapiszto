@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.clientBodyTest.dictBodyTest.dictBodyTestBasic.entity;
+package com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestBasic.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.clientBodyTest.entity;
 
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.entity.DictBodyTestEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
 import com.zapiszto.controllers.clients.entity.ClientEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

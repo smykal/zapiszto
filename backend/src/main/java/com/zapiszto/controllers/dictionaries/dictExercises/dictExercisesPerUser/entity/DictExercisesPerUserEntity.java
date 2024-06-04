@@ -1,6 +1,6 @@
-package com.zapiszto.controllers.dictExercises.dictExercisesPerUser.entity;
+package com.zapiszto.controllers.dictionaries.dictExercises.dictExercisesPerUser.entity;
 
-import com.zapiszto.controllers.dictCategory.entity.DictCategoryEntity;
+import com.zapiszto.controllers.dictionaries.dictCategory.entity.DictCategoryEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

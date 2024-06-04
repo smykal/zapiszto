@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.dictQuantityType.serializer;
+package com.zapiszto.controllers.dictionaries.dictQuantityType.serializer;
 
-import com.zapiszto.controllers.dictQuantityType.dto.DictQuantityTypeDto;
-import com.zapiszto.controllers.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.DictQuantityTypeDto;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 
 public class DictQuantityTypeSerializer {
   private static final String PER_USER = "PER_USER";

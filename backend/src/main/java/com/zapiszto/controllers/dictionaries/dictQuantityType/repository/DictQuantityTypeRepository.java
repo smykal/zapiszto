@@ -1,7 +1,6 @@
-package com.zapiszto.controllers.dictQuantityType.repository;
+package com.zapiszto.controllers.dictionaries.dictQuantityType.repository;
 
-import com.zapiszto.controllers.dictQuantityType.entity.DictQuantityTypeEntity;
-import java.util.HashMap;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictBodyParams.entity;
+package com.zapiszto.controllers.dictionaries.dictBodyParams.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

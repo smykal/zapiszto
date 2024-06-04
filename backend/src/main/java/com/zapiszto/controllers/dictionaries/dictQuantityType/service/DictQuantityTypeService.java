@@ -1,14 +1,14 @@
-package com.zapiszto.controllers.dictQuantityType.service;
+package com.zapiszto.controllers.dictionaries.dictQuantityType.service;
 
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypeBasic.repository.DictQuantityTypeBasicRepository;
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypePerUser.repository.DictQuantityTypePerUserRepository;
-import com.zapiszto.controllers.dictQuantityType.dto.DictQuantityTypeDto;
-import com.zapiszto.controllers.dictQuantityType.entity.DictQuantityTypeEntity;
-import com.zapiszto.controllers.dictQuantityType.repository.DictQuantityTypeRepository;
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypePerUser.entity.DictQuantityTypePerUserEntity;
-import com.zapiszto.controllers.dictQuantityType.dto.NewDictQuantityTypeDto;
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
-import com.zapiszto.controllers.dictQuantityType.serializer.DictQuantityTypeSerializer;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.repository.DictQuantityTypeBasicRepository;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePerUser.repository.DictQuantityTypePerUserRepository;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.DictQuantityTypeDto;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.repository.DictQuantityTypeRepository;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePerUser.entity.DictQuantityTypePerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.NewDictQuantityTypeDto;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.serializer.DictQuantityTypeSerializer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.dictQuantityType.entity;
+package com.zapiszto.controllers.dictionaries.dictQuantityType.entity;
 
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypePerUser.entity.DictQuantityTypePerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePerUser.entity.DictQuantityTypePerUserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

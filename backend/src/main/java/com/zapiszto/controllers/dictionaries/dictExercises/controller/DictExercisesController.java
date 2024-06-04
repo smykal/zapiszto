@@ -1,9 +1,9 @@
-package com.zapiszto.controllers.dictExercises.controller;
+package com.zapiszto.controllers.dictionaries.dictExercises.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.dictExercises.dto.DictExercisesDto;
-import com.zapiszto.controllers.dictExercises.dto.NewDictExerciseDto;
-import com.zapiszto.controllers.dictExercises.service.DictExerciseService;
+import com.zapiszto.controllers.dictionaries.dictExercises.dto.DictExercisesDto;
+import com.zapiszto.controllers.dictionaries.dictExercises.dto.NewDictExerciseDto;
+import com.zapiszto.controllers.dictionaries.dictExercises.service.DictExerciseService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

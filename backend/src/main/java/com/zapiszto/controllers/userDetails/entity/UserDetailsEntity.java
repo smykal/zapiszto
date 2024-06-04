@@ -1,7 +1,7 @@
 package com.zapiszto.controllers.userDetails.entity;
 
-import com.zapiszto.controllers.userDetails.dictLanguages.entity.DictLanguagesEntity;
-import com.zapiszto.controllers.userDetails.dictSex.entity.DictSexEntity;
+import com.zapiszto.controllers.dictionaries.dictLanguages.entity.DictLanguagesEntity;
+import com.zapiszto.controllers.dictionaries.dictSex.entity.DictSexEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -1,9 +1,9 @@
-package com.zapiszto.controllers.dictUnits.controller;
+package com.zapiszto.controllers.dictionaries.dictUnits.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.dictUnits.dto.DictUnitsDto;
-import com.zapiszto.controllers.dictUnits.dto.NewDictUnitDto;
-import com.zapiszto.controllers.dictUnits.service.DictUnitsService;
+import com.zapiszto.controllers.dictionaries.dictUnits.dto.DictUnitsDto;
+import com.zapiszto.controllers.dictionaries.dictUnits.dto.NewDictUnitDto;
+import com.zapiszto.controllers.dictionaries.dictUnits.service.DictUnitsService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

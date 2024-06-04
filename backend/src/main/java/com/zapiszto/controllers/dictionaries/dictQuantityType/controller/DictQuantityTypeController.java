@@ -1,9 +1,9 @@
-package com.zapiszto.controllers.dictQuantityType.controller;
+package com.zapiszto.controllers.dictionaries.dictQuantityType.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.dictQuantityType.dto.NewDictQuantityTypeDto;
-import com.zapiszto.controllers.dictQuantityType.service.DictQuantityTypeService;
-import com.zapiszto.controllers.dictQuantityType.dto.DictQuantityTypeDto;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.NewDictQuantityTypeDto;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.service.DictQuantityTypeService;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.DictQuantityTypeDto;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

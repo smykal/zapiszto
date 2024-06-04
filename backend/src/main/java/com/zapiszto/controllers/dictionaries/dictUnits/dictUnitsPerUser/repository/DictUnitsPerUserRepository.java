@@ -1,6 +1,6 @@
-package com.zapiszto.controllers.dictUnits.dictUnitsPerUser.repository;
+package com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsPerUser.repository;
 
-import com.zapiszto.controllers.dictUnits.dictUnitsPerUser.entity.DictUnitsPerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsPerUser.entity.DictUnitsPerUserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

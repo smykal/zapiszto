@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictExercises.dto;
+package com.zapiszto.controllers.dictionaries.dictExercises.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

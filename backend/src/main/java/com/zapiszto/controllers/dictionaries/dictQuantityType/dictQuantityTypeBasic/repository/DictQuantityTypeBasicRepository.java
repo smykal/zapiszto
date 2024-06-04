@@ -1,6 +1,6 @@
-package com.zapiszto.controllers.dictQuantityType.dictQuantityTypeBasic.repository;
+package com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.repository;
 
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,6 @@
-package com.zapiszto.controllers.clientBodyTest.dictBodyTest.repository;
+package com.zapiszto.controllers.dictionaries.dictBodyTest.repository;
 
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.entity.DictBodyTestEntity;
-import com.zapiszto.controllers.dictCategory.entity.DictCategoryEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

@@ -177,3 +177,5 @@ databaseChangeLog:
       file: db/changelog/088_modify_not_null_dict_body_test.xml
   - include:
       file: db/changelog/089_modify_table_client_body_test.xml
+  - include:
+      file: db/changelog/090_add_goals_table.xml

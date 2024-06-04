@@ -1,9 +1,9 @@
-package com.zapiszto.controllers.dictCategory.controller;
+package com.zapiszto.controllers.dictionaries.dictCategory.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.dictCategory.dto.DictCategoryDto;
-import com.zapiszto.controllers.dictCategory.dto.NewDictCategoryDto;
-import com.zapiszto.controllers.dictCategory.service.DictCategoryService;
+import com.zapiszto.controllers.dictionaries.dictCategory.dto.DictCategoryDto;
+import com.zapiszto.controllers.dictionaries.dictCategory.dto.NewDictCategoryDto;
+import com.zapiszto.controllers.dictionaries.dictCategory.service.DictCategoryService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

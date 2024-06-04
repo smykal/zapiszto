@@ -1,8 +1,8 @@
-package com.zapiszto.controllers.dictExercises.serializer;
+package com.zapiszto.controllers.dictionaries.dictExercises.serializer;
 
 import com.zapiszto.controllers.common.SerializerCommon;
-import com.zapiszto.controllers.dictExercises.dto.DictExercisesDto;
-import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
+import com.zapiszto.controllers.dictionaries.dictExercises.dto.DictExercisesDto;
+import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 
 public class DictExercisesSerializer implements SerializerCommon {
 

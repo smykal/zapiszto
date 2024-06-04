@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.dictCategory.serializer;
+package com.zapiszto.controllers.dictionaries.dictCategory.serializer;
 
-import com.zapiszto.controllers.dictCategory.dto.DictCategoryDto;
-import com.zapiszto.controllers.dictCategory.entity.DictCategoryEntity;
+import com.zapiszto.controllers.dictionaries.dictCategory.dto.DictCategoryDto;
+import com.zapiszto.controllers.dictionaries.dictCategory.entity.DictCategoryEntity;
 
 public class DictCategorySerializer {
   private static final String PER_USER = "PER_USER";

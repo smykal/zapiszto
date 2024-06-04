@@ -1,14 +1,14 @@
-package com.zapiszto.controllers.dictCategory.service;
+package com.zapiszto.controllers.dictionaries.dictCategory.service;
 
-import com.zapiszto.controllers.dictCategory.dictCategoryBasic.entity.DictCategoryBasicEntity;
-import com.zapiszto.controllers.dictCategory.dictCategoryBasic.repository.DictCategoryBasicRepository;
-import com.zapiszto.controllers.dictCategory.dictCategoryPerUser.entity.DictCategoryPerUserEntity;
-import com.zapiszto.controllers.dictCategory.dictCategoryPerUser.repository.DictCategoryPerUserRepository;
-import com.zapiszto.controllers.dictCategory.dto.NewDictCategoryDto;
-import com.zapiszto.controllers.dictCategory.repository.DictCategoryRepository;
-import com.zapiszto.controllers.dictCategory.dto.DictCategoryDto;
-import com.zapiszto.controllers.dictCategory.entity.DictCategoryEntity;
-import com.zapiszto.controllers.dictCategory.serializer.DictCategorySerializer;
+import com.zapiszto.controllers.dictionaries.dictCategory.dictCategoryBasic.entity.DictCategoryBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictCategory.dictCategoryBasic.repository.DictCategoryBasicRepository;
+import com.zapiszto.controllers.dictionaries.dictCategory.dictCategoryPerUser.entity.DictCategoryPerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictCategory.dictCategoryPerUser.repository.DictCategoryPerUserRepository;
+import com.zapiszto.controllers.dictionaries.dictCategory.dto.NewDictCategoryDto;
+import com.zapiszto.controllers.dictionaries.dictCategory.repository.DictCategoryRepository;
+import com.zapiszto.controllers.dictionaries.dictCategory.dto.DictCategoryDto;
+import com.zapiszto.controllers.dictionaries.dictCategory.entity.DictCategoryEntity;
+import com.zapiszto.controllers.dictionaries.dictCategory.serializer.DictCategorySerializer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;

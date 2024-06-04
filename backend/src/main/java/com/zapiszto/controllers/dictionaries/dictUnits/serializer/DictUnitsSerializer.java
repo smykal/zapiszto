@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.dictUnits.serializer;
+package com.zapiszto.controllers.dictionaries.dictUnits.serializer;
 
-import com.zapiszto.controllers.dictUnits.dto.DictUnitsDto;
-import com.zapiszto.controllers.dictUnits.entity.DictUnitsEntity;
+import com.zapiszto.controllers.dictionaries.dictUnits.dto.DictUnitsDto;
+import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 
 public class DictUnitsSerializer {
 

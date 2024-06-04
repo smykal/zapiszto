@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.clientBodyTest.dictBodyTest.serializer;
+package com.zapiszto.controllers.dictionaries.dictBodyTest.serializer;
 
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dto.DictBodyTestDto;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.entity.DictBodyTestEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.DictBodyTestDto;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
 import com.zapiszto.controllers.common.SerializerCommon;
 
 public class DictBodyTestSerializer implements SerializerCommon {

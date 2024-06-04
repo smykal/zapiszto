@@ -1,14 +1,14 @@
-package com.zapiszto.controllers.clientBodyTest.dictBodyTest.service;
+package com.zapiszto.controllers.dictionaries.dictBodyTest.service;
 
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dictBodyTestBasic.entity.DictBodyTestBasicEntity;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dictBodyTestBasic.repository.DictBodyTestBasicRepository;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dictBodyTestPerUser.entity.DictBodyTestPerUserEntity;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dictBodyTestPerUser.repository.DictBodyTestPerUserRepository;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dto.DictBodyTestDto;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dto.NewDictBodyTestDto;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.entity.DictBodyTestEntity;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.repository.DictBodyTestRepository;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.serializer.DictBodyTestSerializer;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestBasic.entity.DictBodyTestBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestBasic.repository.DictBodyTestBasicRepository;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestPerUser.entity.DictBodyTestPerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestPerUser.repository.DictBodyTestPerUserRepository;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.DictBodyTestDto;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.NewDictBodyTestDto;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.repository.DictBodyTestRepository;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.serializer.DictBodyTestSerializer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;

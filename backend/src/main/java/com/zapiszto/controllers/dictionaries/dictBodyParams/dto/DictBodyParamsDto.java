@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictBodyParams.dto;
+package com.zapiszto.controllers.dictionaries.dictBodyParams.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

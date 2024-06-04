@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictWorkbookSchema.entity;
+package com.zapiszto.controllers.dictionaries.dictWorkbookSchema.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

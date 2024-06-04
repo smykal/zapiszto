@@ -4,7 +4,10 @@ import com.zapiszto.controllers.clientBodyTest.dto.ClientBodyTestDto;
 import com.zapiszto.controllers.clientBodyTest.dto.NewClientBodyTestDto;
 import com.zapiszto.controllers.clientBodyTest.entity.ClientBodyTestsEntity;
 import com.zapiszto.controllers.clientBodyTest.repository.ClientBodyTestsRepository;
+import com.zapiszto.controllers.clientBodyTest.serializer.ClientBodyTestSerializer;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,13 @@ public class ClientBodyTestService {
         .build();
     clientBodyTestsRepository.save(clientBodyTestsEntity);
     log.error("Add new client body test with id: {}", newClientBodyTestDto.getId());
+
+  }
+
+  public List<ClientBodyTestDto> getClientBodyTests(UUID clientId) {
+
+    List<ClientBodyTestsEntity> allByClientId = clientBodyTestsRepository.getAllByClientId(clientId);
+    return allByClientId.stream().map(ClientBodyTestSerializer::convert).collect(Collectors.toList());
 
   }
 }

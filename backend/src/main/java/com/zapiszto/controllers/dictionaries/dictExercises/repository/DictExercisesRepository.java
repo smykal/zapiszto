@@ -1,6 +1,6 @@
-package com.zapiszto.controllers.dictExercises.repository;
+package com.zapiszto.controllers.dictionaries.dictExercises.repository;
 
-import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
+import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

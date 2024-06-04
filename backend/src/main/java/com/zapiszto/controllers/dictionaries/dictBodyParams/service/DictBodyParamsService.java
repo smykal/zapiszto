@@ -1,10 +1,10 @@
-package com.zapiszto.controllers.dictBodyParams.service;
+package com.zapiszto.controllers.dictionaries.dictBodyParams.service;
 
-import com.zapiszto.controllers.dictBodyParams.dto.DictBodyParamsDto;
-import com.zapiszto.controllers.dictBodyParams.dto.NewDictBodyParamDto;
-import com.zapiszto.controllers.dictBodyParams.entity.DictBodyParamsEntity;
-import com.zapiszto.controllers.dictBodyParams.serializer.DictBodyParamsSerializer;
-import com.zapiszto.controllers.dictBodyParams.repository.DictBodyParamsRepository;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.dto.DictBodyParamsDto;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.dto.NewDictBodyParamDto;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.entity.DictBodyParamsEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.serializer.DictBodyParamsSerializer;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.repository.DictBodyParamsRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

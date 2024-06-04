@@ -1,9 +1,7 @@
-package com.zapiszto.controllers.clientBodyTest.dictBodyTest.entity;
+package com.zapiszto.controllers.dictionaries.dictBodyTest.entity;
 
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dictBodyTestBasic.entity.DictBodyTestBasicEntity;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dictBodyTestPerUser.entity.DictBodyTestPerUserEntity;
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
-import com.zapiszto.controllers.dictQuantityType.dictQuantityTypePerUser.entity.DictQuantityTypePerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestBasic.entity.DictBodyTestBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestPerUser.entity.DictBodyTestPerUserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

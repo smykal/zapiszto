@@ -1,12 +1,9 @@
-package com.zapiszto.controllers.clientBodyTest.dictBodyTest.controller;
+package com.zapiszto.controllers.dictionaries.dictBodyTest.controller;
 
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dto.DictBodyTestDto;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.dto.NewDictBodyTestDto;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.repository.DictBodyTestRepository;
-import com.zapiszto.controllers.clientBodyTest.dictBodyTest.service.DictBodyTestService;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.DictBodyTestDto;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.NewDictBodyTestDto;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.service.DictBodyTestService;
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.dictCategory.dto.DictCategoryDto;
-import com.zapiszto.controllers.dictCategory.dto.NewDictCategoryDto;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

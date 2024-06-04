@@ -1,7 +1,7 @@
 package com.zapiszto.controllers.workbooks.service;
 
-import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
-import com.zapiszto.controllers.dictWorkbookSchema.repository.DictWorkbookSchemaRepository;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.repository.DictWorkbookSchemaRepository;
 import com.zapiszto.controllers.workbooks.dto.AddWorkbookDto;
 import com.zapiszto.controllers.workbooks.dto.PatchWorkbookSchemaDto;
 import com.zapiszto.controllers.workbooks.dto.WorkbooksDto;

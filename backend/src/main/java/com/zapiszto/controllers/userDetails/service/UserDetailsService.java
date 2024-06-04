@@ -1,9 +1,9 @@
 package com.zapiszto.controllers.userDetails.service;
 
-import com.zapiszto.controllers.userDetails.dictLanguages.entity.DictLanguagesEntity;
-import com.zapiszto.controllers.userDetails.dictLanguages.repository.DictLanguagesRepository;
-import com.zapiszto.controllers.userDetails.dictSex.entity.DictSexEntity;
-import com.zapiszto.controllers.userDetails.dictSex.repository.DictSexRepository;
+import com.zapiszto.controllers.dictionaries.dictLanguages.entity.DictLanguagesEntity;
+import com.zapiszto.controllers.dictionaries.dictLanguages.repository.DictLanguagesRepository;
+import com.zapiszto.controllers.dictionaries.dictSex.entity.DictSexEntity;
+import com.zapiszto.controllers.dictionaries.dictSex.repository.DictSexRepository;
 import com.zapiszto.controllers.userDetails.dto.UserDetailsAgeDto;
 import com.zapiszto.controllers.userDetails.dto.UserDetailsBirthdateDto;
 import com.zapiszto.controllers.userDetails.dto.UserDetailsDto;

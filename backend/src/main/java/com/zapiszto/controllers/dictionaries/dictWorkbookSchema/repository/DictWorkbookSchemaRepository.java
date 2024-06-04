@@ -1,6 +1,6 @@
-package com.zapiszto.controllers.dictWorkbookSchema.repository;
+package com.zapiszto.controllers.dictionaries.dictWorkbookSchema.repository;
 
-import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

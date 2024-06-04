@@ -1,14 +1,14 @@
-package com.zapiszto.controllers.dictUnits.service;
+package com.zapiszto.controllers.dictionaries.dictUnits.service;
 
-import com.zapiszto.controllers.dictUnits.dictUnitsBasic.entity.DictUnitsBasicEntity;
-import com.zapiszto.controllers.dictUnits.dictUnitsBasic.repository.DictUnitsBasicRepository;
-import com.zapiszto.controllers.dictUnits.dictUnitsPerUser.entity.DictUnitsPerUserEntity;
-import com.zapiszto.controllers.dictUnits.dictUnitsPerUser.repository.DictUnitsPerUserRepository;
-import com.zapiszto.controllers.dictUnits.dto.DictUnitsDto;
-import com.zapiszto.controllers.dictUnits.dto.NewDictUnitDto;
-import com.zapiszto.controllers.dictUnits.entity.DictUnitsEntity;
-import com.zapiszto.controllers.dictUnits.repository.DictUnitsRepository;
-import com.zapiszto.controllers.dictUnits.serializer.DictUnitsSerializer;
+import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsBasic.entity.DictUnitsBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsBasic.repository.DictUnitsBasicRepository;
+import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsPerUser.entity.DictUnitsPerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsPerUser.repository.DictUnitsPerUserRepository;
+import com.zapiszto.controllers.dictionaries.dictUnits.dto.DictUnitsDto;
+import com.zapiszto.controllers.dictionaries.dictUnits.dto.NewDictUnitDto;
+import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
+import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
+import com.zapiszto.controllers.dictionaries.dictUnits.serializer.DictUnitsSerializer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;

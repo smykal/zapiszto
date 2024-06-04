@@ -1,0 +1,47 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="create_goals_table" author="smykalm">
+        <createTable tableName="goals">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="client_id" type="uuid" remarks="ID of client, where is information for whom and by who goal was added"/>
+            <column name="dict_body_param_id" type="int4" />
+            <column name="dict_body_test_id" type="int4" />
+            <column name="dict_unit_id" type="int4" />
+            <column name="action" type="varchar(20)" />
+            <column name="value"  type="varchar(100)" />
+            <column name="goal_date" type="date" />
+            <column name="insert_date" type="timestamp" />
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="goals"
+                                 baseColumnNames="client_id"
+                                 constraintName="goals_client_id_fk"
+                                 referencedTableName="clients"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="goals"
+                                 baseColumnNames="dict_body_param_id"
+                                 constraintName="goals_dict_body_param_id_fk"
+                                 referencedTableName="dict_body_params"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="goals"
+                                 baseColumnNames="dict_body_test_id"
+                                 constraintName="goals_dict_body_test_id_fk"
+                                 referencedTableName="dict_body_test"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="goals"
+                                 baseColumnNames="dict_unit_id"
+                                 constraintName="goals_dict_unit_id_fk"
+                                 referencedTableName="dict_units"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

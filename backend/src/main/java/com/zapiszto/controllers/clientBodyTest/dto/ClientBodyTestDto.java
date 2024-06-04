@@ -17,6 +17,9 @@ import lombok.experimental.FieldDefaults;
 public class ClientBodyTestDto {
   int id;
   int dict_body_test_id;
+  String dict;
+  Long dict_id;
+  String name;
   String result;
   String description;
   String purpose;

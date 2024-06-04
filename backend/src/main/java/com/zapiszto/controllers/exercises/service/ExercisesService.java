@@ -1,14 +1,13 @@
 package com.zapiszto.controllers.exercises.service;
 
-import com.zapiszto.controllers.dictExercises.repository.DictExercisesRepository;
-import com.zapiszto.controllers.dictQuantityType.repository.DictQuantityTypeRepository;
-import com.zapiszto.controllers.dictUnits.repository.DictUnitsRepository;
+import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExercisesRepository;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.repository.DictQuantityTypeRepository;
+import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
 import com.zapiszto.controllers.exercises.dto.ExerciseDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.repository.ExerciseRepository;
 import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
-import java.util.HashMap;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.clientBodyTest.dictBodyTest.dto;
+package com.zapiszto.controllers.dictionaries.dictBodyTest.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.zapiszto.controllers;
 
-import com.zapiszto.controllers.userDetails.dictLanguages.entity.DictLanguagesEntity;
-import com.zapiszto.controllers.userDetails.dictLanguages.repository.DictLanguagesRepository;
+import com.zapiszto.controllers.dictionaries.dictLanguages.entity.DictLanguagesEntity;
+import com.zapiszto.controllers.dictionaries.dictLanguages.repository.DictLanguagesRepository;
 import com.zapiszto.controllers.userDetails.entity.UserDetailsEntity;
 import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.HashSet;

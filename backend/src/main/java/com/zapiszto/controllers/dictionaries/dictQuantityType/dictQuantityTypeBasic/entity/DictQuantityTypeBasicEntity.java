@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictQuantityType.dictQuantityTypeBasic.entity;
+package com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

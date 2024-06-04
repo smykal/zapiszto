@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictUnits.dictUnitsPerUser.entity;
+package com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsPerUser.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

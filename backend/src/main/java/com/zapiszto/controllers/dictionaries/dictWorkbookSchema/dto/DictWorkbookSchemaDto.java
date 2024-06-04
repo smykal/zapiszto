@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictWorkbookSchema.dto;
+package com.zapiszto.controllers.dictionaries.dictWorkbookSchema.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

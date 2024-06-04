@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.dictWorkbookSchema.controller;
+package com.zapiszto.controllers.dictionaries.dictWorkbookSchema.controller;
 
-import com.zapiszto.controllers.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
-import com.zapiszto.controllers.dictWorkbookSchema.service.DictWorkbookSchemaService;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.service.DictWorkbookSchemaService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

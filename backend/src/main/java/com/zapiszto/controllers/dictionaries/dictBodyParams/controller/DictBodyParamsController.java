@@ -1,11 +1,10 @@
-package com.zapiszto.controllers.dictBodyParams.controller;
+package com.zapiszto.controllers.dictionaries.dictBodyParams.controller;
 
-import com.zapiszto.controllers.dictBodyParams.dto.DictBodyParamsDto;
-import com.zapiszto.controllers.dictBodyParams.dto.NewDictBodyParamDto;
-import com.zapiszto.controllers.dictBodyParams.service.DictBodyParamsService;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.dto.DictBodyParamsDto;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.dto.NewDictBodyParamDto;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.service.DictBodyParamsService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

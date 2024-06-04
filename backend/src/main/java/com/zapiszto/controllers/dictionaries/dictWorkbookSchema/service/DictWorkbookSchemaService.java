@@ -1,9 +1,9 @@
-package com.zapiszto.controllers.dictWorkbookSchema.service;
+package com.zapiszto.controllers.dictionaries.dictWorkbookSchema.service;
 
-import com.zapiszto.controllers.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
-import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
-import com.zapiszto.controllers.dictWorkbookSchema.repository.DictWorkbookSchemaRepository;
-import com.zapiszto.controllers.dictWorkbookSchema.serializer.DictWorkbookSchemaSerializer;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.dto.DictWorkbookSchemaDto;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.repository.DictWorkbookSchemaRepository;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.serializer.DictWorkbookSchemaSerializer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;

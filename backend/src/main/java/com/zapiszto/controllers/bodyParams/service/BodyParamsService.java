@@ -8,7 +8,7 @@ import com.zapiszto.controllers.bodyParams.serializer.BodyParamsSerializer;
 import com.zapiszto.controllers.bodyParams.repository.BodyParamsRepository;
 import com.zapiszto.controllers.clients.entity.ClientEntity;
 import com.zapiszto.controllers.clients.repository.ClientsRepository;
-import com.zapiszto.controllers.dictBodyParams.repository.DictBodyParamsRepository;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.repository.DictBodyParamsRepository;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;

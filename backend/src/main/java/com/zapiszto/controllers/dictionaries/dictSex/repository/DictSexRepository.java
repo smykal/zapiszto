@@ -1,6 +1,6 @@
-package com.zapiszto.controllers.userDetails.dictSex.repository;
+package com.zapiszto.controllers.dictionaries.dictSex.repository;
 
-import com.zapiszto.controllers.userDetails.dictSex.entity.DictSexEntity;
+import com.zapiszto.controllers.dictionaries.dictSex.entity.DictSexEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
