@@ -3,20 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { Client } from '../../../types/types';
 import AddNewBodyTest from './AddNewBodyTest';
 import AddClientBodyTest from './AddClientBodyTest';
+import GetClientBodyTest from './GetClientBodyTest';
 
 
 
 interface ClientDetailsProps {
-    client: Client
+  client: Client
 }
 
-const ClientBodyTests: React.FC<ClientDetailsProps> =  ({client}) => {
-    const { t } = useTranslation('global');
+const ClientBodyTests: React.FC<ClientDetailsProps> = ({ client }) => {
+  const { t } = useTranslation('global');
   return (
     <div>
-      <AddNewBodyTest client={client} />
+      <GetClientBodyTest client={client} />
       <AddClientBodyTest client={client} />
-      <p> Body tests</p>
+      <AddNewBodyTest client={client} />
     </div>
   );
 };

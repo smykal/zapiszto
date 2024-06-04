@@ -44,27 +44,29 @@ const AddNewBodyTest: React.FC<ClientDetailsProps> = ({ client }) => {
 
     return (
         <div>
-            <h2>{t('navigation.body_tests')}</h2>
+            <h2>{t('navigation.quick_add_body_test')}</h2>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
                 <Form>
-                    <div>
-                        <label htmlFor="name">{t('dictionaries.body_tests_name')}</label>
-                        <Field name="name" type="text" />
-                        <ErrorMessage name="name" component="div" />
-                    </div>
-                    <div>
-                        <label htmlFor="description">{t('dictionaries.body_tests_description')}</label>
-                        <Field name="description" type="text" />
-                        <ErrorMessage name="description" component="div" />
-                    </div>
-                    <div>
-                        <label htmlFor="purpose">{t('dictionaries.body_tests_purpose')}</label>
-                        <Field name="purpose" type="text" />
-                        <ErrorMessage name="purpose" component="div" />
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label htmlFor="name">{t('dictionaries.body_tests_name')}</label>
+                            <Field name="name" type="text" />
+                            <ErrorMessage name="name" component="div" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="description">{t('dictionaries.body_tests_description')}</label>
+                            <Field name="description" type="text" />
+                            <ErrorMessage name="description" component="div" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="purpose">{t('dictionaries.body_tests_purpose')}</label>
+                            <Field name="purpose" type="text" />
+                            <ErrorMessage name="purpose" component="div" />
+                        </div>
                     </div>
                     <div>
                         <button type="submit">{t('buttons.add')}</button>

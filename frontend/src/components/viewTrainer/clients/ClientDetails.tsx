@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Client } from '../../../types/types';
 import ClientInformations from './ClientInformations';
 import ClientBody from './ClientBody';
+import ClientGoals from './ClientGoals';
 
 interface ClientDetailsProps {
   client: Client;
@@ -14,6 +15,7 @@ const ClientDetails: React.FC<ClientDetailsProps> = ({ client }) => {
     <div>
       <ClientInformations client={client} />
       <ClientBody client={client} />
+      <ClientGoals client={client} />
     </div>
   );
 };

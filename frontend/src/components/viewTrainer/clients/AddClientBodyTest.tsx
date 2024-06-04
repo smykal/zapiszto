@@ -57,7 +57,7 @@ const AddClientBodyTest: React.FC<ClientDetailsProps> = ({ client }) => {
 
     return (
         <div>
-            <h2>{t('navigation.body_tests')}</h2>
+            <h2>{t('navigation.assign_client_body_test_result')}</h2>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -65,25 +65,27 @@ const AddClientBodyTest: React.FC<ClientDetailsProps> = ({ client }) => {
             >
                 {({ setFieldValue }) => (
                     <Form>
-                        <div>
-                            <label htmlFor="dictBodyTestId">{t('dictionaries.body_tests_name')}</label>
-                            <Field as="select" name="dictBodyTestId" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFieldValue('dictBodyTestId', Number(e.target.value))}>
-                                <option value="">{t('dictionaries.select_body_test')}</option>
-                                {dictBodyTests.map(test => (
-                                    <option key={test.id} value={test.id}>
-                                        {test.name}
-                                    </option>
-                                ))}
-                            </Field>
-                            <ErrorMessage name="dictBodyTestId" component="div" />
-                        </div>
-                        <div>
-                            <label htmlFor="result">{t('dictionaries.result_for_test')}</label>
-                            <Field name="result" type="text" />
-                            <ErrorMessage name="result" component="div" />
-                        </div>
-                        <div>
-                            <button type="submit">{t('buttons.add')}</button>
+                        <div className="form-row" >
+                            <div className="form-group">
+                                <label htmlFor="dictBodyTestId">{t('dictionaries.body_tests_name')}</label>
+                                <Field as="select" name="dictBodyTestId" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFieldValue('dictBodyTestId', Number(e.target.value))}>
+                                    <option value="">{t('dictionaries.select_body_test')}</option>
+                                    {dictBodyTests.map(test => (
+                                        <option key={test.id} value={test.id}>
+                                            {test.name}
+                                        </option>
+                                    ))}
+                                </Field>
+                                <ErrorMessage name="dictBodyTestId" component="div" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="result">{t('dictionaries.result_for_test')}</label>
+                                <Field name="result" type="text" />
+                                <ErrorMessage name="result" component="div" />
+                            </div>
+                            <div>
+                                <button type="submit">{t('buttons.add')}</button>
+                            </div>
                         </div>
                     </Form>
                 )}

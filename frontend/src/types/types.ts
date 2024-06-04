@@ -206,3 +206,14 @@ export type NewClientBodyTest = {
                             dictBodyTestId: number,
                             result: string
 }
+
+export type ClientBodyTest = {
+                              id: number
+                              dict_body_test_id: number
+                              dict: string
+                              dict_id: number
+                              name: string
+                              result: string
+                              description: string
+                              purpose: string
+}

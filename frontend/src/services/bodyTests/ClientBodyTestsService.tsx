@@ -13,6 +13,10 @@ class ClientBodyTestsService {
         console.error('Błąd podczas wysyłania zapytania:', error);
       });
   }
+
+  getClientBodyTest(clientId: string) {
+    return axios.get(API_URL + '/get_client_body_tests/' + clientId, { headers: authHeader() });
+  }
 }
 
 export default new ClientBodyTestsService();
