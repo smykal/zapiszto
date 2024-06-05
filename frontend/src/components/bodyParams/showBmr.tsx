@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import Service from "../../services/bodyParams";
 import { BmrType } from "../../types/types";

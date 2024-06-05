@@ -1,3 +1,4 @@
+import React from 'react';
 import { LANGUAGES } from "../../translations/Languages";
 import { useTranslation } from "react-i18next";
 import LanguageService from "../../services/languages"; // Import the LanguageService

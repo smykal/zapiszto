@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { DictCategories, NewDictCategory } from "../../../types/types";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Service from '../../../services/exercises/';

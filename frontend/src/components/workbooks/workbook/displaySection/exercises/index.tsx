@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import AddExercise from './addExercise';
 import GetExercise from './getExercise';
 

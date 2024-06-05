@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Workbook } from '../../../../types/types';
 import Service from '../../../../services/workbooks'
 import { DictWorkbookSchema } from '../../../../types/types';

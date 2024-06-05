@@ -1,4 +1,4 @@
-import { Component, ReactNode } from "react";
+import React, { Component, ReactNode } from "react";
 import Service from '../../../services/exercises'
 import { withTranslation } from "react-i18next";
 

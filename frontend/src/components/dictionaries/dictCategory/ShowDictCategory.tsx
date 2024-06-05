@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { DictCategories } from "../../../types/types";
 import Service from '../../../services/exercises';
 import AddDictCategoryPerUser from "./AddDictCategoryPerUser";
