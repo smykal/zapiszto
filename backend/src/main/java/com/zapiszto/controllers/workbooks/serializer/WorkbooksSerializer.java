@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.workbooks.serializer;
 
-import com.zapiszto.controllers.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
+import com.zapiszto.controllers.dictionaries.dictWorkbookSchema.entity.DictWorkbookSchemaEntity;
 import com.zapiszto.controllers.workbooks.dto.AddWorkbookDto;
 import com.zapiszto.controllers.workbooks.dto.WorkbooksDto;
 import com.zapiszto.controllers.workbooks.entity.WorkbooksEntity;

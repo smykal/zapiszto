@@ -1,33 +1,30 @@
 import { Component } from "react";
 import { DictCategories } from "../../../types/types";
-import Service from '../../../services/exercises'
+import Service from '../../../services/exercises';
 import AddDictCategoryPerUser from "./AddDictCategoryPerUser";
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableBody from '@mui/material/TableBody';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import Options from './Options'
+import Options from './Options';
 import { withTranslation } from "react-i18next";
 
-
 type Props = {
-    t: any
+    t: any;
 };
+
 type State = {
-    dictCategories: DictCategories[]
+    dictCategories: DictCategories[];
 };
-class ShowDictCategory extends Component<Props, State>  {
+
+class ShowDictCategory extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
             dictCategories: []
         };
     }
+
     componentDidMount() {
-        this.loadDictCategories()
+        this.loadDictCategories();
     }
+
     loadDictCategories() {
         Service.getDictCategory()
             .then(response => {
@@ -38,8 +35,6 @@ class ShowDictCategory extends Component<Props, State>  {
             });
     }
 
-
-
     render() {
         const { dictCategories } = this.state;
         const { t } = this.props;
@@ -47,33 +42,29 @@ class ShowDictCategory extends Component<Props, State>  {
         return (
             <div>
                 <AddDictCategoryPerUser dictCategory={dictCategories} />
-                <TableContainer>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>{t("table.id")}</TableCell>
-                                <TableCell>{t("table.name")}</TableCell>
-                                <TableCell>{t("table.description")}</TableCell>
-                                <TableCell>{t("table.options")}</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
+                <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                        <tr>
+                            <th>{t("table.id")}</th>
+                            <th>{t("table.name")}</th>
+                            <th>{t("table.description")}</th>
+                            <th>{t("table.options")}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {dictCategories.map((row) => (
-                            <TableRow
-                            key={row.id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component='th' scope="row"> {row.id}</TableCell>                                   
-                                <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.description}</TableCell>
-                                <TableCell>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</TableCell>                                                          
-                            </TableRow>
+                            <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
+                                <td>{row.id}</td>
+                                <td>{row.name}</td>
+                                <td>{row.description}</td>
+                                <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</td>
+                            </tr>
                         ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                    </tbody>
+                </table>
             </div>
-        )
+        );
     }
 }
 
-export default withTranslation("global")(ShowDictCategory)
+export default withTranslation("global")(ShowDictCategory);

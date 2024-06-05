@@ -148,3 +148,72 @@ export type Exercise = {
                         notes: number,
                         orderNumber: number
 }
+
+export type NewInvitation = {
+                              email: string;
+}
+
+export type Invitation = {
+                          id: string,
+                          inviterId: number,
+                          inviterName: string,
+                          inviterEmail: string,
+                          inviteeId: number,
+                          inviteeName: string,
+                          inviteeEmail: string,
+                          status: string
+}
+
+export type UserDetails = {
+                            languageCode: string,
+                            languageLabel: string
+}
+
+export type UserDetailsLanguage = {
+                                    languageCode: string
+}
+
+export type Client = {
+                      id: string,
+                      clientName: string,
+                      userId: number
+}
+
+export type NewClient = {
+                          id: string,
+                          clientName: string,
+                          userId: number
+}
+
+export type NewDictBodyTest = {
+                                name: string,
+                                description: string,
+                                purpose: string
+}
+
+export type DictBodyTest = {
+                            id: number,
+                            dict: string,
+                            dict_id: number,
+                            name: string,
+                            description: string,
+                            purpose: string
+}
+
+export type NewClientBodyTest = {
+                            id: string,
+                            clientId: string,
+                            dictBodyTestId: number,
+                            result: string
+}
+
+export type ClientBodyTest = {
+                              id: number
+                              dict_body_test_id: number
+                              dict: string
+                              dict_id: number
+                              name: string
+                              result: string
+                              description: string
+                              purpose: string
+}

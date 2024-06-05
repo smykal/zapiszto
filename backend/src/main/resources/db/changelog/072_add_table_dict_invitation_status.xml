@@ -1,0 +1,39 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="create_dict_invitations_status_table" author="smykalm">
+        <createTable tableName="dict_invitations_status">
+            <column name="id" type="int8">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(20)" remarks="status of invitation"/>
+        </createTable>
+
+        <createSequence sequenceName="dict_invitations_status_id_seq"
+                        incrementBy="1"
+                        startValue="1"/>
+        <sql>
+            ALTER TABLE public.dict_invitations_status
+            ALTER COLUMN id SET DEFAULT nextval('dict_invitations_status_id_seq');
+        </sql>
+
+        <insert tableName="dict_invitations_status">
+            <column name="name" value="SENT"/>
+        </insert>
+        <insert tableName="dict_invitations_status">
+            <column name="name" value="APPROVED"/>
+        </insert>
+        <insert tableName="dict_invitations_status">
+            <column name="name" value="REJECTED"/>
+        </insert>
+        <insert tableName="dict_invitations_status">
+            <column name="name" value="RESENT"/>
+        </insert>
+        <insert tableName="dict_invitations_status">
+            <column name="name" value="TERMINATED"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,5 +1,9 @@
 package com.zapiszto.controllers;
 
+import com.zapiszto.controllers.dictionaries.dictLanguages.entity.DictLanguagesEntity;
+import com.zapiszto.controllers.dictionaries.dictLanguages.repository.DictLanguagesRepository;
+import com.zapiszto.controllers.userDetails.entity.UserDetailsEntity;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +42,12 @@ import com.zapiszto.security.services.UserDetailsImpl;
 public class AuthController {
   @Autowired
   AuthenticationManager authenticationManager;
+
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
+  @Autowired
+  DictLanguagesRepository dictLanguagesRepository;
 
   @Autowired
   UserRepository userRepository;
@@ -123,7 +133,14 @@ public class AuthController {
     }
 
     user.setRoles(roles);
-    userRepository.save(user);
+    User savedUser = userRepository.save(user);
+    DictLanguagesEntity dictLanguagesEntity = dictLanguagesRepository.getByCode("en");
+    UserDetailsEntity userDetailsEntity = UserDetailsEntity.builder()
+        .userId(savedUser.getId())
+        .dictLanguagesEntity(dictLanguagesEntity)
+        .build();
+    userDetailsRepository.save(userDetailsEntity);
+
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }

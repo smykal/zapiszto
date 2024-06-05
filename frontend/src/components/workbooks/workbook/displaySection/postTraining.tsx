@@ -42,7 +42,7 @@ class PostTraining extends Component<Props, State> {
     const { t } = this.props;
 
     return (
-      <div className="container">
+      <div>
         <form onSubmit={this.handleSubmit}>
         <label>{t("workbooks.select_training_date")}: </label>
             <DatePicker

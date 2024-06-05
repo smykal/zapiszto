@@ -3,17 +3,31 @@
         "home": "головна",
         "user": "користувач",
         "body_params": "параметри тіла",
+        "body_tests": "тестування тіла",
         "training": "тренування",
         "dictionaries": "налаштування",
+        "clients": "клієнти",
         "log_in": "увійти",
         "log_out": "вийти",
-        "sign_in": "зареєструватися"
+        "sign_in": "зареєструватися",
+        "select_language": "оберіть мову"
+    },
+    "login": {
+        "username": "ім'я користувача",
+        "password": "пароль",
+        "email": "електронна пошта",
+        "login": "увійти",
+        "register": "зареєструватися"
     },
     "dictionaries": {
         "dict_category": "категорія вправ",
         "dict_exercise": "вправи",
         "dict_quantity_type": "типи кількості у словнику",
-        "dict_units": "словникові одиниці"
+        "dict_units": "словникові одиниці",
+        "dict_body_test": "тести тіла",
+        "body_tests_name": "назва тесту",
+        "body_tests_description": "опис тесту",
+        "body_tests_purpose": "мета тесту"
     },
     "body_params": {
         "gender": "стать",
@@ -57,6 +71,7 @@
     },
     "buttons": {
         "add": "додати",
+        "add_client": "Додати клієнта",
         "delete": "видалити",
         "edit": "редагувати",
         "archive": "архівувати",
@@ -67,7 +82,9 @@
         "female": "жіночий",
         "male": "чоловічий",
         "move_up": "підняти",
-        "move_down": "опустити"
+        "move_down": "опустити",
+        "approve": "затвердити",
+        "reject": "відхилити"
     },
     "table": {
         "id": "#",
@@ -84,6 +101,25 @@
         "volume": "об'єм",
         "unit": "одиниця",
         "notes": "примітки",
-        "категорія": "категорія"
+        "категорія": "категорія",
+        "purpose": "мета"
+    },
+    "invitations": {
+        "title": "запрошення",
+        "from": "від",
+        "to": "до",
+        "title_recived": "отримано",
+        "title_sent": "відправлено",
+        "title_approved": "запрошення прийнято",
+        "title_rejected": "запрошення відхилено"
+    },
+    "clients": {
+        "select_client_message": "Додати нового клієнта або вибрати",
+        "client_name": "ім'я клієнта",
+        "client_details": "Деталі клієнта",
+        "client_assigned_user": "призначений користувач",
+        "client_assign_user": "призначити користувача",
+        "select_user_to_assign": "виберіть користувача для призначення",
+        "user_is_not_assigned": "користувач не призначений"
     }
 }

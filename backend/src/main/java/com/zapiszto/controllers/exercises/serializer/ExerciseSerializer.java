@@ -1,8 +1,8 @@
 package com.zapiszto.controllers.exercises.serializer;
 
-import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
-import com.zapiszto.controllers.dictQuantityType.entity.DictQuantityTypeEntity;
-import com.zapiszto.controllers.dictUnits.entity.DictUnitsEntity;
+import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.exercises.dto.ExerciseDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;

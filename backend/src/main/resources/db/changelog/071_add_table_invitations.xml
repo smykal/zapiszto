@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="create_invitations_table" author="smykalm">
+        <createTable tableName="invitations">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="inviter" type="int8" remarks="ID of the user sending the invitation"/>
+            <column name="invitee" type="int8" remarks="ID of the user receiving the invitation"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="invitations"
+                                 baseColumnNames="inviter"
+                                 constraintName="inviter_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="invitations"
+                                 baseColumnNames="invitee"
+                                 constraintName="invitee_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

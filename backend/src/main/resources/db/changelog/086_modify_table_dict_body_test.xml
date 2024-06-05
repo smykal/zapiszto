@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="rename-dict_body_test_per_user-column" author="smykalm">
+        <renameColumn
+                tableName="dict_body_test"
+                oldColumnName="dict_body_test_per_user"
+                newColumnName="dict_body_test_per_user_id"
+                columnDataType="int8"/>
+    </changeSet>
+
+</databaseChangeLog>

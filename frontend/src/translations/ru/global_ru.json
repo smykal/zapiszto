@@ -3,17 +3,31 @@
         "home": "главная",
         "user": "пользователь",
         "body_params": "параметры тела",
+        "body_tests": "тесты тела",
         "training": "тренировка",
         "dictionaries": "настройки",
+        "clients": "клиенты",
         "log_in": "войти",
         "log_out": "выйти",
-        "sign_in": "зарегистрироваться"
+        "sign_in": "зарегистрироваться",
+        "select_language": "выберите язык"
+    },
+    "login": {
+        "username": "имя пользователя",
+        "password": "пароль",
+        "email": "электронная почта",
+        "login": "войти",
+        "register": "зарегистрироваться"
     },
     "dictionaries": {
         "dict_category": "категория упражнений",
         "dict_exercise": "упражнения",
         "dict_quantity_type": "типы количества в словаре",
-        "dict_units": "словарные единицы"
+        "dict_units": "словарные единицы",
+        "dict_body_test": "тесты тела",
+        "body_tests_name": "название теста",
+        "body_tests_description": "описание теста",
+        "body_tests_purpose": "цель теста"
     },
     "body_params": {
         "gender": "пол",
@@ -53,6 +67,7 @@
     },
     "buttons": {
         "add": "добавить",
+        "add_client": "Добавить клиента",
         "delete": "удалить",
         "edit": "редактировать",
         "archive": "архивировать",
@@ -63,7 +78,9 @@
         "female": "женский",
         "male": "мужской",
         "move_up": "поднять",
-        "move_down": "опустить"
+        "move_down": "опустить",
+        "approve": "утвердить",
+        "reject": "отклонить"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
@@ -84,6 +101,26 @@
         "volume": "объем",
         "unit": "единица",
         "notes": "заметки",
-        "категория": "категория"
+        "категория": "категория",
+        "purpose": "цель"
+
+    },
+    "invitations": {
+        "title": "приглашения",
+        "from": "от",
+        "to": "до",
+        "title_recived": "получено",
+        "title_sent": "отправлено",
+        "title_approved": "приглашения приняты",
+        "title_rejected": "приглашения отклонены"
+    },
+    "clients": {
+        "select_client_message": "Добавить нового клиента или выбрать",
+        "client_name": "имя клиента",
+        "client_details": "Детали клиента",
+        "client_assigned_user": "назначенный пользователь",
+        "client_assign_user": "назначить пользователя",
+        "select_user_to_assign": "выберите пользователя для назначения",
+        "user_is_not_assigned": "пользователь не назначен"
     }
 }

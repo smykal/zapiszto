@@ -3,17 +3,31 @@
         "home": "inicio",
         "user": "usuario",
         "body_params": "parámetros del cuerpo",
+        "body_tests": "pruebas corporales",
         "training": "entrenamiento",
         "dictionaries": "diccionarios",
+        "clients": "clientes",
         "log_in": "iniciar sesión",
         "log_out": "cerrar sesión",
-        "sign_in": "registrarse"
+        "sign_in": "registrarse",
+        "select_language": "seleccionar idioma"
+    },
+    "login": {
+        "username": "nombre de usuario",
+        "password": "contraseña",
+        "email": "correo electrónico",
+        "login": "iniciar sesión",
+        "register": "registrarse"
     },
     "dictionaries": {
         "dict_category": "categoría de ejercicios",
         "dict_exercise": "ejercicios de diccionario",
         "dict_quantity_type": "tipo de cantidad de diccionario",
-        "dict units": "unidades de diccionario"
+        "dict units": "unidades de diccionario",
+        "dict_body_test": "pruebas de cuerpo",
+        "body_tests_name": "nombre del test",
+        "body_tests_description": "descripción del test",
+        "body_tests_purpose": "propósito del test"
     },
     "body_params": {
         "gender": "género",
@@ -53,6 +67,7 @@
     },
     "buttons": {
         "add": "añadir",
+        "add_client": "Añadir cliente",
         "delete": "borrar",
         "edit": "editar",
         "archive": "archivar",
@@ -63,7 +78,9 @@
         "female": "mujer",
         "male": "hombre",
         "move_up": "mover hacia arriba",
-        "move_down": "mover hacia abajo"
+        "move_down": "mover hacia abajo",
+        "approve": "aprobar",
+        "reject": "rechazar"
     },
     "validation": {
         "this_field_is_required": "este campo es obligatorio",
@@ -84,6 +101,25 @@
         "volume": "volumen",
         "unit": "unidad",
         "notes": "notas",
-        "categoría": "categoría"
+        "categoría": "categoría",
+        "purpose": "propósito"
+    },
+    "invitations": {
+        "title": "invitaciones",
+        "from": "de",
+        "to": "a",
+        "title_recived": "recibido",
+        "title_sent": "enviado",
+        "title_approved": "invitaciones aceptadas",
+        "title_rejected": "invitaciones rechazadas"
+    },
+    "clients": {
+        "select_client_message": "Añadir nuevo cliente o seleccionar",
+        "client_name": "nombre del cliente",
+        "client_details": "Detalles del cliente",
+        "client_assigned_user": "usuario asignado",
+        "client_assign_user": "asignar usuario",
+        "select_user_to_assign": "seleccionar usuario para asignar",
+        "user_is_not_assigned": "usuario no asignado"
     }
 }

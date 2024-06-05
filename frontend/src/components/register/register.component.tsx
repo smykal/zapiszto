@@ -1,10 +1,14 @@
 import { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { withTranslation } from "react-i18next";
 
 import AuthService from "../../services/auth.service";
 
-type Props = {};
+type Props = {
+  t: any;
+
+};
 
 type State = {
   username: string,
@@ -15,7 +19,7 @@ type State = {
   role: string[]
 };
 
-export default class Register extends Component<Props, State> {
+class Register extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
@@ -97,6 +101,7 @@ export default class Register extends Component<Props, State> {
 
   render() {
     const { successful, message } = this.state;
+    const { t } = this.props;
 
     const initialValues = {
       username: "",
@@ -123,7 +128,7 @@ export default class Register extends Component<Props, State> {
               {!successful && (
                 <div>
                   <div className="form-group">
-                    <label htmlFor="username"> Username </label>
+                    <label htmlFor="username"> {t("login.username")} </label>
                     <Field name="username" type="text" className="form-control" />
                     <ErrorMessage
                       name="username"
@@ -133,7 +138,7 @@ export default class Register extends Component<Props, State> {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="email"> Email </label>
+                    <label htmlFor="email"> {t("login.email")} </label>
                     <Field name="email" type="email" className="form-control" />
                     <ErrorMessage
                       name="email"
@@ -143,7 +148,7 @@ export default class Register extends Component<Props, State> {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="password"> Password </label>
+                    <label htmlFor="password"> {t("login.password")} </label>
                     <Field
                       name="password"
                       type="password"
@@ -165,13 +170,9 @@ export default class Register extends Component<Props, State> {
                     <label htmlFor="role admin">
                       <Field type="radio" name="role" value="admin" /> ROLE_ADMIN
                     </label>
-
-
                   </div>
-
-
                   <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                    <button type="submit" className="btn btn-primary btn-block">{t("login.register")}</button>
                   </div>
                 </div>
               )}
@@ -195,3 +196,4 @@ export default class Register extends Component<Props, State> {
     );
   }
 }
+export default withTranslation("global")(Register)

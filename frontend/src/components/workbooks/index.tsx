@@ -73,7 +73,7 @@ class Training extends Component<Props, State> {
         const { t } = this.props;
 
         return (
-            <div className="container">
+            <div>
                 <div className="input_workbook">
                     <input
                         type="text"

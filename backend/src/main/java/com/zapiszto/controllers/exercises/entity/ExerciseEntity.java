@@ -1,8 +1,8 @@
 package com.zapiszto.controllers.exercises.entity;
 
-import com.zapiszto.controllers.dictExercises.entity.DictExercisesEntity;
-import com.zapiszto.controllers.dictQuantityType.entity.DictQuantityTypeEntity;
-import com.zapiszto.controllers.dictUnits.entity.DictUnitsEntity;
+import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
+import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.trainings.entity.TrainingEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

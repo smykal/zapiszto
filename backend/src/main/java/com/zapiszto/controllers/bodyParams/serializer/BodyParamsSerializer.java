@@ -6,7 +6,7 @@ import com.zapiszto.controllers.bodyParams.dto.BodyParamsDto;
 import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.zapiszto.controllers.bodyParams.entity.BodyParamsEntity;
-import com.zapiszto.controllers.dictBodyParams.entity.DictBodyParamsEntity;
+import com.zapiszto.controllers.dictionaries.dictBodyParams.entity.DictBodyParamsEntity;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;

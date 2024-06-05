@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Menu } from "./components/language/Menu";
 import { useTranslation } from "react-i18next";
@@ -16,11 +15,15 @@ import BoardAdmin from "./components/board/board-admin.component";
 import BodyParams from "./components/bodyParams";
 import Training from "./components/workbooks";
 import Dictionaries from "./components/dictionaries";
+import TrainerView from "./components/viewTrainer/TrainerView";
+import Clients from "./components/viewTrainer/clients/Clients";
 import EventBus from "./common/EventBus";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const [showTrainerBoard, setShowTrainerBoard] = useState(false);
+  const [showUserBoard, setShowUserBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
   const { t } = useTranslation("global");
 
@@ -30,6 +33,8 @@ const App = () => {
       setCurrentUser(user);
       setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+      setShowTrainerBoard(user.roles.includes("ROLE_TRAINER"));
+      setShowUserBoard(user.roles.includes("ROLE_USER"));
     }
     EventBus.on("logout", logOut);
     return () => {
@@ -41,16 +46,18 @@ const App = () => {
     AuthService.logout();
     setShowModeratorBoard(false);
     setShowAdminBoard(false);
+    setShowTrainerBoard(false);
+    setShowUserBoard(false);
     setCurrentUser(undefined);
   };
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <nav className="navbar">
         <Link to={"/"} className="navbar-brand">
           zapiszTo
         </Link>
-        <div className="navbar-nav mr-auto">
+        <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               {t("navigation.home")}
@@ -72,39 +79,50 @@ const App = () => {
               </Link>
             </li>
           )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                {t("navigation.user")}
-              </Link>
-            </li>
+          
+          {showUserBoard && ( // Conditionally render for user role
+            <>
+              <li className="nav-item">
+                <Link to={"/bodyParams"} className="nav-link">
+                  {t("navigation.body_params")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/dictionaries"} className="nav-link">
+                  {t("navigation.dictionaries")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/training"} className="nav-link">
+                  {t("navigation.training")}
+                </Link>
+              </li>
+            </>
           )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/bodyParams"} className="nav-link">
-                {t("navigation.body_params")}
-              </Link>
-            </li>
+          
+          {showTrainerBoard && ( // Conditionally render for trainer users
+            <>
+              <li className="nav-item">
+                <Link to={"/dictionaries"} className="nav-link">
+                  {t("navigation.dictionaries")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/trainer"} className="nav-link">
+                  Trainer View
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/clients"} className="nav-link">
+                {t("navigation.clients")}
+                </Link>
+              </li>
+            </>
           )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/training"} className="nav-link">
-                {t("navigation.training")}
-              </Link>
-            </li>
-          )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/dictionaries"} className="nav-link">
-                {t("navigation.dictionaries")}
-              </Link>
-            </li>
-          )}
-        </div>
-
+        </ul>
 
         {currentUser ? (
-          <div className="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
                 {currentUser.username}
@@ -115,9 +133,9 @@ const App = () => {
                 {t("navigation.log_out")}
               </a>
             </li>
-          </div>
+          </ul>
         ) : (
-          <div className="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/login"} className="nav-link">
                 {t("navigation.log_in")}
@@ -128,12 +146,12 @@ const App = () => {
                 {t("navigation.sign_in")}
               </Link>
             </li>
-          </div>
+          </ul>
         )}
         <Menu />
       </nav>
 
-      <div className="container mt-3">
+      <div id="content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -146,6 +164,8 @@ const App = () => {
           <Route path="/bodyParams" element={<BodyParams />} />
           <Route path="/training" element={<Training />} />
           <Route path="/dictionaries" element={<Dictionaries />} />
+          <Route path="/trainer" element={<TrainerView />} />  {/* New route for trainer view */}
+          <Route path="/clients" element={<Clients />} />  {/* New route for clients */}
         </Routes>
       </div>
     </div>

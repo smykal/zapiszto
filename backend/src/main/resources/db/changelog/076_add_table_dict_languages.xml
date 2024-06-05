@@ -1,0 +1,32 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="createTable-dict_languages" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="dict_languages" schemaName="public"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="dict_languages">
+            <column name="id" type="int8">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="varchar(20)" remarks="ISO 3166-1 alpha-2"/>
+            <column name="label" type="varchar(20)" remarks="name in origin language"/>
+            <column name="name" type="varchar(20)" remarks="name in english"/>
+
+        </createTable>
+
+        <createSequence sequenceName="dict_languages_id_seq"
+                        incrementBy="1"
+                        startValue="1"/>
+        <sql>
+            ALTER TABLE public.dict_languages
+            ALTER COLUMN id SET DEFAULT nextval('dict_languages_id_seq');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

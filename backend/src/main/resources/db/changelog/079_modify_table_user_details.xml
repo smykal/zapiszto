@@ -1,0 +1,26 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add-birthdate-and-dict_sex_id-to-user-details" author="smykalm">
+        <addColumn tableName="user_details">
+            <column name="birthdate" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+            <column name="dict_sex_id" type="int4">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint
+                baseTableName="user_details"
+                baseColumnNames="dict_sex_id"
+                referencedTableName="dict_sex"
+                referencedColumnNames="id"
+                constraintName="fk_user_details_dict_sex_id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

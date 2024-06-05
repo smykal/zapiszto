@@ -3,17 +3,31 @@
         "home": "home",
         "user": "user",
         "body_params": "body params",
+        "body_tests": "body tests",
         "training": "training",
         "dictionaries": "dictionaries",
+        "clients": "clients",
         "log_in": "log in",
         "log_out": "log out",
-        "sign_in": "sing in"
+        "sign_in": "sing in",
+        "select_language": "select language"
+    },
+    "login": {
+        "username": "username",
+        "password": "password",
+        "email": "email",
+        "login": "Login",
+        "register": "sign up"
     },
     "dictionaries": {
         "dict_category": "dict category",
         "dict_exercise": "dict exercises",
         "dict_quantity_type": "dict quantity type",
-        "dict units": "dict units"
+        "dict_units": "dict units",
+        "dict_body_test": "body tests",
+        "body_tests_name": "test name",
+        "body_tests_description": "description for test",
+        "body_tests_purpose": "purpose for test"
     },
     "body_params": {
         "gender": "gender",
@@ -53,6 +67,7 @@
     },
     "buttons": {
         "add": "add",
+        "add_client": "add client",
         "delete": "delete",
         "edit": "edit",
         "archive": "archive",
@@ -63,7 +78,9 @@
         "female": "female",
         "male": "male",
         "move_up": "move up",
-        "move_down": "move down"
+        "move_down": "move down",
+        "approve": "approve",
+        "reject": "reject"
     },
     "validation": {
         "this_field_is_required": "this field is required",
@@ -84,6 +101,25 @@
         "volume": "volume",
         "unit": "unit",
         "notes": "notes",
-        "category": "category"
+        "category": "category",
+        "purpose": "purpose"
+    },
+    "invitations": {
+        "title": "invitations",
+        "from": "from",
+        "to": "to",
+        "title_recived": "recived",
+        "title_sent": "sent",
+        "title_approved": "accepted",
+        "title_rejected": "rejected"
+    },
+    "clients": {
+        "select_client_message": "Add new client or select",
+        "client_name": "client name",
+        "client_details": "Client details",
+        "client_assigned_user": "assigned user",
+        "client_assign_user": "assign user",
+        "select_user_to_assign": "select user to assign",
+        "user_is_not_assigned": "user is not assigned"
     }
 }

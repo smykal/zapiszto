@@ -8,16 +8,10 @@ export default class BodyParams extends Component {
 
   render() {
     return (
-      <div className="container">
-          <div className="sa">
+      <div>
             <ShowBodyParams />
-          </div>
-          <div className="sa1">
             <PutBodyParam />
-          </div>
-          <div className="sa2">
             <ShowDiagram />
-          </div>
       </div>
     );
   }

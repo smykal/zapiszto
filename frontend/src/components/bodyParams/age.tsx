@@ -40,7 +40,7 @@ const Age = () => {
 
     if (age !== null) {
         return (
-            <div className="container">
+            <div>
                 <p>{t("body_params.age")}: {age}</p>
             </div>
         );
