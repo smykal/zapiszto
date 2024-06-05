@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Service from "../../services/bodyParams"
 import { BodyParamsItem } from '../../types/types';

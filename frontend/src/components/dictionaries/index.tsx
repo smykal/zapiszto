@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import ShowDictExercises from './dictExercises/ShowDictExercises'
 import ShowDictQuantityTypes from './dictQuantityType/ShowDictQuantityType'

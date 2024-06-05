@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { DictCategories, DictExercises } from "../../../types/types";
 import { useTranslation } from "react-i18next";
 import Options from "./Options";

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Options from './Options';
 import { Exercise } from '../../../../../types/types';
 import { withTranslation } from "react-i18next";

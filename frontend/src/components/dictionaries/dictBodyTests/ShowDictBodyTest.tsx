@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { DictBodyTest } from "../../../types/types";
 import Service from '../../../services/dict/DictBodyTestService';
 import AddDictBodyTestPerUser from "./AddDictBodyTestPerUser";

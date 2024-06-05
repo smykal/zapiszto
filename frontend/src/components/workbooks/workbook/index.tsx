@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Workbook } from '../../../types/types';
 
 import ControlsSection from './controlsSection';
