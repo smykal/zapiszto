@@ -43,6 +43,6 @@ public class ClientEntity {
   @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
   User userEntity;
 
-  @Column(name = "user_id", nullable = false)
+  @Column(name = "user_id", nullable = true)
   Long userId;
 }

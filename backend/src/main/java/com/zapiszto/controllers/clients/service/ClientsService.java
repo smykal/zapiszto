@@ -36,7 +36,7 @@ public class ClientsService {
         .id(UUID.fromString(newClientDto.getId()))
         .trainerId(trainerId)
         .clientName(newClientDto.getClientName())
-        .userId(newClientDto.getUserId())
+        .userId(newClientDto.getUserId() == 0 ? null : newClientDto.getUserId())
         .build();
     clientsRepository.save(clientEntity);
   }
