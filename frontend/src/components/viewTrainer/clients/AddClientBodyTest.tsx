@@ -57,7 +57,7 @@ const AddClientBodyTest: React.FC<ClientDetailsProps> = ({ client }) => {
 
     return (
         <div>
-            <h2>{t('navigation.assign_client_body_test_result')}</h2>
+            <h2>{t('clients.assign_client_body_test_result')}</h2>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}

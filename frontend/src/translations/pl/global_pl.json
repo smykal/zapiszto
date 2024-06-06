@@ -120,6 +120,17 @@
         "client_assigned_user": "przypisany użytkownik",
         "client_assign_user": "przypisz użytkownika",
         "select_user_to_assign": "wybierz użytkownika do przypisania",
-        "user_is_not_assigned": "użytkownik nie przypisany"
+        "user_is_not_assigned": "użytkownik nie przypisany",
+        "show_done_body_tests": "wykonane testy ciała",
+        "assign_client_body_test_result": "przypisz nowy wynik testu ciała",
+        "add_body_test": "dodaj test ciała do pamięci",
+        "no_body_tests_yet": "brak przypisanych testów ciała",
+        "select_body_param": "wybierz parametr ciała",
+        "select_body_test": "wybierz test ciała",
+        "select_unit": "wybierz jednostkę",
+        "action": "akcja",
+        "value": "wartość",
+        "date": "data",
+        "goals": "cele"
     }
 }

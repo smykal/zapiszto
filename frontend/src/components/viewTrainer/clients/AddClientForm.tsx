@@ -42,11 +42,7 @@ const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded }) => {
   const handleAddClient = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      if (selectedInviteeId === null) {
-        console.error('No invitee selected');
-        return;
-      }
-      const newClientWithId = { ...newClient, id: crypto.randomUUID(), userId: selectedInviteeId };
+      const newClientWithId = { ...newClient, id: crypto.randomUUID(), userId: selectedInviteeId || 0 };
       await ClientsService.postNewClient(newClientWithId);
       setNewClient({ id: '', clientName: '', userId: 0 });
       setSelectedInviteeId(null);
@@ -72,7 +68,7 @@ const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded }) => {
         <div>
           <label>{t('clients.client_assign_user')}:</label>
           <select value={selectedInviteeId || ''} onChange={handleInviteeChange}>
-            <option value="" disabled>{t('clients.select_user_to_assign')}</option>
+            <option value="">{t('clients.select_user_to_assign')}</option>
             {acceptedInvitations.map(invitation => (
               <option key={invitation.inviteeId} value={invitation.inviteeId}>
                 {invitation.inviteeEmail}

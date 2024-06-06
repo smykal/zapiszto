@@ -120,6 +120,17 @@
         "client_assigned_user": "assigned user",
         "client_assign_user": "assign user",
         "select_user_to_assign": "select user to assign",
-        "user_is_not_assigned": "user is not assigned"
+        "user_is_not_assigned": "user is not assigned",
+        "show_done_body_tests": "done body tests",
+        "assign_client_body_test_result": "assign new result for body test",
+        "add_body_test": "add body test to memmory",
+        "no_body_tests_yet": "any body test assign yet",
+        "select_body_param": "select body param",
+        "select_body_test": "select body test",
+        "select_unit": "select unit",
+        "action": "action",
+        "value": "value",
+        "date": "date",
+        "goals": "goals"
     }
 }

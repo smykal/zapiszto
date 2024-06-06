@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Client } from '../../../types/types';
 import ClientInformations from './ClientInformations';
 import ClientBody from './ClientBody';
-import ClientGoals from './ClientGoals';
+import ClientGoals from './goals/ClientGoals';
 
 interface ClientDetailsProps {
   client: Client;

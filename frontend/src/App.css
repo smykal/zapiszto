@@ -99,11 +99,14 @@ ul li {
 .form-row {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .form-group {
-  flex: 1;
+  flex: 1 1 45%; /* Ustawia elastyczność i bazową szerokość na 45% */
   margin-right: 10px;
+  max-width: 100%; /* Zapewnia, że element nie przekroczy 100% szerokości rodzica */
+  box-sizing: border-box; /* Uwzględnia padding i border w szerokości elementu */
 }
 
 .form-group:last-child {

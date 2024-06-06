@@ -2,7 +2,7 @@ import axios from 'axios';
 import authHeader from '../auth-header';
 import {API_URL} from '../../constants/api'
 
-class ZapiszToService {
+class BodyParamsService {
 
   getDictBodyParams() {
     return axios.get(API_URL + '/dictBodyParams', { headers: authHeader() });
@@ -85,4 +85,4 @@ class ZapiszToService {
   }
 }
 
-export default new ZapiszToService();
+export default new BodyParamsService();

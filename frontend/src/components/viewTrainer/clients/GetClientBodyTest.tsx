@@ -30,9 +30,9 @@ const GetClientBodyTest: React.FC<ClientDetailsProps> = ({ client }) => {
 
     return (
         <div>
-            <h2>{t('navigation.show_done_body_tests')}</h2>
+            <h2>{t('clients.show_done_body_tests')}</h2>
             {bodyTests.length === 0 ? (
-                <p>{t('no_body_tests')}</p>
+                <p>{t('clients.no_body_tests_yet')}</p>
             ) : (
                 <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
                     <thead>

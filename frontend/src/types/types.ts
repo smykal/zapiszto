@@ -6,6 +6,12 @@ export type BodyParamsItem = {
                               insert_date: string;
   };
 
+export type DictBodyParam = {
+                              id: number;
+                              name: string;
+                              description: string;
+}
+
 export type BmiItem = {
                         value: number;
                         date: string;
@@ -216,4 +222,15 @@ export type ClientBodyTest = {
                               result: string
                               description: string
                               purpose: string
+}
+
+export type NewGoal = {
+                        id: string,
+                        clientId: string,
+                        dictBodyParamId: number | null,
+                        dictBodyTestId: number | null,
+                        dictUnitId: number,
+                        action: string,
+                        value: string,
+                        goalDate: string
 }

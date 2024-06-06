@@ -120,6 +120,17 @@
         "client_assigned_user": "призначений користувач",
         "client_assign_user": "призначити користувача",
         "select_user_to_assign": "виберіть користувача для призначення",
-        "user_is_not_assigned": "користувач не призначений"
+        "user_is_not_assigned": "користувач не призначений",
+        "show_done_body_tests": "виконані тести тіла",
+        "assign_client_body_test_result": "призначити новий результат тесту тіла",
+        "add_body_test": "додати тест тіла до пам'яті",
+        "no_body_tests_yet": "ще не призначено тестів тіла",
+        "select_body_param": "вибрати параметр тіла",
+        "select_body_test": "вибрати тест тіла",
+        "select_unit": "вибрати одиницю",
+        "action": "дія",
+        "value": "значення",
+        "date": "дата",
+        "goals": "цілі"
     }
 }

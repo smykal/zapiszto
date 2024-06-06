@@ -103,7 +103,6 @@
         "notes": "заметки",
         "категория": "категория",
         "purpose": "цель"
-
     },
     "invitations": {
         "title": "приглашения",
@@ -121,6 +120,17 @@
         "client_assigned_user": "назначенный пользователь",
         "client_assign_user": "назначить пользователя",
         "select_user_to_assign": "выберите пользователя для назначения",
-        "user_is_not_assigned": "пользователь не назначен"
+        "user_is_not_assigned": "пользователь не назначен",
+        "show_done_body_tests": "выполненные тесты тела",
+        "assign_client_body_test_result": "назначить новый результат теста тела",
+        "add_body_test": "добавить тест тела в память",
+        "no_body_tests_yet": "ещё не назначены тесты тела",
+        "select_body_param": "выбрать параметр тела",
+        "select_body_test": "выбрать тест тела",
+        "select_unit": "выбрать единицу",
+        "action": "действие",
+        "value": "значение",
+        "date": "дата",
+        "goals": "цели"
     }
 }
