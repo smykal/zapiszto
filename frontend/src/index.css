@@ -102,3 +102,32 @@ tbody tr:hover {
 #content {
   padding: 20px 20px;
 }
+
+.Collapsible {
+  margin-bottom: 10px;
+  width: 80%
+}
+
+.Collapsible__trigger {
+  display: block;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #cccccc;
+  background-color: #343a40;;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Collapsible__trigger:hover {
+  background-color: #221b1b97;
+  color: #ffffff;
+  transform: scale(1.01);
+}
+
+.Collapsible__contentInner {
+  padding: 10px 10px;
+  background-color: #cccccc;
+  border-radius: 4px;
+}

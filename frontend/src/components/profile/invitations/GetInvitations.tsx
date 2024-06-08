@@ -68,7 +68,7 @@ class GetInvitations extends Component<Props, State> {
                         <ul>
                             {invitationsSent.length > 0 ? (
                                 invitationsSent.map(invitation => (
-                                    <li key={invitation.id}>
+                                    <li key={invitation.id} >
                                         <SingleInvitation invitation={invitation} />
                                     </li>
                                 ))

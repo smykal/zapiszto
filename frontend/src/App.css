@@ -45,12 +45,6 @@ label {
   justify-content: flex-end;
 }
 
-#bodyParams {
-            padding: "10px";
-            border: "1px solid #ccc";
-            background-color: #c0c6cb;
-            border-color: #007bff;
-}
 ul li {
   display: flex;
   margin-bottom: 10px;
