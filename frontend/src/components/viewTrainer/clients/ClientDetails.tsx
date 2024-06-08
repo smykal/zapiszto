@@ -4,6 +4,7 @@ import { Client } from '../../../types/types';
 import ClientInformations from './ClientInformations';
 import ClientBody from './ClientBody';
 import ClientGoals from './goals/ClientGoals';
+import Collapsible from 'react-collapsible';
 
 interface ClientDetailsProps {
   client: Client;
@@ -12,10 +13,18 @@ interface ClientDetailsProps {
 const ClientDetails: React.FC<ClientDetailsProps> = ({ client }) => {
   const { t } = useTranslation('global');
   return (
-    <div>
-      <ClientInformations client={client} />
-      <ClientBody client={client} />
-      <ClientGoals client={client} />
+    <div className="container">
+      <Collapsible trigger={t("client.informations")} open={false}>
+        <ClientInformations client={client} />
+      </Collapsible>
+
+      <Collapsible trigger={t("client.body")} open={false}>
+        <ClientBody client={client} />
+      </Collapsible>
+
+      <Collapsible trigger={t("client.goals")} open={false}>
+        <ClientGoals client={client} />
+      </Collapsible>
     </div>
   );
 };

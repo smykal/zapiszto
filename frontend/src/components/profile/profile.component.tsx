@@ -80,12 +80,10 @@ class Profile extends Component<Props, State> {
             {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
           </p>
           <p>
-            <strong>Id:</strong>{" "}
-            {currentUser.id}
+            <strong>{"Id: "}</strong>{currentUser.id}
           </p>
           <p>
-            <strong>Email:</strong>{" "}
-            {currentUser.email}
+            <strong>{"Email: "}</strong>{currentUser.email}
           </p>
           <strong>Authorities:</strong>
           <ul>

@@ -27,7 +27,12 @@ label {
 .alinka {
   background-image: url('/public/images/IMG_20230828_172406806.jpg');
   background-size: cover;
-  /* background-color: red; */
+  background-position: center; /* Ustaw początkową pozycję tła */
+  transition: background-position 0.5s ease-in-out; /* Dodaj płynne przejście */
+}
+
+.alinka:hover {
+  background-position: center 33%; /* Przesuń tło w górę przy najechaniu */
 }
 
 .profile-img-card {
