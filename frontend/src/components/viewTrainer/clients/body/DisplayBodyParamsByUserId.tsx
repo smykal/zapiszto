@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { BodyParamsItem } from '../../../types/types';
-import ZapiszToService from '../../../services/bodyParams';
+import { BodyParamsItem } from '../../../../types/types';
+import ZapiszToService from '../../../../services/bodyParams';
 
 interface DisplayBodyParamsProps {
     param_name: string;

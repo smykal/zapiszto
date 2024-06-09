@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Client } from '../../../types/types';
-import ClientInformations from './ClientInformations';
-import ClientBody from './ClientBody';
+import ClientInformations from './informations/ClientInformations';
+import ClientBody from './body/ClientBody';
 import ClientGoals from './goals/ClientGoals';
 import Collapsible from 'react-collapsible';
 

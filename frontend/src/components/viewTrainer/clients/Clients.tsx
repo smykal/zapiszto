@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import ClientsService from '../../../services/clients';
 import { Client } from '../../../types/types';
-import AddClientForm from './AddClientForm';
+import AddClientForm from './addClient/AddClientForm';
 import ClientDetails from './ClientDetails';
 const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);

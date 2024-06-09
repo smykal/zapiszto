@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Client, NewDictBodyTest } from '../../../types/types';
+import { Client, NewDictBodyTest } from '../../../../types/types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import ClientsService from '../../../services/clients';
+import ClientsService from '../../../../services/clients';
 
 interface ClientDetailsProps {
     client: Client

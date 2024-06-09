@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Client } from '../../../types/types';
+import { Client } from '../../../../types/types';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import ClientBodyParams from './ClientBodyParams';
 import ClientBodyTests from './ClientBodyTests';

@@ -28,7 +28,7 @@ label {
   background-image: url('/public/images/IMG_20230828_172406806.jpg');
   background-size: cover;
   background-position: center; /* Ustaw początkową pozycję tła */
-  transition: background-position 0.5s ease-in-out; /* Dodaj płynne przejście */
+  transition: background-position 0.6s ease-in-out; /* Dodaj płynne przejście */
 }
 
 .alinka:hover {

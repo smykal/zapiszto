@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Client, NewClientBodyTest, DictBodyTest } from '../../../types/types';
+import { Client, NewClientBodyTest, DictBodyTest } from '../../../../types/types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import ClientBodyTestsService from '../../../services/bodyTests/ClientBodyTestsService';
-import DictBodyTestService from '../../../services/dict/DictBodyTestService';
+import ClientBodyTestsService from '../../../../services/bodyTests/ClientBodyTestsService';
+import DictBodyTestService from '../../../../services/dict/DictBodyTestService';
 
 interface ClientDetailsProps {
     client: Client;

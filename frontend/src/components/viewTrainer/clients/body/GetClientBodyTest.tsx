@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Client, ClientBodyTest } from '../../../types/types';
-import ClientBodyTestsService from '../../../services/bodyTests/ClientBodyTestsService';
+import { Client, ClientBodyTest } from '../../../../types/types';
+import ClientBodyTestsService from '../../../../services/bodyTests/ClientBodyTestsService';
 
 interface ClientDetailsProps {
     client: Client;

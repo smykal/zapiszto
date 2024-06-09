@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import ClientsService from '../../../services/clients';
-import InvitationsService from '../../../services/invitations';
-import { NewClient, Invitation } from '../../../types/types';
+import InvitationsService from '../../../../services/invitations';
+import ClientsService from '../../../../services/clients';
+import { Client, Invitation } from '../../../../types/types';
 
-interface AddClientFormProps {
-  onClientAdded: () => void;
+interface UpdateClientUserProps {
+  client: Client;
 }
 
-const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded }) => {
-  const [newClient, setNewClient] = useState<NewClient>({ id: '', clientName: '', userId: 0 });
+const UpdateClientUser: React.FC<UpdateClientUserProps> = ({ client }) => {
   const [acceptedInvitations, setAcceptedInvitations] = useState<Invitation[]>([]);
   const [selectedInviteeId, setSelectedInviteeId] = useState<number | null>(null);
   const { t } = useTranslation('global');
@@ -31,42 +30,30 @@ const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded }) => {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewClient({ ...newClient, [e.target.name]: e.target.value });
-  };
-
   const handleInviteeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedInviteeId(parseInt(e.target.value, 10));
   };
 
-  const handleAddClient = async (e: React.FormEvent) => {
+  const handleUpdateUser = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (selectedInviteeId === null) {
+      console.error('No invitee selected');
+      return;
+    }
     try {
-      const newClientWithId = { ...newClient, id: crypto.randomUUID(), userId: selectedInviteeId || 0 };
-      await ClientsService.postNewClient(newClientWithId);
-      setNewClient({ id: '', clientName: '', userId: 0 });
-      setSelectedInviteeId(null);
-      onClientAdded();
+      await ClientsService.updateClientUser(client.id, selectedInviteeId);
+      console.log('User updated successfully');
     } catch (error) {
-      console.error('Error adding client:', error);
+      console.error('Error updating user:', error);
     }
   };
 
   return (
     <div>
-      <h2>{t('buttons.add_client')}</h2>
-      <form onSubmit={handleAddClient}>
+      <h2>{t('clients.update_client_user')}</h2>
+      <form onSubmit={handleUpdateUser}>
         <div>
-          <label>{t('clients.client_name')}:</label>
-          <input
-            type="text"
-            name="clientName"
-            value={newClient.clientName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>{t('clients.client_assign_user')}:</label>
+          <label>{t('clients.select_user_to_assign')}:</label>
           <select value={selectedInviteeId || ''} onChange={handleInviteeChange}>
             <option value="">{t('clients.select_user_to_assign')}</option>
             {acceptedInvitations.map(invitation => (
@@ -76,10 +63,10 @@ const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded }) => {
             ))}
           </select>
         </div>
-        <button type="submit">{t('buttons.add')}</button>
+        <button type="submit">{t('buttons.update')}</button>
       </form>
     </div>
   );
 };
 
-export default AddClientForm;
+export default UpdateClientUser;

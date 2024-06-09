@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Client, BodyParamsItem } from '../../../types/types';
-import Service from '../../../services/bodyParams';
+import { Client, BodyParamsItem } from '../../../../types/types';
+import Service from '../../../../services/bodyParams';
 import DisplayBodyParamsByUserId from './DisplayBodyParamsByUserId';
 import Collapsible from 'react-collapsible'; // Importuj Collapsible
 

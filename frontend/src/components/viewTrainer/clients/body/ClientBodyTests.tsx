@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Client } from '../../../types/types';
+import { Client } from '../../../../types/types';
 import AddNewBodyTest from './AddNewBodyTest';
 import AddClientBodyTest from './AddClientBodyTest';
 import GetClientBodyTest from './GetClientBodyTest';
