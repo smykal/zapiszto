@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,6 +62,20 @@ public class UserDetailsController implements ControllerCommon {
     }
   }
 
+  @GetMapping("/get_sex/{userId}")
+  @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<UserDetailsSexDto> getUserSex(
+      @PathVariable("userId") Long userId
+  ) {
+    var requestorId = extractUserId();
+    try {
+      var response = userDetailsService.getUserSex(userId);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
   @PostMapping("/post_sex")
   public ResponseEntity<String> saveUserSex(
       @RequestBody UserDetailsGenderDto gender
@@ -82,7 +97,23 @@ public class UserDetailsController implements ControllerCommon {
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
+  }
 
+  @GetMapping("/get_age/{userId}")
+  @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<UserDetailsAgeDto> getUserAge(
+      @PathVariable("userId") Long userId
+  ) {
+    var requestorId = extractUserId();
+    try {
+      var response = userDetailsService.getUserAge(userId);
+      return new ResponseEntity<>(
+          response,
+          HttpStatus.OK
+      );
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
   }
 
   @PostMapping("/post_birthdate")
