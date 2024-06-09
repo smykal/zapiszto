@@ -14,15 +14,15 @@ const ClientDetails: React.FC<ClientDetailsProps> = ({ client }) => {
   const { t } = useTranslation('global');
   return (
     <div className="container">
-      <Collapsible trigger={t("client.informations")} open={false}>
+      <Collapsible trigger={t("clients.informations")} open={true}>
         <ClientInformations client={client} />
       </Collapsible>
 
-      <Collapsible trigger={t("client.body")} open={false}>
+      <Collapsible trigger={t("clients.body")} open={false}>
         <ClientBody client={client} />
       </Collapsible>
 
-      <Collapsible trigger={t("client.goals")} open={false}>
+      <Collapsible trigger={t("clients.goals")} open={false}>
         <ClientGoals client={client} />
       </Collapsible>
     </div>

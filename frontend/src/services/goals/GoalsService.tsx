@@ -4,8 +4,8 @@ import { NewGoal } from '../../types/types'
 import { API_URL } from '../../constants/api'
 
 class GoalsService {
-    getGoals(clientId: number) {
-        return axios.get(API_URL + '/get_goals/' + clientId, { headers: authHeader() })
+    getGoals(clientId: string) {
+        return axios.get(`${API_URL}/get_goals/${clientId}`, { headers: authHeader() })
     }
 
     postNewGoal(requestBody: NewGoal) {

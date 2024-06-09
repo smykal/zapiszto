@@ -234,3 +234,18 @@ export type NewGoal = {
                         value: string,
                         goalDate: string
 }
+
+export type Goal = {
+                      id: string;
+                      clientId: string;
+                      goalType: string;
+                      dictBodyParam: string;
+                      dictBodyTestType: string;
+                      dictBodyTest: string;
+                      dictUnitType: string;
+                      dictUnit: string;
+                      action: string;
+                      value: string;
+                      goalDate: Date;
+                      insertDate: Date;
+}

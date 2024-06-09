@@ -31,8 +31,16 @@ class BodyParamsService {
     return axios.get(API_URL + '/get_sex', { headers: authHeader() });
   }
 
+  getGenderByUserId(userId: number) {
+    return axios.get(`${API_URL}/get_sex/${userId}`, { headers: authHeader() });
+  }
+
   getAge() {
     return axios.get(API_URL + '/get_age', { headers: authHeader() });
+  }
+
+  getAgeByUserId(userId: number) {
+    return axios.get(`${API_URL}/get_age/${userId}`, { headers: authHeader() });
   }
 
   getBmr() {

@@ -50,10 +50,11 @@ const UpdateClientUser: React.FC<UpdateClientUserProps> = ({ client }) => {
 
   return (
     <div>
-      <h2>{t('clients.update_client_user')}</h2>
-      <form onSubmit={handleUpdateUser}>
-        <div>
+      <form onSubmit={handleUpdateUser} className="form-row">
+        <div className="form-group">
           <label>{t('clients.select_user_to_assign')}:</label>
+        </div>
+        <div className="form-group">
           <select value={selectedInviteeId || ''} onChange={handleInviteeChange}>
             <option value="">{t('clients.select_user_to_assign')}</option>
             {acceptedInvitations.map(invitation => (
@@ -63,7 +64,9 @@ const UpdateClientUser: React.FC<UpdateClientUserProps> = ({ client }) => {
             ))}
           </select>
         </div>
-        <button type="submit">{t('buttons.update')}</button>
+        <div className="form-group">
+          <button type="submit" className="myButton">{t('buttons.update')}</button>
+        </div>
       </form>
     </div>
   );

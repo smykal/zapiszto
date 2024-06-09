@@ -80,7 +80,8 @@
         "move_up": "move up",
         "move_down": "move down",
         "approve": "approve",
-        "reject": "reject"
+        "reject": "reject",
+        "update": "update"
     },
     "validation": {
         "this_field_is_required": "this field is required",
@@ -131,6 +132,10 @@
         "action": "action",
         "value": "value",
         "date": "date",
-        "goals": "goals"
+        "goals": "goals",
+        "informations": "informations",
+        "body": "body",
+        "age": "age",
+        "age_not_available": "age not available"
     }
 }

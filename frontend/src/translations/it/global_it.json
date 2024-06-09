@@ -80,7 +80,8 @@
         "move_up": "muovi su",
         "move_down": "muovi giù",
         "approve": "approvare",
-        "reject": "rifiutare"
+        "reject": "rifiutare",
+        "update": "aggiornare"
     },
     "validation": {
         "this_field_is_required": "questo campo è obbligatorio",
@@ -131,6 +132,10 @@
         "action": "azione",
         "value": "valore",
         "date": "data",
-        "goals": "obiettivi"
+        "goals": "obiettivi",
+        "informations": "informazioni",
+        "body": "corpo",
+        "age": "età",
+        "age_not_available": "età non disponibile"
     }
 }

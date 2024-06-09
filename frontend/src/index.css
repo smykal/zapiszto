@@ -131,3 +131,19 @@ tbody tr:hover {
   background-color: #cccccc;
   border-radius: 4px;
 }
+
+.form-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Dodane wyrównanie w pionie */
+  flex-wrap: nowrap;
+}
+
+.form-group {
+  margin-right: 10px; /* Zwiększona odległość między elementami */
+  max-width: none; /* Usunięcie ograniczenia szerokości */
+}
+
+.form-group:last-child {
+  margin-right: 0;
+}

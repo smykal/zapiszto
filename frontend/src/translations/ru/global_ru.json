@@ -80,7 +80,8 @@
         "move_up": "поднять",
         "move_down": "опустить",
         "approve": "утвердить",
-        "reject": "отклонить"
+        "reject": "отклонить",
+        "update": "обновить"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
@@ -131,6 +132,10 @@
         "action": "действие",
         "value": "значение",
         "date": "дата",
-        "goals": "цели"
+        "goals": "цели",
+        "informations": "информация",
+        "body": "тело",
+        "age": "возраст",
+        "age_not_available": "возраст недоступен"
     }
 }

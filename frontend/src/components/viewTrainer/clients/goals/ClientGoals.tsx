@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Client } from '../../../../types/types';
 import AddGoals from './AddGoals';
+import GetGoals from './GetGoals';
 
 interface ClientDetailsProps {
   client: Client;
@@ -12,6 +13,7 @@ const ClientGoals: React.FC<ClientDetailsProps> = ({ client }) => {
   return (
     <div>
       <AddGoals client={client} />
+      <GetGoals clientId={client.id}/>
     </div>
   );
 };
