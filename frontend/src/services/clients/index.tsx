@@ -30,15 +30,16 @@ class ClientsService {
             });
     }
 
-    updateClientUser(clientId: string, userId: number) {
-        return axios.patch(API_URL + `/update_client_user/${clientId}`, { userId }, { headers: authHeader() })
-            .then(response => {
-                console.log('Odpowiedź z serwera:', response.data);
-            })
-            .catch(error => {
-                console.error('Błąd podczas aktualizacji użytkownika:', error);
-            });
-    }
+    updateClientUser(clientId: string, userId: number, clientName: string) {
+        const requestBody = { id: clientId, userId, clientName };
+        return axios.patch(API_URL + '/update_client', requestBody, { headers: authHeader() })
+          .then(response => {
+            console.log('Odpowiedź z serwera:', response.data);
+          })
+          .catch(error => {
+            console.error('Błąd podczas aktualizacji użytkownika:', error);
+          });
+      }
 
     postNewDictBodyTest(requestBody: NewDictBodyTest) {
         return axios.post(API_URL + '/add_body_test_per_user', requestBody, { headers: authHeader() })

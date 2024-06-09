@@ -43,7 +43,7 @@ public class ClientsService {
 
   public void updateClient(ClientDto clientDto) {
     try {
-      ClientEntity clientEntity = clientsRepository.getByIdUuid(clientDto.getId().toString());
+      ClientEntity clientEntity = clientsRepository.getByIdUuid(clientDto.getId());
       clientEntity.setClientName(clientDto.getClientName());
       clientEntity.setUserId(clientDto.getUserId());
       clientsRepository.save(clientEntity);

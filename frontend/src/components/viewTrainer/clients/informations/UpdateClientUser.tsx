@@ -41,7 +41,7 @@ const UpdateClientUser: React.FC<UpdateClientUserProps> = ({ client }) => {
       return;
     }
     try {
-      await ClientsService.updateClientUser(client.id, selectedInviteeId);
+      await ClientsService.updateClientUser(client.id, selectedInviteeId, client.clientName);
       console.log('User updated successfully');
     } catch (error) {
       console.error('Error updating user:', error);

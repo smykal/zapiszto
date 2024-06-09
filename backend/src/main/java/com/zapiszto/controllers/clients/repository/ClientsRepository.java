@@ -2,6 +2,7 @@ package com.zapiszto.controllers.clients.repository;
 
 import com.zapiszto.controllers.clients.entity.ClientEntity;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,5 +18,5 @@ public interface ClientsRepository extends JpaRepository<ClientEntity, Integer> 
       SELECT * from clients c
           where c.id = :id
       """)
-  ClientEntity getByIdUuid(@Param("id") String id);
+  ClientEntity getByIdUuid(@Param("id") UUID id);
 }
