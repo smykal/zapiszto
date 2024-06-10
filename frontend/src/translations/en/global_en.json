@@ -136,6 +136,9 @@
         "informations": "informations",
         "body": "body",
         "age": "age",
-        "age_not_available": "age not available"
+        "age_not_available": "age not available",
+        "trainings": "trainings",
+        "individual_trainings": "Individual Trainings",
+        "personal_trainings": "Personal Trainings"
     }
 }

@@ -136,6 +136,9 @@
         "informations": "informazioni",
         "body": "corpo",
         "age": "età",
-        "age_not_available": "età non disponibile"
+        "age_not_available": "età non disponibile",
+        "trainings": "allenamenti",
+        "individual_trainings": "Allenamenti Individuali",
+        "personal_trainings": "Allenamenti Personali"
     }
 }

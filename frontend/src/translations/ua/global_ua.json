@@ -136,6 +136,9 @@
         "informations": "інформація",
         "body": "тіло",
         "age": "вік",
-        "age_not_available": "вік недоступний"
+        "age_not_available": "вік недоступний",
+        "trainings": "тренування",
+        "individual_trainings": "Індивідуальні Тренування",
+        "personal_trainings": "Персональні Тренування"
     }
 }

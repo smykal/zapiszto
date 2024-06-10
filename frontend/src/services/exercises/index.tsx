@@ -90,6 +90,15 @@ class ExercisesService {
     return axios.get(API_URL + '/get_exercise/training/' + trainingId, { headers: authHeader() });
   }
 
+  getExercisesByUserId(trainingId: number, userId: number) {
+    return axios.get(`${API_URL}/get_exercise/training/${trainingId}/${userId}`, { headers: authHeader() });
+  }
+
+
+  getWorkbooksByUserId(userId: number) {
+    return axios.get(`${API_URL}/get_workbooks/${userId}`, { headers: authHeader() });
+  }
+
   deleteExercise(trainingId: number,
                  exerciseId: number) {
     return axios.delete(API_URL + '/delete_exercise/' + exerciseId + '/' + trainingId, { headers: authHeader() });

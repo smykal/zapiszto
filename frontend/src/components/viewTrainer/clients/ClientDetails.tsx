@@ -4,6 +4,7 @@ import { Client } from '../../../types/types';
 import ClientInformations from './informations/ClientInformations';
 import ClientBody from './body/ClientBody';
 import ClientGoals from './goals/ClientGoals';
+import ClientTrainings from './trainings/ClientTrainings';
 import Collapsible from 'react-collapsible';
 
 interface ClientDetailsProps {
@@ -24,6 +25,10 @@ const ClientDetails: React.FC<ClientDetailsProps> = ({ client }) => {
 
       <Collapsible trigger={t("clients.goals")} open={false}>
         <ClientGoals client={client} />
+      </Collapsible>
+
+      <Collapsible trigger={t("clients.trainings")} open={false}>
+        <ClientTrainings client={client} />
       </Collapsible>
     </div>
   );
