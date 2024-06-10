@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')  or hasRole('TRAINER')")
 public class DictWorkbookSchemaController {
 
   @Autowired
   private DictWorkbookSchemaService dictWorkbookSchemaService;
 
   @GetMapping("/get_dict_workbook_schema")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictWorkbookSchemaDto>> getDictWorkbookSchema() {
     try {
       var result = dictWorkbookSchemaService.getAll();

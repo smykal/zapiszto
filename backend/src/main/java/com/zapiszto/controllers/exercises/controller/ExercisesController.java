@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')  or hasRole('TRAINER')")
 public class ExercisesController implements ControllerCommon {
 
   @Autowired
   ExercisesService exercisesService;
 
   @PostMapping("/add_exercise")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addExercise(
       @RequestBody NewExerciseDto newExerciseDto
   ) {
@@ -39,7 +39,6 @@ public class ExercisesController implements ControllerCommon {
   }
 
   @GetMapping("/get_exercise/training/{trainingId}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<ExerciseDto>> getExercises(
       @PathVariable("trainingId") int trainingId
   ) {
@@ -52,8 +51,21 @@ public class ExercisesController implements ControllerCommon {
     }
   }
 
+  @GetMapping("/get_exercise/training/{trainingId}/{userId}")
+  public ResponseEntity<List<ExerciseDto>> getExercises(
+      @PathVariable("trainingId") int trainingId,
+      @PathVariable("userId") Long userId
+  ) {
+    var requestor = extractUserId();
+    try {
+      List<ExerciseDto> result = exercisesService.getExercises(trainingId, userId);
+      return new ResponseEntity<>(result, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
   @DeleteMapping("/delete_exercise/{exerciseId}/{trainingId}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteExercise(
       @PathVariable("exerciseId") int exerciseId,
       @PathVariable("trainingId") int trainingId
