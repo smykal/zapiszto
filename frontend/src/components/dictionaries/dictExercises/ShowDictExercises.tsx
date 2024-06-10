@@ -8,6 +8,8 @@ import Service from '../../../services/exercises';
 const ShowDictExercises = () => {
     const [dictExercises, setDictExercises] = useState<DictExercises[]>([]);
     const [dictCategories, setDictCategories] = useState<DictCategories[]>([]);
+    const [showBasic, setShowBasic] = useState(true);
+    const [showPerUser, setShowPerUser] = useState(true);
     const { t } = useTranslation("global");
 
     useEffect(() => {
@@ -35,8 +37,40 @@ const ShowDictExercises = () => {
             });
     };
 
+    const handleShowBasicChange = () => {
+        setShowBasic(!showBasic);
+    };
+
+    const handleShowPerUserChange = () => {
+        setShowPerUser(!showPerUser);
+    };
+
+    const filteredExercises = dictExercises.filter(exercise => {
+        if (showBasic && exercise.dict === "BASIC") return true;
+        if (showPerUser && exercise.dict === "PER_USER") return true;
+        return false;
+    });
+
     return (
         <div>
+            <div>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showBasic} 
+                        onChange={handleShowBasicChange} 
+                    />
+                    BASIC
+                </label>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showPerUser} 
+                        onChange={handleShowPerUserChange} 
+                    />
+                    PER_USER
+                </label>
+            </div>
             <AddDictExercisePerUser dictExercises={dictExercises} dictCategories={dictCategories} />
             <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
@@ -48,7 +82,7 @@ const ShowDictExercises = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {dictExercises.map((row) => (
+                    {filteredExercises.map((row) => (
                         <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
                             <td>{row.id}</td>
                             <td>{row.name}</td>
