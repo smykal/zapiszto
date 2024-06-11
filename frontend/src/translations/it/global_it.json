@@ -81,7 +81,9 @@
         "move_down": "muovi giù",
         "approve": "approvare",
         "reject": "rifiutare",
-        "update": "aggiornare"
+        "update": "aggiornare",
+        "send_invitation": "invita",
+        "placeholder_send_invitation": "inserisci email"
     },
     "validation": {
         "this_field_is_required": "questo campo è obbligatorio",

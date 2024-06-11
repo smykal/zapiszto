@@ -81,7 +81,9 @@
         "move_down": "опустить",
         "approve": "утвердить",
         "reject": "отклонить",
-        "update": "обновить"
+        "update": "обновить",
+        "send_invitation": "отправить приглашение",
+        "placeholder_send_invitation": "введите электронную почту"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",

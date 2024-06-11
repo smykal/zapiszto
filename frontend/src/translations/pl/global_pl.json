@@ -81,7 +81,9 @@
         "move_down": "Przenieś w dół",
         "approve": "zatwierdź",
         "reject": "odrzucić",
-        "update": "aktualizować"
+        "update": "aktualizować",
+        "send_invitation": "wyślij zaproszenie",
+        "placeholder_send_invitation": "wpisz email"
     },
     "validation": {
         "this_field_is_required": "to pole jest wymagane",

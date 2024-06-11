@@ -85,7 +85,9 @@
         "move_down": "опустити",
         "approve": "затвердити",
         "reject": "відхилити",
-        "update": "оновити"
+        "update": "оновити",
+        "send_invitation": "надіслати запрошення",
+        "placeholder_send_invitation": "введіть електронну пошту"
     },
     "table": {
         "id": "#",

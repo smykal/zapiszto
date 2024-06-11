@@ -81,7 +81,9 @@
         "move_down": "move down",
         "approve": "approve",
         "reject": "reject",
-        "update": "update"
+        "update": "update",
+        "send_invitation": "send invitation",
+        "placeholder_send_invitation": "put email"
     },
     "validation": {
         "this_field_is_required": "this field is required",
