@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import ClientsService from '../../../services/clients';
 import { Client } from '../../../types/types';
 import AddClientForm from './addClient/AddClientForm';
 import ClientDetails from './ClientDetails';
+import ClientsService from '../../../services/clients';
+
 const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
@@ -38,6 +38,11 @@ const Clients = () => {
     setShowForm(false);
   };
 
+  const handleClientDeleted = () => {
+    fetchClients();
+    setSelectedClient(null);
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ width: '20%', padding: '10px', borderRight: '1px solid #ccc' }}>
@@ -45,7 +50,9 @@ const Clients = () => {
         <ul>
           {clients.map(client => (
             <li key={client.id} onClick={() => handleClientClick(client)}>
-              {client.clientName}
+              <span className={selectedClient?.id === client.id ? 'selected-client' : ''}>
+                {client.clientName}
+              </span>
             </li>
           ))}
         </ul>
@@ -54,7 +61,7 @@ const Clients = () => {
         {showForm ? (
           <AddClientForm onClientAdded={handleClientAdded} />
         ) : selectedClient ? (
-          <ClientDetails client={selectedClient} />
+          <ClientDetails client={selectedClient} onClientDeleted={handleClientDeleted} />
         ) : (
           <div>{t('clients.select_client_message')}</div>
         )}

@@ -66,7 +66,8 @@ button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition-duration: 0.4s;
   padding: 3px;
-  margin: 5px !important;
+  margin: 10px !important;
+  letter-spacing: 2px;
 }
 
 button:hover {
@@ -146,4 +147,41 @@ tbody tr:hover {
 
 .form-group:last-child {
   margin-right: 0;
+}
+
+
+.selected-client {
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
+  margin: 0px 0;
+  display: block;
+}
+
+li {
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+li:hover .selected-client,
+li:hover span {
+  background-color: #221b1b97;
+  color: white;
+  transform: scale(1.05);
+  border-radius: 5px ;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+span {
+  display: block;
+  padding: 10px;
+  margin: 0px 0;
+  cursor: pointer;
+  border-radius: 5px 
 }

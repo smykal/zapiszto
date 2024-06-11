@@ -50,6 +50,18 @@ class ClientsService {
                 console.error('Błąd podczas wysyłania zapytania:', error);
             });
     }
+
+    deleteClient(clientId: string) {
+        return axios.delete(`${API_URL}/delete_client/${clientId}`, { headers: authHeader() })
+            .then(response => {
+                console.log('Client deleted successfully');
+                return response.data;
+            })
+            .catch(error => {
+                console.error('Error deleting client:', error);
+                throw error;
+            });
+    }
 }
 
 export default new ClientsService();
