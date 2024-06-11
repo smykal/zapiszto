@@ -41,7 +41,7 @@ const GetGender = () => {
 
   if (gender !== null) {
     return (
-      <div className="container">
+      <div>
         <p>{t("body_params.gender")}: {gender}</p>
       </div>
     );
