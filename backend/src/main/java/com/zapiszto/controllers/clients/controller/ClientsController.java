@@ -5,14 +5,17 @@ import com.zapiszto.controllers.clients.dto.NewClientDto;
 import com.zapiszto.controllers.clients.service.ClientsService;
 import com.zapiszto.controllers.common.ControllerCommon;
 import java.util.List;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,5 +67,13 @@ public class ClientsController implements ControllerCommon {
       log.error("Error updating client: {}", e.getMessage());
       return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
+  }
+
+  @DeleteMapping("/delete_client/{id}")
+  public ResponseEntity<String> deleteClient(
+      @PathVariable UUID id) {
+    var requestorId = extractUserId();
+    clientsService.deleteClient(id);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 }

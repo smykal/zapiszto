@@ -52,4 +52,8 @@ public class ClientsService {
       throw e;
     }
   }
+  public void deleteClient(UUID clientId) {
+    clientsRepository.deleteByClientId(clientId);
+  }
+
  }
