@@ -150,7 +150,7 @@ tbody tr:hover {
 }
 
 
-.selected-client {
+#clientsList .selected-client {
   background-color: #343a40;
   color: white;
   padding: 10px;
@@ -158,30 +158,30 @@ tbody tr:hover {
   display: block;
 }
 
-li {
+#clientsList li {
   padding: 10px;
   margin: 5px 0;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
 }
 
-li:hover .selected-client,
-li:hover span {
+#clientsList li:hover .selected-client,
+#clientsList li:hover span {
   background-color: #221b1b97;
   color: white;
   transform: scale(1.05);
   border-radius: 5px ;
 }
 
-ul {
+#clientsList ul {
   list-style-type: none;
   padding: 0;
 }
 
-span {
+#clientsList span {
   display: block;
   padding: 10px;
   margin: 0px 0;
   cursor: pointer;
-  border-radius: 5px 
+  border-radius: 5px;
 }

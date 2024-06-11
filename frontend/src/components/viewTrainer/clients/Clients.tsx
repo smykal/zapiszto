@@ -47,7 +47,7 @@ const Clients = () => {
     <div style={{ display: 'flex' }}>
       <div style={{ width: '20%', padding: '10px', borderRight: '1px solid #ccc' }}>
         <button onClick={() => setShowForm(!showForm)}>{t('buttons.add_client')}</button>
-        <ul>
+        <ul id="clientsList">
           {clients.map(client => (
             <li key={client.id} onClick={() => handleClientClick(client)}>
               <span className={selectedClient?.id === client.id ? 'selected-client' : ''}>
