@@ -3,6 +3,9 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { withTranslation } from "react-i18next";
 import AuthService from "../../services/auth.service";
+import ReCAPTCHA from "react-google-recaptcha";
+import { RECAPTCHA_SITE_KEY } from "../../constants/api";
+
 
 type Props = {
   t: any;
@@ -17,12 +20,14 @@ type State = {
   role: string[];
   termsAccepted: boolean;
   privacyAccepted: boolean;
+  recaptchaToken: string | null;
 };
 
 class Register extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
+    this.onRecaptchaChange = this.onRecaptchaChange.bind(this);
 
     this.state = {
       username: "",
@@ -33,6 +38,7 @@ class Register extends Component<Props, State> {
       role: [],
       termsAccepted: false,
       privacyAccepted: false,
+      recaptchaToken: null,
     };
   }
 
@@ -60,11 +66,16 @@ class Register extends Component<Props, State> {
       role: Yup.string().required("This field is required!"),
       termsAccepted: Yup.boolean().oneOf([true], "You must accept the terms and conditions"),
       privacyAccepted: Yup.boolean().oneOf([true], "You must accept the privacy policy"),
+      recaptchaToken: Yup.string().required("Please complete the reCAPTCHA")
     });
   }
 
-  handleRegister(formValue: { username: string; email: string; password: string; role: string; termsAccepted: boolean; privacyAccepted: boolean }) {
-    const { username, email, password, role, termsAccepted, privacyAccepted } = formValue;
+  onRecaptchaChange(token: string | null) {
+    this.setState({ recaptchaToken: token });
+  }
+
+  handleRegister(formValue: { username: string; email: string; password: string; role: string; termsAccepted: boolean; privacyAccepted: boolean; recaptchaToken: string | null }) {
+    const { username, email, password, role } = formValue;
 
     this.setState({
       message: "",
@@ -103,6 +114,7 @@ class Register extends Component<Props, State> {
       role: "ROLE_USER",
       termsAccepted: false,
       privacyAccepted: false,
+      recaptchaToken: null,
     };
 
     return (
@@ -119,90 +131,106 @@ class Register extends Component<Props, State> {
             validationSchema={this.validationSchema()}
             onSubmit={this.handleRegister}
           >
-            <Form>
-              {!successful && (
-                <div>
-                  <div className="form-group">
-                    <label htmlFor="username"> {t("login.username")} </label>
-                    <Field name="username" type="text" className="form-control" />
-                    <ErrorMessage
-                      name="username"
-                      component="div"
-                      className="alert alert-danger"
-                    />
-                  </div>
+            {({ setFieldValue }) => (
+              <Form>
+                {!successful && (
+                  <div>
+                    <div className="form-group">
+                      <label htmlFor="username"> {t("login.username")} </label>
+                      <Field name="username" type="text" className="form-control" />
+                      <ErrorMessage
+                        name="username"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="email"> {t("login.email")} </label>
-                    <Field name="email" type="email" className="form-control" />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="alert alert-danger"
-                    />
-                  </div>
+                    <div className="form-group">
+                      <label htmlFor="email"> {t("login.email")} </label>
+                      <Field name="email" type="email" className="form-control" />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="password"> {t("login.password")} </label>
-                    <Field name="password" type="password" className="form-control" />
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="alert alert-danger"
-                    />
+                    <div className="form-group">
+                      <label htmlFor="password"> {t("login.password")} </label>
+                      <Field name="password" type="password" className="form-control" />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="role user">
+                        <Field type="radio" name="role" value="user" /> ROLE_USER
+                      </label>
+                      <label htmlFor="role trener">
+                        <Field type="radio" name="role" value="trainer" /> ROLE_TRENER
+                      </label>
+                      <label htmlFor="role admin">
+                        <Field type="radio" name="role" value="admin" /> ROLE_ADMIN
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label>
+                        <Field type="checkbox" name="termsAccepted" />
+                        {t("login.terms_accepted")}
+                      </label>
+                      <ErrorMessage
+                        name="termsAccepted"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>
+                        <Field type="checkbox" name="privacyAccepted" />
+                        {t("login.privacy_accepted")}
+                      </label>
+                      <ErrorMessage
+                        name="privacyAccepted"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <ReCAPTCHA
+                        sitekey = {RECAPTCHA_SITE_KEY}
+                        onChange={(token) => {
+                          setFieldValue("recaptchaToken", token);
+                          this.onRecaptchaChange(token);
+                        }}
+                      />
+                      <ErrorMessage
+                        name="recaptchaToken"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <button type="submit" className="btn btn-primary btn-block">{t("login.register")}</button>
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="role user">
-                      <Field type="radio" name="role" value="user" /> ROLE_USER
-                    </label>
-                    <label htmlFor="role trener">
-                      <Field type="radio" name="role" value="trainer" /> ROLE_TRENER
-                    </label>
-                    <label htmlFor="role admin">
-                      <Field type="radio" name="role" value="admin" /> ROLE_ADMIN
-                    </label>
-                  </div>
-                  <div className="form-group">
-                    <label>
-                      <Field type="checkbox" name="termsAccepted" />
-                      {t("login.terms_accepted")}
-                    </label>
-                    <ErrorMessage
-                      name="termsAccepted"
-                      component="div"
-                      className="alert alert-danger"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>
-                      <Field type="checkbox" name="privacyAccepted" />
-                      {t("login.privacy_accepted")}
-                    </label>
-                    <ErrorMessage
-                      name="privacyAccepted"
-                      component="div"
-                      className="alert alert-danger"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block">{t("login.register")}</button>
-                  </div>
-                </div>
-              )}
+                )}
 
-              {message && (
-                <div className="form-group">
-                  <div
-                    className={
-                      successful ? "alert alert-success" : "alert alert-danger"
-                    }
-                    role="alert"
-                  >
-                    {message}
+                {message && (
+                  <div className="form-group">
+                    <div
+                      className={
+                        successful ? "alert alert-success" : "alert alert-danger"
+                      }
+                      role="alert"
+                    >
+                      {message}
+                    </div>
                   </div>
-                </div>
-              )}
-            </Form>
+                )}
+              </Form>
+            )}
           </Formik>
         </div>
       </div>
