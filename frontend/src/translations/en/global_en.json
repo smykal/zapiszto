@@ -17,7 +17,9 @@
         "password": "password",
         "email": "email",
         "login": "Login",
-        "register": "sign up"
+        "register": "sign up",
+        "terms_accepted": "I have read and accept the terms and conditions",
+        "privacy_accepted": "I have read and accept the privacy policy"
     },
     "dictionaries": {
         "dict_category": "dict category",

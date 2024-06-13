@@ -2,21 +2,21 @@ import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { withTranslation } from "react-i18next";
-
 import AuthService from "../../services/auth.service";
 
 type Props = {
   t: any;
-
 };
 
 type State = {
-  username: string,
-  email: string,
-  password: string,
-  successful: boolean,
-  message: string,
-  role: string[]
+  username: string;
+  email: string;
+  password: string;
+  successful: boolean;
+  message: string;
+  role: string[];
+  termsAccepted: boolean;
+  privacyAccepted: boolean;
 };
 
 class Register extends Component<Props, State> {
@@ -30,7 +30,9 @@ class Register extends Component<Props, State> {
       password: "",
       successful: false,
       message: "",
-      role: []
+      role: [],
+      termsAccepted: false,
+      privacyAccepted: false,
     };
   }
 
@@ -41,9 +43,7 @@ class Register extends Component<Props, State> {
           "len",
           "The username must be between 3 and 20 characters.",
           (val: any) =>
-            val &&
-            val.toString().length >= 3 &&
-            val.toString().length <= 20
+            val && val.toString().length >= 3 && val.toString().length <= 20
         )
         .required("This field is required!"),
       email: Yup.string()
@@ -54,46 +54,39 @@ class Register extends Component<Props, State> {
           "len",
           "The password must be between 6 and 40 characters.",
           (val: any) =>
-            val &&
-            val.toString().length >= 6 &&
-            val.toString().length <= 40
+            val && val.toString().length >= 6 && val.toString().length <= 40
         )
         .required("This field is required!"),
-      role: Yup.string().required("This field is required!")
+      role: Yup.string().required("This field is required!"),
+      termsAccepted: Yup.boolean().oneOf([true], "You must accept the terms and conditions"),
+      privacyAccepted: Yup.boolean().oneOf([true], "You must accept the privacy policy"),
     });
   }
 
-  handleRegister(formValue: { username: string; email: string; password: string; role: string }) {
-    const { username, email, password, role } = formValue;
+  handleRegister(formValue: { username: string; email: string; password: string; role: string; termsAccepted: boolean; privacyAccepted: boolean }) {
+    const { username, email, password, role, termsAccepted, privacyAccepted } = formValue;
 
     this.setState({
       message: "",
-      successful: false
+      successful: false,
     });
 
-    AuthService.register(
-      username,
-      email,
-      password,
-      role
-    ).then(
-      response => {
+    AuthService.register(username, email, password, role).then(
+      (response) => {
         this.setState({
           message: response.data.message,
-          successful: true
+          successful: true,
         });
       },
-      error => {
+      (error) => {
         const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
+          (error.response && error.response.data && error.response.data.message) ||
           error.message ||
           error.toString();
 
         this.setState({
           successful: false,
-          message: resMessage
+          message: resMessage,
         });
       }
     );
@@ -107,7 +100,9 @@ class Register extends Component<Props, State> {
       username: "",
       email: "",
       password: "",
-      role: "ROLE_USER"
+      role: "ROLE_USER",
+      termsAccepted: false,
+      privacyAccepted: false,
     };
 
     return (
@@ -121,7 +116,7 @@ class Register extends Component<Props, State> {
 
           <Formik
             initialValues={initialValues}
-            validationSchema={this.validationSchema}
+            validationSchema={this.validationSchema()}
             onSubmit={this.handleRegister}
           >
             <Form>
@@ -149,11 +144,7 @@ class Register extends Component<Props, State> {
 
                   <div className="form-group">
                     <label htmlFor="password"> {t("login.password")} </label>
-                    <Field
-                      name="password"
-                      type="password"
-                      className="form-control"
-                    />
+                    <Field name="password" type="password" className="form-control" />
                     <ErrorMessage
                       name="password"
                       component="div"
@@ -170,6 +161,28 @@ class Register extends Component<Props, State> {
                     <label htmlFor="role admin">
                       <Field type="radio" name="role" value="admin" /> ROLE_ADMIN
                     </label>
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      <Field type="checkbox" name="termsAccepted" />
+                      {t("login.terms_accepted")}
+                    </label>
+                    <ErrorMessage
+                      name="termsAccepted"
+                      component="div"
+                      className="alert alert-danger"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      <Field type="checkbox" name="privacyAccepted" />
+                      {t("login.privacy_accepted")}
+                    </label>
+                    <ErrorMessage
+                      name="privacyAccepted"
+                      component="div"
+                      className="alert alert-danger"
+                    />
                   </div>
                   <div className="form-group">
                     <button type="submit" className="btn btn-primary btn-block">{t("login.register")}</button>
@@ -196,4 +209,5 @@ class Register extends Component<Props, State> {
     );
   }
 }
-export default withTranslation("global")(Register)
+
+export default withTranslation("global")(Register);

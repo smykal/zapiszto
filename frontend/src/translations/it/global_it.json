@@ -17,7 +17,9 @@
         "password": "password",
         "email": "email",
         "login": "accedi",
-        "register": "registrati"
+        "register": "registrati",
+        "terms_accepted": "Ho letto e accetto i termini e le condizioni",
+        "privacy_accepted": "Ho letto e accetto la politica sulla privacy"
     },
     "dictionaries": {
         "dict_category": "categoria degli esercizi",
