@@ -1,4 +1,4 @@
-package com.zapiszto.payload.response;
+package com.zapiszto.controllers.account.payload.response;
 
 import java.util.List;
 

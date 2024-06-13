@@ -1,4 +1,4 @@
-package com.zapiszto.security.services;
+package com.zapiszto.controllers.account.security.services;
 
 import java.util.Collection;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.zapiszto.entity.User;
+import com.zapiszto.controllers.account.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class  UserDetailsImpl implements UserDetails {

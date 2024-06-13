@@ -1,5 +1,6 @@
-package com.zapiszto.controllers;
+package com.zapiszto.controllers.account.controller;
 
+import com.zapiszto.controllers.account.service.AuthService;
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictionaries.dictLanguages.entity.DictLanguagesEntity;
 import com.zapiszto.controllers.dictionaries.dictLanguages.repository.DictLanguagesRepository;
@@ -22,23 +23,22 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zapiszto.entity.ERole;
-import com.zapiszto.entity.Role;
-import com.zapiszto.entity.User;
-import com.zapiszto.payload.request.LoginRequest;
-import com.zapiszto.payload.request.SignupRequest;
-import com.zapiszto.payload.response.JwtResponse;
-import com.zapiszto.payload.response.MessageResponse;
-import com.zapiszto.repository.RoleRepository;
-import com.zapiszto.repository.UserRepository;
-import com.zapiszto.security.jwt.JwtUtils;
-import com.zapiszto.security.services.UserDetailsImpl;
+import com.zapiszto.controllers.account.entity.ERole;
+import com.zapiszto.controllers.account.entity.Role;
+import com.zapiszto.controllers.account.entity.User;
+import com.zapiszto.controllers.account.payload.request.LoginRequest;
+import com.zapiszto.controllers.account.payload.request.SignupRequest;
+import com.zapiszto.controllers.account.payload.response.JwtResponse;
+import com.zapiszto.controllers.account.payload.response.MessageResponse;
+import com.zapiszto.controllers.account.repository.RoleRepository;
+import com.zapiszto.controllers.account.repository.UserRepository;
+import com.zapiszto.controllers.account.security.jwt.JwtUtils;
+import com.zapiszto.controllers.account.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -64,6 +64,9 @@ public class AuthController implements ControllerCommon {
 
   @Autowired
   JwtUtils jwtUtils;
+
+  @Autowired
+  AuthService authService;
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -157,7 +160,7 @@ public class AuthController implements ControllerCommon {
       return ResponseEntity.badRequest().body(new MessageResponse("Error: User does not exist!"));
     }
 
-    userRepository.deleteById(userId);
+    authService.deleteUser(userId);
     return ResponseEntity.ok(new MessageResponse("User deleted successfully!"));
   }
 }

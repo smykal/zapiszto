@@ -1,4 +1,4 @@
-package com.zapiszto.payload.request;
+package com.zapiszto.controllers.account.payload.request;
 
 import jakarta.validation.constraints.*;
 import lombok.AccessLevel;

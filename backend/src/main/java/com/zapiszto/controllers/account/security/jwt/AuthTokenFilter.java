@@ -1,4 +1,4 @@
-package com.zapiszto.security.jwt;
+package com.zapiszto.controllers.account.security.jwt;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.zapiszto.security.services.UserDetailsServiceImpl;
+import com.zapiszto.controllers.account.security.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
   @Autowired

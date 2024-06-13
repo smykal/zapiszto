@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.clients.entity;
 
-import com.zapiszto.entity.User;
+import com.zapiszto.controllers.account.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

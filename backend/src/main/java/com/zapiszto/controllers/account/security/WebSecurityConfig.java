@@ -1,4 +1,4 @@
-package com.zapiszto.security;
+package com.zapiszto.controllers.account.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,9 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.zapiszto.security.jwt.AuthEntryPointJwt;
-import com.zapiszto.security.jwt.AuthTokenFilter;
-import com.zapiszto.security.services.UserDetailsServiceImpl;
+import com.zapiszto.controllers.account.security.jwt.AuthEntryPointJwt;
+import com.zapiszto.controllers.account.security.jwt.AuthTokenFilter;
+import com.zapiszto.controllers.account.security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableMethodSecurity

@@ -1,4 +1,4 @@
-package com.zapiszto.entity;
+package com.zapiszto.controllers.account.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -67,4 +67,8 @@ public interface UserDetailsRepository extends JpaRepository<UserDetailsEntity, 
       @Param("userBirthdate") ZonedDateTime userBirthdate,
       @Param("userId") long userId
   );
+
+  @Modifying
+  @Transactional
+  void deleteByUserId(long userId);
 }

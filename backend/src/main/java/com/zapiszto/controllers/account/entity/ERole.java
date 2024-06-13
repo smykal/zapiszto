@@ -1,4 +1,4 @@
-package com.zapiszto.entity;
+package com.zapiszto.controllers.account.entity;
 
 public enum ERole {
   ROLE_USER,

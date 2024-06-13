@@ -1,4 +1,4 @@
-package com.zapiszto.security.jwt;
+package com.zapiszto.controllers.account.security.jwt;
 
 import java.io.IOException;
 import java.util.HashMap;

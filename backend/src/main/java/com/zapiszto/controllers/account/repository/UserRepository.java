@@ -1,4 +1,4 @@
-package com.zapiszto.repository;
+package com.zapiszto.controllers.account.repository;
 
 import java.util.Optional;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.zapiszto.entity.User;
+import com.zapiszto.controllers.account.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
