@@ -145,5 +145,9 @@
         "personal_trainings": "Entrenamientos Personales",
         "client_name_exists": "el nombre del cliente ya existe",
         "confirm_delete": "confirme para eliminar al cliente"
+    },
+    "profile": {
+        "confirm_delete_account": "¿Estás seguro de que deseas eliminar tu cuenta?",
+        "delete_account": "Eliminar cuenta"
     }
 }

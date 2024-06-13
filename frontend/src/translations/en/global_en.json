@@ -145,5 +145,9 @@
         "personal_trainings": "Personal Trainings",
         "client_name_exists": "client name already exists",
         "confirm_delete": "confirm to delete client"
+    },
+    "profile": {
+        "confirm_delete_account": "Are you sure you want to delete your account?",
+        "delete_account": "Delete Account"
     }
 }

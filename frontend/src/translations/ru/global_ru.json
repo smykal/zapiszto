@@ -145,5 +145,9 @@
         "personal_trainings": "Персональные Тренировки",
         "client_name_exists": "имя клиента уже существует",
         "confirm_delete": "подтвердите удаление клиента"
+    },
+    "profile": {
+        "confirm_delete_account": "Вы уверены, что хотите удалить свою учетную запись?",
+        "delete_account": "Удалить учетную запись"
     }
 }

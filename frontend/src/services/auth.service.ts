@@ -55,6 +55,11 @@ class AuthService {
 
     return null;
   }
+
+  deleteAccount() {
+    return axios.delete(AUTH_URL + `deleteAccount`, { headers: authHeader() });
+    this.logout();
+  }
 }
 
 export default new AuthService();

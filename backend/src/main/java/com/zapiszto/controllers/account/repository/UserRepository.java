@@ -17,6 +17,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   Boolean existsByEmail(String email);
 
+  void deleteById(Long userId);
+
   @Query(nativeQuery = true, value = """
       select id
             from users where upper(email) = upper(:email)

@@ -1,5 +1,6 @@
 package com.zapiszto.controllers;
 
+import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictionaries.dictLanguages.entity.DictLanguagesEntity;
 import com.zapiszto.controllers.dictionaries.dictLanguages.repository.DictLanguagesRepository;
 import com.zapiszto.controllers.userDetails.entity.UserDetailsEntity;
@@ -13,12 +14,15 @@ import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +43,7 @@ import com.zapiszto.security.services.UserDetailsImpl;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class AuthController implements ControllerCommon {
   @Autowired
   AuthenticationManager authenticationManager;
 
@@ -143,5 +147,17 @@ public class AuthController {
 
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+  }
+
+  @DeleteMapping("/deleteAccount")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<?> deleteUserAccount() {
+    var userId = extractUserId();
+    if (!userRepository.existsById(userId)) {
+      return ResponseEntity.badRequest().body(new MessageResponse("Error: User does not exist!"));
+    }
+
+    userRepository.deleteById(userId);
+    return ResponseEntity.ok(new MessageResponse("User deleted successfully!"));
   }
 }
