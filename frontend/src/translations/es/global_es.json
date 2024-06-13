@@ -83,7 +83,8 @@
         "reject": "rechazar",
         "update": "actualizar",
         "send_invitation": "enviar invitación",
-        "placeholder_send_invitation": "introduce el correo electrónico"
+        "placeholder_send_invitation": "introduce el correo electrónico",
+        "delete_client": "eliminar cliente"
     },
     "validation": {
         "this_field_is_required": "este campo es obligatorio",
@@ -141,6 +142,8 @@
         "age_not_available": "edad no disponible",
         "trainings": "entrenamientos",
         "individual_trainings": "Entrenamientos Individuales",
-        "personal_trainings": "Entrenamientos Personales"
+        "personal_trainings": "Entrenamientos Personales",
+        "client_name_exists": "el nombre del cliente ya existe",
+        "confirm_delete": "confirme para eliminar al cliente"
     }
 }

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import ClientsService from '../../../../services/clients';
 import InvitationsService from '../../../../services/invitations';
-import { NewClient, Invitation } from '../../../../types/types';
+import { NewClient, Invitation, Client } from '../../../../types/types';
 
 interface AddClientFormProps {
   onClientAdded: () => void;
+  existingClients: Client[];
 }
 
-const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded }) => {
-  const [newClient, setNewClient] = useState<NewClient>({ id: '', clientName: '', userId: 0 });
+const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded, existingClients }) => {
   const [acceptedInvitations, setAcceptedInvitations] = useState<Invitation[]>([]);
   const [selectedInviteeId, setSelectedInviteeId] = useState<number | null>(null);
   const { t } = useTranslation('global');
@@ -31,53 +33,64 @@ const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded }) => {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewClient({ ...newClient, [e.target.name]: e.target.value });
-  };
-
   const handleInviteeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedInviteeId(parseInt(e.target.value, 10));
   };
 
-  const handleAddClient = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAddClient = async (values: NewClient, { setSubmitting, resetForm }: any) => {
     try {
-      const newClientWithId = { ...newClient, id: crypto.randomUUID(), userId: selectedInviteeId || 0 };
+      const newClientWithId = { ...values, id: crypto.randomUUID(), userId: selectedInviteeId || 0 };
       await ClientsService.postNewClient(newClientWithId);
-      setNewClient({ id: '', clientName: '', userId: 0 });
+      resetForm();
       setSelectedInviteeId(null);
       onClientAdded();
     } catch (error) {
       console.error('Error adding client:', error);
+    } finally {
+      setSubmitting(false);
     }
   };
+
+  const validationSchema = Yup.object().shape({
+    clientName: Yup.string()
+      .test('unique-clientName', t('clients.client_name_exists'), value => {
+        return !existingClients.some(client => client.clientName === value);
+      })
+      .required(t('validation.this_field_is_required')),
+  });
 
   return (
     <div>
       <h2>{t('buttons.add_client')}</h2>
-      <form onSubmit={handleAddClient}>
-        <div>
-          <label>{t('clients.client_name')}:</label>
-          <input
-            type="text"
-            name="clientName"
-            value={newClient.clientName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>{t('clients.client_assign_user')}:</label>
-          <select value={selectedInviteeId || ''} onChange={handleInviteeChange}>
-            <option value="">{t('clients.select_user_to_assign')}</option>
-            {acceptedInvitations.map(invitation => (
-              <option key={invitation.inviteeId} value={invitation.inviteeId}>
-                {invitation.inviteeEmail}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button type="submit">{t('buttons.add')}</button>
-      </form>
+      <Formik
+        initialValues={{ id: '', clientName: '', userId: 0 }}
+        validationSchema={validationSchema}
+        onSubmit={handleAddClient}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <div>
+              <label>{t('clients.client_name')}:</label>
+              <Field type="text" name="clientName" />
+              <ErrorMessage name="clientName" component="div"/>
+            </div>
+            <div>
+              <label>{t('clients.client_assign_user')}:</label>
+              <select value={selectedInviteeId || ''} onChange={handleInviteeChange}>
+                <option value="">{t('clients.select_user_to_assign')}</option>
+                {acceptedInvitations.map(invitation => (
+                  <option key={invitation.inviteeId} value={invitation.inviteeId}>
+                    {invitation.inviteeEmail}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button type="submit" disabled={isSubmitting}>
+              {t('buttons.add')}
+            </button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

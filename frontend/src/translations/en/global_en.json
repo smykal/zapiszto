@@ -83,7 +83,8 @@
         "reject": "reject",
         "update": "update",
         "send_invitation": "send invitation",
-        "placeholder_send_invitation": "put email"
+        "placeholder_send_invitation": "put email",
+        "delete_client": "delete client"
     },
     "validation": {
         "this_field_is_required": "this field is required",
@@ -141,6 +142,8 @@
         "age_not_available": "age not available",
         "trainings": "trainings",
         "individual_trainings": "Individual Trainings",
-        "personal_trainings": "Personal Trainings"
+        "personal_trainings": "Personal Trainings",
+        "client_name_exists": "client name already exists",
+        "confirm_delete": "confirm to delete client"
     }
 }

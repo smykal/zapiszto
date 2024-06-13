@@ -87,7 +87,8 @@
         "reject": "відхилити",
         "update": "оновити",
         "send_invitation": "надіслати запрошення",
-        "placeholder_send_invitation": "введіть електронну пошту"
+        "placeholder_send_invitation": "введіть електронну пошту",
+        "delete_client": "видалити клієнта"
     },
     "table": {
         "id": "#",
@@ -141,6 +142,8 @@
         "age_not_available": "вік недоступний",
         "trainings": "тренування",
         "individual_trainings": "Індивідуальні Тренування",
-        "personal_trainings": "Персональні Тренування"
+        "personal_trainings": "Персональні Тренування",
+        "client_name_exists": "ім'я клієнта вже існує",
+        "confirm_delete": "підтвердьте видалення клієнта"
     }
 }

@@ -83,7 +83,8 @@
         "reject": "отклонить",
         "update": "обновить",
         "send_invitation": "отправить приглашение",
-        "placeholder_send_invitation": "введите электронную почту"
+        "placeholder_send_invitation": "введите электронную почту",
+        "delete_client": "удалить клиента"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
@@ -141,6 +142,8 @@
         "age_not_available": "возраст недоступен",
         "trainings": "тренировки",
         "individual_trainings": "Индивидуальные Тренировки",
-        "personal_trainings": "Персональные Тренировки"
+        "personal_trainings": "Персональные Тренировки",
+        "client_name_exists": "имя клиента уже существует",
+        "confirm_delete": "подтвердите удаление клиента"
     }
 }

@@ -59,7 +59,7 @@ const Clients = () => {
       </div>
       <div style={{ width: '80%', padding: '10px' }}>
         {showForm ? (
-          <AddClientForm onClientAdded={handleClientAdded} />
+          <AddClientForm onClientAdded={handleClientAdded} existingClients={clients} />
         ) : selectedClient ? (
           <ClientDetails client={selectedClient} onClientDeleted={handleClientDeleted} />
         ) : (

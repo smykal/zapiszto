@@ -12,7 +12,9 @@ const DeleteClient: React.FC<DeleteClientProps> = ({ client, onClientDeleted }) 
   const { t } = useTranslation('global');
 
   const handleDelete = async () => {
-    if (window.confirm(t('clients.confirm_delete'))) {
+    const confirmMessage = `${t('clients.confirm_delete')} ${client.clientName}`;
+
+    if (window.confirm(confirmMessage)) {
       try {
         await ClientsService.deleteClient(client.id);
         onClientDeleted();

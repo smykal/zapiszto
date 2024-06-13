@@ -83,7 +83,8 @@
         "reject": "rifiutare",
         "update": "aggiornare",
         "send_invitation": "invita",
-        "placeholder_send_invitation": "inserisci email"
+        "placeholder_send_invitation": "inserisci email",
+        "delete_client": "eliminare cliente"
     },
     "validation": {
         "this_field_is_required": "questo campo è obbligatorio",
@@ -141,6 +142,8 @@
         "age_not_available": "età non disponibile",
         "trainings": "allenamenti",
         "individual_trainings": "Allenamenti Individuali",
-        "personal_trainings": "Allenamenti Personali"
+        "personal_trainings": "Allenamenti Personali",
+        "client_name_exists": "il nome del cliente esiste già",
+        "confirm_delete": "conferma per eliminare il cliente"
     }
 }
