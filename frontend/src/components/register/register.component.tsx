@@ -5,6 +5,9 @@ import { withTranslation } from "react-i18next";
 import AuthService from "../../services/auth.service";
 import ReCAPTCHA from "react-google-recaptcha";
 import { RECAPTCHA_SITE_KEY } from "../../constants/api";
+import Modal from "../../constants/Modal";
+import Terms from "../../constants/Terms";
+import Privacy from "../../constants/Privacy";
 
 
 type Props = {
@@ -21,6 +24,8 @@ type State = {
   termsAccepted: boolean;
   privacyAccepted: boolean;
   recaptchaToken: string | null;
+  showTermsModal: boolean;
+  showPrivacyModal: boolean;
 };
 
 class Register extends Component<Props, State> {
@@ -28,6 +33,10 @@ class Register extends Component<Props, State> {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
     this.onRecaptchaChange = this.onRecaptchaChange.bind(this);
+    this.showTermsModal = this.showTermsModal.bind(this);
+    this.hideTermsModal = this.hideTermsModal.bind(this);
+    this.showPrivacyModal = this.showPrivacyModal.bind(this);
+    this.hidePrivacyModal = this.hidePrivacyModal.bind(this);
 
     this.state = {
       username: "",
@@ -39,6 +48,8 @@ class Register extends Component<Props, State> {
       termsAccepted: false,
       privacyAccepted: false,
       recaptchaToken: null,
+      showTermsModal: false,
+      showPrivacyModal: false,
     };
   }
 
@@ -103,8 +114,24 @@ class Register extends Component<Props, State> {
     );
   }
 
+  showTermsModal() {
+    this.setState({ showTermsModal: true });
+  }
+
+  hideTermsModal() {
+    this.setState({ showTermsModal: false });
+  }
+
+  showPrivacyModal() {
+    this.setState({ showPrivacyModal: true });
+  }
+
+  hidePrivacyModal() {
+    this.setState({ showPrivacyModal: false });
+  }
+
   render() {
-    const { successful, message } = this.state;
+    const { successful, message, showTermsModal, showPrivacyModal } = this.state;
     const { t } = this.props;
 
     const initialValues = {
@@ -178,7 +205,9 @@ class Register extends Component<Props, State> {
                     <div className="form-group">
                       <label>
                         <Field type="checkbox" name="termsAccepted" />
-                        {t("login.terms_accepted")}
+                        <span onClick={this.showTermsModal} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                          {t("login.terms_accepted")}
+                        </span>
                       </label>
                       <ErrorMessage
                         name="termsAccepted"
@@ -189,7 +218,9 @@ class Register extends Component<Props, State> {
                     <div className="form-group">
                       <label>
                         <Field type="checkbox" name="privacyAccepted" />
-                        {t("login.privacy_accepted")}
+                        <span onClick={this.showPrivacyModal} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                          {t("login.privacy_accepted")}
+                        </span>
                       </label>
                       <ErrorMessage
                         name="privacyAccepted"
@@ -199,7 +230,7 @@ class Register extends Component<Props, State> {
                     </div>
                     <div className="form-group">
                       <ReCAPTCHA
-                        sitekey = {RECAPTCHA_SITE_KEY}
+                        sitekey={RECAPTCHA_SITE_KEY}
                         onChange={(token) => {
                           setFieldValue("recaptchaToken", token);
                           this.onRecaptchaChange(token);
@@ -212,7 +243,7 @@ class Register extends Component<Props, State> {
                       />
                     </div>
                     <div className="form-group">
-                      <button type="submit" className="btn btn-primary btn-block">{t("login.register")}</button>
+                      <button type="submit">{t("login.register")}</button>
                     </div>
                   </div>
                 )}
@@ -233,9 +264,18 @@ class Register extends Component<Props, State> {
             )}
           </Formik>
         </div>
+
+        <Modal show={showTermsModal} onClose={this.hideTermsModal} title={t("login.terms")}>
+          <Terms />
+        </Modal>
+
+        <Modal show={showPrivacyModal} onClose={this.hidePrivacyModal} title={t("login.privacy")}>
+          <Privacy />
+        </Modal>
       </div>
     );
   }
 }
 
 export default withTranslation("global")(Register);
+

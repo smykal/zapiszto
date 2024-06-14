@@ -19,7 +19,9 @@
         "login": "Login",
         "register": "sign up",
         "terms_accepted": "I have read and accept the terms and conditions",
-        "privacy_accepted": "I have read and accept the privacy policy"
+        "privacy_accepted": "I have read and accept the privacy policy",
+        "terms": "Terms and Conditions",
+        "privacy": "Privacy Policy"
     },
     "dictionaries": {
         "dict_category": "dict category",
