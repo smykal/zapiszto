@@ -12,7 +12,9 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -41,7 +43,8 @@ public class ProgramsService {
     programsRepository.save(programEntity);
   }
 
-
+  @Modifying
+  @Transactional
   public void updateProgram(ProgramDto programDto) {
     var existingProgram = programsRepository.findByUuid(UUID.fromString(programDto.getId()));
     existingProgram.setName(programDto.getProgramName());
@@ -53,7 +56,7 @@ public class ProgramsService {
     if (!programsRepository.existsById(id)) {
       throw new RuntimeException("Program not found");
     }
-    programsRepository.deleteById(id);
+    programsRepository.deleteByProgramId(id);
   }
 
 }
