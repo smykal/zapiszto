@@ -88,7 +88,9 @@
         "update": "обновить",
         "send_invitation": "отправить приглашение",
         "placeholder_send_invitation": "введите электронную почту",
-        "delete_client": "удалить клиента"
+        "delete_client": "удалить клиента",
+        "add_program": "Добавить Программу",
+        "delete_program": "Удалить Программу"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
@@ -153,5 +155,13 @@
     "profile": {
         "confirm_delete_account": "Вы уверены, что хотите удалить свою учетную запись?",
         "delete_account": "Удалить учетную запись"
+    },
+    "programs": {
+        "program_name": "Название Программы",
+        "created_date": "Дата Создания",
+        "created_by": "Создано",
+        "select_program_message": "Пожалуйста, выберите программу.",
+        "confirm_delete": "Подтвердите удаление программы",
+        "program_name_exists": "Название программы уже существует"
     }
 }

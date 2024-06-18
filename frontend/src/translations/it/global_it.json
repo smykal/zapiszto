@@ -88,7 +88,9 @@
         "update": "aggiornare",
         "send_invitation": "invita",
         "placeholder_send_invitation": "inserisci email",
-        "delete_client": "eliminare cliente"
+        "delete_client": "eliminare cliente",
+        "add_program": "Aggiungi Programma",
+        "delete_program": "Elimina Programma"
     },
     "validation": {
         "this_field_is_required": "questo campo è obbligatorio",
@@ -153,5 +155,13 @@
     "profile": {
         "confirm_delete_account": "Sei sicuro di voler eliminare il tuo account?",
         "delete_account": "Elimina account"
+    },
+    "programs": {
+        "program_name": "Nome del Programma",
+        "created_date": "Data di Creazione",
+        "created_by": "Creato Da",
+        "select_program_message": "Si prega di selezionare un programma.",
+        "confirm_delete": "Conferma per eliminare il programma",
+        "program_name_exists": "Il nome del programma esiste già"
     }
 }

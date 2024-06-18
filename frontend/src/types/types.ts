@@ -249,3 +249,16 @@ export type Goal = {
                       goalDate: Date;
                       insertDate: Date;
 }
+
+export interface Program {
+                          id: string;
+                          programName: string;
+                          createdBy: number;
+                          createdDate: string;
+}
+
+export interface NewProgram {
+                            id: string;
+                            programName: string;
+                            createdBy: number;
+}

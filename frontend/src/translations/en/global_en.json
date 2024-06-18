@@ -88,7 +88,9 @@
         "update": "update",
         "send_invitation": "send invitation",
         "placeholder_send_invitation": "put email",
-        "delete_client": "delete client"
+        "delete_client": "delete client",
+        "add_program": "Add Program",
+        "delete_program": "Delete Program"
     },
     "validation": {
         "this_field_is_required": "this field is required",
@@ -153,5 +155,13 @@
     "profile": {
         "confirm_delete_account": "Are you sure you want to delete your account?",
         "delete_account": "Delete Account"
+    },
+    "programs": {
+        "program_name": "Program Name",
+        "created_date": "Created Date",
+        "created_by": "Created By",
+        "select_program_message": "Please select a program.",
+        "confirm_delete": "Confirm to delete program",
+        "program_name_exists": "Program name already exists"
     }
 }

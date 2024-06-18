@@ -15,7 +15,7 @@ import BoardAdmin from "./components/board/board-admin.component";
 import BodyParams from "./components/bodyParams";
 import Training from "./components/workbooks";
 import Dictionaries from "./components/dictionaries";
-import TrainerView from "./components/viewTrainer/TrainerView";
+import Programs from "./components/viewTrainer/programs/Programs";
 import Clients from "./components/viewTrainer/clients/Clients";
 import EventBus from "./common/EventBus";
 
@@ -108,7 +108,7 @@ const App = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/trainer"} className="nav-link">
+                <Link to={"/programs"} className="nav-link">
                   Trainer View
                 </Link>
               </li>
@@ -164,7 +164,7 @@ const App = () => {
           <Route path="/bodyParams" element={<BodyParams />} />
           <Route path="/training" element={<Training />} />
           <Route path="/dictionaries" element={<Dictionaries />} />
-          <Route path="/trainer" element={<TrainerView />} />  {/* New route for trainer view */}
+          <Route path="/programs" element={<Programs />} />  {/* New route for trainer view */}
           <Route path="/clients" element={<Clients />} />  {/* New route for clients */}
         </Routes>
       </div>

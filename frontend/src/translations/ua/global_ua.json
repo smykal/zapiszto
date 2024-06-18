@@ -92,7 +92,9 @@
         "update": "оновити",
         "send_invitation": "надіслати запрошення",
         "placeholder_send_invitation": "введіть електронну пошту",
-        "delete_client": "видалити клієнта"
+        "delete_client": "видалити клієнта",
+        "add_program": "Додати Програму",
+        "delete_program": "Видалити Програму"
     },
     "table": {
         "id": "#",
@@ -153,5 +155,13 @@
     "profile": {
         "confirm_delete_account": "Ви впевнені, що хочете видалити свій обліковий запис?",
         "delete_account": "Видалити обліковий запис"
+    },
+    "programs": {
+        "program_name": "Назва Програми",
+        "created_date": "Дата Створення",
+        "created_by": "Створено",
+        "select_program_message": "Будь ласка, виберіть програму.",
+        "confirm_delete": "Підтвердити видалення програми",
+        "program_name_exists": "Назва програми вже існує"
     }
 }
