@@ -30,7 +30,9 @@
     background: none;
     border: none;
     font-size: 1.5rem;
+    width: 1.5em;
     cursor: pointer;
+    color: rgba(255, 0, 0, 0.412);
   }
   
   .modal-body {
