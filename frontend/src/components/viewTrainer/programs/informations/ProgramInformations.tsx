@@ -13,7 +13,7 @@ const ProgramInformations: React.FC<ProgramInformationsProps> = ({ program }) =>
     <div>
       <p>ID: {program.id}</p>
       <p>{t('programs.program_name')}: {program.programName}</p>
-      <p>{t('programs.created_date')}: {program.createdDate}</p>
+      <p>{t('programs.created_date')}: {program.createDate}</p>
       <p>{t('programs.created_by')}: {program.createdBy}</p>
     </div>
   );

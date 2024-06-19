@@ -254,7 +254,7 @@ export interface Program {
                           id: string;
                           programName: string;
                           createdBy: number;
-                          createdDate: string;
+                          createDate: string;
 }
 
 export interface NewProgram {
