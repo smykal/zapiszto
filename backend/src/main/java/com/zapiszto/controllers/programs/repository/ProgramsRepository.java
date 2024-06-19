@@ -2,6 +2,7 @@ package com.zapiszto.controllers.programs.repository;
 
 import com.zapiszto.controllers.programs.entity.ProgramEntity;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,7 +21,7 @@ public interface ProgramsRepository extends JpaRepository<ProgramEntity, Integer
   @Query(nativeQuery = true, value = """
       select * from programs p where p.id = :id
       """)
-  ProgramEntity findByUuid(UUID id);
+  Optional<ProgramEntity> findByUuid(UUID id);
 
   boolean existsById(UUID id);
 

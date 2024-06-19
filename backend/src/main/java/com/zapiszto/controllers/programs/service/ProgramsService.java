@@ -2,6 +2,7 @@ package com.zapiszto.controllers.programs.service;
 
 import com.zapiszto.controllers.programs.dto.NewProgramDto;
 import com.zapiszto.controllers.programs.dto.ProgramDto;
+import com.zapiszto.controllers.programs.dto.ProgramNameDto;
 import com.zapiszto.controllers.programs.entity.ProgramEntity;
 import com.zapiszto.controllers.programs.repository.ProgramsRepository;
 import com.zapiszto.controllers.programs.serializer.ProgramsSerializer;
@@ -43,15 +44,6 @@ public class ProgramsService {
     programsRepository.save(programEntity);
   }
 
-  @Modifying
-  @Transactional
-  public void updateProgram(ProgramDto programDto) {
-    var existingProgram = programsRepository.findByUuid(UUID.fromString(programDto.getId()));
-    existingProgram.setName(programDto.getProgramName());
-    existingProgram.setInsert_date(ZonedDateTime.parse(programDto.getCreateDate()));
-    programsRepository.save(existingProgram);
-  }
-
   public void deleteProgram(UUID id) {
     if (!programsRepository.existsById(id)) {
       throw new RuntimeException("Program not found");
@@ -59,4 +51,12 @@ public class ProgramsService {
     programsRepository.deleteByProgramId(id);
   }
 
+  @Modifying
+  @Transactional
+  public void updateProgramName(UUID id, ProgramNameDto programNameDto) {
+    ProgramEntity programEntity = programsRepository.findByUuid(id)
+        .orElseThrow(() -> new RuntimeException("Program not found"));
+    programEntity.setName(programNameDto.getProgramName());
+    programsRepository.save(programEntity);
+  }
 }

@@ -43,6 +43,15 @@ const Programs = () => {
     setSelectedProgram(null);
   };
 
+  const handleSaveProgramName = async (id: string, newName: string) => {
+    try {
+      await ProgramsService.updateProgramName(id, newName);
+      fetchPrograms();
+    } catch (error) {
+      console.error('Error updating program name:', error);
+    }
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ width: '20%', padding: '10px', borderRight: '1px solid #ccc' }}>
@@ -61,7 +70,11 @@ const Programs = () => {
         {showForm ? (
           <AddProgramForm onProgramAdded={handleProgramAdded} existingPrograms={programs} />
         ) : selectedProgram ? (
-          <ProgramDetails program={selectedProgram} onProgramDeleted={handleProgramDeleted} />
+          <ProgramDetails 
+            program={selectedProgram} 
+            onProgramDeleted={handleProgramDeleted} 
+            onSaveProgramName={handleSaveProgramName}
+          />
         ) : (
           <div>{t('programs.select_program_message')}</div>
         )}

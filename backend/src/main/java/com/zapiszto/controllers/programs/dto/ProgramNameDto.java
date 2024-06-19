@@ -14,9 +14,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProgramDto {
-  String id;
+public class ProgramNameDto {
   String programName;
-  String createDate;
-  String createdBy;
 }

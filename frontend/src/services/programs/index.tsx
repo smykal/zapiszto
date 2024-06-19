@@ -18,6 +18,10 @@ class ProgramsService {
   updateProgram(updatedProgram: any) {
     return axios.patch(API_URL + '/update_program', updatedProgram, { headers: authHeader() });
   }
+
+  updateProgramName(id: string, newName: string) {
+    return axios.patch(`${API_URL}/update_program_name/${id}`, { programName: newName }, { headers: authHeader() });
+  }
 }
 
 export default new ProgramsService();

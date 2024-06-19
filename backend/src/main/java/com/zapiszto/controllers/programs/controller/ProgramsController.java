@@ -3,6 +3,7 @@ package com.zapiszto.controllers.programs.controller;
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.programs.dto.NewProgramDto;
 import com.zapiszto.controllers.programs.dto.ProgramDto;
+import com.zapiszto.controllers.programs.dto.ProgramNameDto;
 import com.zapiszto.controllers.programs.service.ProgramsService;
 import java.util.List;
 import java.util.UUID;
@@ -58,15 +59,12 @@ public class ProgramsController implements ControllerCommon {
     }
   }
 
-  @PatchMapping("/update_program")
-  public ResponseEntity<String> updateProgram(@RequestBody ProgramDto programDto) {
-    try {
-      programsService.updateProgram(programDto);
-      return new ResponseEntity<>(HttpStatus.OK);
-    } catch (RuntimeException e) {
-      log.error("Error updating program: {}", e.getMessage());
-      return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-    }
+  @PatchMapping("/update_program_name/{id}")
+  public ResponseEntity<String> updateProgramName(
+      @PathVariable UUID id,
+      @RequestBody ProgramNameDto programNameDto) {
+    programsService.updateProgramName(id, programNameDto);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @DeleteMapping("/delete_program/{id}")
