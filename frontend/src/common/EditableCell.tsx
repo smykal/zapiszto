@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface EditableCellProps {
   value: string;
@@ -8,6 +8,10 @@ interface EditableCellProps {
 const EditableCell: React.FC<EditableCellProps> = ({ value, onSave }) => {
   const [editing, setEditing] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
+
+  useEffect(() => {
+    setCurrentValue(value);
+  }, [value]);
 
   const handleDoubleClick = () => {
     setEditing(true);
@@ -33,7 +37,7 @@ const EditableCell: React.FC<EditableCellProps> = ({ value, onSave }) => {
   };
 
   return (
-    <td onDoubleClick={handleDoubleClick}>
+    <span onDoubleClick={handleDoubleClick}>
       {editing ? (
         <input
           type="text"
@@ -46,7 +50,7 @@ const EditableCell: React.FC<EditableCellProps> = ({ value, onSave }) => {
       ) : (
         value
       )}
-    </td>
+    </span>
   );
 };
 
