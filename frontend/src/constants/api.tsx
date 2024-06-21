@@ -4,10 +4,10 @@ const URL_AUTH_LOCALHOST = "http://localhost:8080/api/auth/";
 const URL_AUTH_RENDER = "https://zapiszto-service.onrender.com/api/auth/";
 
 
-export const API_URL = URL_LOCALHOST;
-export const AUTH_URL = URL_AUTH_LOCALHOST;
+//export const API_URL = URL_LOCALHOST;
+//export const AUTH_URL = URL_AUTH_LOCALHOST;
 
-//export const API_URL = URL_RENDER;
-//export const AUTH_URL = URL_AUTH_RENDER;
+export const API_URL = URL_RENDER;
+export const AUTH_URL = URL_AUTH_RENDER;
 
 export const RECAPTCHA_SITE_KEY = '6LfpUvgpAAAAAH4mqrcWNgVcavvJCLDjN6Tr2Arv'
