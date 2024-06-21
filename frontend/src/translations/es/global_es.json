@@ -17,7 +17,11 @@
         "password": "contraseña",
         "email": "correo electrónico",
         "login": "iniciar sesión",
-        "register": "registrarse"
+        "register": "registrarse",
+        "terms_accepted": "He leído y acepto los términos y condiciones",
+        "privacy_accepted": "He leído y acepto la política de privacidad",
+        "terms": "Términos y condiciones",
+        "privacy": "Política de privacidad"
     },
     "dictionaries": {
         "dict_category": "categoría de ejercicios",
@@ -80,7 +84,13 @@
         "move_up": "mover hacia arriba",
         "move_down": "mover hacia abajo",
         "approve": "aprobar",
-        "reject": "rechazar"
+        "reject": "rechazar",
+        "update": "actualizar",
+        "send_invitation": "enviar invitación",
+        "placeholder_send_invitation": "introduce el correo electrónico",
+        "delete_client": "eliminar cliente",
+        "add_program": "Añadir Programa",
+        "delete_program": "Eliminar Programa"
     },
     "validation": {
         "this_field_is_required": "este campo es obligatorio",
@@ -120,6 +130,38 @@
         "client_assigned_user": "usuario asignado",
         "client_assign_user": "asignar usuario",
         "select_user_to_assign": "seleccionar usuario para asignar",
-        "user_is_not_assigned": "usuario no asignado"
+        "user_is_not_assigned": "usuario no asignado",
+        "show_done_body_tests": "pruebas corporales realizadas",
+        "assign_client_body_test_result": "asignar nuevo resultado para la prueba corporal",
+        "add_body_test": "agregar prueba corporal a la memoria",
+        "no_body_tests_yet": "aún no se ha asignado ninguna prueba corporal",
+        "select_body_param": "seleccionar parámetro corporal",
+        "select_body_test": "seleccionar prueba corporal",
+        "select_unit": "seleccionar unidad",
+        "action": "acción",
+        "value": "valor",
+        "date": "fecha",
+        "goals": "metas",
+        "informations": "informaciones",
+        "body": "cuerpo",
+        "age": "edad",
+        "age_not_available": "edad no disponible",
+        "trainings": "entrenamientos",
+        "individual_trainings": "Entrenamientos Individuales",
+        "personal_trainings": "Entrenamientos Personales",
+        "client_name_exists": "el nombre del cliente ya existe",
+        "confirm_delete": "confirme para eliminar al cliente"
+    },
+    "profile": {
+        "confirm_delete_account": "¿Estás seguro de que deseas eliminar tu cuenta?",
+        "delete_account": "Eliminar cuenta"
+    },
+    "programs": {
+        "program_name": "Nombre del Programa",
+        "created_date": "Fecha de Creación",
+        "created_by": "Creado Por",
+        "select_program_message": "Por favor, seleccione un programa.",
+        "confirm_delete": "Confirmar para eliminar el programa",
+        "program_name_exists": "El nombre del programa ya existe"
     }
 }

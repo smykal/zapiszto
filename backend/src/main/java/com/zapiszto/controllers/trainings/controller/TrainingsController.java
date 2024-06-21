@@ -24,13 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')  or hasRole('TRAINER')")
 public class TrainingsController implements ControllerCommon {
 
   @Autowired
   private TrainingsService trainingsService;
 
   @PostMapping("/add_training")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addTraining(
       @RequestBody NewTrainingDto newTrainingDto
   ) {
@@ -41,7 +41,6 @@ public class TrainingsController implements ControllerCommon {
   }
 
   @GetMapping("/get_trainings/workbook/{workbookId}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<TrainingDto>> getTrainings(
       @PathVariable("workbookId") Integer workbookId
   ) {
@@ -54,13 +53,25 @@ public class TrainingsController implements ControllerCommon {
     }
   }
 
+  @GetMapping("/get_trainings/workbook/{workbookId}/{userId}")
+  public ResponseEntity<List<TrainingDto>> getTrainings(
+      @PathVariable("workbookId") Integer workbookId,
+      @PathVariable("userId") Long userId
+  ) {
+    var requestorId = extractUserId();
+    try {
+      List<TrainingDto> result = trainingsService.getTrainings(workbookId, userId);
+      return new ResponseEntity<>(result, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
   @PatchMapping("/patch_trening_notes")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> patchTreningNotes(
       @RequestBody TrainingNotesDto trainingNotesDto
   ) {
     trainingsService.updateTrainingNotes(trainingNotesDto);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
-
 }

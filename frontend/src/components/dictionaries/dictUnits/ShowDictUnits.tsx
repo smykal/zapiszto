@@ -1,62 +1,87 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { DictUnits } from "../../../types/types";
 import Service from '../../../services/exercises';
 import AddDictUnitPerUser from "./AddDictUnitPerUser";
 import Options from "./Options";
+import { useTranslation } from "react-i18next";
 
-type Props = {};
-type State = {
-    dictUnits: DictUnits[];
-};
+const ShowDictUnits: React.FC = () => {
+    const [dictUnits, setDictUnits] = useState<DictUnits[]>([]);
+    const [showBasic, setShowBasic] = useState(true);
+    const [showPerUser, setShowPerUser] = useState(true);
+    const { t } = useTranslation("global");
 
-export default class ShowDictUnits extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            dictUnits: []
-        };
-    }
+    useEffect(() => {
+        loadDictUnits();
+    }, []);
 
-    componentDidMount() {
-        this.loadDictUnits();
-    }
-
-    loadDictUnits() {
+    const loadDictUnits = () => {
         Service.getDictUnits()
             .then(response => {
-                this.setState({ dictUnits: response.data });
+                setDictUnits(response.data);
             })
             .catch(error => {
                 console.error('Error loading dict units:', error);
             });
-    }
+    };
 
-    render() {
-        const { dictUnits } = this.state;
-        return (
+    const handleShowBasicChange = () => {
+        setShowBasic(!showBasic);
+    };
+
+    const handleShowPerUserChange = () => {
+        setShowPerUser(!showPerUser);
+    };
+
+    const filteredUnits = dictUnits.filter(unit => {
+        if (showBasic && unit.dict === "BASIC") return true;
+        if (showPerUser && unit.dict === "PER_USER") return true;
+        return false;
+    });
+
+    return (
+        <div>
             <div>
-                <AddDictUnitPerUser dictUnit={dictUnits} />
-                <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Shortcut</th>
-                            <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dictUnits.map((row) => (
-                            <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
-                                <td>{row.id}</td>
-                                <td>{row.name}</td>
-                                <td>{row.shortcut}</td>
-                                <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showBasic} 
+                        onChange={handleShowBasicChange} 
+                    />
+                    {t('filter.basic')}
+                </label>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showPerUser} 
+                        onChange={handleShowPerUserChange} 
+                    />
+                    {t('filter.per_user')}
+                </label>
             </div>
-        );
-    }
-}
+            <AddDictUnitPerUser dictUnit={dictUnits} />
+            <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                    <tr>
+                        <th>{t("table.id")}</th>
+                        <th>{t("table.name")}</th>
+                        <th>{t("table.shortcut")}</th>
+                        <th>{t("table.options")}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredUnits.map((row) => (
+                        <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
+                            <td>{row.id}</td>
+                            <td>{row.name}</td>
+                            <td>{row.shortcut}</td>
+                            <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : t("table.menu_unavailable")}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default ShowDictUnits;

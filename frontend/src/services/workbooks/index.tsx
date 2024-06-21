@@ -72,6 +72,10 @@ class WorkbooksService {
     return axios.get(API_URL + '/get_trainings/workbook/' + workbookId, { headers: authHeader() });
   }
 
+  getTrainingsByUserId(workbookId: number, userId: number) {
+    return axios.get(`${API_URL}/get_trainings/workbook/${workbookId}/${userId}`, { headers: authHeader() });
+  }
+
   patchTrainingNotes(id: number, notes: string){
     const requestBody: TrainingNotes = {
       id: id,

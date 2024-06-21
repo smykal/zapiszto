@@ -27,13 +27,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')  or hasRole('TRAINER')")
 public class WorkbooksController implements ControllerCommon {
 
   @Autowired
   private WorkbooksService workbooksService;
 
   @PostMapping("/add_workbook")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> addWorkbook(
       @RequestBody AddWorkbookDto addWorkbookDto
   ) {
@@ -46,7 +46,6 @@ public class WorkbooksController implements ControllerCommon {
   }
 
   @GetMapping("/get_workbooks")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<WorkbooksDto>> getWorkbooks() {
     var userId = extractUserId();
     try {
@@ -57,8 +56,20 @@ public class WorkbooksController implements ControllerCommon {
     }
   }
 
+  @GetMapping("/get_workbooks/{userId}")
+  public ResponseEntity<List<WorkbooksDto>> getWorkbooks(
+      @PathVariable("userId") Long userId
+  ) {
+    var requestorId = extractUserId();
+    try {
+      var result = workbooksService.getWorkbooksForUser(userId);
+      return new ResponseEntity<>(result, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
   @DeleteMapping("/delete_workbook/{id}")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> deleteWorkbook(@PathVariable Long id) {
     try {
       var userId = extractUserId();
@@ -70,7 +81,6 @@ public class WorkbooksController implements ControllerCommon {
   }
 
   @PatchMapping("/put_workbook_schema_id")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> patchWorkbook(
       @RequestBody PatchWorkbookSchemaDto patchWorkbookSchemaDto
       ){

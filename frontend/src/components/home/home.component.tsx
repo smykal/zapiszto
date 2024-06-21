@@ -37,7 +37,7 @@ export default class Home extends Component<Props, State> {
 
   render() {
     return (
-      <div style={{ width: "400px", height: "500px" }} className="alinka">
+      <div style={{ width: "400px", height: "500px" }}>
         <header>
           <h3>{this.state.content}</h3>
         </header>

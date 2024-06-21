@@ -5,6 +5,7 @@ import IUser from "../../types/user.type";
 import GetInvitations from "./invitations/GetInvitations";
 import { withTranslation } from "react-i18next";
 import LanguageService from "../../services/languages";
+import DeleteAccount from "./crud/DeleteAccount";
 
 type Props = {
   t: any;
@@ -80,12 +81,10 @@ class Profile extends Component<Props, State> {
             {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
           </p>
           <p>
-            <strong>Id:</strong>{" "}
-            {currentUser.id}
+            <strong>{"Id: "}</strong>{currentUser.id}
           </p>
           <p>
-            <strong>Email:</strong>{" "}
-            {currentUser.email}
+            <strong>{"Email: "}</strong>{currentUser.email}
           </p>
           <strong>Authorities:</strong>
           <ul>
@@ -93,6 +92,7 @@ class Profile extends Component<Props, State> {
               currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
           </ul>
         <GetInvitations />
+        <DeleteAccount /> {/* Add DeleteAccount component here */}
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import Service from '../../services/workbooks';
 import 'react-tabs/style/react-tabs.css';
 import { Workbook } from '../../types/types';
-import Wrapper from './workbook';
+import Wrapper from './workbook/Wrapper';
 import { withTranslation } from "react-i18next";
 
 

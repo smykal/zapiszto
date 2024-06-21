@@ -5,5 +5,7 @@ public interface SerializerCommon {
   String BASIC = "BASIC";
   String RECIVED = "RECIVED";
   String SENT = "SENT";
+  String BODY_PARAM = "BODY_PARAM";
+  String BODY_TEST = "BODY_TEST";
 
 }

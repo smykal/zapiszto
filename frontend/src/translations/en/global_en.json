@@ -17,7 +17,11 @@
         "password": "password",
         "email": "email",
         "login": "Login",
-        "register": "sign up"
+        "register": "sign up",
+        "terms_accepted": "I have read and accept the terms and conditions",
+        "privacy_accepted": "I have read and accept the privacy policy",
+        "terms": "Terms and Conditions",
+        "privacy": "Privacy Policy"
     },
     "dictionaries": {
         "dict_category": "dict category",
@@ -80,7 +84,13 @@
         "move_up": "move up",
         "move_down": "move down",
         "approve": "approve",
-        "reject": "reject"
+        "reject": "reject",
+        "update": "update",
+        "send_invitation": "send invitation",
+        "placeholder_send_invitation": "put email",
+        "delete_client": "delete client",
+        "add_program": "Add Program",
+        "delete_program": "Delete Program"
     },
     "validation": {
         "this_field_is_required": "this field is required",
@@ -120,6 +130,38 @@
         "client_assigned_user": "assigned user",
         "client_assign_user": "assign user",
         "select_user_to_assign": "select user to assign",
-        "user_is_not_assigned": "user is not assigned"
+        "user_is_not_assigned": "user is not assigned",
+        "show_done_body_tests": "done body tests",
+        "assign_client_body_test_result": "assign new result for body test",
+        "add_body_test": "add body test to memmory",
+        "no_body_tests_yet": "any body test assign yet",
+        "select_body_param": "select body param",
+        "select_body_test": "select body test",
+        "select_unit": "select unit",
+        "action": "action",
+        "value": "value",
+        "date": "date",
+        "goals": "goals",
+        "informations": "informations",
+        "body": "body",
+        "age": "age",
+        "age_not_available": "age not available",
+        "trainings": "trainings",
+        "individual_trainings": "Individual Trainings",
+        "personal_trainings": "Personal Trainings",
+        "client_name_exists": "client name already exists",
+        "confirm_delete": "confirm to delete client"
+    },
+    "profile": {
+        "confirm_delete_account": "Are you sure you want to delete your account?",
+        "delete_account": "Delete Account"
+    },
+    "programs": {
+        "program_name": "Program Name",
+        "created_date": "Created Date",
+        "created_by": "Created By",
+        "select_program_message": "Please select a program.",
+        "confirm_delete": "Confirm to delete program",
+        "program_name_exists": "Program name already exists"
     }
 }

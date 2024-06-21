@@ -20,9 +20,9 @@ import lombok.experimental.FieldDefaults;
 public class NewGoalDto {
   UUID id;
   UUID clientId;
-  int dictBodyParamId;
-  int dictBodyTestId;
-  int dictUnitId;
+  Integer dictBodyParamId;
+  Integer dictBodyTestId;
+  Integer dictUnitId;
   String action;
   String value;
   LocalDate goalDate;

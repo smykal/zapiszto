@@ -6,6 +6,12 @@ export type BodyParamsItem = {
                               insert_date: string;
   };
 
+export type DictBodyParam = {
+                              id: number;
+                              name: string;
+                              description: string;
+}
+
 export type BmiItem = {
                         value: number;
                         date: string;
@@ -216,4 +222,43 @@ export type ClientBodyTest = {
                               result: string
                               description: string
                               purpose: string
+}
+
+export type NewGoal = {
+                        id: string,
+                        clientId: string,
+                        dictBodyParamId: number | null,
+                        dictBodyTestId: number | null,
+                        dictUnitId: number,
+                        action: string,
+                        value: string,
+                        goalDate: string
+}
+
+export type Goal = {
+                      id: string;
+                      clientId: string;
+                      goalType: string;
+                      dictBodyParam: string;
+                      dictBodyTestType: string;
+                      dictBodyTest: string;
+                      dictUnitType: string;
+                      dictUnit: string;
+                      action: string;
+                      value: string;
+                      goalDate: Date;
+                      insertDate: Date;
+}
+
+export interface Program {
+                          id: string;
+                          programName: string;
+                          createdBy: number;
+                          createDate: string;
+}
+
+export interface NewProgram {
+                            id: string;
+                            programName: string;
+                            createdBy: number;
 }

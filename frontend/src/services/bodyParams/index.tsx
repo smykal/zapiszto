@@ -2,7 +2,7 @@ import axios from 'axios';
 import authHeader from '../auth-header';
 import {API_URL} from '../../constants/api'
 
-class ZapiszToService {
+class BodyParamsService {
 
   getDictBodyParams() {
     return axios.get(API_URL + '/dictBodyParams', { headers: authHeader() });
@@ -31,8 +31,16 @@ class ZapiszToService {
     return axios.get(API_URL + '/get_sex', { headers: authHeader() });
   }
 
+  getGenderByUserId(userId: number) {
+    return axios.get(`${API_URL}/get_sex/${userId}`, { headers: authHeader() });
+  }
+
   getAge() {
     return axios.get(API_URL + '/get_age', { headers: authHeader() });
+  }
+
+  getAgeByUserId(userId: number) {
+    return axios.get(`${API_URL}/get_age/${userId}`, { headers: authHeader() });
   }
 
   getBmr() {
@@ -85,4 +93,4 @@ class ZapiszToService {
   }
 }
 
-export default new ZapiszToService();
+export default new BodyParamsService();

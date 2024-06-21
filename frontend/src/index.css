@@ -66,7 +66,8 @@ button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition-duration: 0.4s;
   padding: 3px;
-  margin: 5px !important;
+  margin: 10px !important;
+  letter-spacing: 2px;
 }
 
 button:hover {
@@ -101,4 +102,122 @@ tbody tr:hover {
 
 #content {
   padding: 20px 20px;
+}
+
+.Collapsible {
+  margin-bottom: 10px;
+  width: 100%
+}
+
+.Collapsible__trigger {
+  display: block;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #cccccc;
+  background-color: #343a40;;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Collapsible__trigger:hover {
+  background-color: #221b1b97;
+  color: #ffffff;
+  transform: scale(1.01);
+}
+
+.Collapsible__contentInner {
+  padding: 10px 10px;
+  background-color: #cccccc;
+  border-radius: 4px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Dodane wyrównanie w pionie */
+  flex-wrap: nowrap;
+}
+
+.form-group {
+  margin-right: 10px; /* Zwiększona odległość między elementami */
+  max-width: none; /* Usunięcie ograniczenia szerokości */
+}
+
+.form-group:last-child {
+  margin-right: 0;
+}
+
+
+#clientsList .selected-client {
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
+  margin: 0px 0;
+  display: block;
+}
+
+#clientsList li {
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#clientsList li:hover .selected-client,
+#clientsList li:hover span {
+  background-color: #221b1b97;
+  color: white;
+  transform: scale(1.05);
+  border-radius: 5px ;
+}
+
+#clientsList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#clientsList span {
+  display: block;
+  padding: 10px;
+  margin: 0px 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#programsList .selected-program {
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
+  margin: 0px 0;
+  display: block;
+}
+
+#programsList li {
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#programsList li:hover .selected-program,
+#programsList li:hover span {
+  background-color: #221b1b97;
+  color: white;
+  transform: scale(1.05);
+  border-radius: 5px ;
+}
+
+#programsList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#programsList span {
+  display: block;
+  padding: 10px;
+  margin: 0px 0;
+  cursor: pointer;
+  border-radius: 5px;
 }

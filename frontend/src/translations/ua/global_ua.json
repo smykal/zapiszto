@@ -17,7 +17,11 @@
         "password": "пароль",
         "email": "електронна пошта",
         "login": "увійти",
-        "register": "зареєструватися"
+        "register": "зареєструватися",
+        "terms_accepted": "Я прочитав і приймаю умови та положення",
+        "privacy_accepted": "Я прочитав і приймаю політику конфіденційності",
+        "terms": "Умови та положення",
+        "privacy": "Політика конфіденційності"
     },
     "dictionaries": {
         "dict_category": "категорія вправ",
@@ -84,7 +88,13 @@
         "move_up": "підняти",
         "move_down": "опустити",
         "approve": "затвердити",
-        "reject": "відхилити"
+        "reject": "відхилити",
+        "update": "оновити",
+        "send_invitation": "надіслати запрошення",
+        "placeholder_send_invitation": "введіть електронну пошту",
+        "delete_client": "видалити клієнта",
+        "add_program": "Додати Програму",
+        "delete_program": "Видалити Програму"
     },
     "table": {
         "id": "#",
@@ -120,6 +130,38 @@
         "client_assigned_user": "призначений користувач",
         "client_assign_user": "призначити користувача",
         "select_user_to_assign": "виберіть користувача для призначення",
-        "user_is_not_assigned": "користувач не призначений"
+        "user_is_not_assigned": "користувач не призначений",
+        "show_done_body_tests": "виконані тести тіла",
+        "assign_client_body_test_result": "призначити новий результат тесту тіла",
+        "add_body_test": "додати тест тіла до пам'яті",
+        "no_body_tests_yet": "ще не призначено тестів тіла",
+        "select_body_param": "вибрати параметр тіла",
+        "select_body_test": "вибрати тест тіла",
+        "select_unit": "вибрати одиницю",
+        "action": "дія",
+        "value": "значення",
+        "date": "дата",
+        "goals": "цілі",
+        "informations": "інформація",
+        "body": "тіло",
+        "age": "вік",
+        "age_not_available": "вік недоступний",
+        "trainings": "тренування",
+        "individual_trainings": "Індивідуальні Тренування",
+        "personal_trainings": "Персональні Тренування",
+        "client_name_exists": "ім'я клієнта вже існує",
+        "confirm_delete": "підтвердьте видалення клієнта"
+    },
+    "profile": {
+        "confirm_delete_account": "Ви впевнені, що хочете видалити свій обліковий запис?",
+        "delete_account": "Видалити обліковий запис"
+    },
+    "programs": {
+        "program_name": "Назва Програми",
+        "created_date": "Дата Створення",
+        "created_by": "Створено",
+        "select_program_message": "Будь ласка, виберіть програму.",
+        "confirm_delete": "Підтвердити видалення програми",
+        "program_name_exists": "Назва програми вже існує"
     }
 }

@@ -36,14 +36,14 @@ public class ClientsService {
         .id(UUID.fromString(newClientDto.getId()))
         .trainerId(trainerId)
         .clientName(newClientDto.getClientName())
-        .userId(newClientDto.getUserId())
+        .userId(newClientDto.getUserId() == 0 ? null : newClientDto.getUserId())
         .build();
     clientsRepository.save(clientEntity);
   }
 
   public void updateClient(ClientDto clientDto) {
     try {
-      ClientEntity clientEntity = clientsRepository.getByIdUuid(clientDto.getId().toString());
+      ClientEntity clientEntity = clientsRepository.getByIdUuid(clientDto.getId());
       clientEntity.setClientName(clientDto.getClientName());
       clientEntity.setUserId(clientDto.getUserId());
       clientsRepository.save(clientEntity);
@@ -52,4 +52,8 @@ public class ClientsService {
       throw e;
     }
   }
+  public void deleteClient(UUID clientId) {
+    clientsRepository.deleteByClientId(clientId);
+  }
+
  }

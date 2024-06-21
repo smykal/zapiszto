@@ -8,7 +8,7 @@ import com.zapiszto.controllers.invitations.invitationsStatus.entity.Invitations
 import com.zapiszto.controllers.invitations.invitationsStatus.repository.InvitationsStatusRepository;
 import com.zapiszto.controllers.invitations.repository.InvitationsRepository;
 import com.zapiszto.controllers.invitations.serializer.InvitationsSerializer;
-import com.zapiszto.repository.UserRepository;
+import com.zapiszto.controllers.account.repository.UserRepository;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;

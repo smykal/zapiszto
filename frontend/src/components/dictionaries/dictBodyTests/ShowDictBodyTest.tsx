@@ -1,72 +1,89 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { DictBodyTest } from "../../../types/types";
 import Service from '../../../services/dict/DictBodyTestService';
 import AddDictBodyTestPerUser from "./AddDictBodyTestPerUser";
 import Options from './Options';
-import { withTranslation } from "react-i18next";
 
-type Props = {
-    t: any;
-};
+const ShowDictCategory: React.FC = () => {
+    const [dictBodyTest, setDictBodyTest] = useState<DictBodyTest[]>([]);
+    const [showBasic, setShowBasic] = useState(true);
+    const [showPerUser, setShowPerUser] = useState(true);
+    const { t } = useTranslation("global");
 
-type State = {
-    dictBodyTest: DictBodyTest[];
-};
+    useEffect(() => {
+        loadDictBodyTest();
+    }, []);
 
-class ShowDictCategory extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            dictBodyTest: []
-        };
-    }
-
-    componentDidMount() {
-        this.loadDictBodyTest();
-    }
-
-    loadDictBodyTest() {
+    const loadDictBodyTest = () => {
         Service.getDictBodyTest()
             .then(response => {
-                this.setState({ dictBodyTest: response.data });
+                setDictBodyTest(response.data);
             })
             .catch(error => {
-                console.error('Error loading dict quantity types:', error);
+                console.error('Error loading dict body tests:', error);
             });
-    }
+    };
 
-    render() {
-        const { dictBodyTest } = this.state;
-        const { t } = this.props;
+    const handleShowBasicChange = () => {
+        setShowBasic(!showBasic);
+    };
 
-        return (
+    const handleShowPerUserChange = () => {
+        setShowPerUser(!showPerUser);
+    };
+
+    const filteredBodyTests = dictBodyTest.filter(test => {
+        if (showBasic && test.dict === "BASIC") return true;
+        if (showPerUser && test.dict === "PER_USER") return true;
+        return false;
+    });
+
+    return (
+        <div>
             <div>
-                <AddDictBodyTestPerUser dictBodyTest={dictBodyTest} />
-                <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
-                    <thead>
-                        <tr>
-                            <th>{t("table.id")}</th>
-                            <th>{t("table.name")}</th>
-                            <th>{t("table.description")}</th>
-                            <th>{t("table.purpose")}</th>
-                            <th>{t("table.options")}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dictBodyTest.map((row) => (
-                            <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
-                                <td>{row.id}</td>
-                                <td>{row.name}</td>
-                                <td>{row.description}</td>
-                                <td>{row.purpose}</td>
-                                <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showBasic} 
+                        onChange={handleShowBasicChange} 
+                    />
+                    {t('filter.basic')}
+                </label>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showPerUser} 
+                        onChange={handleShowPerUserChange} 
+                    />
+                    {t('filter.per_user')}
+                </label>
             </div>
-        );
-    }
-}
+            <AddDictBodyTestPerUser dictBodyTest={dictBodyTest} />
+            <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                    <tr>
+                        <th>{t("table.id")}</th>
+                        <th>{t("table.name")}</th>
+                        <th>{t("table.description")}</th>
+                        <th>{t("table.purpose")}</th>
+                        <th>{t("table.options")}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredBodyTests.map((row) => (
+                        <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
+                            <td>{row.id}</td>
+                            <td>{row.name}</td>
+                            <td>{row.description}</td>
+                            <td>{row.purpose}</td>
+                            <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : t("table.menu_unavailable")}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
 
-export default withTranslation("global")(ShowDictCategory);
+export default ShowDictCategory;

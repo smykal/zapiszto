@@ -17,7 +17,11 @@
         "password": "пароль",
         "email": "электронная почта",
         "login": "войти",
-        "register": "зарегистрироваться"
+        "register": "зарегистрироваться",
+        "terms_accepted": "Я прочитал и принимаю условия и положения",
+        "privacy_accepted": "Я прочитал и принимаю политику конфиденциальности",
+        "terms": "Условия и положения",
+        "privacy": "Политика конфиденциальности"
     },
     "dictionaries": {
         "dict_category": "категория упражнений",
@@ -80,7 +84,13 @@
         "move_up": "поднять",
         "move_down": "опустить",
         "approve": "утвердить",
-        "reject": "отклонить"
+        "reject": "отклонить",
+        "update": "обновить",
+        "send_invitation": "отправить приглашение",
+        "placeholder_send_invitation": "введите электронную почту",
+        "delete_client": "удалить клиента",
+        "add_program": "Добавить Программу",
+        "delete_program": "Удалить Программу"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
@@ -103,7 +113,6 @@
         "notes": "заметки",
         "категория": "категория",
         "purpose": "цель"
-
     },
     "invitations": {
         "title": "приглашения",
@@ -121,6 +130,38 @@
         "client_assigned_user": "назначенный пользователь",
         "client_assign_user": "назначить пользователя",
         "select_user_to_assign": "выберите пользователя для назначения",
-        "user_is_not_assigned": "пользователь не назначен"
+        "user_is_not_assigned": "пользователь не назначен",
+        "show_done_body_tests": "выполненные тесты тела",
+        "assign_client_body_test_result": "назначить новый результат теста тела",
+        "add_body_test": "добавить тест тела в память",
+        "no_body_tests_yet": "ещё не назначены тесты тела",
+        "select_body_param": "выбрать параметр тела",
+        "select_body_test": "выбрать тест тела",
+        "select_unit": "выбрать единицу",
+        "action": "действие",
+        "value": "значение",
+        "date": "дата",
+        "goals": "цели",
+        "informations": "информация",
+        "body": "тело",
+        "age": "возраст",
+        "age_not_available": "возраст недоступен",
+        "trainings": "тренировки",
+        "individual_trainings": "Индивидуальные Тренировки",
+        "personal_trainings": "Персональные Тренировки",
+        "client_name_exists": "имя клиента уже существует",
+        "confirm_delete": "подтвердите удаление клиента"
+    },
+    "profile": {
+        "confirm_delete_account": "Вы уверены, что хотите удалить свою учетную запись?",
+        "delete_account": "Удалить учетную запись"
+    },
+    "programs": {
+        "program_name": "Название Программы",
+        "created_date": "Дата Создания",
+        "created_by": "Создано",
+        "select_program_message": "Пожалуйста, выберите программу.",
+        "confirm_delete": "Подтвердите удаление программы",
+        "program_name_exists": "Название программы уже существует"
     }
 }

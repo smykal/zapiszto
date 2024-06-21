@@ -1,62 +1,87 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { DictQuantityType } from "../../../types/types";
 import Service from '../../../services/exercises';
 import AddDictQuantityTypePerUser from "./AddDictQuantityTypePerUser";
 import Options from './Options';
 
-type Props = {};
-type State = {
-    dictQuantityTypes: DictQuantityType[];
-};
+const ShowDictQuantityType: React.FC = () => {
+    const [dictQuantityTypes, setDictQuantityTypes] = useState<DictQuantityType[]>([]);
+    const [showBasic, setShowBasic] = useState(true);
+    const [showPerUser, setShowPerUser] = useState(true);
+    const { t } = useTranslation("global");
 
-export default class ShowDictQuantityType extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            dictQuantityTypes: []
-        };
-    }
+    useEffect(() => {
+        loadDictQuantityTypes();
+    }, []);
 
-    componentDidMount() {
-        this.loadDictQuantityTypes();
-    }
-
-    loadDictQuantityTypes() {
+    const loadDictQuantityTypes = () => {
         Service.getDictQuantityType()
             .then(response => {
-                this.setState({ dictQuantityTypes: response.data });
+                setDictQuantityTypes(response.data);
             })
             .catch(error => {
                 console.error('Error loading dict quantity types:', error);
             });
-    }
+    };
 
-    render() {
-        const { dictQuantityTypes } = this.state;
-        return (
+    const handleShowBasicChange = () => {
+        setShowBasic(!showBasic);
+    };
+
+    const handleShowPerUserChange = () => {
+        setShowPerUser(!showPerUser);
+    };
+
+    const filteredQuantityTypes = dictQuantityTypes.filter(type => {
+        if (showBasic && type.dict === "BASIC") return true;
+        if (showPerUser && type.dict === "PER_USER") return true;
+        return false;
+    });
+
+    return (
+        <div>
             <div>
-                <AddDictQuantityTypePerUser dictQuantityType={dictQuantityTypes} />
-                <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Shortcut</th>
-                            <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dictQuantityTypes.map((row) => (
-                            <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
-                                <td>{row.id}</td>
-                                <td>{row.name}</td>
-                                <td>{row.shortcut}</td>
-                                <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showBasic} 
+                        onChange={handleShowBasicChange} 
+                    />
+                    {t('filter.basic')}
+                </label>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showPerUser} 
+                        onChange={handleShowPerUserChange} 
+                    />
+                    {t('filter.per_user')}
+                </label>
             </div>
-        );
-    }
-}
+            <AddDictQuantityTypePerUser dictQuantityType={dictQuantityTypes} />
+            <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                    <tr>
+                        <th>{t("table.id")}</th>
+                        <th>{t("table.name")}</th>
+                        <th>{t("table.shortcut")}</th>
+                        <th>{t("table.options")}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredQuantityTypes.map((row) => (
+                        <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
+                            <td>{row.id}</td>
+                            <td>{row.name}</td>
+                            <td>{row.shortcut}</td>
+                            <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : t("table.menu_unavailable")}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default ShowDictQuantityType;

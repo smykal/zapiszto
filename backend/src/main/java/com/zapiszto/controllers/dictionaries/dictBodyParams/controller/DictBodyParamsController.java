@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/v1")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
 public class DictBodyParamsController {
 
   @Autowired
   private DictBodyParamsService dictBodyParamsService;
 
   @GetMapping("/dictBodyParams")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<List<DictBodyParamsDto>> getDictBodyParams() {
     try {
       var dictBodyParams = dictBodyParamsService.getDictBodyParams();
@@ -40,7 +40,6 @@ public class DictBodyParamsController {
   }
 
   @PostMapping("/add_dict_body_param")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public ResponseEntity<String> saveDictBodyParam(@RequestBody NewDictBodyParamDto dictBodyParamDto) {
     try {
       dictBodyParamsService.saveDictBodyParams(dictBodyParamDto);

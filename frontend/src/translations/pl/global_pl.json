@@ -17,7 +17,11 @@
         "password": "hasło",
         "email": "email",
         "login": "zaloguj się",
-        "register": "zarejestruj się"
+        "register": "zarejestruj się",
+        "terms_accepted": "Zapoznałem się i akceptuję regulamin",
+        "privacy_accepted": "Zapoznałem się i akceptuję politykę prywatności",
+        "terms": "Warunki i zasady",
+        "privacy": "Polityka prywatności"
     },
     "dictionaries": {
         "dict_category": "kategoria ćwiczeń",
@@ -80,7 +84,13 @@
         "move_up": "Przenieś w górę",
         "move_down": "Przenieś w dół",
         "approve": "zatwierdź",
-        "reject": "odrzucić"
+        "reject": "odrzucić",
+        "update": "aktualizować",
+        "send_invitation": "wyślij zaproszenie",
+        "placeholder_send_invitation": "wpisz email",
+        "delete_client": "usuń klienta",
+        "add_program": "Dodaj Program",
+        "delete_program": "Usuń Program"
     },
     "validation": {
         "this_field_is_required": "to pole jest wymagane",
@@ -120,6 +130,38 @@
         "client_assigned_user": "przypisany użytkownik",
         "client_assign_user": "przypisz użytkownika",
         "select_user_to_assign": "wybierz użytkownika do przypisania",
-        "user_is_not_assigned": "użytkownik nie przypisany"
+        "user_is_not_assigned": "użytkownik nie przypisany",
+        "show_done_body_tests": "wykonane testy ciała",
+        "assign_client_body_test_result": "przypisz nowy wynik testu ciała",
+        "add_body_test": "dodaj test ciała do pamięci",
+        "no_body_tests_yet": "brak przypisanych testów ciała",
+        "select_body_param": "wybierz parametr ciała",
+        "select_body_test": "wybierz test ciała",
+        "select_unit": "wybierz jednostkę",
+        "action": "akcja",
+        "value": "wartość",
+        "date": "data",
+        "goals": "cele",
+        "informations": "informacje",
+        "body": "ciało",
+        "age": "wiek",
+        "age_not_available": "wiek niedostępny",
+        "trainings": "treningi",
+        "individual_trainings": "Treningi Indywidualne",
+        "personal_trainings": "Treningi Personalne",
+        "client_name_exists": "nazwa klienta już istnieje",
+        "confirm_delete": "potwierdź, aby usunąć klienta"
+    },
+    "profile": {
+        "confirm_delete_account": "Czy na pewno chcesz usunąć swoje konto?",
+        "delete_account": "Usuń konto"
+    },
+    "programs": {
+        "program_name": "Nazwa Programu",
+        "created_date": "Data Utworzenia",
+        "created_by": "Utworzony Przez",
+        "select_program_message": "Proszę wybrać program.",
+        "confirm_delete": "Potwierdź, aby usunąć program",
+        "program_name_exists": "Nazwa programu już istnieje"
     }
 }

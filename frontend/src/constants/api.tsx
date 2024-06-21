@@ -9,3 +9,5 @@ const URL_AUTH_RENDER = "https://zapiszto-service.onrender.com/api/auth/";
 
 export const API_URL = URL_RENDER;
 export const AUTH_URL = URL_AUTH_RENDER;
+
+export const RECAPTCHA_SITE_KEY = '6LfpUvgpAAAAAH4mqrcWNgVcavvJCLDjN6Tr2Arv'

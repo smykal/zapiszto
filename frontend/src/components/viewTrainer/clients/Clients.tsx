@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import ClientsService from '../../../services/clients';
 import { Client } from '../../../types/types';
-import AddClientForm from './AddClientForm';
+import AddClientForm from './addClient/AddClientForm';
 import ClientDetails from './ClientDetails';
+import ClientsService from '../../../services/clients';
+
 const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
@@ -38,23 +38,30 @@ const Clients = () => {
     setShowForm(false);
   };
 
+  const handleClientDeleted = () => {
+    fetchClients();
+    setSelectedClient(null);
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ width: '20%', padding: '10px', borderRight: '1px solid #ccc' }}>
         <button onClick={() => setShowForm(!showForm)}>{t('buttons.add_client')}</button>
-        <ul>
+        <ul id="clientsList">
           {clients.map(client => (
             <li key={client.id} onClick={() => handleClientClick(client)}>
-              {client.clientName}
+              <span className={selectedClient?.id === client.id ? 'selected-client' : ''}>
+                {client.clientName}
+              </span>
             </li>
           ))}
         </ul>
       </div>
       <div style={{ width: '80%', padding: '10px' }}>
         {showForm ? (
-          <AddClientForm onClientAdded={handleClientAdded} />
+          <AddClientForm onClientAdded={handleClientAdded} existingClients={clients} />
         ) : selectedClient ? (
-          <ClientDetails client={selectedClient} />
+          <ClientDetails client={selectedClient} onClientDeleted={handleClientDeleted} />
         ) : (
           <div>{t('clients.select_client_message')}</div>
         )}

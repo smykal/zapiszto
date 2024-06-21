@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.clients.entity;
 
-import com.zapiszto.entity.User;
+import com.zapiszto.controllers.account.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -43,6 +43,6 @@ public class ClientEntity {
   @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
   User userEntity;
 
-  @Column(name = "user_id", nullable = false)
+  @Column(name = "user_id", nullable = true)
   Long userId;
 }

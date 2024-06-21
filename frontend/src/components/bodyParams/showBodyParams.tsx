@@ -100,7 +100,7 @@ class ShowBodyParams extends Component<Props, State> {
         return (
             <div>
                 <ul>
-                    <li id="bodyParams">
+                    <li>
                         <Collapsible
                             trigger={
                                 <div
@@ -122,7 +122,7 @@ class ShowBodyParams extends Component<Props, State> {
                             <Gender />
                         </Collapsible>
                     </li>
-                    <li id="bodyParams">
+                    <li>
                         <Collapsible
                             trigger={
                                 <div
@@ -144,7 +144,7 @@ class ShowBodyParams extends Component<Props, State> {
                             <Age />
                         </Collapsible>
                     </li>
-                    <li id="bodyParams">
+                    <li>
                         <Collapsible
                             trigger={
                                 <div
@@ -166,7 +166,7 @@ class ShowBodyParams extends Component<Props, State> {
                             <ShowBmi />
                         </Collapsible>
                     </li>
-                    <li id="bodyParams">
+                    <li>
                         <Collapsible
                             trigger={
                                 <div
@@ -188,7 +188,7 @@ class ShowBodyParams extends Component<Props, State> {
                             <ShowBmr />
                         </Collapsible>
                     </li>
-                    <li id="bodyParams">
+                    <li>
                         <Collapsible
                             trigger={
                                 <div
@@ -212,7 +212,7 @@ class ShowBodyParams extends Component<Props, State> {
                     </li>
                     {this.state.bodyParams.length > 0 && (
                         this.state.bodyParams.map((item: BodyParamsItem, index: number) => (
-                            <li key={index} id="bodyParams">
+                            <li key={index}>
                                 <Collapsible
                                     trigger={
                                         <div

@@ -45,7 +45,7 @@ public class GoalEntity {
   @JoinColumn(name = "dict_body_param_id", referencedColumnName = "id", insertable = false, updatable = false)
   DictBodyParamsEntity dictBodyParamsEntity;
 
-  @Column(name = "dict_body_param_id", nullable = false)
+  @Column(name = "dict_body_param_id")
   Integer dictBodyParamsId;
 
   @ManyToOne
@@ -53,7 +53,7 @@ public class GoalEntity {
   DictBodyTestEntity dictBodyTestEntity;
 
   @Column(name = "dict_body_test_id")
-  Integer dictBodyTestId;
+  Long dictBodyTestId;
 
   @ManyToOne
   @JoinColumn(name = "dict_unit_id", referencedColumnName = "id", insertable = false, updatable = false)
