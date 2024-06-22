@@ -10,7 +10,8 @@
         "log_in": "iniciar sesión",
         "log_out": "cerrar sesión",
         "sign_in": "registrarse",
-        "select_language": "seleccionar idioma"
+        "select_language": "seleccionar idioma",
+        "programs": "programas"
     },
     "login": {
         "username": "nombre de usuario",

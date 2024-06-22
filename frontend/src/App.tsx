@@ -109,7 +109,7 @@ const App = () => {
               </li>
               <li className="nav-item">
                 <Link to={"/programs"} className="nav-link">
-                  Trainer View
+                {t("navigation.programs")}
                 </Link>
               </li>
               <li className="nav-item">
@@ -133,6 +133,9 @@ const App = () => {
                 {t("navigation.log_out")}
               </a>
             </li>
+            <li className="nav-item">
+              <Menu />
+            </li>
           </ul>
         ) : (
           <ul className="navbar-nav ml-auto">
@@ -146,9 +149,12 @@ const App = () => {
                 {t("navigation.sign_in")}
               </Link>
             </li>
+            <li className="nav-item">
+              <Menu />
+            </li>
           </ul>
         )}
-        <Menu />
+        
       </nav>
 
       <div id="content">
@@ -164,8 +170,8 @@ const App = () => {
           <Route path="/bodyParams" element={<BodyParams />} />
           <Route path="/training" element={<Training />} />
           <Route path="/dictionaries" element={<Dictionaries />} />
-          <Route path="/programs" element={<Programs />} />  {/* New route for trainer view */}
-          <Route path="/clients" element={<Clients />} />  {/* New route for clients */}
+          <Route path="/programs" element={<Programs />} />
+          <Route path="/clients" element={<Clients />} />
         </Routes>
       </div>
     </div>

@@ -60,7 +60,7 @@ const ShowDictUnits: React.FC = () => {
                 </label>
             </div>
             <AddDictUnitPerUser dictUnit={dictUnits} />
-            <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr>
                         <th>{t("table.id")}</th>

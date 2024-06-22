@@ -10,7 +10,8 @@
         "log_in": "войти",
         "log_out": "выйти",
         "sign_in": "зарегистрироваться",
-        "select_language": "выберите язык"
+        "select_language": "выберите язык",
+        "programs": "программы"
     },
     "login": {
         "username": "имя пользователя",

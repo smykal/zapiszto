@@ -10,7 +10,8 @@
         "log_in": "log in",
         "log_out": "log out",
         "sign_in": "sing in",
-        "select_language": "select language"
+        "select_language": "select language",
+        "programs": "programs"
     },
     "login": {
         "username": "username",
