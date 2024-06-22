@@ -9,6 +9,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+ul {
+  padding: 0px;
+}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -111,7 +115,7 @@ tbody tr:hover {
 
 .Collapsible__trigger {
   display: block;
-  padding: 5px;
+  padding: 5px 0px;
   font-size: 14px;
   font-weight: bold;
   color: #cccccc;
@@ -236,6 +240,10 @@ tbody tr:hover {
 
   .nav-link {
     font-size: 4vw;
+  }
+
+  #content {
+    padding: 20px 20px;
   }
 
   button {
