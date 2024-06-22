@@ -221,3 +221,33 @@ tbody tr:hover {
   cursor: pointer;
   border-radius: 5px;
 }
+
+@media (max-width: 768px) {
+  body {
+    font-size: 4vw;
+  }
+
+  .navbar-brand {
+    font-size: 5vw;
+  }
+
+  .nav-link {
+    font-size: 4vw;
+  }
+
+  button {
+    font-size: 3vw;
+  }
+
+  table {
+    font-size: 3vw;
+  }
+
+  .Collapsible__trigger {
+    font-size: 3vw;
+  }
+
+  .Collapsible__contentInner {
+    font-size: 3vw;
+  }
+}
