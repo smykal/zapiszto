@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.programs.dto;
+package com.zapiszto.controllers.program.programs.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

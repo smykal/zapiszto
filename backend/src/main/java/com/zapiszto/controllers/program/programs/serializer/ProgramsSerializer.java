@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.programs.serializer;
+package com.zapiszto.controllers.program.programs.serializer;
 
-import com.zapiszto.controllers.programs.dto.ProgramDto;
-import com.zapiszto.controllers.programs.entity.ProgramEntity;
+import com.zapiszto.controllers.program.programs.dto.ProgramDto;
+import com.zapiszto.controllers.program.programs.entity.ProgramEntity;
 import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

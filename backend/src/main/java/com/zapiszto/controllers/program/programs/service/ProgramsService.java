@@ -1,11 +1,13 @@
-package com.zapiszto.controllers.programs.service;
+package com.zapiszto.controllers.program.programs.service;
 
-import com.zapiszto.controllers.programs.dto.NewProgramDto;
-import com.zapiszto.controllers.programs.dto.ProgramDto;
-import com.zapiszto.controllers.programs.dto.ProgramNameDto;
-import com.zapiszto.controllers.programs.entity.ProgramEntity;
-import com.zapiszto.controllers.programs.repository.ProgramsRepository;
-import com.zapiszto.controllers.programs.serializer.ProgramsSerializer;
+import com.zapiszto.controllers.program.programs.serializer.ProgramsSerializer;
+import com.zapiszto.controllers.program.programs.dto.NewProgramDto;
+import com.zapiszto.controllers.program.programs.dto.ProgramDto;
+import com.zapiszto.controllers.program.programs.dto.ProgramNameDto;
+import com.zapiszto.controllers.program.programs.entity.ProgramEntity;
+import com.zapiszto.controllers.program.programs.repository.ProgramsRepository;
+import com.zapiszto.controllers.program.programsDetails.entity.ProgramDetailsEntity;
+import com.zapiszto.controllers.program.programsDetails.repository.ProgramDetailsRepository;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +28,9 @@ public class ProgramsService {
   ProgramsRepository programsRepository;
 
   @Autowired
+  ProgramDetailsRepository programDetailsRepository;
+
+  @Autowired
   ProgramsSerializer programsSerializer;
 
   public List<ProgramDto> getPrograms(long trainerId) {
@@ -34,17 +39,30 @@ public class ProgramsService {
         .collect(Collectors.toList());
   }
 
+  @Transactional
   public void addProgram(NewProgramDto newProgramDto, long trainerId) {
+    UUID uuid = UUID.fromString(newProgramDto.getId());
     ProgramEntity programEntity = ProgramEntity.builder()
-        .id(UUID.fromString(newProgramDto.getId()))
+        .id(uuid)
         .name(newProgramDto.getProgramName())
         .trainerId(trainerId)
         .insert_date(ZonedDateTime.now())
         .build();
     programsRepository.save(programEntity);
+
+    ProgramDetailsEntity programDetailsEntity = ProgramDetailsEntity.builder()
+        .id(uuid)
+        .build();
+    programDetailsRepository.save(programDetailsEntity);
   }
 
+  @Transactional
   public void deleteProgram(UUID id) {
+    if (!programDetailsRepository.existsById(id)){
+      throw new RuntimeException("Program Details not found");
+    }
+    programDetailsRepository.deleteByProgramId(id);
+
     if (!programsRepository.existsById(id)) {
       throw new RuntimeException("Program not found");
     }

@@ -1,10 +1,10 @@
-package com.zapiszto.controllers.programs.controller;
+package com.zapiszto.controllers.program.programs.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.programs.dto.NewProgramDto;
-import com.zapiszto.controllers.programs.dto.ProgramDto;
-import com.zapiszto.controllers.programs.dto.ProgramNameDto;
-import com.zapiszto.controllers.programs.service.ProgramsService;
+import com.zapiszto.controllers.program.programs.dto.NewProgramDto;
+import com.zapiszto.controllers.program.programs.dto.ProgramDto;
+import com.zapiszto.controllers.program.programs.dto.ProgramNameDto;
+import com.zapiszto.controllers.program.programs.service.ProgramsService;
 import java.util.List;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
