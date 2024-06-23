@@ -262,3 +262,13 @@ export interface NewProgram {
                             programName: string;
                             createdBy: number;
 }
+
+export interface ProgramDetails {
+                                  programId: string;
+                                  assignedClient: string;
+}
+
+export interface ProgramAssignedClient {
+                          id: string;
+                          assignedClient: string;
+}

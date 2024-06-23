@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Program } from '../../../../types/types';
-import EditableCell from '../../../../common/EditableCell';
+import { Program } from '../../../../../types/types';
+import EditableCell from '../../../../../common/EditableCell';
 
 interface ProgramInformationsProps {
   program: Program;
@@ -24,7 +24,8 @@ const ProgramInformations: React.FC<ProgramInformationsProps> = ({ program, onSa
   return (
     <div>
       <p>ID: {program.id}</p>
-      <p>{t('programs.program_name')}: 
+      <p>
+        {t('programs.program_name')}:
         <EditableCell value={programName} onSave={handleSaveProgramName} />
       </p>
       <p>{t('programs.created_date')}: {program.createDate}</p>

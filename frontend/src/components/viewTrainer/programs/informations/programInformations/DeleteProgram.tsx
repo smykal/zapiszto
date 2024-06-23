@@ -1,6 +1,6 @@
 import React from 'react';
-import ProgramsService from '../../../../services/programs/';
-import { Program } from '../../../../types/types';
+import ProgramsService from '../../../../../services/programs';
+import { Program } from '../../../../../types/types';
 import { useTranslation } from 'react-i18next';
 
 interface DeleteProgramProps {
