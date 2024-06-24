@@ -5,10 +5,10 @@ import Service from '../../../services/dict/DictBodyTestService';
 import * as Yup from 'yup';
 import { withTranslation } from "react-i18next";
 
-
 type Props = {
     dictBodyTest: DictBodyTest[];
-    t: any
+    onAddBodyTest: (newBodyTest: NewDictBodyTest) => void;
+    t: any;
 };
 type State = {};
 
@@ -19,7 +19,7 @@ class AddDictBodyTestPerUser extends Component<Props, State> {
     }
 
     postDictBodyTest = (values: { newDictBodyTestName: string, newDictBodyTestDescription: string, newDictBodyTestPurpose: string }) => {
-        const { dictBodyTest } = this.props;
+        const { dictBodyTest, onAddBodyTest } = this.props;
         const isNameExisting = dictBodyTest.some(BodyTest => BodyTest.name === values.newDictBodyTestName);
         if (!isNameExisting) {
             const newDictBodyTest: NewDictBodyTest = {
@@ -28,9 +28,8 @@ class AddDictBodyTestPerUser extends Component<Props, State> {
                 purpose: values.newDictBodyTestPurpose
             };
             Service.postDictBodyTestPerUser(newDictBodyTest)
-                .then(() => {
-                    console.log("Wysłano nowy typ ćwiczeń:", values.newDictBodyTestName);
-                    window.location.reload();
+                .then(response => {
+                    onAddBodyTest(newDictBodyTest);
                 })
                 .catch(error => {
                     console.error("Błąd podczas wysyłania zapytania:", error);

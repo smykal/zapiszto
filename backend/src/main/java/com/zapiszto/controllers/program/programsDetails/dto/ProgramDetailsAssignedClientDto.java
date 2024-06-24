@@ -1,5 +1,6 @@
-package com.zapiszto.controllers.programs.dto;
+package com.zapiszto.controllers.program.programsDetails.dto;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,9 +15,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProgramDto {
-  String id;
-  String programName;
-  String createDate;
-  String createdBy;
+public class ProgramDetailsAssignedClientDto {
+  String programId;
+  String assignedClient;
 }

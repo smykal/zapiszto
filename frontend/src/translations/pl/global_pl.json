@@ -10,7 +10,8 @@
         "log_in": "zaloguj się",
         "log_out": "wyloguj się",
         "sign_in": "zarejestruj się",
-        "select_language": "wybierz język"
+        "select_language": "wybierz język",
+        "programs": "programy"
     },
     "login": {
         "username": "nazwa użytkownika",

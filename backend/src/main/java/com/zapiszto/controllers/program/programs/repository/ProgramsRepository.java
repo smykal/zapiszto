@@ -1,6 +1,6 @@
-package com.zapiszto.controllers.programs.repository;
+package com.zapiszto.controllers.program.programs.repository;
 
-import com.zapiszto.controllers.programs.entity.ProgramEntity;
+import com.zapiszto.controllers.program.programs.entity.ProgramEntity;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

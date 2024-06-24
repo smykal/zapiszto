@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.goals.serializer;
 
 import com.zapiszto.controllers.common.SerializerCommon;
+import com.zapiszto.controllers.goals.dto.GoalDetailsDto;
 import com.zapiszto.controllers.goals.dto.GoalDto;
 import com.zapiszto.controllers.goals.entity.GoalEntity;
 

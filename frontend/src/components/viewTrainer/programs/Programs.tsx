@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Program } from '../../../types/types';
 import AddProgramForm from './addProgram/AddProgramForm';
-import ProgramDetails from './ProgramDetails';
+import ProgramDetails from './Program';
 import ProgramsService from '../../../services/programs';
 
 const Programs = () => {

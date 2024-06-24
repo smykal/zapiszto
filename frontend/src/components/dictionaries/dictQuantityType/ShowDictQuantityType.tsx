@@ -33,6 +33,14 @@ const ShowDictQuantityType: React.FC = () => {
         setShowPerUser(!showPerUser);
     };
 
+    const handleAddQuantityType = (newQuantityType: DictQuantityType) => {
+        setDictQuantityTypes(prevQuantityTypes => [...prevQuantityTypes, newQuantityType]);
+    };
+
+    const handleDeleteQuantityType = (id: number) => {
+        setDictQuantityTypes(prevQuantityTypes => prevQuantityTypes.filter(type => type.id !== id));
+    };
+
     const filteredQuantityTypes = dictQuantityTypes.filter(type => {
         if (showBasic && type.dict === "BASIC") return true;
         if (showPerUser && type.dict === "PER_USER") return true;
@@ -59,8 +67,8 @@ const ShowDictQuantityType: React.FC = () => {
                     {t('filter.per_user')}
                 </label>
             </div>
-            <AddDictQuantityTypePerUser dictQuantityType={dictQuantityTypes} />
-            <table style={{ minWidth: '650px', width: '100%', borderCollapse: 'collapse' }}>
+            <AddDictQuantityTypePerUser dictQuantityType={dictQuantityTypes} onAddQuantityType={handleAddQuantityType} />
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr>
                         <th>{t("table.id")}</th>
@@ -75,7 +83,7 @@ const ShowDictQuantityType: React.FC = () => {
                             <td>{row.id}</td>
                             <td>{row.name}</td>
                             <td>{row.shortcut}</td>
-                            <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : t("table.menu_unavailable")}</td>
+                            <td>{row.dict === "PER_USER" ? <Options item={row.id} onDeleteQuantityType={handleDeleteQuantityType} /> : t("table.menu_unavailable")}</td>
                         </tr>
                     ))}
                 </tbody>

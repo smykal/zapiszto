@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -28,6 +28,7 @@ const AddProgramForm: React.FC<AddProgramFormProps> = ({ onProgramAdded, existin
 
   const validationSchema = Yup.object().shape({
     programName: Yup.string()
+      .max(30, t('validation.program_name_too_long')) // Add max length validation
       .test('unique-programName', t('programs.program_name_exists'), value => {
         return !existingPrograms.some(program => program.programName === value);
       })

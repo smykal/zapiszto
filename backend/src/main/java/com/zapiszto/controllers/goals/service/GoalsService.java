@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.goals.service;
 
+import com.zapiszto.controllers.goals.dto.GoalDetailsDto;
 import com.zapiszto.controllers.goals.dto.GoalDto;
 import com.zapiszto.controllers.goals.dto.NewGoalDto;
 import com.zapiszto.controllers.goals.entity.GoalEntity;
@@ -42,4 +43,20 @@ public class GoalsService {
         .map(GoalsSerializer::convert)
         .collect(Collectors.toList());
   }
+
+  public List<GoalDetailsDto> getGoalDetails(UUID clientId) {
+    List<Object[]> goalDetailsByClientId = goalsRepository.findGoalDetailsByClientId(clientId);
+      return goalDetailsByClientId.stream()
+          .map(result ->
+              new GoalDetailsDto(
+                  (UUID) result[0], // clientId
+                  (String) result[1], // bodyParamName
+                  (String) result[2], // bodyTestName
+                  (String) result[3], // unitName
+                  (String) result[4], // action
+                  (String) result[5]  // value
+              )
+          )
+          .collect(Collectors.toList());
+    }
 }

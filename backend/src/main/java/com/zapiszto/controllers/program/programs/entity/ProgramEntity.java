@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.programs.entity;
+package com.zapiszto.controllers.program.programs.entity;
 
 import com.zapiszto.controllers.account.entity.User;
 import jakarta.persistence.Column;

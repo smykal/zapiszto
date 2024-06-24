@@ -22,6 +22,15 @@ class ProgramsService {
   updateProgramName(id: string, newName: string) {
     return axios.patch(`${API_URL}/update_program_name/${id}`, { programName: newName }, { headers: authHeader() });
   }
+  
+  getProgramDetails(programId: string) {
+    return axios.get(`${API_URL}/get_program_details/${programId}`, { headers: authHeader() });
+  }
+
+  updateProgramAssignedClient(programId: string, assignedClient: string) {
+    return axios.patch(`${API_URL}/update_program`, { programId, assignedClient }, { headers: authHeader() });
+  }
+  
 }
 
 export default new ProgramsService();

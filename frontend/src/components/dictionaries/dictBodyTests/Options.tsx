@@ -1,39 +1,31 @@
-import React, { Component, ReactNode } from "react";
-import Service from '../../../services/dict/DictBodyTestService'
+import React from "react";
+import Service from '../../../services/dict/DictBodyTestService';
 import { withTranslation } from "react-i18next";
 
-
 type Props = {
-    item: number
-    t: any
+    item: number;
+    t: any;
+    onDelete: (id: number) => void;
 };
-type State = {};
 
- class Options extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-    }
-
-    delete = (item: number) => {
-        Service.deleteDictBodyTest(item)
+const Options: React.FC<Props> = ({ item, t, onDelete }) => {
+    const deleteBodyTest = (itemId: number) => {
+        Service.deleteDictBodyTest(itemId)
             .then(() => {
-                window.location.reload();
+                onDelete(itemId);
             })
             .catch(error => {
-                console.error('Error deleting exercise:', error);
+                console.error('Error deleting body test:', error);
             });
-    }
+    };
 
-    render() {
-        const { item, t } = this.props
-        return (
-            <div>
-                <button onClick={() => this.delete(item)}>{t("buttons.delete")}</button>
-                <button>{t("buttons.edit")}</button>
-                <button>{t("buttons.archive")}</button>
-            </div>
-        )
-    }
-}
+    return (
+        <div>
+            <button onClick={() => deleteBodyTest(item)}>{t("buttons.delete")}</button>
+            <button>{t("buttons.edit")}</button>
+            <button>{t("buttons.archive")}</button>
+        </div>
+    );
+};
 
-export default withTranslation("global")(Options)
+export default withTranslation("global")(Options);

@@ -4,8 +4,9 @@ label {
 }
 
 .card-container.card {
-  max-width: 320px !important;
-  padding: 40px 40px;
+  max-width: 300px !important;
+  padding: 20px 20px;
+  border-radius: 10px;
 }
 
 .card {

@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.programs.dto;
+package com.zapiszto.controllers.program.programs.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class NewProgramDto {
-  String id;
+public class ProgramNameDto {
   String programName;
 }

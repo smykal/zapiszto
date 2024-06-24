@@ -1,14 +1,16 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+ul {
+  padding: 0px;
 }
 
 .navbar {
@@ -17,6 +19,7 @@ code {
   justify-content: space-between;
   background-color: #343a40;
   padding: 10px 20px;
+  flex-wrap: wrap; /* Enable wrapping for small screens */
 }
 
 .navbar-brand {
@@ -31,6 +34,7 @@ code {
   align-items: center;
   padding-left: 0;
   margin-bottom: 0;
+  flex-wrap: wrap; /* Enable wrapping for small screens */
 }
 
 .nav-item {
@@ -111,11 +115,11 @@ tbody tr:hover {
 
 .Collapsible__trigger {
   display: block;
-  padding: 5px;
+  padding: 5px 0px;
   font-size: 14px;
   font-weight: bold;
   color: #cccccc;
-  background-color: #343a40;;
+  background-color: #343a40;
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
@@ -136,25 +140,24 @@ tbody tr:hover {
 .form-row {
   display: flex;
   justify-content: flex-start;
-  align-items: center; /* Dodane wyrównanie w pionie */
+  align-items: center;
   flex-wrap: nowrap;
 }
 
 .form-group {
-  margin-right: 10px; /* Zwiększona odległość między elementami */
-  max-width: none; /* Usunięcie ograniczenia szerokości */
+  margin-right: 10px;
+  max-width: none;
 }
 
 .form-group:last-child {
   margin-right: 0;
 }
 
-
 #clientsList .selected-client {
   background-color: #343a40;
   color: white;
   padding: 10px;
-  margin: 0px 0;
+  margin: 0;
   display: block;
 }
 
@@ -170,7 +173,7 @@ tbody tr:hover {
   background-color: #221b1b97;
   color: white;
   transform: scale(1.05);
-  border-radius: 5px ;
+  border-radius: 5px;
 }
 
 #clientsList ul {
@@ -181,7 +184,7 @@ tbody tr:hover {
 #clientsList span {
   display: block;
   padding: 10px;
-  margin: 0px 0;
+  margin: 0;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -190,7 +193,7 @@ tbody tr:hover {
   background-color: #343a40;
   color: white;
   padding: 10px;
-  margin: 0px 0;
+  margin: 0;
   display: block;
 }
 
@@ -206,7 +209,7 @@ tbody tr:hover {
   background-color: #221b1b97;
   color: white;
   transform: scale(1.05);
-  border-radius: 5px ;
+  border-radius: 5px;
 }
 
 #programsList ul {
@@ -217,7 +220,7 @@ tbody tr:hover {
 #programsList span {
   display: block;
   padding: 10px;
-  margin: 0px 0;
+  margin: 0;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -227,12 +230,20 @@ tbody tr:hover {
     font-size: 4vw;
   }
 
+  .navbar {
+    padding: 2vw 4vw;
+  }
+
   .navbar-brand {
     font-size: 5vw;
   }
 
   .nav-link {
     font-size: 4vw;
+  }
+
+  #content {
+    padding: 20px 20px;
   }
 
   button {

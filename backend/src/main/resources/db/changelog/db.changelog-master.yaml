@@ -183,3 +183,5 @@ databaseChangeLog:
       file: db/changelog/091_add_table_programs.xml
   - include:
       file: db/changelog/092_modify_table_goals.xml
+  - include:
+      file: db/changelog/093_add_table_programs_details.xml

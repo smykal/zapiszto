@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.goals.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
+import com.zapiszto.controllers.goals.dto.GoalDetailsDto;
 import com.zapiszto.controllers.goals.dto.GoalDto;
 import com.zapiszto.controllers.goals.dto.NewGoalDto;
 import com.zapiszto.controllers.goals.service.GoalsService;
@@ -50,4 +51,17 @@ public class GoalsController implements ControllerCommon {
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
   }
+  @GetMapping("/get_goals_details/{clientId}")
+  public ResponseEntity<List<GoalDetailsDto>> getGoalDetails(
+      @PathVariable("clientId") UUID clientId
+  ) {
+    var requestorId = extractUserId();
+    try {
+      List<GoalDetailsDto> result = goalsService.getGoalDetails(clientId);
+      return new ResponseEntity<>(result, HttpStatus.OK);
+    }catch (NullPointerException e) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+  }
+
 }
