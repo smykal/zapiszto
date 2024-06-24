@@ -1,32 +1,20 @@
 import React, { Component } from "react";
 import { DictCategories, DictExercises, NewDictExercises } from "../../../types/types";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import Service from '../../../services/exercises/'
+import Service from '../../../services/exercises/';
 import * as Yup from 'yup';
 import { withTranslation } from "react-i18next";
 
 type Props = {
     dictExercises: DictExercises[];
     dictCategories: DictCategories[];
+    onAddExercise: (newExercise: DictExercises) => void;
     t: any;
 };
 
-type State = {
-    newDictExercise: string;
-    categoryId: number | null;
-};
-
-class AddDictExercisePerUser extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            newDictExercise: '',
-            categoryId: null
-        };
-    }
-
+class AddDictExercisePerUser extends Component<Props> {
     postDictExercises = (values: NewDictExercises) => {
-        const { dictExercises } = this.props;
+        const { dictExercises, dictCategories, onAddExercise } = this.props;
         const { name, categoryId } = values;
         const isNameExisting = dictExercises.some(exercise => exercise.name === name);
         if (!isNameExisting) {
@@ -37,7 +25,17 @@ class AddDictExercisePerUser extends Component<Props, State> {
             Service.postDictExercisePerUser(newDictExerciseData)
             .then(() => {
                 console.log("Wysłano nowe ćwiczenie:", name);
-                window.location.reload();
+                // Simulate the server response as the service method does not return data
+                const newExercise: DictExercises = {
+                    id: Math.max(...dictExercises.map(exercise => exercise.id)) + 1, // Simulate the new ID
+                    name: name,
+                    category_name: dictCategories.find((category: DictCategories) => category.id === categoryId)?.name || '',
+                    category_id: categoryId,
+                    dict: "PER_USER",
+                    dict_id: Math.max(...dictExercises.map(exercise => exercise.dict_id)) + 1, // Simulate the new dict_id
+                    category_type: 'PER_USER'
+                };
+                onAddExercise(newExercise);
             })
             .catch(error => {
                 console.error('Błąd podczas wysyłania zapytania:', error);
@@ -46,7 +44,6 @@ class AddDictExercisePerUser extends Component<Props, State> {
             console.log("Nazwa już istnieje:", name);
         }
     };
-    
 
     render() {
         const { dictCategories, t } = this.props;
@@ -73,7 +70,7 @@ class AddDictExercisePerUser extends Component<Props, State> {
                             <ErrorMessage name="name" component="div" className="error" />
                             <Field as="select" name="categoryId">
                                 <option value="" disabled>{t("table.category")}</option>
-                                {dictCategories.map((category) => (
+                                {dictCategories.map((category: DictCategories) => (
                                     <option key={category.id} value={category.id}>
                                         {category.name}
                                     </option>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { DictBodyTest } from "../../../types/types";
+import { DictBodyTest, NewDictBodyTest } from "../../../types/types";
 import Service from '../../../services/dict/DictBodyTestService';
 import AddDictBodyTestPerUser from "./AddDictBodyTestPerUser";
 import Options from './Options';
 
-const ShowDictCategory: React.FC = () => {
+const ShowDictBodyTest: React.FC = () => {
     const [dictBodyTest, setDictBodyTest] = useState<DictBodyTest[]>([]);
     const [showBasic, setShowBasic] = useState(true);
     const [showPerUser, setShowPerUser] = useState(true);
@@ -39,6 +39,22 @@ const ShowDictCategory: React.FC = () => {
         return false;
     });
 
+    const handleAddBodyTest = (newBodyTest: NewDictBodyTest) => {
+        setDictBodyTest(prevBodyTests => [
+            ...prevBodyTests,
+            {
+                ...newBodyTest,
+                id: Math.max(...prevBodyTests.map(test => test.id)) + 1,
+                dict: "PER_USER",
+                dict_id: Math.max(...prevBodyTests.map(test => test.dict_id)) + 1
+            }
+        ]);
+    };
+
+    const handleDeleteBodyTest = (id: number) => {
+        setDictBodyTest(prevBodyTests => prevBodyTests.filter(test => test.id !== id));
+    };
+
     return (
         <div>
             <div>
@@ -59,7 +75,7 @@ const ShowDictCategory: React.FC = () => {
                     {t('filter.per_user')}
                 </label>
             </div>
-            <AddDictBodyTestPerUser dictBodyTest={dictBodyTest} />
+            <AddDictBodyTestPerUser dictBodyTest={dictBodyTest} onAddBodyTest={handleAddBodyTest} />
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr>
@@ -77,7 +93,7 @@ const ShowDictCategory: React.FC = () => {
                             <td>{row.name}</td>
                             <td>{row.description}</td>
                             <td>{row.purpose}</td>
-                            <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : t("table.menu_unavailable")}</td>
+                            <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} onDelete={handleDeleteBodyTest} /> : t("table.menu_unavailable")}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -86,4 +102,4 @@ const ShowDictCategory: React.FC = () => {
     );
 };
 
-export default ShowDictCategory;
+export default ShowDictBodyTest;

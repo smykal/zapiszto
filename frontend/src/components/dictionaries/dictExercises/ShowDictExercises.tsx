@@ -45,6 +45,14 @@ const ShowDictExercises = () => {
         setShowPerUser(!showPerUser);
     };
 
+    const handleAddExercise = (newExercise: DictExercises) => {
+        setDictExercises(prevExercises => [...prevExercises, newExercise]);
+    };
+
+    const handleDeleteExercise = (id: number) => {
+        setDictExercises(prevExercises => prevExercises.filter(exercise => exercise.id !== id));
+    };
+
     const filteredExercises = dictExercises.filter(exercise => {
         if (showBasic && exercise.dict === "BASIC") return true;
         if (showPerUser && exercise.dict === "PER_USER") return true;
@@ -71,7 +79,11 @@ const ShowDictExercises = () => {
                     PER_USER
                 </label>
             </div>
-            <AddDictExercisePerUser dictExercises={dictExercises} dictCategories={dictCategories} />
+            <AddDictExercisePerUser 
+                dictExercises={dictExercises} 
+                dictCategories={dictCategories} 
+                onAddExercise={handleAddExercise} 
+            />
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr>
@@ -87,7 +99,7 @@ const ShowDictExercises = () => {
                             <td>{row.id}</td>
                             <td>{row.name}</td>
                             <td>{row.category_name}</td>
-                            <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} /> : "menu niedostępne"}</td>
+                            <td>{row.dict === "PER_USER" ? <Options item={row.id} onDeleteExercise={handleDeleteExercise} /> : "menu niedostępne"}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,35 +1,33 @@
-import React, { Component, ReactNode } from "react";
-import Service from '../../../services/exercises'
+import React from "react";
+import { useTranslation } from "react-i18next";
+import Service from '../../../services/exercises';
 
 type Props = {
-    item: number,
+    item: number;
+    onDeleteQuantityType: (id: number) => void;
 };
-type State = {};
 
-export default class Options extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-    }
+const Options: React.FC<Props> = ({ item, onDeleteQuantityType }) => {
+    const { t } = useTranslation("global");
 
-    delete = (item: number) => {
-        Service.deleteDictQuantityType(item)
+    const deleteQuantityType = (itemId: number) => {
+        Service.deleteDictQuantityType(itemId)
             .then(() => {
-                window.location.reload();
+                console.log('Quantity type deleted:', itemId);
+                onDeleteQuantityType(itemId);
             })
             .catch(error => {
-                console.error('Error deleting exercise:', error);
+                console.error('Error deleting quantity type:', error);
             });
-    }
+    };
 
-    render() {
-        const { item } = this.props
-        return (
-            <div>
-                <button onClick={() => this.delete(item)}>Delete</button>
-                <button>Edit</button>
-                <button>Archive</button>
-            </div>
-        )
+    return (
+        <div>
+            <button onClick={() => deleteQuantityType(item)}>{t('buttons.delete')} {item}</button>
+            <button>{t('buttons.edit')} {item}</button>
+            <button>{t('buttons.archive')} {item}</button>
+        </div>
+    );
+};
 
-    }
-}
+export default Options;

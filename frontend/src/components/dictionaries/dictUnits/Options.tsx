@@ -1,34 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
 import Service from '../../../services/exercises'
 
 type Props = {
     item: number,
+    onDeleteUnit: (unitId: number) => void
 };
-type State = {};
 
-export default class Options extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-    }
-
-    delete = (item: number) => {
-        Service.deleteDictUnits(item)
+const Options: React.FC<Props> = ({ item, onDeleteUnit }) => {
+    const deleteUnit = (itemId: number) => {
+        Service.deleteDictUnits(itemId)
             .then(() => {
-                window.location.reload();
+                onDeleteUnit(itemId);
             })
             .catch(error => {
                 console.error('Error deleting unit:', error);
             });
     }
 
-    render() {
-        const { item } = this.props
-        return (
-            <div>
-                <button onClick={() => this.delete(item)}>Delete {item}</button>
-                <button>Edit {item}</button>
-                <button>Archive {item}</button>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <button onClick={() => deleteUnit(item)}>Delete {item}</button>
+            <button>Edit {item}</button>
+            <button>Archive {item}</button>
+        </div>
+    )
 }
+
+export default Options;

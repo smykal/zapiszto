@@ -5,7 +5,8 @@ import Service from '../../../services/exercises/';
 import * as Yup from 'yup';
 
 type Props = {
-    dictUnit: DictUnits[];
+    dictUnits: DictUnits[];
+    onAddUnit: (newUnit: DictUnits) => void;
 };
 type State = {};
 
@@ -15,24 +16,34 @@ export default class AddDictUnitPerUser extends Component<Props, State> {
         this.state = {};
     }
 
-    postDictUnit(values: { newDictUnitName: string, newDictUnitShortcut: string }) {
-        const { dictUnit: dictUnit } = this.props;
-        const isNameExisting = dictUnit.some(item => item.name === values.newDictUnitName);
+    postDictUnit = (values: { newDictUnitName: string, newDictUnitShortcut: string }) => {
+        const { dictUnits, onAddUnit } = this.props;
+        const isNameExisting = dictUnits.some(item => item.name === values.newDictUnitName);
         if (!isNameExisting) {
             const newDictUnit: NewDictUnit = {
                 name: values.newDictUnitName,
                 shortcut: values.newDictUnitShortcut
             };
-            Service.postDictUnitPerUser(newDictUnit);
-            console.log("Wysłano nowy typ jednostki:", values.newDictUnitName);
-            window.location.reload();
+            Service.postDictUnitPerUser(newDictUnit)
+                .then(response => {
+                    const addedUnit = {
+                        ...newDictUnit,
+                        id: Math.max(...dictUnits.map(u => u.id)) + 1, // Simulate the new ID
+                        dict: "PER_USER",
+                        dict_id: Math.max(...dictUnits.map(u => u.dict_id)) + 1 // Simulate the new dict_id
+                    };
+                    onAddUnit(addedUnit);
+                })
+                .catch(error => {
+                    console.error('Error sending the request:', error);
+                });
         } else {
-            console.log("Nazwa już istnieje:", values.newDictUnitName);
+            console.log("Name already exists:", values.newDictUnitName);
         }
     }
 
     render() {
-        const { dictUnit: dictUnit } = this.props;
+        const { dictUnits } = this.props;
         return (
             <div>
                 <Formik
@@ -43,15 +54,13 @@ export default class AddDictUnitPerUser extends Component<Props, State> {
                     validationSchema={Yup.object({
                         newDictUnitName: Yup.string()
                             .required('Pole jest wymagane')
-                            .notOneOf(dictUnit.map(item => item.name), 'Nazwa już istnieje'),
+                            .notOneOf(dictUnits.map(item => item.name), 'Nazwa już istnieje'),
                         newDictUnitShortcut: Yup.string()
                             .required('Pole jest wymagane')
                     })}
                     onSubmit={(values, { setSubmitting }) => {
-                        setTimeout(() => {
-                            this.postDictUnit(values);
-                            setSubmitting(false);
-                        }, 400);
+                        this.postDictUnit(values);
+                        setSubmitting(false);
                     }}
                 >
                     {formik => (
