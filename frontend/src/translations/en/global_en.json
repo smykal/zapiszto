@@ -113,7 +113,10 @@
         "unit": "unit",
         "notes": "notes",
         "category": "category",
-        "purpose": "purpose"
+        "purpose": "purpose",
+        "duration": "Duration",
+        "comments": "Comments",
+        "orderId": "Order"
     },
     "invitations": {
         "title": "invitations",
@@ -164,5 +167,22 @@
         "select_program_message": "Please select a program.",
         "confirm_delete": "Confirm to delete program",
         "program_name_exists": "Program name already exists"
+    },
+    "macrocycle": {
+        "title": "Create New Macrocycle",
+        "duration": "Duration (months)",
+        "duration_left": "Remaining Duration (months)",
+        "add_button": "Add Macrocycle",
+        "created_successfully": "Macrocycle created successfully",
+        "creation_error": "Error creating macrocycle"
+    },
+    "mesocycle": {
+        "title": "Create New Mesocycle",
+        "duration": "Duration (weeks)",
+        "comments": "Comments",
+        "orderId": "Order",
+        "add_button": "Add Mesocycle",
+        "created_successfully": "Mesocycle created successfully",
+        "creation_error": "Error creating mesocycle"
     }
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProgramsService from '../../../../../services/programs';
 import ClientsService from '../../../../../services/clients';
 import { ProgramDetails as ProgramDetailsType, Client } from '../../../../../types/types';
+import CurrentUserGoals from '../currentUserGoals/CurrentUserGoals';
 
 interface ProgramDetailsProps {
   programId: string;
@@ -78,6 +79,7 @@ const ProgramDetails: React.FC<ProgramDetailsProps> = ({ programId }) => {
           ))}
         </select>
       </p>
+      <CurrentUserGoals clientId={programDetails.assignedClient} />
     </div>
   );
 };

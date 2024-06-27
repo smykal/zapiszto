@@ -8,6 +8,10 @@ class GoalsService {
         return axios.get(`${API_URL}/get_goals/${clientId}`, { headers: authHeader() })
     }
 
+    getGoalDetails(clientId: string) {
+        return axios.get(`${API_URL}/get_goals_details/${clientId}`, { headers: authHeader() });
+      }
+
     postNewGoal(requestBody: NewGoal) {
         return axios.post(API_URL + '/add_goal', requestBody, { headers: authHeader() })
             .then(response => {

@@ -113,7 +113,10 @@
         "unit": "unidad",
         "notes": "notas",
         "categoría": "categoría",
-        "purpose": "propósito"
+        "purpose": "propósito",
+        "duration": "Duración",
+        "comments": "Comentarios",
+        "orderId": "Orden"
     },
     "invitations": {
         "title": "invitaciones",
@@ -164,5 +167,22 @@
         "select_program_message": "Por favor, seleccione un programa.",
         "confirm_delete": "Confirmar para eliminar el programa",
         "program_name_exists": "El nombre del programa ya existe"
+    },
+    "macrocycle": {
+        "title": "Crear Nuevo Macrociclo",
+        "duration": "Duración (meses)",
+        "duration_left": "Duración Restante (meses)",
+        "add_button": "Agregar Macrociclo",
+        "created_successfully": "Macrociclo creado con éxito",
+        "creation_error": "Error al crear el macrociclo"
+    },
+    "mesocycle": {
+        "title": "Crear Nuevo Mesociclo",
+        "duration": "Duración (semanas)",
+        "comments": "Comentarios",
+        "orderId": "Orden",
+        "add_button": "Agregar Mesociclo",
+        "created_successfully": "Mesociclo creado con éxito",
+        "creation_error": "Error al crear el mesociclo"
     }
 }

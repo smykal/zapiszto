@@ -5,6 +5,7 @@ import ProgramInformations from './informations/programInformations/ProgramInfor
 import DeleteProgram from './informations/programInformations/DeleteProgram';
 import Collapsible from 'react-collapsible';
 import ProgramDetails from './informations/programDetails/ProgramDetails';
+import Makrocykl from './informations/makrocykl/Makrocykl';
 
 interface ProgramDetailsProps {
   program: Program;
@@ -18,8 +19,15 @@ const ProgramInfo: React.FC<ProgramDetailsProps> = ({ program, onProgramDeleted,
     <div className="container">
       <Collapsible trigger={t("programs.informations")} open={true}>
         <ProgramInformations program={program} onSaveProgramName={onSaveProgramName} />
-        <ProgramDetails programId={program.id} />
         <DeleteProgram program={program} onProgramDeleted={onProgramDeleted} />
+      </Collapsible>
+      
+      <Collapsible trigger={t("programs.details")} open={false}>
+        <ProgramDetails programId={program.id} />
+      </Collapsible>
+
+      <Collapsible trigger={t("programs.macrocicle")} open={false}>
+      <Makrocykl programId={program.id} />
       </Collapsible>
     </div>
   );

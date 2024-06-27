@@ -113,7 +113,10 @@
         "unit": "jednostka",
         "notes": "notatki",
         "kategoria": "kategoria",
-        "purpose": "cel"
+        "purpose": "cel",
+        "duration": "Długość",
+        "comments": "Komentarze",
+        "orderId": "Kolejność"
     },
     "invitations": {
         "title": "zaproszenia",
@@ -164,5 +167,22 @@
         "select_program_message": "Proszę wybrać program.",
         "confirm_delete": "Potwierdź, aby usunąć program",
         "program_name_exists": "Nazwa programu już istnieje"
+    },
+    "macrocycle": {
+        "title": "Utwórz Nowy Makrocykl",
+        "duration": "Długość trwania (miesiące)",
+        "duration_left": "Pozostały czas trwania (miesiące)",
+        "add_button": "Dodaj Makrocykl",
+        "created_successfully": "Makrocykl został pomyślnie utworzony",
+        "creation_error": "Wystąpił błąd podczas tworzenia makrocyklu"
+    },
+    "mesocycle": {
+        "title": "Utwórz Nowy Mezocykl",
+        "duration": "Długość trwania (tygodnie)",
+        "comments": "Komentarze",
+        "orderId": "Kolejność",
+        "add_button": "Dodaj Mezocykl",
+        "created_successfully": "Mezocykl został pomyślnie utworzony",
+        "creation_error": "Wystąpił błąd podczas tworzenia mezocyklu"
     }
 }

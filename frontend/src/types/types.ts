@@ -272,3 +272,40 @@ export interface ProgramAssignedClient {
                           id: string;
                           assignedClient: string;
 }
+
+export type GoalDetailsDto = {
+                              clientId: string;
+                              bodyParamName: string;
+                              bodyTestName: string;
+                              unitName: string;
+                              action: string;
+                              value: string;
+}
+
+export type NewMacrocycleDto = {
+                                id: string;
+                                programId: string;
+                                duration: number;
+}
+
+export type MacrocycleDto = {
+                              id: string;
+                              programId: string;
+                              duration: number;
+                              durationLeft: number;
+}
+
+export type MesocycleDto = {
+                              id: string;
+                              macrocycleId: string;
+                              duration: number;
+                              orderId: number;
+                              comments: string;
+}
+
+export type NewMesocycleDto = {
+                                id: string;
+                                macrocycleId: string;
+                                duration: number;
+                                comments: string;
+}
