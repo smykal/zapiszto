@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add table mesocycle" author="smykalm">
+        <createTable tableName="mesocycle">
+            <column name="id" type="uuid" remarks="Primary key, unique identifier for each mesocycle">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="macrocycle_id" type="uuid" remarks="Foreign key referencing the macrocycle">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="int" remarks="Total duration of the mesocycle">
+                <constraints nullable="false"/>
+            </column>
+            <column name="orderId" type="int" remarks="Order of the mesocycle in the macrocycle">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comments" type="varchar(255)" remarks="Additional comments about the mesocycle"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="mesocycle"
+                baseColumnNames="macrocycle_id"
+                referencedTableName="macrocycle"
+                referencedColumnNames="id"
+                constraintName="fk_mesocycle_macrocycle"/>
+    </changeSet>
+
+</databaseChangeLog>

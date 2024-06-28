@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="Sequence for dict_microcycle_phase" author="author_name">
+        <createSequence sequenceName="dict_microcycle_phase_per_user_id_seq"/>
+        <addDefaultValue tableName="dict_microcycle_phase_per_user" columnName="id" defaultValueSequenceNext="dict_microcycle_phase_per_user_id_seq"/>
+
+        <createSequence sequenceName="dict_microcycle_phase_basic_id_seq"/>
+        <addDefaultValue tableName="dict_microcycle_phase_basic" columnName="id" defaultValueSequenceNext="dict_microcycle_phase_basic_id_seq"/>
+
+        <createSequence sequenceName="dict_microcycle_phase_id_seq"/>
+        <addDefaultValue tableName="dict_microcycle_phase" columnName="id" defaultValueSequenceNext="dict_microcycle_phase_id_seq"/>
+    </changeSet>
+
+</databaseChangeLog>

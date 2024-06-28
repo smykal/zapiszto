@@ -57,22 +57,23 @@ public class ProgramsService {
   }
 
   @Transactional
-  public void deleteProgram(UUID id) {
-    if (!programDetailsRepository.existsById(id)){
+  public void deleteProgram(String id) {
+    UUID uuid = UUID.fromString(id);
+    if (!programDetailsRepository.existsById(uuid)){
       throw new RuntimeException("Program Details not found");
     }
-    programDetailsRepository.deleteByProgramId(id);
+    programDetailsRepository.deleteByProgramId(uuid);
 
-    if (!programsRepository.existsById(id)) {
+    if (!programsRepository.existsById(uuid)) {
       throw new RuntimeException("Program not found");
     }
-    programsRepository.deleteByProgramId(id);
+    programsRepository.deleteByProgramId(uuid);
   }
 
   @Modifying
   @Transactional
-  public void updateProgramName(UUID id, ProgramNameDto programNameDto) {
-    ProgramEntity programEntity = programsRepository.findByUuid(id)
+  public void updateProgramName(String id, ProgramNameDto programNameDto) {
+    ProgramEntity programEntity = programsRepository.findByUuid(UUID.fromString(id))
         .orElseThrow(() -> new RuntimeException("Program not found"));
     programEntity.setName(programNameDto.getProgramName());
     programsRepository.save(programEntity);

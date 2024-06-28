@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add table dict_microcycle_phase_basic" author="smykalm">
+        <createTable tableName="dict_microcycle_phase_basic">
+            <column name="id" type="int8">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shortcut" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add table dict_microcycle_phase_per_user" author="smykalm">
+        <createTable tableName="dict_microcycle_phase_per_user">
+            <column name="id" type="int8">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shortcut" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add table dict_microcycle_phase" author="smykalm">
+        <createTable tableName="dict_microcycle_phase">
+            <column name="id" type="int4">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dict_microcycle_phase_basic_id" type="int8">
+                <constraints nullable="true"/>
+            </column>
+            <column name="dict_microcycle_phase_per_user_id" type="int8">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add foreign keys" author="smykalm">
+        <addForeignKeyConstraint
+                baseTableName="dict_microcycle_phase"
+                baseColumnNames="dict_microcycle_phase_basic_id"
+                constraintName="fk_dict_microcycle_phase_basic"
+                referencedTableName="dict_microcycle_phase_basic"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="dict_microcycle_phase"
+                baseColumnNames="dict_microcycle_phase_per_user_id"
+                constraintName="fk_dict_microcycle_phase_per_user"
+                referencedTableName="dict_microcycle_phase_per_user"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="dict_microcycle_phase_per_user"
+                baseColumnNames="user_id"
+                constraintName="fk_dict_microcycle_phase_user"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

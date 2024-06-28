@@ -12,7 +12,6 @@
         "sign_in": "registrati",
         "select_language": "seleziona lingua",
         "programs": "programmi"
-
     },
     "login": {
         "username": "nome utente",
@@ -114,7 +113,10 @@
         "unit": "unità",
         "notes": "note",
         "categoria": "categoria",
-        "purpose": "scopo"
+        "purpose": "scopo",
+        "duration": "Durata",
+        "comments": "Commenti",
+        "orderId": "Ordine"
     },
     "invitations": {
         "title": "inviti",
@@ -165,5 +167,22 @@
         "select_program_message": "Si prega di selezionare un programma.",
         "confirm_delete": "Conferma per eliminare il programma",
         "program_name_exists": "Il nome del programma esiste già"
+    },
+    "macrocycle": {
+        "title": "Crea Nuovo Macrociclo",
+        "duration": "Durata (mesi)",
+        "duration_left": "Durata Rimanente (mesi)",
+        "add_button": "Aggiungi Macrociclo",
+        "created_successfully": "Macrociclo creato con successo",
+        "creation_error": "Errore durante la creazione del macrociclo"
+    },
+    "mesocycle": {
+        "title": "Crea Nuovo Mesociclo",
+        "duration": "Durata (settimane)",
+        "comments": "Commenti",
+        "orderId": "Ordine",
+        "add_button": "Aggiungi Mesociclo",
+        "created_successfully": "Mesociclo creato con successo",
+        "creation_error": "Errore durante la creazione del mesociclo"
     }
 }

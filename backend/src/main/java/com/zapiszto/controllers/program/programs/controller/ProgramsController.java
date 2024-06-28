@@ -61,7 +61,7 @@ public class ProgramsController implements ControllerCommon {
 
   @PatchMapping("/update_program_name/{id}")
   public ResponseEntity<String> updateProgramName(
-      @PathVariable UUID id,
+      @PathVariable String id,
       @RequestBody ProgramNameDto programNameDto) {
     programsService.updateProgramName(id, programNameDto);
     return new ResponseEntity<>(HttpStatus.OK);
@@ -69,7 +69,7 @@ public class ProgramsController implements ControllerCommon {
 
   @DeleteMapping("/delete_program/{id}")
   public ResponseEntity<String> deleteProgram(
-      @PathVariable UUID id) {
+      @PathVariable String id) {
     var requestorId = extractUserId();
     programsService.deleteProgram(id);
     return new ResponseEntity<>(HttpStatus.OK);

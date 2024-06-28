@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add table microcycle" author="smykalm">
+        <createTable tableName="microcycle">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="mesocycle_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="int4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_microcycle_phase_id" type="int4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add foreign keys" author="smykalm">
+        <addForeignKeyConstraint
+                baseTableName="microcycle"
+                baseColumnNames="mesocycle_id"
+                constraintName="fk_microcycle_mesocycle"
+                referencedTableName="mesocycle"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="microcycle"
+                baseColumnNames="dict_microcycle_phase_id"
+                constraintName="fk_microcycle_dict_microcycle_phase"
+                referencedTableName="dict_microcycle_phase"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
