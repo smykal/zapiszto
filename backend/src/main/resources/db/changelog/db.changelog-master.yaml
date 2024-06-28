@@ -191,3 +191,9 @@ databaseChangeLog:
       file: db/changelog/095_add_table_mesocycle.xml
   - include:
       file: db/changelog/096_modify_table_mesocycle.xml
+  - include:
+      file: db/changelog/097_add_table_dict_microcycle_phase.xml
+  - include:
+      file: db/changelog/098_add_table_microcycle.xml
+  - include:
+      file: db/changelog/099_add_sequence_to_dict_microcycle_phase.xml

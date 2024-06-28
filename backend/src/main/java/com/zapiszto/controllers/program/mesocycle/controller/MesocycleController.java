@@ -5,7 +5,6 @@ import com.zapiszto.controllers.program.mesocycle.dto.MesocycleDto;
 import com.zapiszto.controllers.program.mesocycle.dto.NewMesocycleDto;
 import com.zapiszto.controllers.program.mesocycle.service.MesocycleService;
 import java.util.List;
-import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,7 +44,7 @@ public class MesocycleController implements ControllerCommon {
 
   @GetMapping("/get_mesocycles/{macrocycleId}")
   public ResponseEntity<List<MesocycleDto>> getMesocycles(
-      @PathVariable UUID macrocycleId
+      @PathVariable String macrocycleId
   ) {
     var trainerId = extractUserId();
     try {

@@ -49,6 +49,4 @@ public class ProgramDetailsController {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
-
-
 }

@@ -11,4 +11,9 @@ public interface MacrocycleRepository extends JpaRepository<MacrocycleEntity, In
       select * from macrocycle m where m.program_id = :programId
       """)
   MacrocycleEntity getMacrocycleByProgramId(@Param("programId") UUID programId);
+
+  @Query(nativeQuery = true, value = """
+      select * from macrocycle m where m.id = :macrocycleId
+      """)
+  MacrocycleEntity getMacrocycleByMacrocycleId(@Param("macrocycleId") UUID macrocycleId);
 }

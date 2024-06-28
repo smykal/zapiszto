@@ -15,7 +15,7 @@ public interface MesocycleRepository extends JpaRepository<MesocycleEntity, UUID
   List<MesocycleEntity> getMesocyclesByMacrocycleId(@Param("macrocycleId") UUID macrocycleId);
 
   @Query(nativeQuery = true, value = """
-      select max(m.order_id) from mesocycle m where m.macrocycle_id = :macrocycleId
+      select coalesce(max(m.order_id), 0) from mesocycle m where m.macrocycle_id = :macrocycleId
       """)
   Optional<Integer> findMaxOrderIdByMacrocycleId(@Param("macrocycleId") UUID macrocycleId);
 }
