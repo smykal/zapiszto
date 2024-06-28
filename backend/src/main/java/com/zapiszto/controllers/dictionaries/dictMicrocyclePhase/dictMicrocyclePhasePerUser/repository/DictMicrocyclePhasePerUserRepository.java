@@ -1,0 +1,2 @@
+package com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhasePerUser.repository;public interface DictMicrocyclePhasePerUserRepository {
+}

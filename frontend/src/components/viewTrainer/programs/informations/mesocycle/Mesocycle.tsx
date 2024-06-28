@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { MesocycleDto, NewMesocycleDto } from "../../../../../types/types";
 import MesocycleService from "../../../../../services/mesocycle/MesocycleService";
 import { useTranslation } from "react-i18next";
+import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
+import Microcycle from "../microcycle/Microcycle";
+import 'react-tabs/style/react-tabs.css';
 
 interface MesocycleProps {
   macrocycleId: string;
@@ -80,26 +83,24 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
         <button type="submit">{t('mesocycle.add_button')}</button>
       </form>
       {message && <p>{message}</p>}
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr>
-            <th>{t("table.id")}</th>
-            <th>{t("table.duration")}</th>
-            <th>{t("table.comments")}</th>
-            <th>{t("table.orderId")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mesocycles.map((row) => (
-            <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
-              <td>{row.id}</td>
-              <td>{row.duration}</td>
-              <td>{row.comments}</td>
-              <td>{row.orderId}</td>
-            </tr>
+      
+      <Tabs>
+        <TabList>
+          {mesocycles.map((mesocycle) => (
+            <Tab key={mesocycle.id}>{mesocycle.orderId}</Tab>
           ))}
-        </tbody>
-      </table>
+        </TabList>
+        {mesocycles.map((mesocycle) => (
+          <TabPanel key={mesocycle.id}>
+            <h3>{t('mesocycle.details')}</h3>
+            <p>{t('table.id')}: {mesocycle.id}</p>
+            <p>{t('table.duration')}: {mesocycle.duration}</p>
+            <p>{t('table.comments')}: {mesocycle.comments}</p>
+            <p>{t('table.orderId')}: {mesocycle.orderId}</p>
+            <Microcycle mesocycleId={mesocycle.id} />
+          </TabPanel>
+        ))}
+      </Tabs>
     </div>
   );
 };
