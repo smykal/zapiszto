@@ -1,11 +1,20 @@
 package com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestPerUser.entity;
 
+import com.zapiszto.controllers.account.entity.User;
+import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +49,10 @@ public class DictBodyTestPerUserEntity {
   @Column(name = "user_id")
   Long user_id;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+  User user;
 
-
+  @OneToMany(mappedBy = "dictBodyTestPerUserEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<DictBodyTestEntity> dictBodyTests = new HashSet<>();
 }

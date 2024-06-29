@@ -2,6 +2,7 @@ package com.zapiszto.controllers.account.service;
 
 import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import com.zapiszto.controllers.account.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,13 @@ public class AuthService {
   @Autowired
   UserDetailsRepository userDetailsRepository;
 
-  public void deleteUser(Long userId){
-    userDetailsRepository.deleteByUserId(userId);
-    userRepository.deleteById(userId);
-    log.info("user with id {} has been deleted", userId);
+  @Transactional
+  public void deleteUser(Long userId) {
+    if (userRepository.existsById(userId)) {
+      userRepository.deleteById(userId);
+      log.info("User with ID {} and its related entities have been deleted", userId);
+    } else {
+      log.warn("User with ID {} does not exist", userId);
+    }
   }
 }

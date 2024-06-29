@@ -29,7 +29,7 @@ public class DictMicrocyclePhasePerUserEntity {
   Long id;
 
   @Column(name = "user_id")
-  Long user_id;
+  Long userId;
 
   @Column(name = "name")
   String name;

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="set null on delete" author="smykalm">
+        <sql>
+            ALTER TABLE public.clients DROP CONSTRAINT trainer_id_fk;
+            ALTER TABLE public.clients ADD CONSTRAINT trainer_id_fk FOREIGN KEY (trainer_id) REFERENCES public.users(id) ON DELETE SET NULL;
+            ALTER TABLE public.clients DROP CONSTRAINT user_id_fk;
+            ALTER TABLE public.clients ADD CONSTRAINT user_id_fk FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+        </sql>
+
+        <sql>
+            ALTER TABLE public.invitations DROP CONSTRAINT invitee_fk;
+            ALTER TABLE public.invitations ADD CONSTRAINT invitee_fk FOREIGN KEY (invitee) REFERENCES public.users(id) ON DELETE SET NULL;
+            ALTER TABLE public.invitations DROP CONSTRAINT inviter_fk;
+            ALTER TABLE public.invitations ADD CONSTRAINT inviter_fk FOREIGN KEY (inviter) REFERENCES public.users(id) ON DELETE SET NULL;
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
+
+
+
+

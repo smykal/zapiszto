@@ -35,7 +35,7 @@ public class DictMicrocyclePhaseService {
     var item = DictMicrocyclePhasePerUserEntity.builder()
         .name(newDictUnitDto.getName())
         .shortcut(newDictUnitDto.getShortcut())
-        .user_id(userId)
+        .userId(userId)
         .build();
 
     DictMicrocyclePhasePerUserEntity dictMicrocyclePhasePerUserEntity = dictMicrocyclePhasePerUserRepository.save(item);

@@ -1,8 +1,10 @@
 package com.zapiszto.controllers.bodyParams.entity;
 
+import com.zapiszto.controllers.account.entity.User;
 import com.zapiszto.controllers.dictionaries.dictBodyParams.entity.DictBodyParamsEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -45,4 +47,8 @@ public class BodyParamsEntity {
 
   @Column(name = "insert_date")
   ZonedDateTime insert_date;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+  private User user;
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="set null on delete" author="smykalm">
+        <!-- Drop existing foreign key constraints -->
+        <dropForeignKeyConstraint baseTableName="invitations" constraintName="inviter_fk"/>
+        <dropForeignKeyConstraint baseTableName="invitations" constraintName="invitee_fk"/>
+
+        <!-- Add new foreign key constraints with ON DELETE SET NULL -->
+        <addForeignKeyConstraint baseTableName="invitations"
+                                 baseColumnNames="inviter"
+                                 constraintName="inviter_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="SET NULL"/>
+
+        <addForeignKeyConstraint baseTableName="invitations"
+                                 baseColumnNames="invitee"
+                                 constraintName="invitee_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="SET NULL"/>
+    </changeSet>
+
+
+
+</databaseChangeLog>

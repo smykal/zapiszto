@@ -2,7 +2,10 @@ package com.zapiszto.controllers.clients.entity;
 
 import com.zapiszto.controllers.account.entity.User;
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -39,8 +42,8 @@ public class ClientEntity {
   @Column(name = "client_name")
   String clientName;
 
-  @ManyToOne
-  @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_clients_user_id", value = ConstraintMode.CONSTRAINT, foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE SET NULL"), insertable = false, updatable = false)
   User userEntity;
 
   @Column(name = "user_id", nullable = true)

@@ -4,6 +4,7 @@ import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBa
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePerUser.entity.DictQuantityTypePerUserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,11 +33,11 @@ public class DictQuantityTypeEntity {
   @Column(name = "id")
   int id;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "dict_quantity_type_basic_id", referencedColumnName = "id")
   DictQuantityTypeBasicEntity dictQuantityTypeBasicEntity;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "dict_quantity_type_per_user_id", referencedColumnName = "id")
   DictQuantityTypePerUserEntity dictQuantityTypePerUserEntity;
 }
