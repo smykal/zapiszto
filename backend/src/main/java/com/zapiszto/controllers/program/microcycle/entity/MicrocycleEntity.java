@@ -36,7 +36,7 @@ public class MicrocycleEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "mesocycle_id", referencedColumnName = "id", insertable = false, updatable = false)
-  MesocycleEntity mesocycle;
+  MesocycleEntity mesocycleEntity;
 
   @Column(name = "mesocycle_id", nullable = false)
   UUID mesocycleId;
