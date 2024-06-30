@@ -205,3 +205,9 @@ databaseChangeLog:
       file: db/changelog/102_clients_set_null_on_delete_user_id.xml
   - include:
       file: db/changelog/103_modify_table_dict_microcycle_phase.xml
+  - include:
+      file: db/changelog/104_add_table_periodization.xml
+  - include:
+      file: db/changelog/105_add_column_description_to_periodization.xml
+  - include:
+      file: db/changelog/106_edit_table_periodization.xml

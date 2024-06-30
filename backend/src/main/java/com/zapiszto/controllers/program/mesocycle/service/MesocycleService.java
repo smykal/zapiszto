@@ -9,6 +9,7 @@ import com.zapiszto.controllers.program.mesocycle.repository.MesocycleRepository
 import com.zapiszto.controllers.program.mesocycle.serializer.MesocycleSerializer;
 import com.zapiszto.controllers.program.microcycle.repository.MicrocycleRepository;
 import com.zapiszto.controllers.program.microcycle.service.MicrocycleService;
+import com.zapiszto.controllers.program.periodization.repository.PeriodizationRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -33,6 +34,9 @@ public class MesocycleService {
 
   @Autowired
   MicrocycleService microcycleService;
+
+  @Autowired
+  PeriodizationRepository periodizationRepository;
 
   @Transactional
   public void addMesocycle(NewMesocycleDto newMesocycleDto) {
@@ -70,10 +74,11 @@ public class MesocycleService {
     return mesocycleSerializer.convertList(mesocyclesByMacrocycleId);
   }
 
-  public void addMesocycle(int macrocycleDuration, int mesocycleDuration, UUID macrocycleId) {
+  public void addMesocycle(int macrocycleDuration, int mesocycleDuration, UUID macrocycleId, String periodizationName) {
     int orderId = mesocycleRepository.findMaxOrderIdByMacrocycleId(macrocycleId)
         .map(maxOrderId -> maxOrderId + 1)
         .orElse(1);
+    Integer mesocyclePhase = periodizationRepository.getMesocyclePhase(periodizationName);
 
     List<MesocycleEntity> mesocycles = new ArrayList<>();
     int remainingDuration = macrocycleDuration;
@@ -83,7 +88,7 @@ public class MesocycleService {
           .id(UUID.randomUUID())
           .macrocycleId(macrocycleId)
           .duration(currentMesocycleDuration)
-          .dictMesocyclePhaseId(1)
+          .dictMesocyclePhaseId(mesocyclePhase)
           .orderId(orderId)
           .build();
 
@@ -91,6 +96,7 @@ public class MesocycleService {
       remainingDuration -= currentMesocycleDuration;
       orderId++;
     }
+
     mesocycleRepository.saveAll(mesocycles);
 
     for (MesocycleEntity mesocycle : mesocycles) {

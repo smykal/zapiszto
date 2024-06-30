@@ -19,5 +19,6 @@ public class NewMacrocycleDto {
   String programId;
   int duration;
   int mesocycleDuration;
+  String periodization;
 
 }

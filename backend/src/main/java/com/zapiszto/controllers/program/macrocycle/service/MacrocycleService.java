@@ -32,6 +32,7 @@ public class MacrocycleService {
     UUID programId = UUID.fromString(newMacrocycleDto.getProgramId());
     int macrocycleDuration = newMacrocycleDto.getDuration()*4;
     int mesocycleDuration = newMacrocycleDto.getMesocycleDuration();
+    String periodizationName = newMacrocycleDto.getPeriodization();
 
     MacrocycleEntity macrocycleEntity = MacrocycleEntity.builder()
         .id(id)
@@ -42,7 +43,7 @@ public class MacrocycleService {
     macrocycleRepository.save(macrocycleEntity);
     log.info("dodano nowy makrocykl o id {}", id);
 
-    mesocycleService.addMesocycle(macrocycleDuration, mesocycleDuration, id);
+    mesocycleService.addMesocycle(macrocycleDuration, mesocycleDuration, id, periodizationName);
     log.info("dodano odpowiednio mesocycle");
   }
 

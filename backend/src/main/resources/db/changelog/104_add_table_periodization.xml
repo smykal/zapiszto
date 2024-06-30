@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create-periodization-table" author="smykalm">
+        <!-- Create the periodization table -->
+        <createTable tableName="periodization">
+            <column name="id" type="int4">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="int4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="int4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_mesocycle_phase_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="color" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Add foreign key constraint to dict_mesocycle_phase -->
+        <addForeignKeyConstraint baseTableName="periodization"
+                                 baseColumnNames="dict_mesocycle_phase_id"
+                                 constraintName="fk_periodization_dict_mesocycle_phase"
+                                 referencedTableName="dict_mesocycle_phase"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

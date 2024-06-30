@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="change-dict_mesocycle_phase_id-type" author="smykalm">
+        <!-- Change column type for dict_mesocycle_phase_id from int8 to int4 -->
+        <modifyDataType tableName="periodization" columnName="dict_mesocycle_phase_id" newDataType="int4"/>
+    </changeSet>
+
+</databaseChangeLog>
