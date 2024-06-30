@@ -23,7 +23,9 @@ public class InvitationsSerializer implements SerializerCommon {
   }
 
   public static InvitationDto setRecivedAndSent(InvitationDto invitationDto, long userId) {
-    if ((invitationDto.getInviterId() != userId) && invitationDto.getStatus().equals(SENT)) {
+    if ((invitationDto.getInviterId() != userId)) {
+      invitationDto.setStatus(SENT);
+    } else {
       invitationDto.setStatus(RECIVED);
     }
     return invitationDto;
