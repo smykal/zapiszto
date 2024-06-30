@@ -19,11 +19,9 @@ const ProgramInfo: React.FC<ProgramDetailsProps> = ({ program, onProgramDeleted,
     <div className="container">
       <Collapsible trigger={t("programs.informations")} open={true}>
         <ProgramInformations program={program} onSaveProgramName={onSaveProgramName} />
-        <DeleteProgram program={program} onProgramDeleted={onProgramDeleted} />
-      </Collapsible>
-      
-      <Collapsible trigger={t("programs.details")} open={false}>
         <ProgramDetails programId={program.id} />
+
+        <DeleteProgram program={program} onProgramDeleted={onProgramDeleted} />
       </Collapsible>
 
       <Collapsible trigger={t("programs.macrocicle")} open={false}>

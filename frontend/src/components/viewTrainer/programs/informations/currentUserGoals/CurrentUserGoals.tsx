@@ -27,7 +27,6 @@ const CurrentUserGoals: React.FC<CurrentUserGoalsProps> = ({ clientId }) => {
 
   return (
     <div>
-      <h2>Current User Goals</h2>
       <ul>
         {goals.map(goal => (
           <li key={goal.clientId}>

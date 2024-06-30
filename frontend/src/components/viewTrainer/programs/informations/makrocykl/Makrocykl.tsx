@@ -12,6 +12,7 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
   const { t } = useTranslation('global');
   const [macrocycle, setMacrocycle] = useState<MacrocycleDto | null>(null);
   const [duration, setDuration] = useState<number>(4);
+  const [mesocycleDuration, setMesocycleDuration] = useState<number>(4);
   const [message, setMessage] = useState<string>('');
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
       id: crypto.randomUUID(),
       programId: programId,
       duration: duration,
+      mesocycleDuration: mesocycleDuration, // Include mesocycleDuration
     };
 
     try {
@@ -53,7 +55,6 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
 
   return (
     <div>
-      <h2>{t('macrocycle.title')}</h2>
       {macrocycle ? (
         <div>
           <p>{t('macrocycle.duration')}: {macrocycle.duration} months</p>
@@ -68,6 +69,20 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
               id="duration"
               value={duration}
               onChange={(e) => setDuration(Number(e.target.value))}
+            >
+              {[...Array(9)].map((_, index) => (
+                <option key={index + 4} value={index + 4}>
+                  {index + 4}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="mesocycleDuration">{t('macrocycle.mesocycle_duration')}:</label>
+            <select
+              id="mesocycleDuration"
+              value={mesocycleDuration}
+              onChange={(e) => setMesocycleDuration(Number(e.target.value))}
             >
               {[...Array(9)].map((_, index) => (
                 <option key={index + 4} value={index + 4}>

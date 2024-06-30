@@ -286,7 +286,8 @@ export type NewMacrocycleDto = {
                                 id: string;
                                 programId: string;
                                 duration: number;
-}
+                                mesocycleDuration: number;
+};
 
 export type MacrocycleDto = {
                               id: string;
@@ -301,6 +302,9 @@ export type MesocycleDto = {
                               duration: number;
                               orderId: number;
                               comments: string;
+                              dictType: string;
+                              dictId: number;
+                              dictName: string;
 }
 
 export type NewMesocycleDto = {
