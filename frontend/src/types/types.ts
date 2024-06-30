@@ -287,6 +287,7 @@ export type NewMacrocycleDto = {
                                 programId: string;
                                 duration: number;
                                 mesocycleDuration: number;
+                                periodization: string; 
 };
 
 export type MacrocycleDto = {
@@ -321,4 +322,9 @@ export type MicrocycleDto = {
                               dictType: string;
                               dictId: number;
                               dictName: string;
+}
+
+export type PeriodizationDto = {
+                              name: string;
+                              description: string;
 }
