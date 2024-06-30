@@ -18,4 +18,6 @@ public class NewMacrocycleDto {
   String id;
   String programId;
   int duration;
+  int mesocycleDuration;
+
 }

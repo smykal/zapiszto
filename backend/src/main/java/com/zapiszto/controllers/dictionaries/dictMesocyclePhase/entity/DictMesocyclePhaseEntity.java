@@ -1,7 +1,7 @@
-package com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.entity;
+package com.zapiszto.controllers.dictionaries.dictMesocyclePhase.entity;
 
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhaseBasic.entity.DictMicrocyclePhaseBasicEntity;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhasePerUser.entity.DictMicrocyclePhasePerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhaseBasic.entity.DictMesocyclePhaseBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhasePerUser.entity.DictMesocyclePhasePerUserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,14 +19,14 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "dict_microcycle_phase")
+@Table(name = "dict_mesocycle_phase")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DictMicrocyclePhaseEntity {
+public class DictMesocyclePhaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,10 +34,10 @@ public class DictMicrocyclePhaseEntity {
   int id;
 
   @ManyToOne
-  @JoinColumn(name = "dict_microcycle_phase_basic_id", referencedColumnName = "id")
-  DictMicrocyclePhaseBasicEntity dictMicrocyclePhaseBasicEntity;
+  @JoinColumn(name = "dict_mesocycle_phase_basic_id", referencedColumnName = "id")
+  DictMesocyclePhaseBasicEntity dictMesocyclePhaseBasicEntity;
 
   @ManyToOne
-  @JoinColumn(name = "dict_microcycle_phase_per_user_id", referencedColumnName = "id")
-  DictMicrocyclePhasePerUserEntity dictMicrocyclePhasePerUserEntity;
+  @JoinColumn(name = "dict_mesocycle_phase_per_user_id", referencedColumnName = "id")
+  DictMesocyclePhasePerUserEntity dictMesocyclePhasePerUserEntity;
 }

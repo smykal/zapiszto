@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dto;
+package com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class NewDictMicrocyclePhaseDto {
+public class NewDictMesocyclePhaseDto {
   String name;
   String shortcut;
 

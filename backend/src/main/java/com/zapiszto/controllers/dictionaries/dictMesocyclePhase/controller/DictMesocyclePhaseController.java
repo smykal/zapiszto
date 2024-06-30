@@ -1,10 +1,10 @@
-package com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.controller;
+package com.zapiszto.controllers.dictionaries.dictMesocyclePhase.controller;
 
 
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dto.DictMicrocyclePhaseDto;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dto.NewDictMicrocyclePhaseDto;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.service.DictMicrocyclePhaseService;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dto.DictMesocyclePhaseDto;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dto.NewDictMesocyclePhaseDto;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.service.DictMesocyclePhaseService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,26 +25,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1")
 @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
-public class DictMicrocyclePhaseController implements ControllerCommon {
+public class DictMesocyclePhaseController implements ControllerCommon {
   @Autowired
-  DictMicrocyclePhaseService dictMicrocyclePhaseService;
+  DictMesocyclePhaseService dictMesocyclePhaseService;
 
   @PostMapping("/add_microcycle_phase_per_user")
   public ResponseEntity<String> addMicrocyclePhasePerUser(
-      @RequestBody NewDictMicrocyclePhaseDto newDictUnitDto
+      @RequestBody NewDictMesocyclePhaseDto newDictUnitDto
   ) {
     var userId = extractUserId();
-    dictMicrocyclePhaseService.addDictUnit(newDictUnitDto, userId);
+    dictMesocyclePhaseService.addDictUnit(newDictUnitDto, userId);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   @PostMapping("/add_microcycle_phase_basic")
   public ResponseEntity<String> addMicrocyclePhaseBasic(
-      @RequestBody NewDictMicrocyclePhaseDto newDictUnitDto
+      @RequestBody NewDictMesocyclePhaseDto newDictUnitDto
   ) {
     var role = extractUserRole();
     if (role.contains("ADMIN")) {
-      dictMicrocyclePhaseService.addDictUnit(newDictUnitDto);
+      dictMesocyclePhaseService.addDictUnit(newDictUnitDto);
       return new ResponseEntity<>(HttpStatus.CREATED);
     } else {
       return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -52,11 +52,11 @@ public class DictMicrocyclePhaseController implements ControllerCommon {
   }
 
   @GetMapping("/get_microcycle_phase_per_user")
-  public ResponseEntity<List<DictMicrocyclePhaseDto>> getMicrocyclePhasePerUser(
+  public ResponseEntity<List<DictMesocyclePhaseDto>> getMicrocyclePhasePerUser(
   ) {
     var userId = extractUserId();
     try {
-      var result = dictMicrocyclePhaseService.getDictMicrocyclePhase(userId);
+      var result = dictMesocyclePhaseService.getDictMicrocyclePhase(userId);
       return new ResponseEntity<>(result, HttpStatus.CREATED);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
@@ -69,7 +69,7 @@ public class DictMicrocyclePhaseController implements ControllerCommon {
   ) {
     var userId = extractUserId();
     try {
-      dictMicrocyclePhaseService.deleteDictMicrocyclePhasePerUser(userId, itemToDelete);
+      dictMesocyclePhaseService.deleteDictMicrocyclePhasePerUser(userId, itemToDelete);
       return new ResponseEntity<>( HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
@@ -84,7 +84,7 @@ public class DictMicrocyclePhaseController implements ControllerCommon {
     var userId = extractUserId();
     if (userRole.contains("ADMIN")) {
       try {
-        dictMicrocyclePhaseService.deleteDictMicrocyclePhaseBasic(userId, itemToDelete);
+        dictMesocyclePhaseService.deleteDictMicrocyclePhaseBasic(userId, itemToDelete);
         return new ResponseEntity<>( HttpStatus.CREATED);
       } catch (Exception e) {
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);

@@ -2,15 +2,12 @@ package com.zapiszto.controllers.account.entity;
 
 import com.zapiszto.controllers.bodyParams.entity.BodyParamsEntity;
 import com.zapiszto.controllers.clients.entity.ClientEntity;
-import com.zapiszto.controllers.dictionaries.dictBodyParams.entity.DictBodyParamsEntity;
 import com.zapiszto.controllers.dictionaries.dictBodyTest.dictBodyTestPerUser.entity.DictBodyTestPerUserEntity;
 import com.zapiszto.controllers.dictionaries.dictCategory.dictCategoryPerUser.entity.DictCategoryPerUserEntity;
 import com.zapiszto.controllers.dictionaries.dictExercises.dictExercisesPerUser.entity.DictExercisesPerUserEntity;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhasePerUser.entity.DictMicrocyclePhasePerUserEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePerUser.entity.DictQuantityTypePerUserEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsPerUser.entity.DictUnitsPerUserEntity;
 import com.zapiszto.controllers.invitations.entity.InvitationsEntity;
-import com.zapiszto.controllers.program.programs.entity.ProgramEntity;
 import com.zapiszto.controllers.userDetails.entity.UserDetailsEntity;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +16,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

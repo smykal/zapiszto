@@ -29,7 +29,6 @@ public class MicrocycleService {
           .id(UUID.randomUUID())
           .mesocycleId(mesocycleId)
           .orderId(orderId)
-          .dictMicrocyclePhaseId(1)
           .build();
       microcycleRepository.save(microcycleEntity);
     }

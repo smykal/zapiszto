@@ -1,8 +1,7 @@
-package com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.repository;
+package com.zapiszto.controllers.dictionaries.dictMesocyclePhase.repository;
 
 
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.entity.DictMicrocyclePhaseEntity;
-import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.entity.DictMesocyclePhaseEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DictMicrocyclePhaseRepository extends JpaRepository<DictMicrocyclePhaseEntity, Integer> {
+public interface DictMesocyclePhaseRepository extends JpaRepository<DictMesocyclePhaseEntity, Integer> {
   @Query(
       nativeQuery = true, value = """
       select *
@@ -24,7 +23,7 @@ public interface DictMicrocyclePhaseRepository extends JpaRepository<DictMicrocy
             ) as foo
             where user_id is null or user_id = :userId
       """)
-  List<DictMicrocyclePhaseEntity> getAllForUser(@Param("userId") Long userId);
+  List<DictMesocyclePhaseEntity> getAllForUser(@Param("userId") Long userId);
 
   @Modifying
   @Query(

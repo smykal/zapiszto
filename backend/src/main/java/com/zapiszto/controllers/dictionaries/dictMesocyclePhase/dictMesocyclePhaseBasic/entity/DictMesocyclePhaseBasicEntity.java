@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhaseBasic.entity;
+package com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhaseBasic.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,14 +15,14 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "dict_microcycle_phase_basic")
+@Table(name = "dict_mesocycle_phase_basic")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DictMicrocyclePhaseBasicEntity {
+public class DictMesocyclePhaseBasicEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")

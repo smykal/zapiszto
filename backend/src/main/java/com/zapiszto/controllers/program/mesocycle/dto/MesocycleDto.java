@@ -20,4 +20,7 @@ public class MesocycleDto {
   int duration;
   int orderId;
   String comments;
+  String dictType;
+  int dictId;
+  String dictName;
 }

@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.program.microcycle.entity;
 
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.entity.DictMicrocyclePhaseEntity;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.entity.DictMesocyclePhaseEntity;
 import com.zapiszto.controllers.program.mesocycle.entity.MesocycleEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,12 +43,4 @@ public class MicrocycleEntity {
 
   @Column(name = "order_id", nullable = false)
   int orderId;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "dict_microcycle_phase_id", referencedColumnName = "id", insertable = false, updatable = false)
-  DictMicrocyclePhaseEntity dictMicrocyclePhase;
-
-  @Column(name = "dict_microcycle_phase_id", nullable = false)
-  int dictMicrocyclePhaseId;
-
 }

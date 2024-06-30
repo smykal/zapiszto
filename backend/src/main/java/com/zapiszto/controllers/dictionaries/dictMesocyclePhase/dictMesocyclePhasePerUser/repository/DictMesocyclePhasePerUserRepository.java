@@ -1,9 +1,9 @@
-package com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhasePerUser.repository;
+package com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhasePerUser.repository;
 
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhasePerUser.entity.DictMicrocyclePhasePerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhasePerUser.entity.DictMesocyclePhasePerUserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DictMicrocyclePhasePerUserRepository extends JpaRepository<DictMicrocyclePhasePerUserEntity, Integer> {
+public interface DictMesocyclePhasePerUserRepository extends JpaRepository<DictMesocyclePhasePerUserEntity, Integer> {
 }

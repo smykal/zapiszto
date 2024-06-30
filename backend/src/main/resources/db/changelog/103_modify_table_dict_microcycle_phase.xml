@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- 1. Remove the dict_microcycle_phase_id column from the microcycle table -->
+    <changeSet id="remove-dict-microcycle-phase-id" author="smykalm">
+        <dropColumn tableName="microcycle" columnName="dict_microcycle_phase_id"/>
+    </changeSet>
+
+    <!-- 2. Rename dict_microcycle_phase table to dict_mesocycle_phase -->
+    <changeSet id="rename-dict-microcycle-phase" author="smykalm">
+        <renameTable oldTableName="dict_microcycle_phase" newTableName="dict_mesocycle_phase"/>
+    </changeSet>
+
+    <!-- 3. Rename dict_microcycle_phase_basic table to dict_mesocycle_phase_basic -->
+    <changeSet id="rename-dict-microcycle-phase-basic" author="smykalm">
+        <renameTable oldTableName="dict_microcycle_phase_basic" newTableName="dict_mesocycle_phase_basic"/>
+    </changeSet>
+
+    <!-- 4. Rename dict_microcycle_phase_per_user table to dict_mesocycle_phase_per_user -->
+    <changeSet id="rename-dict-microcycle-phase-per-user" author="smykalm">
+        <renameTable oldTableName="dict_microcycle_phase_per_user" newTableName="dict_mesocycle_phase_per_user"/>
+    </changeSet>
+
+    <!-- 5. Add dict_mesocycle_phase_id column to mesocycle table -->
+    <changeSet id="add-dict-mesocycle-phase-id-to-mesocycle" author="smykalm">
+        <addColumn tableName="mesocycle">
+            <column name="dict_mesocycle_phase_id" type="int4"/>
+        </addColumn>
+
+        <!-- Add foreign key constraint -->
+        <addForeignKeyConstraint baseTableName="mesocycle"
+                                 baseColumnNames="dict_mesocycle_phase_id"
+                                 constraintName="fk_mesocycle_dict_mesocycle_phase"
+                                 referencedTableName="dict_mesocycle_phase"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <!-- 6. Rename columns in dict_mesocycle_phase table -->
+    <changeSet id="rename-columns-in-dict-mesocycle-phase" author="smykalm">
+        <renameColumn tableName="dict_mesocycle_phase"
+                      oldColumnName="dict_microcycle_phase_basic_id"
+                      newColumnName="dict_mesocycle_phase_basic_id"
+                      columnDataType="int8"/>
+        <renameColumn tableName="dict_mesocycle_phase"
+                      oldColumnName="dict_microcycle_phase_per_user_id"
+                      newColumnName="dict_mesocycle_phase_per_user_id"
+                      columnDataType="int8"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,14 +1,14 @@
-package com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.service;
+package com.zapiszto.controllers.dictionaries.dictMesocyclePhase.service;
 
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhaseBasic.entity.DictMicrocyclePhaseBasicEntity;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhaseBasic.repository.DictMicrocyclePhaseBasicRepository;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhasePerUser.entity.DictMicrocyclePhasePerUserEntity;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dictMicrocyclePhasePerUser.repository.DictMicrocyclePhasePerUserRepository;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dto.DictMicrocyclePhaseDto;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.dto.NewDictMicrocyclePhaseDto;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.entity.DictMicrocyclePhaseEntity;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.repository.DictMicrocyclePhaseRepository;
-import com.zapiszto.controllers.dictionaries.dictMicrocyclePhase.serializer.DictMicrocyclePhaseSerializer;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhaseBasic.entity.DictMesocyclePhaseBasicEntity;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhaseBasic.repository.DictMesocyclePhaseBasicRepository;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhasePerUser.entity.DictMesocyclePhasePerUserEntity;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dictMesocyclePhasePerUser.repository.DictMesocyclePhasePerUserRepository;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dto.DictMesocyclePhaseDto;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.dto.NewDictMesocyclePhaseDto;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.entity.DictMesocyclePhaseEntity;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.repository.DictMesocyclePhaseRepository;
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.serializer.DictMesocyclePhaseSerializer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -19,81 +19,81 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-public class DictMicrocyclePhaseService {
+public class DictMesocyclePhaseService {
 
   @Autowired
-  DictMicrocyclePhaseRepository dictMicrocyclePhaseRepository;
+  DictMesocyclePhaseRepository dictMesocyclePhaseRepository;
 
   @Autowired
-  DictMicrocyclePhaseBasicRepository dictMicrocyclePhaseBasicRepository;
+  DictMesocyclePhaseBasicRepository dictMesocyclePhaseBasicRepository;
 
   @Autowired
-  DictMicrocyclePhasePerUserRepository dictMicrocyclePhasePerUserRepository;
+  DictMesocyclePhasePerUserRepository dictMesocyclePhasePerUserRepository;
 
   @Transactional
-  public void addDictUnit(NewDictMicrocyclePhaseDto newDictUnitDto, Long userId) {
-    var item = DictMicrocyclePhasePerUserEntity.builder()
+  public void addDictUnit(NewDictMesocyclePhaseDto newDictUnitDto, Long userId) {
+    var item = DictMesocyclePhasePerUserEntity.builder()
         .name(newDictUnitDto.getName())
         .shortcut(newDictUnitDto.getShortcut())
         .userId(userId)
         .build();
 
-    DictMicrocyclePhasePerUserEntity dictMicrocyclePhasePerUserEntity = dictMicrocyclePhasePerUserRepository.save(item);
+    DictMesocyclePhasePerUserEntity dictMesocyclePhasePerUserEntity = dictMesocyclePhasePerUserRepository.save(item);
 
     log.info("add new item to dict_MicrocyclePhase_per_user: id {}, value {}, shortcut {}, user {}",
-        dictMicrocyclePhasePerUserEntity.getId(),
+        dictMesocyclePhasePerUserEntity.getId(),
         newDictUnitDto.getName(),
         newDictUnitDto.getShortcut(),
         userId);
 
-    DictMicrocyclePhaseEntity dictMicrocyclePhaseEntity = DictMicrocyclePhaseEntity.builder()
-        .dictMicrocyclePhasePerUserEntity(dictMicrocyclePhasePerUserEntity)
+    DictMesocyclePhaseEntity dictMesocyclePhaseEntity = DictMesocyclePhaseEntity.builder()
+        .dictMesocyclePhasePerUserEntity(dictMesocyclePhasePerUserEntity)
         .build();
 
-    dictMicrocyclePhaseRepository.save(dictMicrocyclePhaseEntity);
+    dictMesocyclePhaseRepository.save(dictMesocyclePhaseEntity);
 
     log.info("updated dict_MicrocyclePhase by new item with id: {}, dict_MicrocyclePhase_per_user_id: {} ",
-        dictMicrocyclePhaseEntity.getId(),
-        dictMicrocyclePhaseEntity.getDictMicrocyclePhasePerUserEntity().getId());
+        dictMesocyclePhaseEntity.getId(),
+        dictMesocyclePhaseEntity.getDictMesocyclePhasePerUserEntity().getId());
   }
 
   @Transactional
-  public void addDictUnit(NewDictMicrocyclePhaseDto newDictUnitDto) {
-    var item = DictMicrocyclePhaseBasicEntity.builder()
+  public void addDictUnit(NewDictMesocyclePhaseDto newDictUnitDto) {
+    var item = DictMesocyclePhaseBasicEntity.builder()
         .name(newDictUnitDto.getName())
         .shortcut(newDictUnitDto.getShortcut())
         .build();
 
-    DictMicrocyclePhaseBasicEntity dictMicrocyclePhaseBasicEntity = dictMicrocyclePhaseBasicRepository.save(item);
+    DictMesocyclePhaseBasicEntity dictMesocyclePhaseBasicEntity = dictMesocyclePhaseBasicRepository.save(item);
 
     log.info("add new item to dict_MicrocyclePhase_basic: id {}, value {}, shortcut {}",
-        dictMicrocyclePhaseBasicEntity.getId(),
+        dictMesocyclePhaseBasicEntity.getId(),
         newDictUnitDto.getName(),
         newDictUnitDto.getShortcut());
 
-    DictMicrocyclePhaseEntity dictMicrocyclePhaseEntity = DictMicrocyclePhaseEntity.builder()
-        .dictMicrocyclePhaseBasicEntity(dictMicrocyclePhaseBasicEntity)
+    DictMesocyclePhaseEntity dictMesocyclePhaseEntity = DictMesocyclePhaseEntity.builder()
+        .dictMesocyclePhaseBasicEntity(dictMesocyclePhaseBasicEntity)
         .build();
 
-    dictMicrocyclePhaseRepository.save(dictMicrocyclePhaseEntity);
+    dictMesocyclePhaseRepository.save(dictMesocyclePhaseEntity);
 
     log.info("updated dict_MicrocyclePhase by new item with id: {}, dict_MicrocyclePhase_basic_id: {} ",
-        dictMicrocyclePhaseEntity.getId(),
-        dictMicrocyclePhaseEntity.getDictMicrocyclePhaseBasicEntity().getId());
+        dictMesocyclePhaseEntity.getId(),
+        dictMesocyclePhaseEntity.getDictMesocyclePhaseBasicEntity().getId());
   }
 
-  public List<DictMicrocyclePhaseDto> getDictMicrocyclePhase(Long userId) {
-    List<DictMicrocyclePhaseEntity> all = dictMicrocyclePhaseRepository.getAllForUser(userId);
+  public List<DictMesocyclePhaseDto> getDictMicrocyclePhase(Long userId) {
+    List<DictMesocyclePhaseEntity> all = dictMesocyclePhaseRepository.getAllForUser(userId);
 
-    return all.stream().map(DictMicrocyclePhaseSerializer::convert)
+    return all.stream().map(DictMesocyclePhaseSerializer::convert)
         .collect(Collectors.toList());
   }
 
   @Transactional
   public String deleteDictMicrocyclePhasePerUser(Long userId, int itemToDelete) {
     try {
-      dictMicrocyclePhaseRepository.deleteDictMicrocyclePhasePerUser(itemToDelete);
-      dictMicrocyclePhaseRepository.deleteDictMicrocyclePhasePerUser(itemToDelete, userId);
+      dictMesocyclePhaseRepository.deleteDictMicrocyclePhasePerUser(itemToDelete);
+      dictMesocyclePhaseRepository.deleteDictMicrocyclePhasePerUser(itemToDelete, userId);
       log.info("deleted dict_quantity_type_per_user with id: {}, user: {}", itemToDelete, userId);
       return "ok";
     }  catch (DataIntegrityViolationException e) {
@@ -105,8 +105,8 @@ public class DictMicrocyclePhaseService {
   @Transactional
   public String deleteDictMicrocyclePhaseBasic(Long userId, int itemToDelete) {
     try {
-      dictMicrocyclePhaseRepository.deleteDictMicrocyclePhase(itemToDelete);
-      dictMicrocyclePhaseRepository.deleteDictMicrocyclePhaseBasic(itemToDelete);
+      dictMesocyclePhaseRepository.deleteDictMicrocyclePhase(itemToDelete);
+      dictMesocyclePhaseRepository.deleteDictMicrocyclePhaseBasic(itemToDelete);
       log.info("deleted dict_quantity_type_per_user with id: {}, user: {}", itemToDelete, userId);
       return "ok";
     }  catch (DataIntegrityViolationException e) {
