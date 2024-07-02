@@ -288,6 +288,8 @@ export type NewMacrocycleDto = {
                                 duration: number;
                                 mesocycleDuration: number;
                                 periodization: string; 
+                                durationSession: number;
+                                sessionsForMicrocycle: number;
 };
 
 export type MacrocycleDto = {

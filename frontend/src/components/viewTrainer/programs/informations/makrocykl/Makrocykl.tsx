@@ -16,7 +16,9 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
   const [mesocycleDuration, setMesocycleDuration] = useState<number>(4);
   const [periodizations, setPeriodizations] = useState<PeriodizationDto[]>([]);
   const [selectedPeriodization, setSelectedPeriodization] = useState<string>('');
-  const [selectedDescription, setSelectedDescription] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [sessionsForMicrocycle, setSessionsForMicrocycle] = useState<number>(3);
+  const [durationSession, setDurationSession] = useState<number>(60);
   const [message, setMessage] = useState<string>('');
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
 
     const fetchPeriodizations = async () => {
       try {
-        const response = await PeriodizationService.getDistinctPeriodizations();
+        const response = await PeriodizationService.getPeriodizations();
         setPeriodizations(response.data);
       } catch (error) {
         console.error('Error fetching periodizations:', error);
@@ -42,6 +44,13 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
     fetchPeriodizations();
   }, [programId]);
 
+  const handlePeriodizationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedName = event.target.value;
+    setSelectedPeriodization(selectedName);
+    const selected = periodizations.find(p => p.name === selectedName);
+    setDescription(selected ? selected.description : '');
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -51,6 +60,8 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
       duration: duration,
       mesocycleDuration: mesocycleDuration,
       periodization: selectedPeriodization,
+      durationSession: durationSession,
+      sessionsForMicrocycle: sessionsForMicrocycle,
     };
 
     try {
@@ -66,13 +77,6 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
       console.error('Error creating macrocycle:', error);
       setMessage(t('macrocycle.creation_error'));
     }
-  };
-
-  const handlePeriodizationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedName = event.target.value;
-    setSelectedPeriodization(selectedName);
-    const selectedPeriodization = periodizations.find(p => p.name === selectedName);
-    setSelectedDescription(selectedPeriodization ? selectedPeriodization.description : '');
   };
 
   return (
@@ -114,22 +118,49 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
             </select>
           </div>
           <div>
+            <label htmlFor="sessionsForMicrocycle">{t('macrocycle.sessions_per_microcycle')}:</label>
+            <select
+              id="sessionsForMicrocycle"
+              value={sessionsForMicrocycle}
+              onChange={(e) => setSessionsForMicrocycle(Number(e.target.value))}
+            >
+              {[...Array(6)].map((_, index) => (
+                <option key={index + 1} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="durationSession">{t('macrocycle.session_duration')}:</label>
+            <select
+              id="durationSession"
+              value={durationSession}
+              onChange={(e) => setDurationSession(Number(e.target.value))}
+            >
+              {[45, 60, 75, 90, 105, 120].map((value) => (
+                <option key={value} value={value}>
+                  {value} minutes
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
             <label htmlFor="periodization">{t('macrocycle.periodization')}:</label>
             <select
               id="periodization"
               value={selectedPeriodization}
               onChange={handlePeriodizationChange}
+              required
             >
-              <option value="">{t('select_periodization')}</option>
+              <option value="">{t('macrocycle.select_periodization')}</option>
               {periodizations.map((periodization) => (
                 <option key={periodization.name} value={periodization.name}>
                   {periodization.name}
                 </option>
               ))}
             </select>
-            {selectedDescription && (
-              <p>{t('description')}: {selectedDescription}</p>
-            )}
+            {description && <p>{t('macrocycle.description')}: {description}</p>}
           </div>
           <button type="submit">{t('macrocycle.add_button')}</button>
         </form>

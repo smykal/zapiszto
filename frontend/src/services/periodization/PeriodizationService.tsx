@@ -5,10 +5,10 @@ import { PeriodizationDto } from '../../types/types';
 
 class PeriodizationService {
   getPeriodizations() {
-    return axios.get(`${API_URL}/periodization/distinct`, { headers: authHeader() });
+    return axios.get(`${API_URL}/periodization_distinct`, { headers: authHeader() });
   }
 
-  getDistinctPeriodizations() {
+  getDaistinctPeriodizations() {
     return axios.get(`${API_URL}/periodization_distinct`, { headers: authHeader() });
   }
 
