@@ -20,5 +20,6 @@ public class NewMacrocycleDto {
   int duration;
   int mesocycleDuration;
   String periodization;
-
+  int durationSession;
+  int sessionsForMicrocycle;
 }
