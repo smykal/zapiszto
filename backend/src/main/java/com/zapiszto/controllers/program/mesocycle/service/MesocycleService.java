@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.program.mesocycle.service;
 
+import com.zapiszto.controllers.program.macrocycle.dto.NewMacrocycleDto;
 import com.zapiszto.controllers.program.macrocycle.entity.MacrocycleEntity;
 import com.zapiszto.controllers.program.macrocycle.repository.MacrocycleRepository;
 import com.zapiszto.controllers.program.mesocycle.dto.MesocycleDto;
@@ -38,7 +39,6 @@ public class MesocycleService {
   @Autowired
   PeriodizationRepository periodizationRepository;
 
-  @Transactional
   public void addMesocycle(NewMesocycleDto newMesocycleDto) {
     UUID id = UUID.fromString(newMesocycleDto.getId());
     UUID macrocycleId = UUID.fromString(newMesocycleDto.getMacrocycleId());
@@ -66,7 +66,7 @@ public class MesocycleService {
     macrocycleRepository.save(macrocycleByMacrocycleId);
     log.info("update macrocycle id {}, durationLeft set {}", macrocycleId, durationLeft);
 
-    microcycleService.addMicrocycles(mesocyleDuration, id);
+    microcycleService.addMicrocycles(mesocyleDuration, id, 3, 60);
   }
 
   public List<MesocycleDto> getMesocycles(String macrocycleId) {
@@ -74,7 +74,15 @@ public class MesocycleService {
     return mesocycleSerializer.convertList(mesocyclesByMacrocycleId);
   }
 
-  public void addMesocycle(int macrocycleDuration, int mesocycleDuration, UUID macrocycleId, String periodizationName) {
+  @Transactional
+  public void addMesocycle(
+      int macrocycleDuration,
+      int mesocycleDuration,
+      UUID macrocycleId,
+      String periodizationName,
+      int sessionsforMicrocycle,
+      int sessionDuration
+  ) {
     int orderId = mesocycleRepository.findMaxOrderIdByMacrocycleId(macrocycleId)
         .map(maxOrderId -> maxOrderId + 1)
         .orElse(1);
@@ -83,6 +91,7 @@ public class MesocycleService {
     List<MesocycleEntity> mesocycles = new ArrayList<>();
     int remainingDuration = macrocycleDuration;
     while (remainingDuration > 0) {
+      orderId++;
       int currentMesocycleDuration = Math.min(mesocycleDuration, remainingDuration);
       MesocycleEntity mesocycle = MesocycleEntity.builder()
           .id(UUID.randomUUID())
@@ -94,13 +103,41 @@ public class MesocycleService {
 
       mesocycles.add(mesocycle);
       remainingDuration -= currentMesocycleDuration;
-      orderId++;
     }
 
     mesocycleRepository.saveAll(mesocycles);
 
     for (MesocycleEntity mesocycle : mesocycles) {
-      microcycleService.addMicrocycles(mesocycle.getDuration(), mesocycle.getId());
+      microcycleService.addMicrocycles(mesocycle.getDuration(), mesocycle.getId(), sessionsforMicrocycle, sessionDuration);
     }
+  }
+
+  public List<MesocycleEntity> addMezocycle(MacrocycleEntity macrocycleEntity, NewMacrocycleDto newMacrocycleDto) {
+    int orderId = mesocycleRepository.findMaxOrderIdByMacrocycleId(macrocycleEntity.getId())
+        .map(maxOrderId -> maxOrderId + 1)
+        .orElse(1);
+    Integer mesocyclePhase = periodizationRepository.getMesocyclePhase(newMacrocycleDto.getPeriodization());
+
+    List<MesocycleEntity> mesocycles = new ArrayList<>();
+    int remainingDuration = newMacrocycleDto.getDuration();
+    while (remainingDuration > 0) {
+      int currentMesocycleDuration = Math.min(newMacrocycleDto.getMesocycleDuration(), remainingDuration);
+      MesocycleEntity mesocycle = MesocycleEntity.builder()
+          .id(UUID.randomUUID())
+          .macrocycleId(macrocycleEntity.getId())
+          .duration(currentMesocycleDuration)
+          .dictMesocyclePhaseId(mesocyclePhase)
+          .orderId(orderId)
+          .build();
+
+      mesocycles.add(mesocycle);
+      remainingDuration -= currentMesocycleDuration;
+      orderId++;
+
+    }
+
+    List<MesocycleEntity> mesocycleEntities = mesocycleRepository.saveAll(mesocycles);
+
+    return mesocycleEntities;
   }
 }

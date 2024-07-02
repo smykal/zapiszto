@@ -330,3 +330,10 @@ export type PeriodizationDto = {
                               name: string;
                               description: string;
 }
+
+export type SessionDto = {
+                            id: string;
+                            microcycleId: string;
+                            orderId: number;
+                            label: string;
+}
