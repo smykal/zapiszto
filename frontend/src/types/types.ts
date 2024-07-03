@@ -156,6 +156,18 @@ export type Exercise = {
                         orderNumber: number
 }
 
+export type ExerciseSession = {
+                                exerciseId: string;
+                                sessionId: string;
+                                dictExerciseName: string;
+                                quantity: number;
+                                dictQuantityTypeName: string;
+                                volume: number;
+                                dictUnitName: string;
+                                notes: string;
+                                orderNumber: number;
+};
+
 export type NewInvitation = {
                               email: string;
 }
