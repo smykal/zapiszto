@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExerciseRepository extends JpaRepository<ExerciseEntity, Integer> {
+public interface ExerciseTrainingRepository extends JpaRepository<ExerciseEntity, Integer> {
 
   @Query(nativeQuery = true, value = """
       select e.*  from exercises e

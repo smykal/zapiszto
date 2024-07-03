@@ -1,9 +1,9 @@
 package com.zapiszto.controllers.exercises.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.exercises.dto.ExerciseDto;
-import com.zapiszto.controllers.exercises.dto.NewExerciseDto;
-import com.zapiszto.controllers.exercises.service.ExercisesService;
+import com.zapiszto.controllers.exercises.dto.ExerciseTrainingDto;
+import com.zapiszto.controllers.exercises.dto.NewExerciseTrainingDto;
+import com.zapiszto.controllers.exercises.service.ExercisesTrainingService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,27 +24,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1")
 @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')  or hasRole('TRAINER')")
-public class ExercisesController implements ControllerCommon {
+public class ExercisesTrainingController implements ControllerCommon {
 
   @Autowired
-  ExercisesService exercisesService;
+  ExercisesTrainingService exercisesTrainingService;
 
   @PostMapping("/add_exercise")
   public ResponseEntity<String> addExercise(
-      @RequestBody NewExerciseDto newExerciseDto
+      @RequestBody NewExerciseTrainingDto newExerciseTrainingDto
   ) {
     var userId = extractUserId();
-    exercisesService.addExercise(newExerciseDto, userId);
+    exercisesTrainingService.addExercise(newExerciseTrainingDto, userId);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   @GetMapping("/get_exercise/training/{trainingId}")
-  public ResponseEntity<List<ExerciseDto>> getExercises(
+  public ResponseEntity<List<ExerciseTrainingDto>> getExercises(
       @PathVariable("trainingId") int trainingId
   ) {
     var userId = extractUserId();
     try {
-      List<ExerciseDto> result = exercisesService.getExercises(trainingId, userId);
+      List<ExerciseTrainingDto> result = exercisesTrainingService.getExercises(trainingId, userId);
       return new ResponseEntity<>(result, HttpStatus.OK);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
@@ -52,13 +52,13 @@ public class ExercisesController implements ControllerCommon {
   }
 
   @GetMapping("/get_exercise/training/{trainingId}/{userId}")
-  public ResponseEntity<List<ExerciseDto>> getExercises(
+  public ResponseEntity<List<ExerciseTrainingDto>> getExercises(
       @PathVariable("trainingId") int trainingId,
       @PathVariable("userId") Long userId
   ) {
     var requestor = extractUserId();
     try {
-      List<ExerciseDto> result = exercisesService.getExercises(trainingId, userId);
+      List<ExerciseTrainingDto> result = exercisesTrainingService.getExercises(trainingId, userId);
       return new ResponseEntity<>(result, HttpStatus.OK);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
@@ -72,7 +72,7 @@ public class ExercisesController implements ControllerCommon {
   ) {
     var userId = extractUserId();
     try {
-      exercisesService.deleteExercise(userId, trainingId, exerciseId);
+      exercisesTrainingService.deleteExercise(userId, trainingId, exerciseId);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);

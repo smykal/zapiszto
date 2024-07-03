@@ -8,4 +8,10 @@ public interface SerializerCommon {
   String BODY_PARAM = "BODY_PARAM";
   String BODY_TEST = "BODY_TEST";
 
+  int DEFAULT_DICT_EXERCISE_ID = 1;
+  int DEFAULT_QUANTITY = 100;
+  int DEFAULT_DICT_QUANTITY_TYPE = 1;
+  int DEFAULT_VOLUME = 10;
+  int DEFAULLT_DICT_UNIT_ID = 1;
+  String DEFAULT_NOTES = "notes";
 }

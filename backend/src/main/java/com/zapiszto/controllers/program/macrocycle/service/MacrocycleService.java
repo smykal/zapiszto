@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.program.macrocycle.service;
 
+import com.zapiszto.controllers.exercises.service.ExercisesSessionService;
 import com.zapiszto.controllers.program.macrocycle.dto.MacrocycleDto;
 import com.zapiszto.controllers.program.macrocycle.dto.NewMacrocycleDto;
 import com.zapiszto.controllers.program.macrocycle.entity.MacrocycleEntity;
@@ -9,6 +10,7 @@ import com.zapiszto.controllers.program.mesocycle.entity.MesocycleEntity;
 import com.zapiszto.controllers.program.mesocycle.service.MesocycleService;
 import com.zapiszto.controllers.program.microcycle.entity.MicrocycleEntity;
 import com.zapiszto.controllers.program.microcycle.service.MicrocycleService;
+import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
 import com.zapiszto.controllers.program.sessions.service.SessionService;
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +38,9 @@ public class MacrocycleService {
 
   @Autowired
   SessionService sessionService;
+
+  @Autowired
+  ExercisesSessionService exercisesSessionService;
 
   @Transactional
   public MacrocycleEntity addMacrocycle(NewMacrocycleDto newMacrocycleDto) {
@@ -75,7 +80,10 @@ public class MacrocycleService {
     for (MesocycleEntity mesocycleEntity: mesocycleEntities) {
       List<MicrocycleEntity> microcycleEntities = microcycleService.addMicrocycles(mesocycleEntity, newMacrocycleDto);
       for (MicrocycleEntity microcycleEntity: microcycleEntities) {
-        sessionService.addSessions(microcycleEntity, newMacrocycleDto);
+        List<SessionEntity> sessionEntities = sessionService.addSessions(microcycleEntity, newMacrocycleDto);
+        for (SessionEntity sessionEntity: sessionEntities){
+          exercisesSessionService.addExercise(sessionEntity.getId());
+        }
       }
 
     }

@@ -219,3 +219,5 @@ databaseChangeLog:
       file: db/changelog/109_modify_table_exercises.xml
   - include:
       file: db/changelog/110_restore_foreign_keys_for_exercises.xml
+  - include:
+      file: db/changelog/111_modify_table_exercises.xml

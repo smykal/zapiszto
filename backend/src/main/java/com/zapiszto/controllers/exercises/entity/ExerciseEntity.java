@@ -3,6 +3,7 @@ package com.zapiszto.controllers.exercises.entity;
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
+import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
 import com.zapiszto.controllers.trainings.entity.TrainingEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,8 +41,15 @@ public class ExerciseEntity {
   @JoinColumn(name = "training_id", referencedColumnName = "id", insertable = false, updatable = false)
   TrainingEntity trainingEntity;
 
-  @Column(name = "training_id", nullable = false)
-  int trainingId;
+  @Column(name = "training_id", nullable = true)
+  Integer trainingId;
+
+  @ManyToOne
+  @JoinColumn(name = "session_id", referencedColumnName = "id", insertable = false, updatable = false)
+  SessionEntity sessionEntity;
+
+  @Column(name = "session_id", nullable = true)
+  UUID sessionId;
 
   @ManyToOne
   @JoinColumn(name = "dict_exercise_id", referencedColumnName = "id", insertable = false, updatable = false)
