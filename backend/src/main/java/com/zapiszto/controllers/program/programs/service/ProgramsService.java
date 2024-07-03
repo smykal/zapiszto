@@ -57,17 +57,9 @@ public class ProgramsService {
   }
 
   @Transactional
-  public void deleteProgram(String id) {
-    UUID uuid = UUID.fromString(id);
-    if (!programDetailsRepository.existsById(uuid)){
-      throw new RuntimeException("Program Details not found");
-    }
-    programDetailsRepository.deleteByProgramId(uuid);
-
-    if (!programsRepository.existsById(uuid)) {
-      throw new RuntimeException("Program not found");
-    }
-    programsRepository.deleteByProgramId(uuid);
+  public void deleteProgram(UUID programId) {
+    programsRepository.deleteById(programId);
+    log.info("Program with ID {} and its related entities have been deleted", programId);
   }
 
   @Modifying

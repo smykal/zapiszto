@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface ProgramsRepository extends JpaRepository<ProgramEntity, Integer> {
+public interface ProgramsRepository extends JpaRepository<ProgramEntity, UUID> {
   @Query(nativeQuery = true, value = """
       select * from programs p where p.trainer_id = :trainerId
       """)

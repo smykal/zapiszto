@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add-foreign-keys-to-exercises" author="your_name">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="exercises"/>
+            <columnExists tableName="exercises" columnName="training_id"/>
+            <columnExists tableName="exercises" columnName="dict_exercise_id"/>
+            <columnExists tableName="exercises" columnName="dict_quantity_type_id"/>
+            <columnExists tableName="exercises" columnName="dict_unit_id"/>
+        </preConditions>
+
+        <addForeignKeyConstraint
+                baseTableName="exercises"
+                baseColumnNames="training_id"
+                constraintName="fk_exercises_trainings"
+                referencedTableName="trainings"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint
+                baseTableName="exercises"
+                baseColumnNames="dict_exercise_id"
+                constraintName="fk_exercises_dict_exercises"
+                referencedTableName="dict_exercises"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint
+                baseTableName="exercises"
+                baseColumnNames="dict_quantity_type_id"
+                constraintName="fk_exercises_dict_quantity_type"
+                referencedTableName="dict_quantity_type"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint
+                baseTableName="exercises"
+                baseColumnNames="dict_unit_id"
+                constraintName="fk_exercises_dict_units"
+                referencedTableName="dict_units"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

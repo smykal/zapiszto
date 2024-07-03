@@ -35,7 +35,8 @@ public class MacrocycleController implements ControllerCommon {
 
     var trainerId = extractUserId();
     try {
-      macrocycleService.addMacrocycle(newMacrocycleDto);
+      //macrocycleService.addMacrocycle(newMacrocycleDto);
+      macrocycleService.addProgram(newMacrocycleDto);
       return new ResponseEntity<>(HttpStatus.CREATED);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.CONFLICT);

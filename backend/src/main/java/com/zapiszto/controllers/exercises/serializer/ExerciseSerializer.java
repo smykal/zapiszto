@@ -1,40 +1,61 @@
 package com.zapiszto.controllers.exercises.serializer;
 
+import com.zapiszto.controllers.common.SerializerCommon;
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
-import com.zapiszto.controllers.exercises.dto.ExerciseDto;
-import com.zapiszto.controllers.exercises.dto.NewExerciseDto;
+import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
+import com.zapiszto.controllers.exercises.dto.ExerciseTrainingDto;
+import com.zapiszto.controllers.exercises.dto.NewExerciseSessionDto;
+import com.zapiszto.controllers.exercises.dto.NewExerciseTrainingDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import org.springframework.stereotype.Component;
 
-public class ExerciseSerializer {
+@Component
+public class ExerciseSerializer implements SerializerCommon {
 
-  public static ExerciseEntity convert(NewExerciseDto newExerciseDto) {
+  public static ExerciseEntity convert(NewExerciseTrainingDto newExerciseTrainingDto) {
     return ExerciseEntity.builder()
-        .trainingId(newExerciseDto.getTrainingId())
-        .dictExerciseId(newExerciseDto.getDictExerciseId())
-        .quantity(newExerciseDto.getQuantity())
-        .dictQuantityTypeId(newExerciseDto.getDictQuantityTypeId())
-        .volume(newExerciseDto.getVolume())
-        .dictUnitId(newExerciseDto.getDictUnitId())
-        .notes(newExerciseDto.getNotes())
+        .id(UUID.fromString(newExerciseTrainingDto.getId()))
+        .trainingId(newExerciseTrainingDto.getTrainingId())
+        .dictExerciseId(newExerciseTrainingDto.getDictExerciseId())
+        .quantity(newExerciseTrainingDto.getQuantity())
+        .dictQuantityTypeId(newExerciseTrainingDto.getDictQuantityTypeId())
+        .volume(newExerciseTrainingDto.getVolume())
+        .dictUnitId(newExerciseTrainingDto.getDictUnitId())
+        .notes(newExerciseTrainingDto.getNotes())
         .build();
   }
 
-  public static List<ExerciseDto> convert(
+  public static ExerciseEntity convert(NewExerciseSessionDto newExerciseSessionDto) {
+    return ExerciseEntity.builder()
+        .id(UUID.fromString(newExerciseSessionDto.getId()))
+        .trainingId(newExerciseSessionDto.getSessionId())
+        .dictExerciseId(newExerciseSessionDto.getDictExerciseId())
+        .quantity(newExerciseSessionDto.getQuantity())
+        .dictQuantityTypeId(newExerciseSessionDto.getDictQuantityTypeId())
+        .volume(newExerciseSessionDto.getVolume())
+        .dictUnitId(newExerciseSessionDto.getDictUnitId())
+        .notes(newExerciseSessionDto.getNotes())
+        .build();
+  }
+
+  public static List<ExerciseTrainingDto> convert(
       List<ExerciseEntity> exerciseEntity,
       List<DictExercisesEntity> dictExercises,
       List<DictQuantityTypeEntity> dictQuantityType,
       List<DictUnitsEntity> dictUnits
   ) {
-    List<ExerciseDto> exercises = new ArrayList<>();
+    List<ExerciseTrainingDto> exercises = new ArrayList<>();
 
     for (ExerciseEntity exercise : exerciseEntity) {
-      ExerciseDto exerciseDto = ExerciseDto.builder()
-          .exerciseId(exercise.getId())
+      ExerciseTrainingDto exerciseTrainingDto = ExerciseTrainingDto.builder()
+          .exerciseId(exercise.getId()
+              .toString())
           .trainingId(exercise.getTrainingId())
           .dictExerciseName(getExerciseName(dictExercises, exercise.getDictExerciseId()))
           .quantity(exercise.getQuantity())
@@ -45,9 +66,29 @@ public class ExerciseSerializer {
           .orderNumber(exercise.getOrderNumber())
           .build();
 
-      exercises.add(exerciseDto);
+      exercises.add(exerciseTrainingDto);
     }
     return exercises;
+  }
+
+  public static ExerciseSessionDto convert(
+      ExerciseEntity exercise,
+      List<DictExercisesEntity> dictExercises,
+      List<DictQuantityTypeEntity> dictQuantityType,
+      List<DictUnitsEntity> dictUnits
+  ) {
+    return ExerciseSessionDto.builder()
+        .exerciseId(exercise.getId()
+            .toString())
+        .sessionId(exercise.getSessionId())
+        .dictExerciseName(getExerciseName(dictExercises, exercise.getDictExerciseId()))
+        .quantity(exercise.getQuantity())
+        .dictQuantityTypeName(getQuantityTypeName(dictQuantityType, exercise.getDictQuantityTypeId()))
+        .volume(exercise.getVolume())
+        .dictUnitName(getUnitName(dictUnits, exercise.getDictUnitId()))
+        .notes(exercise.getNotes())
+        .orderNumber(exercise.getOrderNumber())
+        .build();
   }
 
   private static String getExerciseName(List<DictExercisesEntity> dictExercises, int dictExerciseId) {
@@ -105,5 +146,19 @@ public class ExerciseSerializer {
     }
 
     return null;
+  }
+
+  public static ExerciseEntity generateDefaultExerciseSession(UUID sessionId) {
+
+    return ExerciseEntity.builder()
+        .id(UUID.randomUUID())
+        .sessionId(sessionId)
+        .dictExerciseId(DEFAULT_DICT_EXERCISE_ID)
+        .quantity(DEFAULT_QUANTITY)
+        .dictQuantityTypeId(DEFAULT_DICT_QUANTITY_TYPE)
+        .volume(DEFAULT_VOLUME)
+        .dictUnitId(DEFAULLT_DICT_UNIT_ID)
+        .notes(DEFAULT_NOTES)
+        .build();
   }
 }

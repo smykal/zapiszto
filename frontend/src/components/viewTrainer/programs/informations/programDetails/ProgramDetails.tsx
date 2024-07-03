@@ -65,8 +65,6 @@ const ProgramDetails: React.FC<ProgramDetailsProps> = ({ programId }) => {
 
   return (
     <div>
-      <h2>Program Details</h2>
-      <p><strong>ID:</strong> {programId}</p>
       <p><strong>Assigned Client:</strong> {getClientName(programDetails.assignedClient)}</p>
       <p>
         <strong>Change Assigned Client:</strong>

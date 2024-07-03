@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="change-id-type-to-uuid" author="your_name">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="exercises"/>
+            <columnExists tableName="exercises" columnName="id"/>
+        </preConditions>
+
+        <!-- Step 1: Add a new column with UUID type -->
+        <addColumn tableName="exercises">
+            <column name="new_id" type="uuid" defaultValueComputed="gen_random_uuid()"/>
+        </addColumn>
+
+
+        <!-- Step 3: Drop foreign key constraints referencing the old id column -->
+        <!-- Make sure to replace 'fk_constraint_name' with your actual constraint names -->
+        <dropAllForeignKeyConstraints baseTableName="exercises"/>
+
+        <!-- Step 4: Drop the old id column -->
+        <dropColumn tableName="exercises" columnName="id"/>
+
+        <!-- Step 5: Rename the new_id column to id -->
+        <renameColumn tableName="exercises" oldColumnName="new_id" newColumnName="id" columnDataType="uuid"/>
+
+        <!-- Step 6: Recreate foreign key constraints referencing the new id column -->
+        <!-- Add your foreign key constraints back if needed -->
+    </changeSet>
+
+</databaseChangeLog>

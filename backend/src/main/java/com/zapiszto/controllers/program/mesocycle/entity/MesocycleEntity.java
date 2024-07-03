@@ -1,12 +1,18 @@
 package com.zapiszto.controllers.program.mesocycle.entity;
 
+import com.zapiszto.controllers.dictionaries.dictMesocyclePhase.entity.DictMesocyclePhaseEntity;
 import com.zapiszto.controllers.program.macrocycle.entity.MacrocycleEntity;
+import com.zapiszto.controllers.program.microcycle.entity.MicrocycleEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,7 +35,7 @@ public class MesocycleEntity {
   @Column(name = "id")
   UUID id;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "macrocycle_id", referencedColumnName = "id", insertable = false, updatable = false)
   MacrocycleEntity macrocycleEntity;
 
@@ -44,4 +50,14 @@ public class MesocycleEntity {
 
   @Column(name = "comments")
   String comments;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "dict_mesocycle_phase_id", referencedColumnName = "id", insertable = false, updatable = false)
+  DictMesocyclePhaseEntity dictMesocyclePhaseEntity;
+
+  @Column(name = "dict_mesocycle_phase_id", nullable = false)
+  int dictMesocyclePhaseId;
+
+  @OneToMany(mappedBy = "mesocycleEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  List<MicrocycleEntity> microcycles;
 }

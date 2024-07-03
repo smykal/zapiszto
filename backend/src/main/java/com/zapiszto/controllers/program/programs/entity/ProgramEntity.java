@@ -1,13 +1,19 @@
 package com.zapiszto.controllers.program.programs.entity;
 
 import com.zapiszto.controllers.account.entity.User;
+import com.zapiszto.controllers.program.macrocycle.entity.MacrocycleEntity;
+import com.zapiszto.controllers.program.programsDetails.entity.ProgramDetailsEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -42,4 +48,10 @@ public class ProgramEntity {
 
   @Column(name = "name")
   String name;
+
+  @OneToMany(mappedBy = "programEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  List<MacrocycleEntity> macrocycles;
+
+  @OneToMany(mappedBy = "programEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  List<ProgramDetailsEntity> programDetails;
 }

@@ -78,11 +78,22 @@ const AddClientForm: React.FC<AddClientFormProps> = ({ onClientAdded, existingCl
               <label>{t('clients.client_assign_user')}:</label>
               <select value={selectedInviteeId || ''} onChange={handleInviteeChange}>
                 <option value="">{t('clients.select_user_to_assign')}</option>
-                {acceptedInvitations.map(invitation => (
-                  <option key={invitation.inviteeId} value={invitation.inviteeId}>
-                    {invitation.inviteeEmail}
-                  </option>
-                ))}
+                {acceptedInvitations.map(invitation => {
+                  if (invitation.status === 'RECIVED') {
+                    return (
+                      <option key={invitation.inviteeId} value={invitation.inviterId}>
+                        {invitation.inviteeEmail}
+                      </option>
+                    );
+                  } else if (invitation.status === 'SENT') {
+                    return (
+                      <option key={invitation.inviterId} value={invitation.inviterId}>
+                        {invitation.inviterEmail}
+                      </option>
+                    );
+                  }
+                  return null;
+                })}
               </select>
             </div>
             <button type="submit" disabled={isSubmitting}>

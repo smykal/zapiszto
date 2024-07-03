@@ -69,7 +69,7 @@ public class ProgramsController implements ControllerCommon {
 
   @DeleteMapping("/delete_program/{id}")
   public ResponseEntity<String> deleteProgram(
-      @PathVariable String id) {
+      @PathVariable UUID id) {
     var requestorId = extractUserId();
     programsService.deleteProgram(id);
     return new ResponseEntity<>(HttpStatus.OK);

@@ -197,3 +197,27 @@ databaseChangeLog:
       file: db/changelog/098_add_table_microcycle.xml
   - include:
       file: db/changelog/099_add_sequence_to_dict_microcycle_phase.xml
+  - include:
+      file: db/changelog/100_clients_set_null_on_delete_user_id.xml
+  - include:
+      file: db/changelog/101_invitations_set_null_on_delete_user_id.xml
+  - include:
+      file: db/changelog/102_clients_set_null_on_delete_user_id.xml
+  - include:
+      file: db/changelog/103_modify_table_dict_microcycle_phase.xml
+  - include:
+      file: db/changelog/104_add_table_periodization.xml
+  - include:
+      file: db/changelog/105_add_column_description_to_periodization.xml
+  - include:
+      file: db/changelog/106_edit_table_periodization.xml
+  - include:
+      file: db/changelog/107_add_table_sessions.xml
+  - include:
+      file: db/changelog/108_modify_table_body_params.xml
+  - include:
+      file: db/changelog/109_modify_table_exercises.xml
+  - include:
+      file: db/changelog/110_restore_foreign_keys_for_exercises.xml
+  - include:
+      file: db/changelog/111_modify_table_exercises.xml

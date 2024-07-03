@@ -14,5 +14,5 @@ import lombok.Setter;
 public class BodyParamsWithNameDto {
   private String dict_body_params_name;
   private String value;
-  private int userId;
+  private Long userId;
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create-sessions-table" author="smykalm">
+        <!-- Create sessions table -->
+        <createTable tableName="sessions">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="microcycle_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Add foreign key constraint to microcycle table -->
+        <addForeignKeyConstraint baseTableName="sessions"
+                                 baseColumnNames="microcycle_id"
+                                 constraintName="fk_sessions_microcycle"
+                                 referencedTableName="microcycle"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

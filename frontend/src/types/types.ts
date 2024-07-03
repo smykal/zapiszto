@@ -134,6 +134,7 @@ export type NewDictExercises = {
 }
 
 export type NewExercise = {
+                        id: string;
                         trainingId: number,
                         dictExerciseId: number,
                         quantity: number,
@@ -144,7 +145,7 @@ export type NewExercise = {
 }
 
 export type Exercise = {
-                        exerciseId: number,
+                        exerciseId: string,
                         trainingId: number,
                         dictExerciseName: string,
                         quantity: number,
@@ -154,6 +155,18 @@ export type Exercise = {
                         notes: number,
                         orderNumber: number
 }
+
+export type ExerciseSession = {
+                                exerciseId: string;
+                                sessionId: string;
+                                dictExerciseName: string;
+                                quantity: number;
+                                dictQuantityTypeName: string;
+                                volume: number;
+                                dictUnitName: string;
+                                notes: string;
+                                orderNumber: number;
+};
 
 export type NewInvitation = {
                               email: string;
@@ -286,7 +299,11 @@ export type NewMacrocycleDto = {
                                 id: string;
                                 programId: string;
                                 duration: number;
-}
+                                mesocycleDuration: number;
+                                periodization: string; 
+                                durationSession: number;
+                                sessionsForMicrocycle: number;
+};
 
 export type MacrocycleDto = {
                               id: string;
@@ -301,6 +318,9 @@ export type MesocycleDto = {
                               duration: number;
                               orderId: number;
                               comments: string;
+                              dictType: string;
+                              dictId: number;
+                              dictName: string;
 }
 
 export type NewMesocycleDto = {
@@ -317,4 +337,16 @@ export type MicrocycleDto = {
                               dictType: string;
                               dictId: number;
                               dictName: string;
+}
+
+export type PeriodizationDto = {
+                              name: string;
+                              description: string;
+}
+
+export type SessionDto = {
+                            id: string;
+                            microcycleId: string;
+                            orderId: number;
+                            label: string;
 }
