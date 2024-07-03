@@ -43,7 +43,7 @@ public class BodyParamsEntity {
   String value;
 
   @Column(name = "user_id")
-  int userId;
+  Long userId;
 
   @Column(name = "insert_date")
   ZonedDateTime insert_date;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import MicrocycleService from '../../../../../services/microcycle/MicrocycleService';
+import Session from '../session/Session';
 import { MicrocycleDto } from '../../../../../types/types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
@@ -43,6 +44,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({ mesocycleId }) => {
             <h3>{t('microcycle.details_for')} {microcycle.orderId}</h3>
             <p><strong>{t('table.dictType')}:</strong> {microcycle.dictType}</p>
             <p><strong>{t('table.dictName')}:</strong> {microcycle.dictName}</p>
+            <Session microcycleId={microcycle.id} />
           </TabPanel>
         ))}
       </Tabs>

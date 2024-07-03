@@ -213,3 +213,5 @@ databaseChangeLog:
       file: db/changelog/106_edit_table_periodization.xml
   - include:
       file: db/changelog/107_add_table_sessions.xml
+  - include:
+      file: db/changelog/108_modify_table_body_params.xml
