@@ -1,9 +1,11 @@
 package com.zapiszto.controllers.program.sessions.entity;
 
+import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.program.microcycle.entity.MicrocycleEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.*;
+import java.util.List;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -40,4 +42,7 @@ public class SessionEntity {
 
   @Column(name = "label", length = 20)
   String label;
+
+  @OneToMany(mappedBy = "sessionEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private List<ExerciseEntity> exercises;
 }
