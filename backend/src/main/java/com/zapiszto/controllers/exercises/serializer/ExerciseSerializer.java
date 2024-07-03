@@ -9,11 +9,13 @@ import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class ExerciseSerializer {
 
   public static ExerciseEntity convert(NewExerciseDto newExerciseDto) {
     return ExerciseEntity.builder()
+        .id(UUID.fromString(newExerciseDto.getId()))
         .trainingId(newExerciseDto.getTrainingId())
         .dictExerciseId(newExerciseDto.getDictExerciseId())
         .quantity(newExerciseDto.getQuantity())
@@ -34,7 +36,7 @@ public class ExerciseSerializer {
 
     for (ExerciseEntity exercise : exerciseEntity) {
       ExerciseDto exerciseDto = ExerciseDto.builder()
-          .exerciseId(exercise.getId())
+          .exerciseId(exercise.getId().toString())
           .trainingId(exercise.getTrainingId())
           .dictExerciseName(getExerciseName(dictExercises, exercise.getDictExerciseId()))
           .quantity(exercise.getQuantity())

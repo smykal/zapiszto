@@ -134,6 +134,7 @@ export type NewDictExercises = {
 }
 
 export type NewExercise = {
+                        id: string;
                         trainingId: number,
                         dictExerciseId: number,
                         quantity: number,
@@ -144,7 +145,7 @@ export type NewExercise = {
 }
 
 export type Exercise = {
-                        exerciseId: number,
+                        exerciseId: string,
                         trainingId: number,
                         dictExerciseName: string,
                         quantity: number,

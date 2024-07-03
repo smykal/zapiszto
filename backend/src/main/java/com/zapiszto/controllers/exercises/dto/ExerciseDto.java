@@ -15,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ExerciseDto {
-  int exerciseId;
+  String exerciseId;
   int trainingId;
   String dictExerciseName;
   int quantity;
