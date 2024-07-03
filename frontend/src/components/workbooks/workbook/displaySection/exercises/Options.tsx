@@ -5,9 +5,9 @@ import { withTranslation } from "react-i18next";
 
 
 type Props = {
-    exerciseId: number
-    trainingId: number
-    t: any
+    exerciseId: string; // changed from number to string
+    trainingId: number;
+    t: any;
 };
 type State = {};
 
@@ -19,15 +19,14 @@ class Options extends Component<Props, State> {
         const { exerciseId, trainingId , t } = this.props
         return (
             <div>
-                {/* <button onClick={() => this.delete(item)}>Delete {item}</button> */}
-                <button>{t("buttons.delete")}               </button>
-                <button>{t("buttons.edit")}     {exerciseId}</button>
-                <button>{t("buttons.move_up")}              </button>
-                <button>{t("buttons.move_down")}            </button>
+                <button>{t("buttons.delete")}</button>
+                <button>{t("buttons.edit")} {exerciseId}</button>
+                <button>{t("buttons.move_up")}</button>
+                <button>{t("buttons.move_down")}</button>
                 <button>{t("buttons.archive")} {exerciseId}</button>
             </div>
         )  
     }
 }
 
-export default withTranslation("global")(Options)
+export default withTranslation("global")(Options);

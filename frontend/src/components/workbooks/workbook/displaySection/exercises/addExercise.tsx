@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
 import { DictExercises, DictQuantityType, DictUnits, NewExercise } from '../../../../../types/types';
-import Service from '../../../../../services/exercises'
-import { Formik, Form, Field } from 'formik'
+import Service from '../../../../../services/exercises';
+import { Formik, Form, Field } from 'formik';
 import { withTranslation } from "react-i18next";
 
-
-
 type Props = {
-    workbook_id: number
-    training_id: number
-    t: any
-}
+    workbook_id: number;
+    training_id: number;
+    t: any;
+};
 
 type State = {
-    dictExercises: DictExercises[],
-    dictUnits: DictUnits[],
-    dictQuantityTypes: DictQuantityType[]
-}
+    dictExercises: DictExercises[];
+    dictUnits: DictUnits[];
+    dictQuantityTypes: DictQuantityType[];
+};
 
 class AddExercise extends Component<Props, State> {
     constructor(props: Props) {
-        super(props)
+        super(props);
         this.state = {
             dictExercises: [],
             dictUnits: [],
             dictQuantityTypes: []
-        }
+        };
     }
+
     componentDidMount() {
         this.loadDictExercises();
         this.loadDictUnits();
@@ -62,15 +61,19 @@ class AddExercise extends Component<Props, State> {
                 console.error('Error loading dict quantity types:', error);
             });
     }
+
     postExercise = (exercise: NewExercise) => {
         Service.postExercise(exercise)
-        window.location.reload();
-    }
+            .then(() => window.location.reload())
+            .catch(error => console.error('Error posting exercise:', error));
+    };
 
     render() {
-        const { workbook_id, training_id, t } = this.props;
+        const { t } = this.props;
         const { dictExercises, dictUnits, dictQuantityTypes } = this.state;
+
         const initialExercise: NewExercise = {
+            id: crypto.randomUUID(),
             trainingId: this.props.training_id,
             dictExerciseId: 1,
             quantity: 0,
@@ -91,7 +94,7 @@ class AddExercise extends Component<Props, State> {
                             <option value="" disabled>
                                 {t("workbooks.select_exercise")}
                             </option>
-                            {this.state.dictExercises.map((exercise) => (
+                            {dictExercises.map((exercise) => (
                                 <option key={exercise.id} value={exercise.id}>
                                     {exercise.name}
                                 </option>
@@ -100,9 +103,9 @@ class AddExercise extends Component<Props, State> {
                         <Field name="quantity" type="number" />
                         <Field as="select" name="dictQuantityTypeId">
                             <option value="" disabled>
-                               {t("workbooks.select_quantity")} 
+                                {t("workbooks.select_quantity")}
                             </option>
-                            {this.state.dictQuantityTypes.map((quantity) => (
+                            {dictQuantityTypes.map((quantity) => (
                                 <option key={quantity.id} value={quantity.id}>
                                     {quantity.name}
                                 </option>
@@ -111,9 +114,9 @@ class AddExercise extends Component<Props, State> {
                         <Field name="volume" type="number" />
                         <Field as="select" name="dictUnitId">
                             <option value="" disabled>
-                            {t("workbooks.select_unit")} 
+                                {t("workbooks.select_unit")}
                             </option>
-                            {this.state.dictUnits.map((unit) => (
+                            {dictUnits.map((unit) => (
                                 <option key={unit.id} value={unit.id}>
                                     {unit.name}
                                 </option>
@@ -128,4 +131,4 @@ class AddExercise extends Component<Props, State> {
     }
 }
 
-export default withTranslation("global")(AddExercise)
+export default withTranslation("global")(AddExercise);

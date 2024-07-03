@@ -57,7 +57,7 @@ class GetExercise extends Component<Props, State> {
                     </thead>
                     <tbody>
                         {exercises.map((row) => (
-                            <tr key={row.dictExerciseName} style={{ borderBottom: '1px solid #ddd' }}>
+                            <tr key={row.exerciseId} style={{ borderBottom: '1px solid #ddd' }}>
                                 <td>{row.dictExerciseName}</td>
                                 <td>{row.quantity}</td>
                                 <td>{row.dictQuantityTypeName}</td>
