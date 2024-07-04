@@ -117,7 +117,8 @@
         "duration": "Duration",
         "comments": "Comments",
         "orderId": "Order",
-        "rest_time": "rest time"
+        "rest_time": "rest time",
+        "tempo": "tempo"
     },
     "invitations": {
         "title": "invitations",

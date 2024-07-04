@@ -167,6 +167,7 @@ export type ExerciseSession = {
                                 notes: string;
                                 orderNumber: number;
                                 restTime: number | null; 
+                                tempo: string | null;
 };
 
 export type NewInvitation = {

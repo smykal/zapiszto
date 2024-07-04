@@ -117,7 +117,8 @@
         "duration": "Тривалість",
         "comments": "Коментарі",
         "orderId": "Порядок",
-        "rest_time": "час відпочинку"
+        "rest_time": "час відпочинку",
+        "tempo": "темп"
     },
     "invitations": {
         "title": "запрошення",

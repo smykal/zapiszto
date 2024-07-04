@@ -117,7 +117,8 @@
         "duration": "Długość",
         "comments": "Komentarze",
         "orderId": "Kolejność",
-        "rest_time": "czas odpoczynku"
+        "rest_time": "czas odpoczynku",
+        "tempo": "tempo"
     },
     "invitations": {
         "title": "zaproszenia",
