@@ -116,7 +116,8 @@
         "purpose": "propósito",
         "duration": "Duración",
         "comments": "Comentarios",
-        "orderId": "Orden"
+        "orderId": "Orden",
+        "rest_time": "tiempo de descanso"
     },
     "invitations": {
         "title": "invitaciones",

@@ -116,7 +116,8 @@
         "purpose": "мета",
         "duration": "Тривалість",
         "comments": "Коментарі",
-        "orderId": "Порядок"
+        "orderId": "Порядок",
+        "rest_time": "час відпочинку"
     },
     "invitations": {
         "title": "запрошення",

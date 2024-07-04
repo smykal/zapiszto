@@ -52,6 +52,7 @@ class GetExerciseSession extends Component<Props, State> {
               <th>{t("table.unit")}</th>
               <th>{t("table.notes")}</th>
               <th>{t("table.order_number")}</th>
+              <th>{t("table.rest_time")}</th> {/* Dodanie kolumny rest_time */}
               <th>{t("table.options")}</th>
             </tr>
           </thead>
@@ -65,6 +66,7 @@ class GetExerciseSession extends Component<Props, State> {
                 <td>{row.dictUnitName}</td>
                 <td>{row.notes}</td>
                 <td>{row.orderNumber}</td>
+                <td>{row.restTime}</td> {/* Wyświetlanie restTime */}
                 <td><Options exerciseId={row.exerciseId} sessionId={row.sessionId} /></td>
               </tr>
             ))}

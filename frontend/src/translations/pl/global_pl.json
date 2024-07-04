@@ -116,7 +116,8 @@
         "purpose": "cel",
         "duration": "Długość",
         "comments": "Komentarze",
-        "orderId": "Kolejność"
+        "orderId": "Kolejność",
+        "rest_time": "czas odpoczynku"
     },
     "invitations": {
         "title": "zaproszenia",
