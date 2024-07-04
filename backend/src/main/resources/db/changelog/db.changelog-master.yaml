@@ -223,3 +223,5 @@ databaseChangeLog:
       file: db/changelog/111_modify_table_exercises.xml
   - include:
       file: db/changelog/112_modify_table_exercises.xml
+  - include:
+      file: db/changelog/113_modify_table_exercises.xml

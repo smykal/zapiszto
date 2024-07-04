@@ -15,4 +15,5 @@ public interface SerializerCommon {
   int DEFAULLT_DICT_UNIT_ID = 1;
   String DEFAULT_NOTES = "notes";
   int DEFAULT_REST_TIME = 60;
+  String DEFAULT_TEMPO = "XXXX";
 }

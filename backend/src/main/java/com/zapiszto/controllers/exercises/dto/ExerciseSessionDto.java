@@ -26,4 +26,5 @@ public class ExerciseSessionDto {
   String notes;
   int orderNumber;
   Integer restTime;
+  String tempo;
 }

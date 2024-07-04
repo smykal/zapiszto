@@ -86,4 +86,7 @@ public class ExerciseEntity {
 
   @Column(name = "rest_time")
   Integer restTime;
+
+  @Column(name = "tempo")
+  String tempo;
 }

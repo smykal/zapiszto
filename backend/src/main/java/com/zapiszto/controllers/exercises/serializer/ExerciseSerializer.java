@@ -89,6 +89,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .notes(exercise.getNotes())
         .orderNumber(exercise.getOrderNumber())
         .restTime(exercise.getRestTime())
+        .tempo(exercise.getTempo())
         .build();
   }
 
@@ -161,6 +162,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .dictUnitId(DEFAULLT_DICT_UNIT_ID)
         .notes(DEFAULT_NOTES)
         .restTime(DEFAULT_REST_TIME)
+        .tempo(DEFAULT_TEMPO)
         .build();
   }
 }
