@@ -88,6 +88,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .dictUnitName(getUnitName(dictUnits, exercise.getDictUnitId()))
         .notes(exercise.getNotes())
         .orderNumber(exercise.getOrderNumber())
+        .restTime(exercise.getRestTime())
         .build();
   }
 
@@ -159,6 +160,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .volume(DEFAULT_VOLUME)
         .dictUnitId(DEFAULLT_DICT_UNIT_ID)
         .notes(DEFAULT_NOTES)
+        .restTime(DEFAULT_REST_TIME)
         .build();
   }
 }

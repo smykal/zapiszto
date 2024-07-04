@@ -83,4 +83,7 @@ public class ExerciseEntity {
 
   @Column(name = "order_number")
   int orderNumber;
+
+  @Column(name = "rest_time")
+  Integer restTime;
 }

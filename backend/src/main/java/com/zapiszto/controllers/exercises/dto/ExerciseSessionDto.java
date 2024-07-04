@@ -25,4 +25,5 @@ public class ExerciseSessionDto {
   String dictUnitName;
   String notes;
   int orderNumber;
+  Integer restTime;
 }

@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.exercises.dto;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,4 +24,5 @@ public class NewExerciseSessionDto {
   int volume;
   int dictUnitId;
   String notes;
+  Integer restTime;
 }
