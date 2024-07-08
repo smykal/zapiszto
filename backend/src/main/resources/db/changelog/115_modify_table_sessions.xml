@@ -6,7 +6,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet id="add column  to table session" author="smykalm">
-        <addColumn tableName="session">
+        <addColumn tableName="sessions">
             <column name="date_time" type="timestamp">
                 <constraints nullable="true"/>
             </column>

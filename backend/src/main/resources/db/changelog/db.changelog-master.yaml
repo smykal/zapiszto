@@ -227,3 +227,5 @@ databaseChangeLog:
       file: db/changelog/113_modify_table_exercises.xml
   - include:
       file: db/changelog/114_modify_table_mesocycle.xml
+  - include:
+      file: db/changelog/115_modify_table_sessions.xml
