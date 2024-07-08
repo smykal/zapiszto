@@ -91,7 +91,8 @@
         "placeholder_send_invitation": "inserisci email",
         "delete_client": "eliminare cliente",
         "add_program": "Aggiungi Programma",
-        "delete_program": "Elimina Programma"
+        "delete_program": "Elimina Programma",
+        "save": "salva"
     },
     "validation": {
         "this_field_is_required": "questo campo è obbligatorio",
@@ -186,5 +187,13 @@
         "add_button": "Aggiungi Mesociclo",
         "created_successfully": "Mesociclo creato con successo",
         "creation_error": "Errore durante la creazione del mesociclo"
+    },
+    "microcycle": {
+        "week": "settimana"
+    },
+    "session": {
+        "no_date": "nessuna data impostata",
+        "session_date": "data della sessione",
+        "session": "sessione"
     }
 }

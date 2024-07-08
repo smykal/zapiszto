@@ -91,7 +91,8 @@
         "placeholder_send_invitation": "wpisz email",
         "delete_client": "usuń klienta",
         "add_program": "Dodaj Program",
-        "delete_program": "Usuń Program"
+        "delete_program": "Usuń Program",
+        "save": "zapisz"
     },
     "validation": {
         "this_field_is_required": "to pole jest wymagane",
@@ -186,5 +187,13 @@
         "add_button": "Dodaj Mezocykl",
         "created_successfully": "Mezocykl został pomyślnie utworzony",
         "creation_error": "Wystąpił błąd podczas tworzenia mezocyklu"
+    },
+    "microcycle": {
+        "week": "tydzień"
+    },
+    "session": {
+        "no_date": "data nie jest jeszcze ustawiona",
+        "session_date": "data sesji",
+        "session": "sesja"
     }
 }

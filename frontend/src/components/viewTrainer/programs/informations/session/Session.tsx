@@ -68,21 +68,19 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
 
   return (
     <div>
-      <strong>{t('session.select_session')}</strong>
       {message && <p>{message}</p>}
       <Tabs>
         <TabList>
           {sessions.map((session) => (
-            <Tab key={session.id}>{t('session.order')}: {session.orderId}</Tab>
+            <Tab key={session.id}>{t('session.session')}: {session.orderId}</Tab>
           ))}
         </TabList>
         {sessions.map((session) => (
           <TabPanel key={session.id}>
-            <h3>{t('session.details_for')} {session.orderId}</h3>
             <p><strong>{t('table.label')}:</strong> {session.label}</p>
             <p>
-              <strong>{t('table.date_time')}:</strong> {session.dateTime ? new Date(session.dateTime).toLocaleString() : t('session.no_date')}
-              <button onClick={() => handleOpenModal(session)}>{t('session.edit_date')}</button>
+              <strong>{t('session.session_date')}:</strong> {session.dateTime ? new Date(session.dateTime).toLocaleString() : t('session.no_date')}
+              <button onClick={() => handleOpenModal(session)}>{t('buttons.edit')}</button>
             </p>
             <GetExerciseSession session_id={session.id} />
           </TabPanel>
@@ -95,7 +93,7 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
           showTimeSelect
           dateFormat="Pp"
         />
-        <button onClick={handleSaveDateTime}>{t('session.save')}</button>
+        <button onClick={handleSaveDateTime}>{t('buttons.save')}</button>
       </Modal>
     </div>
   );

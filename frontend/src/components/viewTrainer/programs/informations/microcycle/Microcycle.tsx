@@ -31,12 +31,11 @@ const Microcycle: React.FC<MicrocycleProps> = ({ mesocycleId }) => {
 
   return (
     <div>
-      <strong>{t('microcycle.select_microcycle')}</strong>
       {message && <p>{message}</p>}
       <Tabs>
         <TabList>
           {microcycles.map((microcycle, index) => (
-            <Tab key={microcycle.id}>{t('microcycle.order')}: {microcycle.orderId}</Tab>
+            <Tab key={microcycle.id}>{t('microcycle.week')}: {microcycle.orderId}</Tab>
           ))}
         </TabList>
         {microcycles.map((microcycle, index) => (

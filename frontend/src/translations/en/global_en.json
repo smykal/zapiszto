@@ -91,7 +91,8 @@
         "placeholder_send_invitation": "put email",
         "delete_client": "delete client",
         "add_program": "Add Program",
-        "delete_program": "Delete Program"
+        "delete_program": "Delete Program",
+        "save": "save"
     },
     "validation": {
         "this_field_is_required": "this field is required",
@@ -186,5 +187,13 @@
         "add_button": "Add Mesocycle",
         "created_successfully": "Mesocycle created successfully",
         "creation_error": "Error creating mesocycle"
+    },
+    "microcycle": {
+        "week" : "week"
+    },
+    "session": {
+        "no_date": "no date set yet",
+        "session_date": "session date",
+        "session": "session"
     }
 }

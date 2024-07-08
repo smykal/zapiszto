@@ -95,7 +95,8 @@
         "placeholder_send_invitation": "введіть електронну пошту",
         "delete_client": "видалити клієнта",
         "add_program": "Додати Програму",
-        "delete_program": "Видалити Програму"
+        "delete_program": "Видалити Програму",
+        "save": "зберегти"
     },
     "table": {
         "id": "#",
@@ -186,5 +187,13 @@
         "add_button": "Додати Мезоцикл",
         "created_successfully": "Мезоцикл успішно створено",
         "creation_error": "Помилка при створенні мезоциклу"
+    },
+    "microcycle": {
+        "week": "тиждень"
+    },
+    "session": {
+        "no_date": "дату ще не встановлено",
+        "session_date": "дата сеансу",
+        "session": "сеанс"
     }
 }

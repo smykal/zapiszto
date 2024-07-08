@@ -50,7 +50,6 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
   return (
     <div>
       {message && <p>{message}</p>}
-      <strong>{t('mesocycle.select_mesocycle')}</strong>
       <Tabs>
         <TabList>
           {mesocycles.map((mesocycle) => (
@@ -59,7 +58,6 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
         </TabList>
         {mesocycles.map((mesocycle) => (
           <TabPanel key={mesocycle.id}>
-            <h3>{t('mesocycle.details')}</h3>
             <p>
               {t('table.label')}:{' '}
               <EditableCell value={mesocycle.label} onSave={(newLabel) => handleSaveLabel(mesocycle.id, newLabel)} />

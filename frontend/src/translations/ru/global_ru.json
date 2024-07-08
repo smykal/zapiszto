@@ -91,7 +91,8 @@
         "placeholder_send_invitation": "введите электронную почту",
         "delete_client": "удалить клиента",
         "add_program": "Добавить Программу",
-        "delete_program": "Удалить Программу"
+        "delete_program": "Удалить Программу",
+        "save": "сохранить"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
@@ -186,5 +187,13 @@
         "add_button": "Добавить Мезоцикл",
         "created_successfully": "Мезоцикл успешно создан",
         "creation_error": "Ошибка при создании мезоцикла"
+    },
+    "microcycle": {
+        "week": "неделя"
+    },
+    "session": {
+        "no_date": "дата еще не установлена",
+        "session_date": "дата сеанса",
+        "session": "сеанс"
     }
 }
