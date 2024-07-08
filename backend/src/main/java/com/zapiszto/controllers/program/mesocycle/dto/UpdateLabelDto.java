@@ -14,14 +14,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MesocycleDto {
-  String id;
-  String macrocycleId;
-  int duration;
-  int orderId;
-  String comments;
-  String dictType;
-  int dictId;
-  String dictName;
+public class UpdateLabelDto {
   String label;
 }

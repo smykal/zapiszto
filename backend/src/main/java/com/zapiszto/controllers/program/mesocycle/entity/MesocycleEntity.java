@@ -51,6 +51,9 @@ public class MesocycleEntity {
   @Column(name = "comments")
   String comments;
 
+  @Column(name = "label")
+  String label;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "dict_mesocycle_phase_id", referencedColumnName = "id", insertable = false, updatable = false)
   DictMesocyclePhaseEntity dictMesocyclePhaseEntity;

@@ -11,6 +11,10 @@ class MesocycleService {
   getMesocycles(macrocycleId: string) {
     return axios.get<MesocycleDto[]>(`${API_URL}/get_mesocycles/${macrocycleId}`, { headers: authHeader() });
   }
+
+  updateMesocycleLabel(mesocycleId: string, newLabel: string) { // Zmiana na PATCH
+    return axios.patch(`${API_URL}/update_mesocycle_label/${mesocycleId}`, { label: newLabel }, { headers: authHeader() });
+  }
 }
 
 export default new MesocycleService();

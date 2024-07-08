@@ -323,6 +323,7 @@ export type MesocycleDto = {
                               dictType: string;
                               dictId: number;
                               dictName: string;
+                              label: string;
 }
 
 export type NewMesocycleDto = {

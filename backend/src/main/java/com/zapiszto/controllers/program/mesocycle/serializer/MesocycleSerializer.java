@@ -35,6 +35,7 @@ public class MesocycleSerializer implements SerializerCommon {
         .dictType(dictType)
         .dictId(mesocycleEntity.getDictMesocyclePhaseId())
         .dictName(dictName)
+        .label(mesocycleEntity.getLabel())
         .build();
   }
 
