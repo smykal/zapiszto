@@ -352,4 +352,5 @@ export type SessionDto = {
                             microcycleId: string;
                             orderId: number;
                             label: string;
+                            dateTime: string;
 }
