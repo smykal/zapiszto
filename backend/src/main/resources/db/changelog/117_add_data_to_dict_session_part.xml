@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="modify not null constrains" author="smykalm">
+        <dropNotNullConstraint tableName="dict_session_part" columnName="dict_session_part_basic_id" columnDataType="uuid"/>
+        <dropNotNullConstraint tableName="dict_session_part" columnName="dict_session_part_per_user_id" columnDataType="uuid"/>
+    </changeSet>
+
+
+    <changeSet id="add data to dict_session_part_basic" author="smykalm">
+        <insert tableName="dict_session_part_basic">
+            <column name="id" value="550e8400-e29b-41d4-a716-446655440000" />
+            <column name="name" value="warm up" />
+        </insert>
+        <insert tableName="dict_session_part_basic">
+            <column name="id" value="550e8400-e29b-41d4-a716-446655440001" />
+            <column name="name" value="general" />
+        </insert>
+        <insert tableName="dict_session_part_basic">
+            <column name="id" value="550e8400-e29b-41d4-a716-446655440002" />
+            <column name="name" value="cool down" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="add data to dict_session_part" author="smykalm">
+        <insert tableName="dict_session_part">
+            <column name="id" value="550e8400-e29b-41d4-a716-446655440003" />
+            <column name="dict_session_part_basic_id" value="550e8400-e29b-41d4-a716-446655440000" />
+            <column name="dict_session_part_per_user_id" value="null" />
+        </insert>
+        <insert tableName="dict_session_part">
+            <column name="id" value="550e8400-e29b-41d4-a716-446655440004" />
+            <column name="dict_session_part_basic_id" value="550e8400-e29b-41d4-a716-446655440001" />
+            <column name="dict_session_part_per_user_id" value="null" />
+        </insert>
+        <insert tableName="dict_session_part">
+            <column name="id" value="550e8400-e29b-41d4-a716-446655440005" />
+            <column name="dict_session_part_basic_id" value="550e8400-e29b-41d4-a716-446655440002" />
+            <column name="dict_session_part_per_user_id" value="null" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
