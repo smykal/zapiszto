@@ -1,6 +1,6 @@
 package com.zapiszto.controllers.exercises.dto;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,4 +26,5 @@ public class NewExerciseSessionDto {
   String notes;
   Integer restTime;
   String tempo;
+  UUID dictSessionPartId;
 }

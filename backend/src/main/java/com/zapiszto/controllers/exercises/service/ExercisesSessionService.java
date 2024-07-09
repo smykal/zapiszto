@@ -2,6 +2,7 @@ package com.zapiszto.controllers.exercises.service;
 
 import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExercisesRepository;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.repository.DictQuantityTypeRepository;
+import com.zapiszto.controllers.dictionaries.dictSessionPart.repository.DictSessionPartRepository;
 import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseSessionDto;
@@ -32,6 +33,9 @@ public class ExercisesSessionService {
   DictUnitsRepository dictUnitsRepository;
 
   @Autowired
+  DictSessionPartRepository dictSessionPartRepository;
+
+  @Autowired
   ExerciseSerializer exerciseSerializer;
 
   public void addExercise(NewExerciseSessionDto newExerciseSessionDto){
@@ -54,9 +58,10 @@ public class ExercisesSessionService {
     var dictExercises = dictExercisesRepository.getAllForUser(userId);
     var dictQuantityType = dictQuantityTypeRepository.getAllForUser(userId);
     var dictUnits = dictUnitsRepository.getAllForUser(userId);
+    var dictSessionParts = dictSessionPartRepository.getAllForUser(userId);
     List<ExerciseEntity> allBySessionId = exerciseSessionRepository.getAllBySessionId(sessionId);
     return allBySessionId.stream()
-        .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits))
+        .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts))
         .collect(Collectors.toList());
   }
 }

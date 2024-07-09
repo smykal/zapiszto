@@ -3,6 +3,7 @@ package com.zapiszto.controllers.exercises.serializer;
 import com.zapiszto.controllers.common.SerializerCommon;
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionPartEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.ExerciseTrainingDto;
@@ -75,7 +76,8 @@ public class ExerciseSerializer implements SerializerCommon {
       ExerciseEntity exercise,
       List<DictExercisesEntity> dictExercises,
       List<DictQuantityTypeEntity> dictQuantityType,
-      List<DictUnitsEntity> dictUnits
+      List<DictUnitsEntity> dictUnits,
+      List<DictSessionPartEntity> dictSessionParts
   ) {
     return ExerciseSessionDto.builder()
         .exerciseId(exercise.getId()
@@ -90,8 +92,28 @@ public class ExerciseSerializer implements SerializerCommon {
         .orderNumber(exercise.getOrderNumber())
         .restTime(exercise.getRestTime())
         .tempo(exercise.getTempo())
+        .dictSessionPartName(getSessionName(dictSessionParts, exercise.getDictSessionPartId()))
         .build();
   }
+  private static String getSessionName(List<DictSessionPartEntity> dictSessionPart, UUID dictSessionPartId) {
+    Optional<DictSessionPartEntity> sessionPartOptional = dictSessionPart.stream()
+        .filter(sessionPart -> sessionPart.getId().equals(dictSessionPartId))
+        .findFirst();
+
+    if (sessionPartOptional.isPresent()) {
+      DictSessionPartEntity exercise = sessionPartOptional.get();
+      if (exercise.getDictSessionPartBasicEntity() != null) {
+        return exercise.getDictSessionPartBasicEntity()
+            .getName();
+      } else if (exercise.getDictSessionPartPerUserEntity() != null) {
+        return exercise.getDictSessionPartPerUserEntity()
+            .getName();
+      }
+    }
+
+    return null;
+  }
+
 
   private static String getExerciseName(List<DictExercisesEntity> dictExercises, int dictExerciseId) {
     Optional<DictExercisesEntity> exerciseOptional = dictExercises.stream()

@@ -27,4 +27,5 @@ public class ExerciseSessionDto {
   int orderNumber;
   Integer restTime;
   String tempo;
+  String dictSessionPartName;
 }

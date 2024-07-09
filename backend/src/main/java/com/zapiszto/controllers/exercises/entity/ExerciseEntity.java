@@ -2,6 +2,7 @@ package com.zapiszto.controllers.exercises.entity;
 
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionPartEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
 import com.zapiszto.controllers.trainings.entity.TrainingEntity;
@@ -89,4 +90,11 @@ public class ExerciseEntity {
 
   @Column(name = "tempo")
   String tempo;
+
+  @ManyToOne
+  @JoinColumn(name = "dict_session_part_id", referencedColumnName = "id", insertable = false, updatable = false)
+  DictSessionPartEntity dictSessionPartEntity;
+
+  @Column(name = "dict_session_part_id")
+  UUID dictSessionPartId;
 }
