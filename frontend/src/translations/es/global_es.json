@@ -119,7 +119,8 @@
         "comments": "Comentarios",
         "orderId": "Orden",
         "rest_time": "tiempo de descanso",
-        "tempo": "ritmo"
+        "tempo": "ritmo",
+        "session_part": "Propósito"
     },
     "invitations": {
         "title": "invitaciones",

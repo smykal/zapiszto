@@ -119,7 +119,8 @@
         "comments": "Комментарии",
         "orderId": "Порядок",
         "rest_time": "время отдыха",
-        "tempo": "темп"
+        "tempo": "темп",
+        "session_part": "Цель"
     },
     "invitations": {
         "title": "приглашения",

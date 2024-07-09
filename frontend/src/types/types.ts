@@ -168,6 +168,7 @@ export type ExerciseSession = {
                                 orderNumber: number;
                                 restTime: number | null; 
                                 tempo: string | null;
+                                dictSessionPartName: string;
 };
 
 export type NewInvitation = {

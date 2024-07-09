@@ -119,7 +119,8 @@
         "comments": "Komentarze",
         "orderId": "Kolejność",
         "rest_time": "czas odpoczynku",
-        "tempo": "tempo"
+        "tempo": "tempo",
+        "session_part": "Cel"
     },
     "invitations": {
         "title": "zaproszenia",

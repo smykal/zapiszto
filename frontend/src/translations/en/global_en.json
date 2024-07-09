@@ -119,7 +119,8 @@
         "comments": "Comments",
         "orderId": "Order",
         "rest_time": "rest time",
-        "tempo": "tempo"
+        "tempo": "tempo",
+        "session_part": "purpose"
     },
     "invitations": {
         "title": "invitations",
@@ -189,7 +190,7 @@
         "creation_error": "Error creating mesocycle"
     },
     "microcycle": {
-        "week" : "week"
+        "week": "week"
     },
     "session": {
         "no_date": "no date set yet",

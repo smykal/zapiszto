@@ -47,6 +47,7 @@ class GetExerciseSession extends Component<Props, State> {
           <thead>
             <tr>
               <th>{t("table.order_number")}</th>
+              <th>{t("table.session_part")}</th>
               <th>{t("table.exercise")}</th>
               <th>{t("table.quantity")}</th>
               <th>{t("table.type")}</th>
@@ -62,6 +63,7 @@ class GetExerciseSession extends Component<Props, State> {
             {exercises.map((row) => (
               <tr key={row.exerciseId} style={{ borderBottom: '1px solid #ddd' }}>
                 <td>{row.orderNumber}</td>
+                <td>{row.dictSessionPartName}</td>
                 <td>{row.dictExerciseName}</td>
                 <td>{row.quantity}</td>
                 <td>{row.dictQuantityTypeName}</td>

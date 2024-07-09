@@ -119,7 +119,8 @@
         "comments": "Коментарі",
         "orderId": "Порядок",
         "rest_time": "час відпочинку",
-        "tempo": "темп"
+        "tempo": "темп",
+        "session_part": "Мета"
     },
     "invitations": {
         "title": "запрошення",
