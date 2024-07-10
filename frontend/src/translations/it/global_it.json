@@ -54,7 +54,9 @@
         "biceps": "bicipiti",
         "calf": "polpaccio",
         "fat": "grasso",
-        "height": "altezza"
+        "height": "altezza",
+        "gender_not_set": "Il genere non è ancora impostato",
+        "age_not_set": "L'età non è ancora impostata"
     },
     "workbooks": {
         "add_workbook": "aggiungi workbook",

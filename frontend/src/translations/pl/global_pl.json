@@ -120,7 +120,9 @@
         "orderId": "Kolejność",
         "rest_time": "czas odpoczynku",
         "tempo": "tempo",
-        "session_part": "Cel"
+        "session_part": "Cel",
+        "gender_not_set": "Płeć nie została jeszcze ustawiona",
+        "age_not_set": "Wiek nie został jeszcze ustawiony"
     },
     "invitations": {
         "title": "zaproszenia",

@@ -54,7 +54,9 @@
         "biceps": "bíceps",
         "calf": "pantorrilla",
         "fat": "grasa",
-        "height": "altura"
+        "height": "altura",
+        "gender_not_set": "El género no está establecido aún",
+        "age_not_set": "La edad no está establecida aún"
     },
     "workbooks": {
         "add_workbook": "añadir cuaderno de trabajo",

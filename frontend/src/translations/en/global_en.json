@@ -54,7 +54,9 @@
         "biceps": "biceps",
         "calf": "calf",
         "fat": "fat",
-        "height": "height"
+        "height": "height",
+        "gender_not_set": "Gender is not set yet",
+        "age_not_set": "Age is not set yet"
     },
     "workbooks": {
         "add_workbook": "add workbook",
