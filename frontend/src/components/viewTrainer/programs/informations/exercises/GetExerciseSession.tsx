@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Options from './Options';
-import { ExerciseSession } from '../../../../../types/types';
+import EditableSelectCell from '../../../../../common/EditableSelectCell';
+import { ExerciseSession, DictSessionPartDto } from '../../../../../types/types';
 import { withTranslation } from "react-i18next";
 import ExercisesService from '../../../../../services/exercises/session/ExercisesSessionService';
+import DictSessionPartService from '../../../../../services/dict/DictSessionPartService';
 
 type Props = {
   session_id: string;
@@ -11,6 +13,7 @@ type Props = {
 
 type State = {
   exercises: ExerciseSession[];
+  sessionPartOptions: DictSessionPartDto[];
 }
 
 class GetExerciseSession extends Component<Props, State> {
@@ -18,11 +21,13 @@ class GetExerciseSession extends Component<Props, State> {
     super(props);
     this.state = {
       exercises: [],
+      sessionPartOptions: []
     };
   }
 
   componentDidMount() {
     this.loadExercises();
+    this.loadSessionPartOptions();
   }
 
   loadExercises() {
@@ -37,9 +42,39 @@ class GetExerciseSession extends Component<Props, State> {
       });
   }
 
+  loadSessionPartOptions() {
+    DictSessionPartService.getSessionPartOptions()
+      .then(response => {
+        this.setState({ sessionPartOptions: response.data });
+      })
+      .catch(error => {
+        console.error('Error loading session part options:', error);
+      });
+  }
+
+  handleSaveSessionPart(exerciseId: string, newSessionPartName: string) {
+    const newSessionPart = this.state.sessionPartOptions.find(option => option.name === newSessionPartName);
+
+    if (newSessionPart) {
+      ExercisesService.updateDictSessionPart(exerciseId, newSessionPart.id)
+        .then(() => {
+          this.setState(prevState => ({
+            exercises: prevState.exercises.map(ex => 
+              ex.exerciseId === exerciseId ? { ...ex, dictSessionPartName: newSessionPartName } : ex
+            )
+          }));
+        })
+        .catch(error => {
+          console.error('Error updating session part:', error);
+        });
+    }
+  }
+
   render() {
-    const { exercises } = this.state;
+    const { exercises, sessionPartOptions } = this.state;
     const { t } = this.props;
+
+    const sessionPartNames = sessionPartOptions.map(option => option.name);
 
     return (
       <div>
@@ -63,7 +98,13 @@ class GetExerciseSession extends Component<Props, State> {
             {exercises.map((row) => (
               <tr key={row.exerciseId} style={{ borderBottom: '1px solid #ddd' }}>
                 <td>{row.orderNumber}</td>
-                <td>{row.dictSessionPartName}</td>
+                <td>
+                  <EditableSelectCell
+                    value={row.dictSessionPartName}
+                    options={sessionPartNames}
+                    onSave={(newValue) => this.handleSaveSessionPart(row.exerciseId, newValue)}
+                  />
+                </td>
                 <td>{row.dictExerciseName}</td>
                 <td>{row.quantity}</td>
                 <td>{row.dictQuantityTypeName}</td>

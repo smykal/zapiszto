@@ -6,10 +6,13 @@ import com.zapiszto.controllers.dictionaries.dictSessionPart.repository.DictSess
 import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseSessionDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.repository.ExerciseSessionRepository;
 import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -63,5 +66,17 @@ public class ExercisesSessionService {
     return allBySessionId.stream()
         .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts))
         .collect(Collectors.toList());
+  }
+
+  public void updateDictSessionPart(UUID id, UpdateDictSessionPartDto updateDictSessionPartDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      exerciseEntity.setDictSessionPartId(updateDictSessionPartDto.getId());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
   }
 }

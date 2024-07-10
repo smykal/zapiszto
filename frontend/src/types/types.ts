@@ -355,3 +355,10 @@ export type SessionDto = {
                             label: string;
                             dateTime: string;
 }
+
+export type DictSessionPartDto = {
+                                  id: string;
+                                  dict: string;
+                                  dict_id: string;
+                                  name: string
+}
