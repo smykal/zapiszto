@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Step 1: Add primary key to dict_exercises.id -->
+    <changeSet id="1-add-primary-key-dict-exercises" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_exercises" tableName="dict_exercises"/>
+    </changeSet>
+
+    <!-- Step 2: Add primary key to dict_exercises_basic.id -->
+    <changeSet id="2-add-primary-key-dict-exercises-basic" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_exercises_basic" tableName="dict_exercises_basic"/>
+    </changeSet>
+
+    <!-- Step 3: Add primary key to dict_exercises_per_user.id -->
+    <changeSet id="3-add-primary-key-dict-exercises-per-user" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_exercises_per_user" tableName="dict_exercises_per_user"/>
+    </changeSet>
+
+</databaseChangeLog>

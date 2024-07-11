@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.dictionaries.dictExercises.dto;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,9 +16,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DictExercisesDto {
-  int id;
+  UUID id;
   String dict;
-  long dict_id;
+  UUID dict_id;
   String name;
   String category_type;
   long category_id;

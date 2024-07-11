@@ -57,7 +57,7 @@ public class ExerciseEntity {
   DictExercisesEntity dictExercisesEntity;
 
   @Column(name = "dict_exercise_id", nullable = false)
-  int dictExerciseId;
+  UUID dictExerciseId;
 
   @Column(name = "quantity", nullable = false)
   int quantity;

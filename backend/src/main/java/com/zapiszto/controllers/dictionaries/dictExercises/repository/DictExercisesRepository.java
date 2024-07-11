@@ -2,6 +2,7 @@ package com.zapiszto.controllers.dictionaries.dictExercises.repository;
 
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,7 +29,7 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
       DELETE FROM public.dict_exercises
         WHERE dict_exercises_per_user_id = :itemToDelete
       """)
-  void deleteDictExercisePerUser(@Param("itemToDelete") int itemToDelete);
+  void deleteDictExercisePerUser(@Param("itemToDelete") UUID itemToDelete);
 
 
   @Modifying
@@ -37,7 +38,7 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
         WHERE id = :itemToDelete
         AND user_id = :userId
       """)
-  void deleteDictExercisePerUser(@Param("itemToDelete") int itemToDelete,
+  void deleteDictExercisePerUser(@Param("itemToDelete") UUID itemToDelete,
                                  @Param("userId") Long userId);
 
   @Modifying
@@ -45,7 +46,7 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
       DELETE FROM public.dict_exercises
         WHERE dict_exercises_basic_id = :itemToDelete
       """)
-  void deleteDictExerciseBasic(@Param("itemToDelete") int itemToDelete);
+  void deleteDictExerciseBasic(@Param("itemToDelete") UUID itemToDelete);
 
 
   @Modifying
@@ -53,5 +54,5 @@ public interface DictExercisesRepository extends JpaRepository<DictExercisesEnti
       DELETE FROM public.dict_exercises_basic
         WHERE id = :itemToDelete
       """)
-  void deleteDictExercise(@Param("itemToDelete") int itemToDelete);
+  void deleteDictExercise(@Param("itemToDelete") UUID itemToDelete);
 }

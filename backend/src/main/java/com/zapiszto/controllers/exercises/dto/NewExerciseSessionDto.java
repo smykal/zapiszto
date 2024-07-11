@@ -18,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 public class NewExerciseSessionDto {
   String id;
   int sessionId;
-  int dictExerciseId;
+  UUID dictExerciseId;
   int quantity;
   int dictQuantityTypeId;
   int volume;

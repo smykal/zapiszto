@@ -3,6 +3,7 @@ package com.zapiszto.controllers.dictionaries.dictExercises.dictExercisesBasic.e
 import com.zapiszto.controllers.dictionaries.dictCategory.entity.DictCategoryEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,10 +31,9 @@ import lombok.experimental.FieldDefaults;
 public class DictExercisesBasicEntity {
 
   @Id
-  @SequenceGenerator(name = "dict_exercises_per_user_id_seq", sequenceName ="dict_exercises_per_user_id_seq", allocationSize = 1)
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dict_exercises_per_user_id_seq")
+  @GeneratedValue
   @Column(name = "id")
-  Long id;
+  UUID id;
 
   @Column(name = "name")
   String name;

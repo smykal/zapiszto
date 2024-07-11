@@ -115,7 +115,7 @@ public class ExerciseSerializer implements SerializerCommon {
   }
 
 
-  private static String getExerciseName(List<DictExercisesEntity> dictExercises, int dictExerciseId) {
+  private static String getExerciseName(List<DictExercisesEntity> dictExercises, UUID dictExerciseId) {
     Optional<DictExercisesEntity> exerciseOptional = dictExercises.stream()
         .filter(exercise -> exercise.getId() == dictExerciseId)
         .findFirst();

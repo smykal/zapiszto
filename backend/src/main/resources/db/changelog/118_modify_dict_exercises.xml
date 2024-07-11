@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Step 1: Delete all entries from the tables -->
+    <changeSet id="1-delete-all-entries" author="smykalm">
+        <sql>
+            DELETE FROM exercises;
+        </sql>
+        <sql>
+            DELETE FROM dict_exercises;
+        </sql>
+        <sql>
+            DELETE FROM dict_exercises_basic;
+        </sql>
+        <sql>
+            DELETE FROM dict_exercises_per_user;
+        </sql>
+    </changeSet>
+
+    <!-- Step 2: Drop foreign keys -->
+    <changeSet id="2-drop-foreign-keys" author="smykalm">
+        <dropForeignKeyConstraint baseTableName="exercises" constraintName="fk_exercises_dict_exercises"/>
+        <dropForeignKeyConstraint baseTableName="dict_exercises" constraintName="fk_dict_exercises_per_user"/>
+        <dropForeignKeyConstraint baseTableName="dict_exercises" constraintName="fk_dict_exercises_basic"/>
+    </changeSet>
+
+    <!-- Step 3: Add new UUID columns -->
+    <changeSet id="3-add-uuid-columns" author="smykalm">
+        <addColumn tableName="dict_exercises">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="dict_exercises_basic">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="dict_exercises_per_user">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- Step 4: Drop old integer columns -->
+    <changeSet id="4-drop-old-id-columns" author="smykalm">
+        <dropColumn columnName="id" tableName="dict_exercises"/>
+        <dropColumn columnName="id" tableName="dict_exercises_basic"/>
+        <dropColumn columnName="id" tableName="dict_exercises_per_user"/>
+    </changeSet>
+
+    <!-- Step 5: Rename new UUID columns to original names -->
+    <changeSet id="5-rename-uuid-columns" author="smykalm">
+        <renameColumn tableName="dict_exercises" oldColumnName="new_id" newColumnName="id"/>
+        <renameColumn tableName="dict_exercises_basic" oldColumnName="new_id" newColumnName="id"/>
+        <renameColumn tableName="dict_exercises_per_user" oldColumnName="new_id" newColumnName="id"/>
+    </changeSet>
+
+    <!-- Step 6: Drop and add foreign key columns with UUID type in dict_exercises -->
+    <changeSet id="6-drop-add-foreign-keys" author="smykalm">
+        <dropColumn columnName="dict_exercises_per_user_id" tableName="dict_exercises"/>
+        <addColumn tableName="dict_exercises">
+            <column name="dict_exercises_per_user_id" type="UUID"/>
+        </addColumn>
+        <dropColumn columnName="dict_exercises_basic_id" tableName="dict_exercises"/>
+        <addColumn tableName="dict_exercises">
+            <column name="dict_exercises_basic_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- Step 7: Drop and add dict_exercise_id column to UUID type in exercises table -->
+    <changeSet id="7-drop-add-dict-exercise-id" author="smykalm">
+        <dropColumn columnName="dict_exercise_id" tableName="exercises"/>
+        <addColumn tableName="exercises">
+            <column name="dict_exercise_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

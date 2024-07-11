@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.exercises.dto;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 public class NewExerciseTrainingDto {
   String id;
   int trainingId;
-  int dictExerciseId;
+  UUID dictExerciseId;
   int quantity;
   int dictQuantityTypeId;
   int volume;

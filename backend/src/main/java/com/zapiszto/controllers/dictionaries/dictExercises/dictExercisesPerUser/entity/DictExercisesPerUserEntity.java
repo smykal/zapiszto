@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,10 +35,9 @@ import lombok.experimental.FieldDefaults;
 public class DictExercisesPerUserEntity {
 
   @Id
-  @SequenceGenerator(name = "dict_exercises_per_user_id_seq", sequenceName ="dict_exercises_per_user_id_seq", allocationSize = 1)
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dict_exercises_per_user_id_seq")
+  @GeneratedValue
   @Column(name = "id")
-  Long id;
+  UUID id;
 
   @Column(name = "user_id")
   Long user_id;
