@@ -19,20 +19,20 @@ class AddDictExercisePerUser extends Component<Props> {
         const isNameExisting = dictExercises.some(exercise => exercise.name === name);
         if (!isNameExisting) {
             const newDictExerciseData: NewDictExercises = { 
+                id: crypto.randomUUID(),
                 name: name,
                 categoryId: categoryId || 1
             };
             Service.postDictExercisePerUser(newDictExerciseData)
             .then(() => {
                 console.log("Wysłano nowe ćwiczenie:", name);
-                // Simulate the server response as the service method does not return data
                 const newExercise: DictExercises = {
-                    id: Math.max(...dictExercises.map(exercise => exercise.id)) + 1, // Simulate the new ID
+                    id: crypto.randomUUID(), // Generowanie UUID
                     name: name,
                     category_name: dictCategories.find((category: DictCategories) => category.id === categoryId)?.name || '',
                     category_id: categoryId,
                     dict: "PER_USER",
-                    dict_id: Math.max(...dictExercises.map(exercise => exercise.dict_id)) + 1, // Simulate the new dict_id
+                    dict_id: crypto.randomUUID(), // Generowanie UUID
                     category_type: 'PER_USER'
                 };
                 onAddExercise(newExercise);
@@ -49,6 +49,7 @@ class AddDictExercisePerUser extends Component<Props> {
         const { dictCategories, t } = this.props;
 
         const initialValues: NewDictExercises = {
+            id: '',
             name: '',
             categoryId: 1,
         }

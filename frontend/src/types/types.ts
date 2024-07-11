@@ -119,9 +119,9 @@ export type DictCategories = {
 }
 
 export type DictExercises = {
-                              id: number;
+                              id: string;
                               dict: string;
-                              dict_id: number;
+                              dict_id: string;
                               name: string
                               category_type: string
                               category_id: number
@@ -129,6 +129,7 @@ export type DictExercises = {
 }
 
 export type NewDictExercises = {
+                                id: string
                                 name: string
                                 categoryId: number
 }

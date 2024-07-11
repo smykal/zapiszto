@@ -18,7 +18,7 @@ class ExercisesService {
     });
   }
 
-  deleteDictExercise(itemToDelete: number) {
+  deleteDictExercise(itemToDelete: string) {
     return axios.delete(API_URL + '/delete_exercise_per_user/' + itemToDelete, { headers: authHeader() })
   }
 
