@@ -2,11 +2,9 @@ package com.zapiszto.controllers.exercises.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
-import com.zapiszto.controllers.exercises.dto.ExerciseTrainingDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
 import com.zapiszto.controllers.exercises.service.ExercisesSessionService;
-import com.zapiszto.controllers.program.programs.dto.ProgramNameDto;
 import java.util.List;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +46,8 @@ public class ExercisesSessionController implements ControllerCommon {
   @PatchMapping("/update_exercise_dict_session_part/{id}")
   public ResponseEntity<String> updateExerciseDictSessionPart(
       @PathVariable UUID id,
-      @RequestBody UpdateDictSessionPartDto updateDictSessionPartDto) {
+      @RequestBody UpdateDictSessionPartDto updateDictSessionPartDto
+  ) {
     exercisesSessionService.updateDictSessionPart(id, updateDictSessionPartDto);
     return new ResponseEntity<>(HttpStatus.OK);
   }
@@ -56,11 +55,9 @@ public class ExercisesSessionController implements ControllerCommon {
   @PatchMapping("/update_exercise_dict_quantity_type/{id}")
   public ResponseEntity<String> updateExerciseDictQuantityType(
       @PathVariable UUID id,
-      @RequestBody UpdateDictQuantityTypeDto updateDictQuantityTypeDto) {
+      @RequestBody UpdateDictQuantityTypeDto updateDictQuantityTypeDto
+  ) {
     exercisesSessionService.updateDictQuantityType(id, updateDictQuantityTypeDto);
     return new ResponseEntity<>(HttpStatus.OK);
   }
-
-
-
 }

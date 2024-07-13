@@ -86,7 +86,10 @@ public class ExercisesSessionService {
 
     if (exerciseEntityOptional.isPresent()) {
       ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
-      //TODO
+      exerciseEntity.setDictQuantityTypeId(updateDictQuantityTypeDto.getId());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
     }
   }
 }
