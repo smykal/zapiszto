@@ -188,6 +188,7 @@ class GetExerciseSession extends Component<Props, State> {
             <tr>
               <th>{t("table.order_number")}</th>
               <th>{t("table.session_part")}</th>
+              <th>{t("table.category")}</th>
               <th>{t("table.exercise")}</th>
               <th>{t("table.volume")}</th>
               <th>{t("table.unit")}</th>
@@ -210,6 +211,7 @@ class GetExerciseSession extends Component<Props, State> {
                     onSave={(newValue) => this.handleSaveSessionPart(row.exerciseId, newValue)}
                   />
                 </td>
+                <td>{row.dictCategoryName}</td>
                 <td>{row.dictExerciseName}</td>
                 <td>
                   <EditableNumberCell
