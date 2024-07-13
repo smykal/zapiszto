@@ -3,14 +3,14 @@ import { useTranslation } from "react-i18next";
 import Service from '../../../services/exercises';
 
 type Props = {
-    item: number;
-    onDeleteQuantityType: (id: number) => void;
+    item: string;
+    onDeleteQuantityType: (id: string) => void;
 };
 
 const Options: React.FC<Props> = ({ item, onDeleteQuantityType }) => {
     const { t } = useTranslation("global");
 
-    const deleteQuantityType = (itemId: number) => {
+    const deleteQuantityType = (itemId: string) => {
         Service.deleteDictQuantityType(itemId)
             .then(() => {
                 console.log('Quantity type deleted:', itemId);

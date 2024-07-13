@@ -10,6 +10,7 @@ import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.NewDictQuantit
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.serializer.DictQuantityTypeSerializer;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,9 @@ public class DictQuantityTypeService {
 
 
   @Transactional
-  public void addDictUnit(NewDictQuantityTypeDto newDictUnitDto, Long userId) {
+  public void addDictQuantityType(NewDictQuantityTypeDto newDictUnitDto, Long userId) {
     var item = DictQuantityTypePerUserEntity.builder()
+        .id(newDictUnitDto.getId())
         .name(newDictUnitDto.getName())
         .shortcut(newDictUnitDto.getShortcut())
         .user_id(userId)
@@ -48,6 +50,7 @@ public class DictQuantityTypeService {
         userId);
 
     DictQuantityTypeEntity dictQuantityTypeEntity = DictQuantityTypeEntity.builder()
+        .id(UUID.randomUUID())
         .dictQuantityTypePerUserEntity(dictQuantityTypePerUserEntity)
         .build();
 
@@ -59,7 +62,7 @@ public class DictQuantityTypeService {
   }
 
   @Transactional
-  public void addDictUnit(NewDictQuantityTypeDto newDictUnitDto) {
+  public void addDictQuantityType(NewDictQuantityTypeDto newDictUnitDto) {
     var item = DictQuantityTypeBasicEntity.builder()
         .name(newDictUnitDto.getName())
         .shortcut(newDictUnitDto.getShortcut())
@@ -91,7 +94,7 @@ public class DictQuantityTypeService {
   }
 
   @Transactional
-  public String deleteDictQuantityTypePerUser(Long userId, int itemToDelete) {
+  public String deleteDictQuantityTypePerUser(Long userId, UUID itemToDelete) {
     try {
       dictQuantityTypeRepository.deleteDictQuantityTypePerUser(itemToDelete);
       dictQuantityTypeRepository.deleteDictQuantityTypePerUser(itemToDelete, userId);
@@ -104,7 +107,7 @@ public class DictQuantityTypeService {
   }
 
   @Transactional
-  public String deleteDictQuantityTypeBasic(Long userId, int itemToDelete) {
+  public String deleteDictQuantityTypeBasic(Long userId, UUID itemToDelete) {
     try {
       dictQuantityTypeRepository.deleteDictQuantityType(itemToDelete);
       dictQuantityTypeRepository.deleteDictQuantityTypeBasic(itemToDelete);

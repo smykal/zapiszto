@@ -54,7 +54,7 @@ class ExercisesService {
     });
   }
 
-  deleteDictQuantityType(itemToDelete: number) {
+  deleteDictQuantityType(itemToDelete: string) {
     return axios.delete(API_URL + '/delete_quantity_type_per_user/' + itemToDelete, { headers: authHeader() })
   }
 

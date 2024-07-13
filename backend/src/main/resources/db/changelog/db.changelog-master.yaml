@@ -239,3 +239,7 @@ databaseChangeLog:
       file: db/changelog/119_modify_dict_exercises.xml
   - include:
       file: db/changelog/120_modify_dict_exercises.xml
+  - include:
+      file: db/changelog/121_modify_dict_quantity_type.xml
+  - include:
+      file: db/changelog/122_add_data_to_dict_quantity_type.xml

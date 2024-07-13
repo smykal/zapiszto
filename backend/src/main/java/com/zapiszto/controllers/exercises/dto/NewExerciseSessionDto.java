@@ -20,7 +20,7 @@ public class NewExerciseSessionDto {
   int sessionId;
   UUID dictExerciseId;
   int quantity;
-  int dictQuantityTypeId;
+  UUID dictQuantityTypeId;
   int volume;
   int dictUnitId;
   String notes;

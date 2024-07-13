@@ -79,14 +79,15 @@ export type Training = {
 }
 
 export type DictQuantityType = {
-                                id: number;
+                                id: string;
                                 dict: string;
-                                dict_id: number;
+                                dict_id: string;
                                 name: string;
                                 shortcut: string
 }
 
 export type NewDictQuantityType = {
+                                    id: string
                                     name: string,
                                     shortcut: string
 

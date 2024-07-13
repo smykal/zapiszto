@@ -67,7 +67,7 @@ public class ExerciseEntity {
   DictQuantityTypeEntity dictQuantityTypeEntity;
 
   @Column(name = "dict_quantity_type_id", nullable = false)
-  int dictQuantityTypeId;
+  UUID dictQuantityTypeId;
 
   @Column(name = "volume", nullable = false)
   int volume;

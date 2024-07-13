@@ -134,9 +134,9 @@ public class ExerciseSerializer implements SerializerCommon {
     return null;
   }
 
-  private static String getQuantityTypeName(List<DictQuantityTypeEntity> dictQuantityType, int dictQuantityTypeId) {
+  private static String getQuantityTypeName(List<DictQuantityTypeEntity> dictQuantityType, UUID dictQuantityTypeId) {
     Optional<DictQuantityTypeEntity> quantityTypeEntity = dictQuantityType.stream()
-        .filter(quantityType -> quantityType.getId() == dictQuantityTypeId)
+        .filter(quantityType -> quantityType.getId().equals(dictQuantityTypeId))
         .findFirst();
 
     if (quantityTypeEntity.isPresent()) {
