@@ -7,6 +7,7 @@ import com.zapiszto.controllers.program.sessions.dto.SessionDto;
 import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
 import com.zapiszto.controllers.program.sessions.repository.SessionRepository;
 import com.zapiszto.controllers.program.sessions.serializer.SessionSerializer;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -102,5 +103,12 @@ public class SessionService {
     }
     List<SessionEntity> sessionEntities = sessionRepository.saveAll(sessions);
     return sessionEntities;
+  }
+
+  public void updateSessionDateTime(UUID id, ZonedDateTime dateTime) {
+    SessionEntity sessionEntity = sessionRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Session not found"));
+    sessionEntity.setDateTime(dateTime);
+    sessionRepository.save(sessionEntity);
   }
 }

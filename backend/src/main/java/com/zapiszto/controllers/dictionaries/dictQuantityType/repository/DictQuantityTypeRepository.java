@@ -2,6 +2,7 @@ package com.zapiszto.controllers.dictionaries.dictQuantityType.repository;
 
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DictQuantityTypeRepository extends JpaRepository<DictQuantityTypeEntity, Integer> {
+public interface DictQuantityTypeRepository extends JpaRepository<DictQuantityTypeEntity, UUID> {
   @Query(nativeQuery = true, value = """
       select *
       		from (   select 	du.id
@@ -28,7 +29,7 @@ public interface DictQuantityTypeRepository extends JpaRepository<DictQuantityTy
       DELETE FROM public.dict_quantity_type
         WHERE dict_quantity_type_per_user_id = :itemToDelete
       """)
-  void deleteDictQuantityTypePerUser(@Param("itemToDelete") int itemToDelete);
+  void deleteDictQuantityTypePerUser(@Param("itemToDelete") UUID itemToDelete);
 
   @Modifying
   @Query(nativeQuery = true, value = """
@@ -36,7 +37,7 @@ public interface DictQuantityTypeRepository extends JpaRepository<DictQuantityTy
         WHERE id = :itemToDelete
         AND user_id = :userId
       """)
-  void deleteDictQuantityTypePerUser(@Param("itemToDelete") int itemToDelete,
+  void deleteDictQuantityTypePerUser(@Param("itemToDelete") UUID itemToDelete,
                                      @Param("userId") Long userId);
 
   @Modifying
@@ -44,13 +45,13 @@ public interface DictQuantityTypeRepository extends JpaRepository<DictQuantityTy
       DELETE FROM public.dict_quantity_type_basic
         WHERE id = :itemToDelete
       """)
-  void deleteDictQuantityType(@Param("itemToDelete") int itemToDelete);
+  void deleteDictQuantityType(@Param("itemToDelete") UUID itemToDelete);
 
   @Modifying
   @Query(nativeQuery = true, value = """
       DELETE FROM public.dict_quantity_type
         WHERE dict_exercises_basic_id = :itemToDelete
       """)
-  void deleteDictQuantityTypeBasic(@Param("itemToDelete") int itemToDelete);
+  void deleteDictQuantityTypeBasic(@Param("itemToDelete") UUID itemToDelete);
 
 }

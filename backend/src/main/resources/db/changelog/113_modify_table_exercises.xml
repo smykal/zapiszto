@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add-tempo-column-to-exercises" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="exercises"/>
+        </preConditions>
+        <addColumn tableName="exercises">
+            <column name="tempo" type="varchar(10)" remarks="pace of exercise" />
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

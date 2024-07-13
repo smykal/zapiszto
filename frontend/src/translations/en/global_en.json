@@ -54,7 +54,9 @@
         "biceps": "biceps",
         "calf": "calf",
         "fat": "fat",
-        "height": "height"
+        "height": "height",
+        "gender_not_set": "Gender is not set yet",
+        "age_not_set": "Age is not set yet"
     },
     "workbooks": {
         "add_workbook": "add workbook",
@@ -91,7 +93,8 @@
         "placeholder_send_invitation": "put email",
         "delete_client": "delete client",
         "add_program": "Add Program",
-        "delete_program": "Delete Program"
+        "delete_program": "Delete Program",
+        "save": "save"
     },
     "validation": {
         "this_field_is_required": "this field is required",
@@ -116,7 +119,10 @@
         "purpose": "purpose",
         "duration": "Duration",
         "comments": "Comments",
-        "orderId": "Order"
+        "orderId": "Order",
+        "rest_time": "rest time",
+        "tempo": "tempo",
+        "session_part": "purpose"
     },
     "invitations": {
         "title": "invitations",
@@ -184,5 +190,13 @@
         "add_button": "Add Mesocycle",
         "created_successfully": "Mesocycle created successfully",
         "creation_error": "Error creating mesocycle"
+    },
+    "microcycle": {
+        "week": "week"
+    },
+    "session": {
+        "no_date": "no date set yet",
+        "session_date": "session date",
+        "session": "session"
     }
 }

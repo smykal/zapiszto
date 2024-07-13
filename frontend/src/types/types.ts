@@ -79,14 +79,15 @@ export type Training = {
 }
 
 export type DictQuantityType = {
-                                id: number;
+                                id: string;
                                 dict: string;
-                                dict_id: number;
+                                dict_id: string;
                                 name: string;
                                 shortcut: string
 }
 
 export type NewDictQuantityType = {
+                                    id: string
                                     name: string,
                                     shortcut: string
 
@@ -119,9 +120,9 @@ export type DictCategories = {
 }
 
 export type DictExercises = {
-                              id: number;
+                              id: string;
                               dict: string;
-                              dict_id: number;
+                              dict_id: string;
                               name: string
                               category_type: string
                               category_id: number
@@ -129,6 +130,7 @@ export type DictExercises = {
 }
 
 export type NewDictExercises = {
+                                id: string
                                 name: string
                                 categoryId: number
 }
@@ -166,6 +168,9 @@ export type ExerciseSession = {
                                 dictUnitName: string;
                                 notes: string;
                                 orderNumber: number;
+                                restTime: number | null; 
+                                tempo: string | null;
+                                dictSessionPartName: string;
 };
 
 export type NewInvitation = {
@@ -321,6 +326,7 @@ export type MesocycleDto = {
                               dictType: string;
                               dictId: number;
                               dictName: string;
+                              label: string;
 }
 
 export type NewMesocycleDto = {
@@ -349,4 +355,12 @@ export type SessionDto = {
                             microcycleId: string;
                             orderId: number;
                             label: string;
+                            dateTime: string;
+}
+
+export type DictSessionPartDto = {
+                                  id: string;
+                                  dict: string;
+                                  dict_id: string;
+                                  name: string
 }

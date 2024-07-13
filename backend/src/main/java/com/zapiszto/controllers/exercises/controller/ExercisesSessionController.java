@@ -2,7 +2,8 @@ package com.zapiszto.controllers.exercises.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
-import com.zapiszto.controllers.exercises.dto.ExerciseTrainingDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
 import com.zapiszto.controllers.exercises.service.ExercisesSessionService;
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,4 +43,21 @@ public class ExercisesSessionController implements ControllerCommon {
     }
   }
 
+  @PatchMapping("/update_exercise_dict_session_part/{id}")
+  public ResponseEntity<String> updateExerciseDictSessionPart(
+      @PathVariable UUID id,
+      @RequestBody UpdateDictSessionPartDto updateDictSessionPartDto
+  ) {
+    exercisesSessionService.updateDictSessionPart(id, updateDictSessionPartDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_dict_quantity_type/{id}")
+  public ResponseEntity<String> updateExerciseDictQuantityType(
+      @PathVariable UUID id,
+      @RequestBody UpdateDictQuantityTypeDto updateDictQuantityTypeDto
+  ) {
+    exercisesSessionService.updateDictQuantityType(id, updateDictQuantityTypeDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
 }

@@ -37,7 +37,7 @@ const ShowDictQuantityType: React.FC = () => {
         setDictQuantityTypes(prevQuantityTypes => [...prevQuantityTypes, newQuantityType]);
     };
 
-    const handleDeleteQuantityType = (id: number) => {
+    const handleDeleteQuantityType = (id: string) => {
         setDictQuantityTypes(prevQuantityTypes => prevQuantityTypes.filter(type => type.id !== id));
     };
 

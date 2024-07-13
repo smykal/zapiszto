@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add table dict_session_part_basic" author="smykalm">
+        <createTable tableName="dict_session_part_basic">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add table dict_session_part_per_user" author="smykalm">
+        <createTable tableName="dict_session_part_per_user">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="dict_session_part_per_user"
+                baseColumnNames="user_id"
+                constraintName="fk_dict_session_part_per_user_user_id"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="add table dict_session_part" author="smykalm">
+        <createTable tableName="dict_session_part">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dict_session_part_basic_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_session_part_per_user_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="dict_session_part"
+                baseColumnNames="dict_session_part_basic_id"
+                constraintName="fk_dict_session_part_basic_id"
+                referencedTableName="dict_session_part_basic"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="dict_session_part"
+                baseColumnNames="dict_session_part_per_user_id"
+                constraintName="fk_dict_session_part_per_user_id"
+                referencedTableName="dict_session_part_per_user"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="add column dict_session_part to exercises" author="smykalm">
+        <addColumn tableName="exercises">
+            <column name="dict_session_part_id" type="uuid">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint
+                baseTableName="exercises"
+                baseColumnNames="dict_session_part_id"
+                constraintName="fk_exercises_dict_session_part_id"
+                referencedTableName="dict_session_part"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

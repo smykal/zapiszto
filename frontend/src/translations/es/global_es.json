@@ -54,7 +54,9 @@
         "biceps": "bíceps",
         "calf": "pantorrilla",
         "fat": "grasa",
-        "height": "altura"
+        "height": "altura",
+        "gender_not_set": "El género no está establecido aún",
+        "age_not_set": "La edad no está establecida aún"
     },
     "workbooks": {
         "add_workbook": "añadir cuaderno de trabajo",
@@ -91,7 +93,8 @@
         "placeholder_send_invitation": "introduce el correo electrónico",
         "delete_client": "eliminar cliente",
         "add_program": "Añadir Programa",
-        "delete_program": "Eliminar Programa"
+        "delete_program": "Eliminar Programa",
+        "save": "guardar"
     },
     "validation": {
         "this_field_is_required": "este campo es obligatorio",
@@ -116,7 +119,10 @@
         "purpose": "propósito",
         "duration": "Duración",
         "comments": "Comentarios",
-        "orderId": "Orden"
+        "orderId": "Orden",
+        "rest_time": "tiempo de descanso",
+        "tempo": "ritmo",
+        "session_part": "Propósito"
     },
     "invitations": {
         "title": "invitaciones",
@@ -184,5 +190,13 @@
         "add_button": "Agregar Mesociclo",
         "created_successfully": "Mesociclo creado con éxito",
         "creation_error": "Error al crear el mesociclo"
+    },
+    "microcycle": {
+        "week": "semana"
+    },
+    "session": {
+        "no_date": "aún no se ha establecido la fecha",
+        "session_date": "fecha de la sesión",
+        "session": "sesión"
     }
 }

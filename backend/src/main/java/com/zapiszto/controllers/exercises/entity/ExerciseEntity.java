@@ -2,6 +2,7 @@ package com.zapiszto.controllers.exercises.entity;
 
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionPartEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
 import com.zapiszto.controllers.trainings.entity.TrainingEntity;
@@ -56,7 +57,7 @@ public class ExerciseEntity {
   DictExercisesEntity dictExercisesEntity;
 
   @Column(name = "dict_exercise_id", nullable = false)
-  int dictExerciseId;
+  UUID dictExerciseId;
 
   @Column(name = "quantity", nullable = false)
   int quantity;
@@ -66,7 +67,7 @@ public class ExerciseEntity {
   DictQuantityTypeEntity dictQuantityTypeEntity;
 
   @Column(name = "dict_quantity_type_id", nullable = false)
-  int dictQuantityTypeId;
+  UUID dictQuantityTypeId;
 
   @Column(name = "volume", nullable = false)
   int volume;
@@ -83,4 +84,17 @@ public class ExerciseEntity {
 
   @Column(name = "order_number")
   int orderNumber;
+
+  @Column(name = "rest_time")
+  Integer restTime;
+
+  @Column(name = "tempo")
+  String tempo;
+
+  @ManyToOne
+  @JoinColumn(name = "dict_session_part_id", referencedColumnName = "id", insertable = false, updatable = false)
+  DictSessionPartEntity dictSessionPartEntity;
+
+  @Column(name = "dict_session_part_id")
+  UUID dictSessionPartId;
 }

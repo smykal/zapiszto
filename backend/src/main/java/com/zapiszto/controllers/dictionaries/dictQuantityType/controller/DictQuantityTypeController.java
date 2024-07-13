@@ -5,6 +5,7 @@ import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.NewDictQuantit
 import com.zapiszto.controllers.dictionaries.dictQuantityType.service.DictQuantityTypeService;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.DictQuantityTypeDto;
 import java.util.List;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class DictQuantityTypeController implements ControllerCommon {
       @RequestBody NewDictQuantityTypeDto newDictUnitDto
   ) {
     var userId = extractUserId();
-    dictQuantityTypeService.addDictUnit(newDictUnitDto, userId);
+    dictQuantityTypeService.addDictQuantityType(newDictUnitDto, userId);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
@@ -44,7 +45,7 @@ public class DictQuantityTypeController implements ControllerCommon {
   ) {
     var role = extractUserRole();
     if (role.contains("ADMIN")) {
-      dictQuantityTypeService.addDictUnit(newDictUnitDto);
+      dictQuantityTypeService.addDictQuantityType(newDictUnitDto);
       return new ResponseEntity<>(HttpStatus.CREATED);
     } else {
       return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -65,7 +66,7 @@ public class DictQuantityTypeController implements ControllerCommon {
 
   @DeleteMapping("/delete_quantity_type_per_user/{itemToDelete}")
   public ResponseEntity<String> deleteExercisePerUser(
-      @PathVariable("itemToDelete") int itemToDelete
+      @PathVariable("itemToDelete") UUID itemToDelete
   ) {
     var userId = extractUserId();
     try {
@@ -78,7 +79,7 @@ public class DictQuantityTypeController implements ControllerCommon {
 
   @DeleteMapping("/delete_quantity_type_basic/{itemToDelete}")
   public ResponseEntity<String> deleteExerciseBasic(
-      @PathVariable("itemToDelete") int itemToDelete
+      @PathVariable("itemToDelete") UUID itemToDelete
   ) {
     var userRole = extractUserRole();
     var userId = extractUserId();

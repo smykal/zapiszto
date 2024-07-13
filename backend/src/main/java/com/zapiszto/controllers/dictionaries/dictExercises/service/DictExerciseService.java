@@ -12,6 +12,7 @@ import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesE
 import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExercisesRepository;
 import com.zapiszto.controllers.dictionaries.dictExercises.serializer.DictExercisesSerializer;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ public class DictExerciseService {
   @Transactional
   public DictExercisesDto addDictExercise(NewDictExerciseDto newDictExerciseDto, Long userId) {
     var item = DictExercisesPerUserEntity.builder()
+        .id(newDictExerciseDto.getId())
         .name(newDictExerciseDto.getName())
         .user_id(userId)
         .dictCategoryId(newDictExerciseDto.getCategoryId())
@@ -53,7 +55,6 @@ public class DictExerciseService {
     );
 
 
-
     DictExercisesEntity dictExercisesEntity = DictExercisesEntity.builder()
         .dictExercisesPerUserEntity(dictExercisesPerUserEntity)
         .build();
@@ -61,7 +62,8 @@ public class DictExerciseService {
     DictExercisesEntity entity = dictExercisesRepository.save(dictExercisesEntity);
 
 
-    DictCategoryEntity dictCategoryEntity = dictCategoryRepository.getReferenceById(newDictExerciseDto.getCategoryId().intValue());
+    DictCategoryEntity dictCategoryEntity = dictCategoryRepository.getReferenceById(newDictExerciseDto.getCategoryId()
+        .intValue());
     dictExercisesPerUserEntity.setDictCategoryEntity(dictCategoryEntity);
     entity.setDictExercisesPerUserEntity(dictExercisesPerUserEntity);
 
@@ -78,8 +80,9 @@ public class DictExerciseService {
   @Transactional
   public void addDictExercise(NewDictExerciseDto newDictExerciseDto) {
     var item = DictExercisesBasicEntity.builder()
+            .id(newDictExerciseDto.getId())
             .name(newDictExerciseDto.getName())
-        .build();
+            .build();
 
     DictExercisesBasicEntity dictExercisesBasicEntity =
         dictExercisesBasicRepository.save(item);
@@ -113,7 +116,7 @@ public class DictExerciseService {
   }
 
   @Transactional
-  public String deleteDictExercisePerUser(Long userId, int itemToDelete) {
+  public String deleteDictExercisePerUser(Long userId, UUID itemToDelete) {
     try {
       dictExercisesRepository.deleteDictExercisePerUser(itemToDelete);
       dictExercisesRepository.deleteDictExercisePerUser(itemToDelete, userId);
@@ -126,7 +129,7 @@ public class DictExerciseService {
   }
 
   @Transactional
-  public String deleteDictExerciseBasic(Long userId, int itemToDelete) {
+  public String deleteDictExerciseBasic(Long userId, UUID itemToDelete) {
     try {
       dictExercisesRepository.deleteDictExercise(itemToDelete);
       dictExercisesRepository.deleteDictExerciseBasic(itemToDelete);

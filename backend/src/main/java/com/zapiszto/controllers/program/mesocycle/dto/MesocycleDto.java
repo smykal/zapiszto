@@ -23,4 +23,5 @@ public class MesocycleDto {
   String dictType;
   int dictId;
   String dictName;
+  String label;
 }

@@ -49,7 +49,7 @@ const ShowDictExercises = () => {
         setDictExercises(prevExercises => [...prevExercises, newExercise]);
     };
 
-    const handleDeleteExercise = (id: number) => {
+    const handleDeleteExercise = (id: string) => { // zmieniono na string
         setDictExercises(prevExercises => prevExercises.filter(exercise => exercise.id !== id));
     };
 

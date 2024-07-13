@@ -54,7 +54,9 @@
         "biceps": "біцепс",
         "calf": "лижка",
         "fat": "жир",
-        "height": "зріст"
+        "height": "зріст",
+        "gender_not_set": "Стать ще не встановлено",
+        "age_not_set": "Вік ще не встановлено"
     },
     "workbooks": {
         "add_workbook": "додати робочий зошит",
@@ -95,7 +97,8 @@
         "placeholder_send_invitation": "введіть електронну пошту",
         "delete_client": "видалити клієнта",
         "add_program": "Додати Програму",
-        "delete_program": "Видалити Програму"
+        "delete_program": "Видалити Програму",
+        "save": "зберегти"
     },
     "table": {
         "id": "#",
@@ -116,7 +119,10 @@
         "purpose": "мета",
         "duration": "Тривалість",
         "comments": "Коментарі",
-        "orderId": "Порядок"
+        "orderId": "Порядок",
+        "rest_time": "час відпочинку",
+        "tempo": "темп",
+        "session_part": "Мета"
     },
     "invitations": {
         "title": "запрошення",
@@ -184,5 +190,13 @@
         "add_button": "Додати Мезоцикл",
         "created_successfully": "Мезоцикл успішно створено",
         "creation_error": "Помилка при створенні мезоциклу"
+    },
+    "microcycle": {
+        "week": "тиждень"
+    },
+    "session": {
+        "no_date": "дату ще не встановлено",
+        "session_date": "дата сеансу",
+        "session": "сеанс"
     }
 }

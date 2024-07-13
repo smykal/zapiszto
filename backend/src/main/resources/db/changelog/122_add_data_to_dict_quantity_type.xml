@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-insert-into-dict_quantity_type_basic" author="smykalm">
+        <insert tableName="dict_quantity_type_basic">
+            <column name="id" value="042ac157-4ead-4a6b-918b-3f094d2c20a7"/>
+            <column name="name" value="repetitions"/>
+            <column name="shortcut" value="rep"/>
+        </insert>
+
+
+    </changeSet>
+
+    <changeSet id="2-insert-into-dict_quantity_type" author="smykalm">
+        <insert tableName="dict_quantity_type">
+            <column name="id" value="b9358d45-fc90-4ee6-88fb-73eda8482c6f"/>
+            <column name="dict_quantity_type_basic_id" value="042ac157-4ead-4a6b-918b-3f094d2c20a7"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3-insert-into-dict_quantity_type_basic" author="smykalm">
+        <insert tableName="dict_quantity_type_basic">
+            <column name="id" value="86309c57-3bd3-42cb-a589-477fb7c64490"/>
+            <column name="name" value="seconds"/>
+            <column name="shortcut" value="sec"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="4-insert-into-dict_quantity_type" author="smykalm">
+        <insert tableName="dict_quantity_type">
+            <column name="id" value="32a3dfc5-75ce-460d-848d-299298d5a363"/>
+            <column name="dict_quantity_type_basic_id" value="86309c57-3bd3-42cb-a589-477fb7c64490"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>

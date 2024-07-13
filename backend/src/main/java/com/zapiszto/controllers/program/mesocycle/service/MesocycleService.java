@@ -8,7 +8,6 @@ import com.zapiszto.controllers.program.mesocycle.dto.NewMesocycleDto;
 import com.zapiszto.controllers.program.mesocycle.entity.MesocycleEntity;
 import com.zapiszto.controllers.program.mesocycle.repository.MesocycleRepository;
 import com.zapiszto.controllers.program.mesocycle.serializer.MesocycleSerializer;
-import com.zapiszto.controllers.program.microcycle.repository.MicrocycleRepository;
 import com.zapiszto.controllers.program.microcycle.service.MicrocycleService;
 import com.zapiszto.controllers.program.periodization.repository.PeriodizationRepository;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -139,5 +139,14 @@ public class MesocycleService {
     List<MesocycleEntity> mesocycleEntities = mesocycleRepository.saveAll(mesocycles);
 
     return mesocycleEntities;
+  }
+
+  @Modifying
+  @Transactional
+  public void updateMesocycleLabel(String id, String label) {
+    MesocycleEntity mesocycleEntity = mesocycleRepository.findById(UUID.fromString(id))
+        .orElseThrow(() -> new RuntimeException("Mesocycle not found"));
+    mesocycleEntity.setLabel(label);
+    mesocycleRepository.save(mesocycleEntity);
   }
 }

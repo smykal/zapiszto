@@ -4,6 +4,8 @@ import MesocycleService from "../../../../../services/mesocycle/MesocycleService
 import { useTranslation } from "react-i18next";
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import Microcycle from "../microcycle/Microcycle";
+import EditableCell from '../../../../../common/EditableCell';
+import 'react-tabs/style/react-tabs.css';
 
 interface MesocycleProps {
   macrocycleId: string;
@@ -30,20 +32,37 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
       });
   };
 
+  const handleSaveLabel = (id: string, newLabel: string) => {
+    MesocycleService.updateMesocycleLabel(id, newLabel)
+      .then(() => {
+        setMesocycles((prevMesocycles) =>
+          prevMesocycles.map((mesocycle) =>
+            mesocycle.id === id ? { ...mesocycle, label: newLabel } : mesocycle
+          )
+        );
+      })
+      .catch(error => {
+        console.error('Error updating label:', error);
+        setMessage(t('mesocycle.update_error'));
+      });
+  };
+
   return (
     <div>
       {message && <p>{message}</p>}
-      <strong>{t('mesocycle.select_mesocycle')}</strong>
       <Tabs>
         <TabList>
           {mesocycles.map((mesocycle) => (
-            <Tab key={mesocycle.id}>{mesocycle.orderId}</Tab>
+            <Tab key={mesocycle.id}>{mesocycle.label || mesocycle.orderId}</Tab>
           ))}
         </TabList>
         {mesocycles.map((mesocycle) => (
           <TabPanel key={mesocycle.id}>
-            <h3>{t('mesocycle.details')}</h3>
-            <p>{t('table.duration')}: {mesocycle.duration}</p>
+            <p>
+              {t('table.label')}:{' '}
+              <EditableCell value={mesocycle.label} onSave={(newLabel) => handleSaveLabel(mesocycle.id, newLabel)} />
+            </p>
+            <p>{t('table.duration')}: {mesocycle.duration} tygodnie</p>
             <p>{t('table.comments')}: {mesocycle.comments}</p>
             <p>{t('table.dictType')}: {mesocycle.dictType}</p>
             <p>{t('table.dictId')}: {mesocycle.dictId}</p>

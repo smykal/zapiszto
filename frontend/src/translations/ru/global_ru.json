@@ -54,7 +54,9 @@
         "biceps": "бицепс",
         "calf": "икра",
         "fat": "жир",
-        "height": "рост"
+        "height": "рост",
+        "gender_not_set": "Пол еще не установлен",
+        "age_not_set": "Возраст еще не установлен"
     },
     "workbooks": {
         "add_workbook": "добавить рабочую тетрадь",
@@ -91,7 +93,8 @@
         "placeholder_send_invitation": "введите электронную почту",
         "delete_client": "удалить клиента",
         "add_program": "Добавить Программу",
-        "delete_program": "Удалить Программу"
+        "delete_program": "Удалить Программу",
+        "save": "сохранить"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
@@ -116,7 +119,10 @@
         "purpose": "цель",
         "duration": "Продолжительность",
         "comments": "Комментарии",
-        "orderId": "Порядок"
+        "orderId": "Порядок",
+        "rest_time": "время отдыха",
+        "tempo": "темп",
+        "session_part": "Цель"
     },
     "invitations": {
         "title": "приглашения",
@@ -184,5 +190,13 @@
         "add_button": "Добавить Мезоцикл",
         "created_successfully": "Мезоцикл успешно создан",
         "creation_error": "Ошибка при создании мезоцикла"
+    },
+    "microcycle": {
+        "week": "неделя"
+    },
+    "session": {
+        "no_date": "дата еще не установлена",
+        "session_date": "дата сеанса",
+        "session": "сеанс"
     }
 }

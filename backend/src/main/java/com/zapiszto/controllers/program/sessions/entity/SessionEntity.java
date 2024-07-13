@@ -5,6 +5,7 @@ import com.zapiszto.controllers.program.microcycle.entity.MicrocycleEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -42,6 +43,9 @@ public class SessionEntity {
 
   @Column(name = "label", length = 20)
   String label;
+
+  @Column(name = "date_time")
+  ZonedDateTime dateTime;
 
   @OneToMany(mappedBy = "sessionEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
   private List<ExerciseEntity> exercises;

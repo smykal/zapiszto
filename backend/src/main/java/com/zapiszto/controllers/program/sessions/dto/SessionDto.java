@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.program.sessions.dto;
 
+import java.time.ZonedDateTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,4 +20,5 @@ public class SessionDto {
   String microcycleId;
   int orderId;
   String label;
+  ZonedDateTime dateTime;
 }

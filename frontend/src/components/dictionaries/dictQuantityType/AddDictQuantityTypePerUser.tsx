@@ -15,19 +15,18 @@ class AddDictQuantityTypePerUser extends Component<Props> {
         const isNameExisting = dictQuantityType.some(quantityType => quantityType.name === values.newDictQuantityTypeName);
         if (!isNameExisting) {
             const newDictQuantityType: NewDictQuantityType = {
+                id: crypto.randomUUID(), // Generate a new UUID
                 name: values.newDictQuantityTypeName,
                 shortcut: values.newDictQuantityTypeShortcut
             };
             Service.postDictQuantityTypePerUser(newDictQuantityType)
             .then(() => {
-                console.log("Wysłano nowy typ ćwiczeń:", values.newDictQuantityTypeName);
+                console.log("Wysłano nowy typ ilości:", values.newDictQuantityTypeName);
                 // Simulate the server response as the service method does not return data
                 const newQuantityType: DictQuantityType = {
-                    id: Math.max(...dictQuantityType.map(type => type.id)) + 1, // Simulate the new ID
-                    name: values.newDictQuantityTypeName,
-                    shortcut: values.newDictQuantityTypeShortcut,
+                    ...newDictQuantityType,
                     dict: "PER_USER",
-                    dict_id: Math.max(...dictQuantityType.map(type => type.dict_id)) + 1 // Simulate the new dict_id
+                    dict_id: crypto.randomUUID(), // Simulate the new dict_id
                 };
                 onAddQuantityType(newQuantityType);
             })

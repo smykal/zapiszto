@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,16 +32,15 @@ import lombok.experimental.FieldDefaults;
 public class DictExercisesEntity {
 
   @Id
-  @SequenceGenerator(name = "dict_exercises_id_seq", sequenceName ="dict_exercises_id_seq", allocationSize = 1)
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dict_exercises_id_seq")
+  @GeneratedValue
   @Column(name = "id")
-  int id;
+  UUID id;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "dict_exercises_basic_id", referencedColumnName = "id")
   DictExercisesBasicEntity dictExercisesBasicEntity;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "dict_exercises_per_user_id", referencedColumnName = "id")
   DictExercisesPerUserEntity dictExercisesPerUserEntity;
 }

@@ -3,7 +3,9 @@ package com.zapiszto.controllers.program.mesocycle.controller;
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.program.mesocycle.dto.MesocycleDto;
 import com.zapiszto.controllers.program.mesocycle.dto.NewMesocycleDto;
+import com.zapiszto.controllers.program.mesocycle.dto.UpdateLabelDto;
 import com.zapiszto.controllers.program.mesocycle.service.MesocycleService;
+import com.zapiszto.controllers.program.programs.dto.ProgramNameDto;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,5 +59,13 @@ public class MesocycleController implements ControllerCommon {
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
+  }
+
+  @PatchMapping("/update_mesocycle_label/{id}")
+  public ResponseEntity<String> updateProgramName(
+      @PathVariable String id,
+      @RequestBody UpdateLabelDto updateLabelDto) {
+    mesocycleService.updateMesocycleLabel(id, updateLabelDto.getLabel());
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 }

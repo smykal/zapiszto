@@ -3,6 +3,7 @@ package com.zapiszto.controllers.exercises.serializer;
 import com.zapiszto.controllers.common.SerializerCommon;
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
+import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionPartEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.ExerciseTrainingDto;
@@ -75,7 +76,8 @@ public class ExerciseSerializer implements SerializerCommon {
       ExerciseEntity exercise,
       List<DictExercisesEntity> dictExercises,
       List<DictQuantityTypeEntity> dictQuantityType,
-      List<DictUnitsEntity> dictUnits
+      List<DictUnitsEntity> dictUnits,
+      List<DictSessionPartEntity> dictSessionParts
   ) {
     return ExerciseSessionDto.builder()
         .exerciseId(exercise.getId()
@@ -88,10 +90,32 @@ public class ExerciseSerializer implements SerializerCommon {
         .dictUnitName(getUnitName(dictUnits, exercise.getDictUnitId()))
         .notes(exercise.getNotes())
         .orderNumber(exercise.getOrderNumber())
+        .restTime(exercise.getRestTime())
+        .tempo(exercise.getTempo())
+        .dictSessionPartName(getSessionName(dictSessionParts, exercise.getDictSessionPartId()))
         .build();
   }
+  private static String getSessionName(List<DictSessionPartEntity> dictSessionPart, UUID dictSessionPartId) {
+    Optional<DictSessionPartEntity> sessionPartOptional = dictSessionPart.stream()
+        .filter(sessionPart -> sessionPart.getId().equals(dictSessionPartId))
+        .findFirst();
 
-  private static String getExerciseName(List<DictExercisesEntity> dictExercises, int dictExerciseId) {
+    if (sessionPartOptional.isPresent()) {
+      DictSessionPartEntity exercise = sessionPartOptional.get();
+      if (exercise.getDictSessionPartBasicEntity() != null) {
+        return exercise.getDictSessionPartBasicEntity()
+            .getName();
+      } else if (exercise.getDictSessionPartPerUserEntity() != null) {
+        return exercise.getDictSessionPartPerUserEntity()
+            .getName();
+      }
+    }
+
+    return null;
+  }
+
+
+  private static String getExerciseName(List<DictExercisesEntity> dictExercises, UUID dictExerciseId) {
     Optional<DictExercisesEntity> exerciseOptional = dictExercises.stream()
         .filter(exercise -> exercise.getId() == dictExerciseId)
         .findFirst();
@@ -110,24 +134,31 @@ public class ExerciseSerializer implements SerializerCommon {
     return null;
   }
 
-  private static String getQuantityTypeName(List<DictQuantityTypeEntity> dictQuantityType, int dictQuantityTypeId) {
+  private static String getQuantityTypeName(List<DictQuantityTypeEntity> dictQuantityType, UUID dictQuantityTypeId) {
     Optional<DictQuantityTypeEntity> quantityTypeEntity = dictQuantityType.stream()
-        .filter(quantityType -> quantityType.getId() == dictQuantityTypeId)
+        .filter(quantityType -> quantityType.getId().equals(dictQuantityTypeId))
         .findFirst();
 
     if (quantityTypeEntity.isPresent()) {
       DictQuantityTypeEntity quantityType = quantityTypeEntity.get();
       if (quantityType.getDictQuantityTypeBasicEntity() != null) {
-        return quantityType.getDictQuantityTypeBasicEntity()
-            .getName();
+        String shortcut = quantityType.getDictQuantityTypeBasicEntity().getShortcut();
+        if (shortcut != null && !shortcut.isEmpty()) {
+          return shortcut;
+        }
+        return quantityType.getDictQuantityTypeBasicEntity().getName();
       } else if (quantityType.getDictQuantityTypePerUserEntity() != null) {
-        return quantityType.getDictQuantityTypePerUserEntity()
-            .getName();
+        String shortcut = quantityType.getDictQuantityTypePerUserEntity().getShortcut();
+        if (shortcut != null && !shortcut.isEmpty()) {
+          return shortcut;
+        }
+        return quantityType.getDictQuantityTypePerUserEntity().getName();
       }
     }
 
     return null;
   }
+
 
   private static String getUnitName(List<DictUnitsEntity> dictUnits, int dictUnitId) {
     Optional<DictUnitsEntity> unitEntity = dictUnits.stream()
@@ -137,16 +168,23 @@ public class ExerciseSerializer implements SerializerCommon {
     if (unitEntity.isPresent()) {
       DictUnitsEntity dictUnitsEntity = unitEntity.get();
       if (dictUnitsEntity.getDictUnitsBasicEntity() != null) {
-        return dictUnitsEntity.getDictUnitsBasicEntity()
-            .getName();
+        String shortcut = dictUnitsEntity.getDictUnitsBasicEntity().getShortcut();
+        if (shortcut != null && !shortcut.isEmpty()) {
+          return shortcut;
+        }
+        return dictUnitsEntity.getDictUnitsBasicEntity().getName();
       } else if (dictUnitsEntity.getDictUnitsPerUserEntity() != null) {
-        return dictUnitsEntity.getDictUnitsPerUserEntity()
-            .getName();
+        String shortcut = dictUnitsEntity.getDictUnitsPerUserEntity().getShortcut();
+        if (shortcut != null && !shortcut.isEmpty()) {
+          return shortcut;
+        }
+        return dictUnitsEntity.getDictUnitsPerUserEntity().getName();
       }
     }
 
     return null;
   }
+
 
   public static ExerciseEntity generateDefaultExerciseSession(UUID sessionId) {
 
@@ -154,11 +192,14 @@ public class ExerciseSerializer implements SerializerCommon {
         .id(UUID.randomUUID())
         .sessionId(sessionId)
         .dictExerciseId(DEFAULT_DICT_EXERCISE_ID)
+        .dictSessionPartId(DEFAULT_DICT_SESSION_PART_ID)
         .quantity(DEFAULT_QUANTITY)
         .dictQuantityTypeId(DEFAULT_DICT_QUANTITY_TYPE)
         .volume(DEFAULT_VOLUME)
         .dictUnitId(DEFAULLT_DICT_UNIT_ID)
         .notes(DEFAULT_NOTES)
+        .restTime(DEFAULT_REST_TIME)
+        .tempo(DEFAULT_TEMPO)
         .build();
   }
 }

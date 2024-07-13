@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-add-foreign-keys-back" author="smykalm">
+        <addForeignKeyConstraint baseTableName="exercises" baseColumnNames="dict_exercise_id"
+                                 constraintName="fk_exercises_dict_exercises" referencedTableName="dict_exercises"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="dict_exercises" baseColumnNames="dict_exercises_per_user_id"
+                                 constraintName="fk_dict_exercises_per_user" referencedTableName="dict_exercises_per_user"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="dict_exercises" baseColumnNames="dict_exercises_basic_id"
+                                 constraintName="fk_dict_exercises_basic" referencedTableName="dict_exercises_basic"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

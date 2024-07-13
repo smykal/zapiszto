@@ -15,6 +15,7 @@ public class SessionSerializer {
         .microcycleId(sessionEntity.getMicrocycleId().toString())
         .orderId(sessionEntity.getOrderId())
         .label(sessionEntity.getLabel())
+        .dateTime(sessionEntity.getDateTime())
         .build();
   }
 }

@@ -5,6 +5,7 @@ import com.zapiszto.controllers.dictionaries.dictExercises.dto.DictExercisesDto;
 import com.zapiszto.controllers.dictionaries.dictExercises.dto.NewDictExerciseDto;
 import com.zapiszto.controllers.dictionaries.dictExercises.service.DictExerciseService;
 import java.util.List;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,7 +75,7 @@ public class DictExercisesController implements ControllerCommon {
 
   @DeleteMapping("/delete_exercise_per_user/{itemToDelete}")
   public ResponseEntity<String> deleteExercisePerUser(
-      @PathVariable("itemToDelete") int itemToDelete
+      @PathVariable("itemToDelete") UUID itemToDelete
   ) {
     var userId = extractUserId();
     try {
@@ -87,7 +88,7 @@ public class DictExercisesController implements ControllerCommon {
 
   @DeleteMapping("/delete_exercise_basic/{itemToDelete}")
   public ResponseEntity<String> deleteExerciseBasic(
-      @PathVariable("itemToDelete") int itemToDelete
+      @PathVariable("itemToDelete") UUID itemToDelete
   ) {
     var userRole = extractUserRole();
     var userId = extractUserId();

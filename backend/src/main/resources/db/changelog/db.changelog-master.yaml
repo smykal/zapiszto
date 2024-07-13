@@ -221,3 +221,25 @@ databaseChangeLog:
       file: db/changelog/110_restore_foreign_keys_for_exercises.xml
   - include:
       file: db/changelog/111_modify_table_exercises.xml
+  - include:
+      file: db/changelog/112_modify_table_exercises.xml
+  - include:
+      file: db/changelog/113_modify_table_exercises.xml
+  - include:
+      file: db/changelog/114_modify_table_mesocycle.xml
+  - include:
+      file: db/changelog/115_modify_table_sessions.xml
+  - include:
+      file: db/changelog/116_add_table_dict_session_part.xml
+  - include:
+      file: db/changelog/117_add_data_to_dict_session_part.xml
+  - include:
+      file: db/changelog/118_modify_dict_exercises.xml
+  - include:
+      file: db/changelog/119_modify_dict_exercises.xml
+  - include:
+      file: db/changelog/120_modify_dict_exercises.xml
+  - include:
+      file: db/changelog/121_modify_dict_quantity_type.xml
+  - include:
+      file: db/changelog/122_add_data_to_dict_quantity_type.xml
