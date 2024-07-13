@@ -4,6 +4,11 @@ import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
+import com.zapiszto.controllers.exercises.dto.UpdateNotesDto;
+import com.zapiszto.controllers.exercises.dto.UpdateQuantityDto;
+import com.zapiszto.controllers.exercises.dto.UpdateRestTimeDto;
+import com.zapiszto.controllers.exercises.dto.UpdateTempoDto;
+import com.zapiszto.controllers.exercises.dto.UpdateVolumeDto;
 import com.zapiszto.controllers.exercises.service.ExercisesSessionService;
 import java.util.List;
 import java.util.UUID;
@@ -58,6 +63,51 @@ public class ExercisesSessionController implements ControllerCommon {
       @RequestBody UpdateDictQuantityTypeDto updateDictQuantityTypeDto
   ) {
     exercisesSessionService.updateDictQuantityType(id, updateDictQuantityTypeDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_notes/{id}")
+  public ResponseEntity<String> updateExerciseDictQuantityType(
+      @PathVariable UUID id,
+      @RequestBody UpdateNotesDto updateNotesDto
+  ) {
+    exercisesSessionService.updateNotes(id, updateNotesDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_tempo/{id}")
+  public ResponseEntity<String> updateExerciseTempo(
+      @PathVariable UUID id,
+      @RequestBody UpdateTempoDto updateTempoDto
+  ) {
+    exercisesSessionService.updateTempo(id, updateTempoDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_rest_time/{id}")
+  public ResponseEntity<String> updateExerciseRestTime(
+      @PathVariable UUID id,
+      @RequestBody UpdateRestTimeDto updateRestTimeDto
+  ) {
+    exercisesSessionService.updateRestTime(id, updateRestTimeDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_volume/{id}")
+  public ResponseEntity<String> updateExerciseVolume(
+      @PathVariable UUID id,
+      @RequestBody UpdateVolumeDto updateVolumeDto
+  ) {
+    exercisesSessionService.updateVolume(id, updateVolumeDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_quantity/{id}")
+  public ResponseEntity<String> updateExerciseDictQuantityType(
+      @PathVariable UUID id,
+      @RequestBody UpdateQuantityDto updateQuantityDto
+  ) {
+    exercisesSessionService.updateQuantity(id, updateQuantityDto);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }

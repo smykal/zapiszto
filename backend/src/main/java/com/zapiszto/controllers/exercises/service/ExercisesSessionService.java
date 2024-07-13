@@ -8,6 +8,11 @@ import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
+import com.zapiszto.controllers.exercises.dto.UpdateNotesDto;
+import com.zapiszto.controllers.exercises.dto.UpdateQuantityDto;
+import com.zapiszto.controllers.exercises.dto.UpdateRestTimeDto;
+import com.zapiszto.controllers.exercises.dto.UpdateTempoDto;
+import com.zapiszto.controllers.exercises.dto.UpdateVolumeDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.repository.ExerciseSessionRepository;
 import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
@@ -92,4 +97,65 @@ public class ExercisesSessionService {
       throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
     }
   }
+
+  public void updateNotes(UUID id, UpdateNotesDto updateNotesDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      exerciseEntity.setNotes(updateNotesDto.getNotes());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
+  }
+
+  public void updateTempo(UUID id, UpdateTempoDto updateTempoDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      exerciseEntity.setTempo(updateTempoDto.getTempo().toUpperCase());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
+  }
+
+  public void updateRestTime(UUID id, UpdateRestTimeDto updateRestTimeDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      exerciseEntity.setRestTime(updateRestTimeDto.getRestTime());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
+  }
+
+  public void updateVolume(UUID id, UpdateVolumeDto updateVolumeDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      exerciseEntity.setVolume(updateVolumeDto.getVolume());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
+  }
+
+  public void updateQuantity(UUID id, UpdateQuantityDto updateQuantityDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      exerciseEntity.setQuantity(updateQuantityDto.getQuantity());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
+  }
 }
+
