@@ -15,6 +15,13 @@ class ExercisesSessionService {
       { headers: authHeader() }
     );
   }
+
+  updateDictQuantityType(exerciseId: string, newQuantityTypeId: string) {
+    return axios.patch(`${API_URL}/update_exercise_dict_quantity_type/${exerciseId}`,
+      { id: newQuantityTypeId },
+      { headers: authHeader() }
+    );
+  }
 }
 
 export default new ExercisesSessionService();

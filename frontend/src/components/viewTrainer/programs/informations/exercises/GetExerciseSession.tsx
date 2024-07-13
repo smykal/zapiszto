@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Options from './Options';
 import EditableSelectCell from '../../../../../common/EditableSelectCell';
-import { ExerciseSession, DictSessionPartDto } from '../../../../../types/types';
+import { ExerciseSession, DictSessionPartDto, DictQuantityType } from '../../../../../types/types';
 import { withTranslation } from "react-i18next";
 import ExercisesService from '../../../../../services/exercises/session/ExercisesSessionService';
 import DictSessionPartService from '../../../../../services/dict/DictSessionPartService';
+import DictQuantityTypeService from '../../../../../services/dict/DictQuantityTypeService';
 
 type Props = {
   session_id: string;
@@ -14,6 +15,7 @@ type Props = {
 type State = {
   exercises: ExerciseSession[];
   sessionPartOptions: DictSessionPartDto[];
+  quantityTypeOptions: DictQuantityType[];
 }
 
 class GetExerciseSession extends Component<Props, State> {
@@ -21,13 +23,15 @@ class GetExerciseSession extends Component<Props, State> {
     super(props);
     this.state = {
       exercises: [],
-      sessionPartOptions: []
+      sessionPartOptions: [],
+      quantityTypeOptions: []
     };
   }
 
   componentDidMount() {
     this.loadExercises();
     this.loadSessionPartOptions();
+    this.loadQuantityTypeOptions();
   }
 
   loadExercises() {
@@ -52,6 +56,16 @@ class GetExerciseSession extends Component<Props, State> {
       });
   }
 
+  loadQuantityTypeOptions() {
+    DictQuantityTypeService.getDictQuantityType()
+      .then(response => {
+        this.setState({ quantityTypeOptions: response.data });
+      })
+      .catch(error => {
+        console.error('Error loading quantity type options:', error);
+      });
+  }
+
   handleSaveSessionPart(exerciseId: string, newSessionPartName: string) {
     const newSessionPart = this.state.sessionPartOptions.find(option => option.name === newSessionPartName);
 
@@ -70,11 +84,30 @@ class GetExerciseSession extends Component<Props, State> {
     }
   }
 
+  handleSaveQuantityType(exerciseId: string, newQuantityTypeName: string) {
+    const newQuantityType = this.state.quantityTypeOptions.find(option => option.name === newQuantityTypeName);
+
+    if (newQuantityType) {
+      ExercisesService.updateDictQuantityType(exerciseId, newQuantityType.id)
+        .then(() => {
+          this.setState(prevState => ({
+            exercises: prevState.exercises.map(ex => 
+              ex.exerciseId === exerciseId ? { ...ex, dictQuantityTypeName: newQuantityTypeName } : ex
+            )
+          }));
+        })
+        .catch(error => {
+          console.error('Error updating quantity type:', error);
+        });
+    }
+  }
+
   render() {
-    const { exercises, sessionPartOptions } = this.state;
+    const { exercises, sessionPartOptions, quantityTypeOptions } = this.state;
     const { t } = this.props;
 
     const sessionPartNames = sessionPartOptions.map(option => option.name);
+    const quantityTypeNames = quantityTypeOptions.map(option => option.name);
 
     return (
       <div>
@@ -85,7 +118,7 @@ class GetExerciseSession extends Component<Props, State> {
               <th>{t("table.session_part")}</th>
               <th>{t("table.exercise")}</th>
               <th>{/*t("table.volume")*/}</th>
-              <th>{/*t("table.unit")*/}kg</th>
+              <th>{t("table.unit")}</th>
               <th>{/*t("table.quantity")*/}</th>
               <th>{t("table.type")}</th>
               <th>{t("table.notes")}</th>
@@ -109,7 +142,13 @@ class GetExerciseSession extends Component<Props, State> {
                 <td>{row.volume}</td>
                 <td>{row.dictUnitName}</td>
                 <td>{row.quantity}</td>
-                <td>{row.dictQuantityTypeName}</td>
+                <td>
+                  <EditableSelectCell
+                    value={row.dictQuantityTypeName}
+                    options={quantityTypeNames}
+                    onSave={(newValue) => this.handleSaveQuantityType(row.exerciseId, newValue)}
+                  />
+                </td>
                 <td>{row.notes}</td>
                 <td>{row.restTime}</td>
                 <td>{row.tempo}</td>
