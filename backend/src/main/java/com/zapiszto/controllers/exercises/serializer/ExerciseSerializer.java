@@ -142,16 +142,23 @@ public class ExerciseSerializer implements SerializerCommon {
     if (quantityTypeEntity.isPresent()) {
       DictQuantityTypeEntity quantityType = quantityTypeEntity.get();
       if (quantityType.getDictQuantityTypeBasicEntity() != null) {
-        return quantityType.getDictQuantityTypeBasicEntity()
-            .getName();
+        String shortcut = quantityType.getDictQuantityTypeBasicEntity().getShortcut();
+        if (shortcut != null && !shortcut.isEmpty()) {
+          return shortcut;
+        }
+        return quantityType.getDictQuantityTypeBasicEntity().getName();
       } else if (quantityType.getDictQuantityTypePerUserEntity() != null) {
-        return quantityType.getDictQuantityTypePerUserEntity()
-            .getName();
+        String shortcut = quantityType.getDictQuantityTypePerUserEntity().getShortcut();
+        if (shortcut != null && !shortcut.isEmpty()) {
+          return shortcut;
+        }
+        return quantityType.getDictQuantityTypePerUserEntity().getName();
       }
     }
 
     return null;
   }
+
 
   private static String getUnitName(List<DictUnitsEntity> dictUnits, int dictUnitId) {
     Optional<DictUnitsEntity> unitEntity = dictUnits.stream()
@@ -161,16 +168,23 @@ public class ExerciseSerializer implements SerializerCommon {
     if (unitEntity.isPresent()) {
       DictUnitsEntity dictUnitsEntity = unitEntity.get();
       if (dictUnitsEntity.getDictUnitsBasicEntity() != null) {
-        return dictUnitsEntity.getDictUnitsBasicEntity()
-            .getName();
+        String shortcut = dictUnitsEntity.getDictUnitsBasicEntity().getShortcut();
+        if (shortcut != null && !shortcut.isEmpty()) {
+          return shortcut;
+        }
+        return dictUnitsEntity.getDictUnitsBasicEntity().getName();
       } else if (dictUnitsEntity.getDictUnitsPerUserEntity() != null) {
-        return dictUnitsEntity.getDictUnitsPerUserEntity()
-            .getName();
+        String shortcut = dictUnitsEntity.getDictUnitsPerUserEntity().getShortcut();
+        if (shortcut != null && !shortcut.isEmpty()) {
+          return shortcut;
+        }
+        return dictUnitsEntity.getDictUnitsPerUserEntity().getName();
       }
     }
 
     return null;
   }
+
 
   public static ExerciseEntity generateDefaultExerciseSession(UUID sessionId) {
 
@@ -178,6 +192,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .id(UUID.randomUUID())
         .sessionId(sessionId)
         .dictExerciseId(DEFAULT_DICT_EXERCISE_ID)
+        .dictSessionPartId(DEFAULT_DICT_SESSION_PART_ID)
         .quantity(DEFAULT_QUANTITY)
         .dictQuantityTypeId(DEFAULT_DICT_QUANTITY_TYPE)
         .volume(DEFAULT_VOLUME)

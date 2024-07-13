@@ -6,6 +6,7 @@ import com.zapiszto.controllers.dictionaries.dictSessionPart.repository.DictSess
 import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseSessionDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.repository.ExerciseSessionRepository;
@@ -77,6 +78,15 @@ public class ExercisesSessionService {
       exerciseSessionRepository.save(exerciseEntity);
     } else {
       throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
+  }
+
+  public void updateDictQuantityType(UUID id, UpdateDictQuantityTypeDto updateDictQuantityTypeDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      //TODO
     }
   }
 }

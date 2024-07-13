@@ -81,13 +81,13 @@ class GetExerciseSession extends Component<Props, State> {
         <table style={{ minWidth: '600px', width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
-              <th>{t("table.order_number")}</th>
+              <th>{/*t("table.order_number")*/}</th>
               <th>{t("table.session_part")}</th>
               <th>{t("table.exercise")}</th>
-              <th>{t("table.quantity")}</th>
+              <th>{/*t("table.volume")*/}</th>
+              <th>{/*t("table.unit")*/}kg</th>
+              <th>{/*t("table.quantity")*/}</th>
               <th>{t("table.type")}</th>
-              <th>{t("table.volume")}</th>
-              <th>{t("table.unit")}</th>
               <th>{t("table.notes")}</th>
               <th>{t("table.rest_time")}</th>
               <th>{t("table.tempo")}</th>
@@ -106,10 +106,10 @@ class GetExerciseSession extends Component<Props, State> {
                   />
                 </td>
                 <td>{row.dictExerciseName}</td>
-                <td>{row.quantity}</td>
-                <td>{row.dictQuantityTypeName}</td>
                 <td>{row.volume}</td>
                 <td>{row.dictUnitName}</td>
+                <td>{row.quantity}</td>
+                <td>{row.dictQuantityTypeName}</td>
                 <td>{row.notes}</td>
                 <td>{row.restTime}</td>
                 <td>{row.tempo}</td>
