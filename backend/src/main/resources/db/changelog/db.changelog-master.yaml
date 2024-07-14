@@ -243,3 +243,7 @@ databaseChangeLog:
       file: db/changelog/121_modify_dict_quantity_type.xml
   - include:
       file: db/changelog/122_add_data_to_dict_quantity_type.xml
+  - include:
+      file: db/changelog/123_add_data_to_dict_mesocycle_phase_basic.xml
+  - include:
+      file: db/changelog/124_add_data_to_periodization.xml
