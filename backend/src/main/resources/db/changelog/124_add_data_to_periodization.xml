@@ -4,7 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet id="drop data from dict_mesocycle_phase" author="smykalm">
+
+    <changeSet id="drop-data-from-dict-mesocycle-phase" author="smykalm">
         <sql>
             DELETE FROM public.periodization;
             DELETE FROM public.dict_mesocycle_phase;
@@ -13,14 +14,27 @@
     </changeSet>
 
     <changeSet id="create-sequence-periodization-id" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="periodization_id_seq"/>
+            </not>
+        </preConditions>
         <createSequence sequenceName="periodization_id_seq"/>
     </changeSet>
 
     <changeSet id="alter-periodization-id-default" author="smykalm">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sqlCheck expectedResult="0">
+                    SELECT COUNT(*) FROM information_schema.columns
+                    WHERE table_schema = 'public' AND table_name = 'periodization' AND column_name = 'id' AND column_default = 'nextval(''periodization_id_seq''::regclass)';
+                </sqlCheck>
+            </not>
+        </preConditions>
         <addDefaultValue tableName="periodization" columnName="id" defaultValueSequenceNext="periodization_id_seq"/>
     </changeSet>
 
-    <changeSet id="insert-into-dict_mesocycle_phase_basic" author="smykalm">
+    <changeSet id="insert-into-dict-mesocycle-phase-basic" author="smykalm">
         <sql>
             INSERT INTO public.dict_mesocycle_phase_basic ("name", shortcut) VALUES('strength', 'empty');
             INSERT INTO public.dict_mesocycle_phase (dict_mesocycle_phase_basic_id) VALUES((SELECT id from public.dict_mesocycle_phase_basic where "name" = 'strength'));
