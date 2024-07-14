@@ -249,3 +249,5 @@ databaseChangeLog:
       file: db/changelog/124_add_data_to_periodization.xml
   - include:
       file: db/changelog/125_add_data_to_dict_units.xml
+  - include:
+      file: db/changelog/126_add_data_to_dict_exercises.xml

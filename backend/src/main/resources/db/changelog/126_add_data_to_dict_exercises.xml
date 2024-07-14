@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-to-exercises" author="smykalm">
+        <sql>
+            INSERT INTO public.dict_exercises_basic ("name", dict_category_id, id) VALUES('benchpress', 1, '8437d8bd-7adb-4740-83fa-ecb1e2f64db9'::uuid);
+            INSERT INTO public.dict_exercises (id, dict_exercises_per_user_id, dict_exercises_basic_id) VALUES('57ca72cb-026b-41ec-adee-0ceaec6b5992'::uuid, NULL, '8437d8bd-7adb-4740-83fa-ecb1e2f64db9'::uuid);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
