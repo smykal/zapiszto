@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-centymetr-kilogram" author="smykalm">
+        <sql>
+            INSERT INTO public.dict_units_basic ( name, shortcut) VALUES ( 'centymetr', 'cm');
+            INSERT INTO public.dict_units (dict_units_basic_id)   VALUES ((SELECT id FROM public.dict_units_basic WHERE name = 'centymetr'));
+            INSERT INTO public.dict_units_basic ( name, shortcut) VALUES ( 'kilogram', 'kg');
+            INSERT INTO public.dict_units (dict_units_basic_id)   VALUES ((SELECT id FROM public.dict_units_basic WHERE name = 'kilogram'));
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

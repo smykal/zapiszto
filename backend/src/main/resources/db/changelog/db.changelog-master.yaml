@@ -247,3 +247,5 @@ databaseChangeLog:
       file: db/changelog/123_add_data_to_dict_mesocycle_phase_basic.xml
   - include:
       file: db/changelog/124_add_data_to_periodization.xml
+  - include:
+      file: db/changelog/125_add_data_to_dict_units.xml
