@@ -1,7 +1,6 @@
 package com.zapiszto.controllers.exercises.serializer;
 
 import com.zapiszto.controllers.common.SerializerCommon;
-import com.zapiszto.controllers.dictionaries.dictCategory.entity.DictCategoryEntity;
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionPartEntity;
@@ -56,7 +55,8 @@ public class ExerciseSerializer implements SerializerCommon {
 
     for (ExerciseEntity exercise : exerciseEntity) {
       ExerciseTrainingDto exerciseTrainingDto = ExerciseTrainingDto.builder()
-          .exerciseId(exercise.getId().toString())
+          .exerciseId(exercise.getId()
+              .toString())
           .trainingId(exercise.getTrainingId())
           .dictExerciseName(getExerciseName(dictExercises, exercise.getDictExerciseId()))
           .quantity(exercise.getQuantity())
@@ -99,19 +99,30 @@ public class ExerciseSerializer implements SerializerCommon {
 
   private static String getDictCategoryName(List<DictExercisesEntity> dictExercises, UUID dictExerciseId) {
     Optional<DictExercisesEntity> exerciseOptional = dictExercises.stream()
-        .filter(exercise -> exercise.getId().equals(dictExerciseId))
+        .filter(exercise -> exercise.getId()
+            .equals(dictExerciseId))
         .findFirst();
 
     if (exerciseOptional.isPresent()) {
       DictExercisesEntity exercise = exerciseOptional.get();
       if (exercise.getDictExercisesBasicEntity() != null) {
         return exercise.getDictExercisesBasicEntity()
-            .getDictCategoryEntity().getDictCategoryBasicEntity().getName();
+            .getDictCategoryEntity()
+            .getDictCategoryBasicEntity()
+            .getName();
       } else if (exercise.getDictExercisesPerUserEntity() != null) {
-        if (exercise.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryBasicEntity() != null) {
-          return exercise.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryBasicEntity().getName();
+        if (exercise.getDictExercisesPerUserEntity()
+            .getDictCategoryEntity()
+            .getDictCategoryBasicEntity() != null) {
+          return exercise.getDictExercisesPerUserEntity()
+              .getDictCategoryEntity()
+              .getDictCategoryBasicEntity()
+              .getName();
         } else {
-          return exercise.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryPerUserEntity().getName();
+          return exercise.getDictExercisesPerUserEntity()
+              .getDictCategoryEntity()
+              .getDictCategoryPerUserEntity()
+              .getName();
         }
       }
     }
@@ -121,7 +132,8 @@ public class ExerciseSerializer implements SerializerCommon {
 
   private static String getSessionName(List<DictSessionPartEntity> dictSessionPart, UUID dictSessionPartId) {
     Optional<DictSessionPartEntity> sessionPartOptional = dictSessionPart.stream()
-        .filter(sessionPart -> sessionPart.getId().equals(dictSessionPartId))
+        .filter(sessionPart -> sessionPart.getId()
+            .equals(dictSessionPartId))
         .findFirst();
 
     if (sessionPartOptional.isPresent()) {
@@ -141,7 +153,8 @@ public class ExerciseSerializer implements SerializerCommon {
 
   private static String getExerciseName(List<DictExercisesEntity> dictExercises, UUID dictExerciseId) {
     Optional<DictExercisesEntity> exerciseOptional = dictExercises.stream()
-        .filter(exercise -> exercise.getId().equals(dictExerciseId))
+        .filter(exercise -> exercise.getId()
+            .equals(dictExerciseId))
         .findFirst();
 
     if (exerciseOptional.isPresent()) {
@@ -160,23 +173,28 @@ public class ExerciseSerializer implements SerializerCommon {
 
   private static String getQuantityTypeName(List<DictQuantityTypeEntity> dictQuantityType, UUID dictQuantityTypeId) {
     Optional<DictQuantityTypeEntity> quantityTypeEntity = dictQuantityType.stream()
-        .filter(quantityType -> quantityType.getId().equals(dictQuantityTypeId))
+        .filter(quantityType -> quantityType.getId()
+            .equals(dictQuantityTypeId))
         .findFirst();
 
     if (quantityTypeEntity.isPresent()) {
       DictQuantityTypeEntity quantityType = quantityTypeEntity.get();
       if (quantityType.getDictQuantityTypeBasicEntity() != null) {
-        String shortcut = quantityType.getDictQuantityTypeBasicEntity().getShortcut();
+        String shortcut = quantityType.getDictQuantityTypeBasicEntity()
+            .getShortcut();
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
-        return quantityType.getDictQuantityTypeBasicEntity().getName();
+        return quantityType.getDictQuantityTypeBasicEntity()
+            .getName();
       } else if (quantityType.getDictQuantityTypePerUserEntity() != null) {
-        String shortcut = quantityType.getDictQuantityTypePerUserEntity().getShortcut();
+        String shortcut = quantityType.getDictQuantityTypePerUserEntity()
+            .getShortcut();
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
-        return quantityType.getDictQuantityTypePerUserEntity().getName();
+        return quantityType.getDictQuantityTypePerUserEntity()
+            .getName();
       }
     }
 
@@ -192,17 +210,21 @@ public class ExerciseSerializer implements SerializerCommon {
     if (unitEntity.isPresent()) {
       DictUnitsEntity dictUnitsEntity = unitEntity.get();
       if (dictUnitsEntity.getDictUnitsBasicEntity() != null) {
-        String shortcut = dictUnitsEntity.getDictUnitsBasicEntity().getShortcut();
+        String shortcut = dictUnitsEntity.getDictUnitsBasicEntity()
+            .getShortcut();
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
-        return dictUnitsEntity.getDictUnitsBasicEntity().getName();
+        return dictUnitsEntity.getDictUnitsBasicEntity()
+            .getName();
       } else if (dictUnitsEntity.getDictUnitsPerUserEntity() != null) {
-        String shortcut = dictUnitsEntity.getDictUnitsPerUserEntity().getShortcut();
+        String shortcut = dictUnitsEntity.getDictUnitsPerUserEntity()
+            .getShortcut();
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
-        return dictUnitsEntity.getDictUnitsPerUserEntity().getName();
+        return dictUnitsEntity.getDictUnitsPerUserEntity()
+            .getName();
       }
     }
 
