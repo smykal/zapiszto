@@ -22,6 +22,41 @@ class ExercisesSessionService {
       { headers: authHeader() }
     );
   }
+
+  updateNotes(exerciseId: string, updateNotesDto: { notes: string }) {
+    return axios.patch(`${API_URL}/update_exercise_notes/${exerciseId}`,
+      updateNotesDto,
+      { headers: authHeader() }
+    );
+  }
+
+  updateTempo(exerciseId: string, updateTempoDto: { tempo: string }) {
+    return axios.patch(`${API_URL}/update_exercise_tempo/${exerciseId}`,
+      updateTempoDto,
+      { headers: authHeader() }
+    );
+  }
+
+  updateQuantity(exerciseId: string, updateQuantityDto: { quantity: number }) {
+    return axios.patch(`${API_URL}/update_exercise_quantity/${exerciseId}`,
+      updateQuantityDto,
+      { headers: authHeader() }
+    );
+  }
+
+  updateVolume(exerciseId: string, updateVolumeDto: { volume: number }) {
+    return axios.patch(`${API_URL}/update_exercise_volume/${exerciseId}`,
+      updateVolumeDto,
+      { headers: authHeader() }
+    );
+  }
+
+  updateRestTime(exerciseId: string, updateRestTimeDto: { restTime: number }) {
+    return axios.patch(`${API_URL}/update_exercise_rest_time/${exerciseId}`,
+      updateRestTimeDto,
+      { headers: authHeader() }
+    );
+  }
 }
 
 export default new ExercisesSessionService();

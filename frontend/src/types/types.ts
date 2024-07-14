@@ -162,6 +162,7 @@ export type ExerciseSession = {
                                 exerciseId: string;
                                 sessionId: string;
                                 dictExerciseName: string;
+                                dictCategoryName: string;
                                 quantity: number;
                                 dictQuantityTypeName: string;
                                 volume: number;

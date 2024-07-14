@@ -19,6 +19,7 @@ public class ExerciseSessionDto {
   String exerciseId;
   UUID sessionId;
   String dictExerciseName;
+  String dictCategoryName;
   int quantity;
   String dictQuantityTypeName;
   int volume;

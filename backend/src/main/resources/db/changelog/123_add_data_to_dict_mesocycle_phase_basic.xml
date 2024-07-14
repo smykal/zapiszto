@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-insert-into-dict_mesocycle_phase_basic" author="smykalm">
+        <sql>
+            INSERT INTO public.dict_mesocycle_phase_basic ("name", shortcut) VALUES('strength', 'empty');
+            INSERT INTO public.dict_mesocycle_phase (dict_mesocycle_phase_basic_id) VALUES((SELECT id from public.dict_mesocycle_phase_basic where "name" = 'strength'));
+
+            INSERT INTO public.dict_mesocycle_phase_basic ("name", shortcut) VALUES('mass', 'empty');
+            INSERT INTO public.dict_mesocycle_phase (dict_mesocycle_phase_basic_id) VALUES((SELECT id from public.dict_mesocycle_phase_basic where "name" = 'mass'));
+
+            INSERT INTO public.dict_mesocycle_phase_basic ("name", shortcut) VALUES('reduction', 'empty');
+            INSERT INTO public.dict_mesocycle_phase (dict_mesocycle_phase_basic_id) VALUES((SELECT id from public.dict_mesocycle_phase_basic where "name" = 'reduction'));
+
+            INSERT INTO public.dict_mesocycle_phase_basic ("name", shortcut) VALUES('health', 'empty');
+            INSERT INTO public.dict_mesocycle_phase (dict_mesocycle_phase_basic_id) VALUES((SELECT id from public.dict_mesocycle_phase_basic where "name" = 'health'));
+        </sql>
+    </changeSet>
+</databaseChangeLog>
