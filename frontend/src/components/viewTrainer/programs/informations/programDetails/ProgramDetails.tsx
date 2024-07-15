@@ -77,7 +77,7 @@ const ProgramDetails: React.FC<ProgramDetailsProps> = ({ programId }) => {
           ))}
         </select>
       </p>
-      <CurrentUserGoals clientId={programDetails.assignedClient} />
+      {programDetails.assignedClient && <CurrentUserGoals clientId={programDetails.assignedClient} />}
     </div>
   );
 };

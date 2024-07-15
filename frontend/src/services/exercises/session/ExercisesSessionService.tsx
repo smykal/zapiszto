@@ -57,6 +57,10 @@ class ExercisesSessionService {
       { headers: authHeader() }
     );
   }
+
+  updateExercise(exerciseId: string, updateExercise: { id: string }) {
+    return axios.patch(`${API_URL}/update_exercise_exercise/${exerciseId}`, updateExercise, { headers: authHeader() });
+  }
 }
 
 export default new ExercisesSessionService();
