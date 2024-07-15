@@ -36,10 +36,6 @@ class ExercisesService {
     });
   }
 
-  deleteDictUnits(itemToDelete: number) {
-    return axios.delete(API_URL + '/delete_unit_per_user/' + itemToDelete, { headers: authHeader() })
-  }
-
   getDictQuantityType() {
     return axios.get(API_URL + '/get_quantity_type_per_user', { headers: authHeader() })
   }

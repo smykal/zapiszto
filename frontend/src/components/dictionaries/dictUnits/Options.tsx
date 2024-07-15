@@ -1,14 +1,15 @@
 import React from "react";
-import Service from '../../../services/exercises'
+import DictUnitsService from "../../../services/dict/DictUnitsService";
+
 
 type Props = {
-    item: number,
-    onDeleteUnit: (unitId: number) => void
+    item: string, // change type to string to match UUID
+    onDeleteUnit: (unitId: string) => void // change type to string to match UUID
 };
 
 const Options: React.FC<Props> = ({ item, onDeleteUnit }) => {
-    const deleteUnit = (itemId: number) => {
-        Service.deleteDictUnits(itemId)
+    const deleteUnit = (itemId: string) => {
+        DictUnitsService.deleteDictUnits(itemId)
             .then(() => {
                 onDeleteUnit(itemId);
             })

@@ -94,14 +94,15 @@ export type NewDictQuantityType = {
 }
 
 export type DictUnits = {
-                          id: number;
-                          dict: string;
-                          dict_id: number;
-                          name: string;
+                          id: string
+                          dict: string
+                          dict_id: string
+                          name: string
                           shortcut: string
 }
 
 export type NewDictUnit = {
+                            id: string
                             name: string,
                             shortcut: string
 }
@@ -248,7 +249,7 @@ export type NewGoal = {
                         clientId: string,
                         dictBodyParamId: number | null,
                         dictBodyTestId: number | null,
-                        dictUnitId: number,
+                        dictUnitId: string,
                         action: string,
                         value: string,
                         goalDate: string
