@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.account.controller;
 
+import com.zapiszto.controllers.account.payload.request.UpdatePasswordRequest;
 import com.zapiszto.controllers.account.service.AuthService;
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.dictionaries.dictLanguages.entity.DictLanguagesEntity;
@@ -150,6 +151,18 @@ public class AuthController implements ControllerCommon {
 
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+  }
+
+  @PostMapping("/updatePassword")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<?> updatePassword(@Valid @RequestBody UpdatePasswordRequest updatePasswordRequest) {
+    var userId = extractUserId();
+    try {
+      authService.updatePassword(userId, updatePasswordRequest.getOldPassword(), updatePasswordRequest.getNewPassword());
+      return ResponseEntity.ok(new MessageResponse("Password updated successfully!"));
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
+    }
   }
 
   @DeleteMapping("/deleteAccount")
