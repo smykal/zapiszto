@@ -9,6 +9,7 @@ import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
+import com.zapiszto.controllers.exercises.dto.UpdateExerciseDto;
 import com.zapiszto.controllers.exercises.dto.UpdateNotesDto;
 import com.zapiszto.controllers.exercises.dto.UpdateQuantityDto;
 import com.zapiszto.controllers.exercises.dto.UpdateRestTimeDto;
@@ -154,6 +155,18 @@ public class ExercisesSessionService {
     if (exerciseEntityOptional.isPresent()) {
       ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
       exerciseEntity.setQuantity(updateQuantityDto.getQuantity());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
+  }
+
+  public void updateExercise(UUID id, UpdateExerciseDto updateExerciseDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      exerciseEntity.setDictExerciseId(updateExerciseDto.getId());
       exerciseSessionRepository.save(exerciseEntity);
     } else {
       throw new EntityNotFoundException("Exercise entity not found with ID: " + id);

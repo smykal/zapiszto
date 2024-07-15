@@ -7,6 +7,7 @@ import com.zapiszto.controllers.goals.entity.GoalEntity;
 import com.zapiszto.controllers.goals.repository.GoalsRepository;
 import com.zapiszto.controllers.goals.serializer.GoalsSerializer;
 import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -46,17 +47,29 @@ public class GoalsService {
 
   public List<GoalDetailsDto> getGoalDetails(UUID clientId) {
     List<Object[]> goalDetailsByClientId = goalsRepository.findGoalDetailsByClientId(clientId);
-      return goalDetailsByClientId.stream()
-          .map(result ->
-              new GoalDetailsDto(
-                  (UUID) result[0], // clientId
-                  (String) result[1], // bodyParamName
-                  (String) result[2], // bodyTestName
-                  (String) result[3], // unitName
-                  (String) result[4], // action
-                  (String) result[5]  // value
-              )
-          )
-          .collect(Collectors.toList());
+
+    if (goalDetailsByClientId.isEmpty()) {
+      return Collections.singletonList(new GoalDetailsDto(
+          clientId,  // Możesz zostawić clientId jako wartość
+          "",  // bodyParamName
+          "",  // bodyTestName
+          "",  // unitName
+          "",  // action
+          ""   // value
+      ));
     }
+
+    return goalDetailsByClientId.stream()
+        .map(result ->
+            new GoalDetailsDto(
+                (UUID) result[0], // clientId
+                (String) result[1], // bodyParamName
+                (String) result[2], // bodyTestName
+                (String) result[3], // unitName
+                (String) result[4], // action
+                (String) result[5]  // value
+            )
+        )
+        .collect(Collectors.toList());
+  }
 }

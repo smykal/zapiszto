@@ -28,9 +28,9 @@ public class ProgramDetailsController {
   ProgramDetailsService programDetailsService;
 
   @GetMapping("/get_program_details/{programId}")
-  public ResponseEntity<ProgramDetailsDto> getProgramDetails(@PathVariable String programId){
+  public ResponseEntity<ProgramDetailsDto> getProgramDetails(@PathVariable UUID programId){
     try {
-      var programDetails = programDetailsService.getProgramDetails(UUID.fromString(programId));
+      var programDetails = programDetailsService.getProgramDetails(programId);
       return new ResponseEntity<>(programDetails, HttpStatus.OK);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
