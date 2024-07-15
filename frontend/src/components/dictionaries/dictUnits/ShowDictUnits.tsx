@@ -30,7 +30,7 @@ const ShowDictUnits: React.FC = () => {
     };
 
     const handleDeleteUnit = (unitId: string) => {
-        setDictUnits(prevUnits => prevUnits.filter(unit => unit.id !== unitId));
+        setDictUnits(prevUnits => prevUnits.filter(unit => unit.dict_id !== unitId));
     };
 
     const handleShowBasicChange = () => {
@@ -83,7 +83,7 @@ const ShowDictUnits: React.FC = () => {
                             <td>{row.id}</td>
                             <td>{row.name}</td>
                             <td>{row.shortcut}</td>
-                            <td>{row.dict === "PER_USER" ? <Options item={row.id} onDeleteUnit={handleDeleteUnit} /> : t("table.menu_unavailable")}</td>
+                            <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} onDeleteUnit={handleDeleteUnit} /> : t("table.menu_unavailable")}</td>
                         </tr>
                     ))}
                 </tbody>
