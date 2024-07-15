@@ -28,7 +28,7 @@ public class GoalsService {
         .clientId(newGoalDto.getClientId())
         .dictBodyParamsId(newGoalDto.getDictBodyParamId() > 0 ? newGoalDto.getDictBodyParamId() : null)
         .dictBodyTestId(Long.valueOf(newGoalDto.getDictBodyTestId() > 0 ? newGoalDto.getDictBodyTestId() : null))
-        .dictUnitsId(newGoalDto.getDictUnitId() > 0 ? newGoalDto.getDictUnitId() : null)
+        .dictUnitsId(newGoalDto.getDictUnitId() != null ? newGoalDto.getDictUnitId() : null)
         .action(newGoalDto.getAction())
         .value(newGoalDto.getValue())
         .goalDate(newGoalDto.getGoalDate())

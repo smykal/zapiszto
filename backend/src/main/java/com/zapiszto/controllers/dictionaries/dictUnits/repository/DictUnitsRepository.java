@@ -2,6 +2,7 @@ package com.zapiszto.controllers.dictionaries.dictUnits.repository;
 
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, Integer> {
+public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, UUID> {
 
   @Query(nativeQuery = true, value = """
       select *
@@ -29,7 +30,7 @@ public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, Inte
       DELETE FROM public.dict_units
         WHERE dict_units_per_user_id = :itemToDelete
       """)
-  void deleteDictUnitPerUser(@Param("itemToDelete") int itemToDelete);
+  void deleteDictUnitPerUser(@Param("itemToDelete") UUID itemToDelete);
 
 
   @Modifying
@@ -38,7 +39,7 @@ public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, Inte
         WHERE id = :itemToDelete
         AND user_id = :userId
       """)
-  void deleteDictUnitPerUser(@Param("itemToDelete") int itemToDelete,
+  void deleteDictUnitPerUser(@Param("itemToDelete") UUID itemToDelete,
                                  @Param("userId") Long userId);
 
   @Modifying
@@ -46,7 +47,7 @@ public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, Inte
       DELETE FROM public.dict_units
         WHERE dict_units_basic_id = :itemToDelete
       """)
-  void deleteDictUnitBasic(@Param("itemToDelete") int itemToDelete);
+  void deleteDictUnitBasic(@Param("itemToDelete") UUID itemToDelete);
 
 
   @Modifying
@@ -54,5 +55,5 @@ public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, Inte
       DELETE FROM public.dict_units_basic
         WHERE id = :itemToDelete
       """)
-  void deleteDictUnit(@Param("itemToDelete") int itemToDelete);
+  void deleteDictUnit(@Param("itemToDelete") UUID itemToDelete);
 }

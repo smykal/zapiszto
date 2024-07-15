@@ -22,7 +22,7 @@ public class NewExerciseSessionDto {
   int quantity;
   UUID dictQuantityTypeId;
   int volume;
-  int dictUnitId;
+  UUID dictUnitId;
   String notes;
   Integer restTime;
   String tempo;

@@ -10,6 +10,7 @@ import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
 import com.zapiszto.controllers.dictionaries.dictUnits.serializer.DictUnitsSerializer;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class DictUnitsService {
   @Transactional
   public void addDictUnit(NewDictUnitDto newDictUnitDto, Long userId) {
     var item = DictUnitsPerUserEntity.builder()
+        .id(newDictUnitDto.getId())
         .name(newDictUnitDto.getName())
         .shortcut(newDictUnitDto.getShortcut())
         .user_id(userId)
@@ -60,6 +62,7 @@ public class DictUnitsService {
   @Transactional
   public void addDictUnit(NewDictUnitDto newDictUnitDto) {
     var item = DictUnitsBasicEntity.builder()
+        .id(newDictUnitDto.getId())
         .name(newDictUnitDto.getName())
         .shortcut(newDictUnitDto.getShortcut())
         .build();
@@ -90,7 +93,7 @@ public class DictUnitsService {
   }
 
   @Transactional
-  public String deleteDictUnitPerUser(Long userId, int itemToDelete) {
+  public String deleteDictUnitPerUser(Long userId, UUID itemToDelete) {
     try {
       dictUnitsRepository.deleteDictUnitPerUser(itemToDelete);
       dictUnitsRepository.deleteDictUnitPerUser(itemToDelete, userId);
@@ -103,7 +106,7 @@ public class DictUnitsService {
   }
 
   @Transactional
-  public String deleteDictUnitBasic(Long userId, int itemToDelete) {
+  public String deleteDictUnitBasic(Long userId, UUID itemToDelete) {
     try {
       dictUnitsRepository.deleteDictUnit(itemToDelete);
       dictUnitsRepository.deleteDictUnitBasic(itemToDelete);

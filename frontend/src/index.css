@@ -82,13 +82,13 @@ button:hover {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 10px 0;
   font-size: 12px;
   text-align: left;
 }
 
 th,td {
-  padding: 12px;
+  padding: 2px;
   border-bottom: 1px solid #ddd;
 }
 

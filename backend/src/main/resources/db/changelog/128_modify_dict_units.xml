@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-drop-foreign-keys-dict-unit" author="smykalm">
+        <dropForeignKeyConstraint baseTableName="exercises" constraintName="fk_exercises_dict_units"/>
+        <dropForeignKeyConstraint baseTableName="goals" constraintName="goals_dict_unit_id_fk" />
+        <dropForeignKeyConstraint baseTableName="dict_units" constraintName="fk_dict_units_per_user"/>
+        <dropForeignKeyConstraint baseTableName="dict_units" constraintName="fk_dict_units_basic"/>
+
+    </changeSet>
+
+    <changeSet id="2-add-uuid-columns-dict-unit" author="smykalm">
+        <addColumn tableName="dict_units">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="dict_units_basic">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="dict_units_per_user">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="3-drop-old-id-columns-dict-unit" author="smykalm">
+        <dropColumn columnName="id" tableName="dict_units"/>
+        <dropColumn columnName="id" tableName="dict_units_basic"/>
+        <dropColumn columnName="id" tableName="dict_units_per_user"/>
+    </changeSet>
+
+    <changeSet id="4-rename-uuid-columns-dict-unit" author="smykalm">
+        <renameColumn tableName="dict_units" oldColumnName="new_id" newColumnName="id"/>
+        <renameColumn tableName="dict_units_basic" oldColumnName="new_id" newColumnName="id"/>
+        <renameColumn tableName="dict_units_per_user" oldColumnName="new_id" newColumnName="id"/>
+    </changeSet>
+
+    <changeSet id="5-drop-add-foreign-keys-dict-unit" author="smykalm">
+        <dropColumn columnName="dict_units_per_user_id" tableName="dict_units"/>
+        <addColumn tableName="dict_units">
+            <column name="dict_units_per_user_id" type="UUID"/>
+        </addColumn>
+        <dropColumn columnName="dict_units_basic_id" tableName="dict_units"/>
+        <addColumn tableName="dict_units">
+            <column name="dict_units_basic_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- Step 7: Drop and add dict_unit_id column to UUID type in exercises table -->
+    <changeSet id="6-drop-add-dict-unit-id-exercises" author="smykalm">
+        <dropColumn columnName="dict_unit_id" tableName="exercises"/>
+        <addColumn tableName="exercises">
+            <column name="dict_unit_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="6-drop-add-dict-unit-id-goals" author="smykalm">
+        <dropColumn columnName="dict_unit_id" tableName="goals"/>
+        <addColumn tableName="goals">
+            <column name="dict_unit_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="8-add-primary-key-dict-unit" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_unit" tableName="dict_units"/>
+    </changeSet>
+
+    <changeSet id="9-add-primary-key-dict-unit-basic" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_unit_basic" tableName="dict_units_basic"/>
+    </changeSet>
+
+    <changeSet id="10-add-primary-key-dict-unit-per-user" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_unit_per_user" tableName="dict_units_per_user"/>
+    </changeSet>
+
+    <changeSet id="11-add-foreign-keys-back-dict-unit" author="smykalm">
+        <addForeignKeyConstraint baseTableName="exercises" baseColumnNames="dict_unit_id"
+                                 constraintName="fk_exercises_dict_unit" referencedTableName="dict_units"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="goals" baseColumnNames="dict_unit_id"
+                                 constraintName="fk_goals_dict_unit" referencedTableName="dict_units"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="dict_units" baseColumnNames="dict_units_per_user_id"
+                                 constraintName="fk_dict_unit_per_user" referencedTableName="dict_units_per_user"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="dict_units" baseColumnNames="dict_units_basic_id"
+                                 constraintName="fk_dict_unit_basic" referencedTableName="dict_units_basic"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

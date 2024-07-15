@@ -202,9 +202,9 @@ public class ExerciseSerializer implements SerializerCommon {
   }
 
 
-  private static String getUnitName(List<DictUnitsEntity> dictUnits, int dictUnitId) {
+  private static String getUnitName(List<DictUnitsEntity> dictUnits, UUID dictUnitId) {
     Optional<DictUnitsEntity> unitEntity = dictUnits.stream()
-        .filter(dictUnit -> dictUnit.getId() == dictUnitId)
+        .filter(dictUnit -> dictUnit.getId().equals(dictUnitId))
         .findFirst();
 
     if (unitEntity.isPresent()) {

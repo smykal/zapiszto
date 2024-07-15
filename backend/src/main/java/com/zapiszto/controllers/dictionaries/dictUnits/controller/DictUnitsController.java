@@ -5,6 +5,7 @@ import com.zapiszto.controllers.dictionaries.dictUnits.dto.DictUnitsDto;
 import com.zapiszto.controllers.dictionaries.dictUnits.dto.NewDictUnitDto;
 import com.zapiszto.controllers.dictionaries.dictUnits.service.DictUnitsService;
 import java.util.List;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -69,7 +70,7 @@ public class DictUnitsController implements ControllerCommon {
 
   @DeleteMapping("/delete_unit_per_user/{itemToDelete}")
   public ResponseEntity<String> deleteExercisePerUser(
-      @PathVariable("itemToDelete") int itemToDelete
+      @PathVariable("itemToDelete") UUID itemToDelete
   ) {
     var userId = extractUserId();
     try {
@@ -82,7 +83,7 @@ public class DictUnitsController implements ControllerCommon {
 
   @DeleteMapping("/delete_unit_basic/{itemToDelete}")
   public ResponseEntity<String> deleteExerciseBasic(
-      @PathVariable("itemToDelete") int itemToDelete
+      @PathVariable("itemToDelete") UUID itemToDelete
   ) {
     var userRole = extractUserRole();
     var userId = extractUserId();

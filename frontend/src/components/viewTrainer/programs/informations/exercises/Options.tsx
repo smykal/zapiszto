@@ -18,11 +18,9 @@ class Options extends Component<Props, State> {
     const { exerciseId, sessionId, t } = this.props;
     return (
       <div>
-        <button>{t("buttons.delete")}</button>
-        <button>{t("buttons.edit")} </button>
-        <button>{t("buttons.move_up")}</button>
-        <button>{t("buttons.move_down")}</button>
-        <button>{t("buttons.archive")} </button>
+        <button>d</button>
+        <button>/</button>
+        <button>\</button>
       </div>
     );
   }

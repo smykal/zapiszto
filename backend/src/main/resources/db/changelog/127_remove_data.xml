@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-to-exercises" author="smykalm">
+        <sql>
+            DELETE FROM exercises;
+            DELETE FROM microcycle;
+            DELETE FROM mesocycle;
+            DELETE FROM macrocycle;
+            DELETE FROM goals;
+            DELETE FROM dict_units;
+            DELETE FROM dict_units_basic;
+            DELETE FROM dict_units_per_user;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
