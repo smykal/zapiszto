@@ -174,6 +174,9 @@ export type ExerciseSession = {
                                 tempo: string | null;
                                 dictSessionPartName: string;
                                 sets: number;
+                                equipmentName: string;
+                                equipmentAttribute: string;
+                                weightPerSide: number;
 };
 
 export type NewInvitation = {

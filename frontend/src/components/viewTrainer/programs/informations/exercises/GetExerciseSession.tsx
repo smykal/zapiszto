@@ -3,13 +3,14 @@ import Options from './Options';
 import EditableSelectCell from '../../../../../common/EditableSelectCell';
 import EditableCell from '../../../../../common/EditableCell';
 import EditableNumberCell from '../../../../../common/EditableNumberCell';
-import { ExerciseSession, DictSessionPartDto, DictQuantityType, DictExercises, DictUnits } from '../../../../../types/types';
+import { ExerciseSession, DictSessionPartDto, DictQuantityType, DictExercises, DictUnits, DictEquipment } from '../../../../../types/types';
 import { withTranslation } from "react-i18next";
 import ExercisesSessionService from '../../../../../services/exercises/session/ExercisesSessionService';
 import DictSessionPartService from '../../../../../services/dict/DictSessionPartService';
 import DictQuantityTypeService from '../../../../../services/dict/DictQuantityTypeService';
 import DictExercisesService from '../../../../../services/dict/DictExercisesService';
 import DictUnitsService from '../../../../../services/dict/DictUnitsService';
+import DictEquipmentService from '../../../../../services/dict/DictEquipmentService';
 
 type Props = {
   session_id: string;
@@ -21,7 +22,8 @@ type State = {
   sessionPartOptions: DictSessionPartDto[];
   quantityTypeOptions: DictQuantityType[];
   exercisesOptions: DictExercises[];
-  unitsOptions: DictUnits[]; // Add units options state
+  unitsOptions: DictUnits[];
+  equipmentOptions: DictEquipment[]; // Add equipment options state
 }
 
 class GetExerciseSession extends Component<Props, State> {
@@ -32,7 +34,8 @@ class GetExerciseSession extends Component<Props, State> {
       sessionPartOptions: [],
       quantityTypeOptions: [],
       exercisesOptions: [],
-      unitsOptions: [] // Initialize units options
+      unitsOptions: [],
+      equipmentOptions: [] // Initialize equipment options
     };
   }
 
@@ -41,7 +44,8 @@ class GetExerciseSession extends Component<Props, State> {
     this.loadSessionPartOptions();
     this.loadQuantityTypeOptions();
     this.loadExercisesOptions();
-    this.loadUnitsOptions(); // Load units options
+    this.loadUnitsOptions();
+    this.loadEquipmentOptions(); // Load equipment options
   }
 
   loadExercises() {
@@ -93,6 +97,16 @@ class GetExerciseSession extends Component<Props, State> {
       })
       .catch(error => {
         console.error('Error loading units options:', error);
+      });
+  }
+
+  loadEquipmentOptions() {
+    DictEquipmentService.getDictEquipment()
+      .then(response => {
+        this.setState({ equipmentOptions: response.data });
+      })
+      .catch(error => {
+        console.error('Error loading equipment options:', error);
       });
   }
 
@@ -224,7 +238,7 @@ class GetExerciseSession extends Component<Props, State> {
     const newUnit = this.state.unitsOptions.find(option => option.name === newUnitName);
 
     if (newUnit) {
-      ExercisesSessionService.updateDictUnit(exerciseId, {dictUnitId: newUnit.id})
+      ExercisesSessionService.updateDictUnit(exerciseId, { dictUnitId: newUnit.id })
         .then(() => {
           this.setState(prevState => ({
             exercises: prevState.exercises.map(ex => 
@@ -252,14 +266,61 @@ class GetExerciseSession extends Component<Props, State> {
       });
   }
 
+  handleSaveEquipment(exerciseId: string, newEquipmentName: string) { 
+    const newEquipment = this.state.equipmentOptions.find(option => option.name === newEquipmentName);
+
+    if (newEquipment) {
+      ExercisesSessionService.updateEquipment(exerciseId, { dictEquipmentId: newEquipment.id })
+        .then(() => {
+          this.setState(prevState => ({
+            exercises: prevState.exercises.map(ex => 
+              ex.exerciseId === exerciseId ? { ...ex, equipmentName: newEquipmentName } : ex
+            )
+          }));
+        })
+        .catch(error => {
+          console.error('Error updating equipment:', error);
+        });
+    }
+  }
+
+  handleSaveEquipmentAttribute(exerciseId: string, newEquipmentAttribute: string) {
+    ExercisesSessionService.updateEquipmentAttribute(exerciseId, { equipmentAttribute: newEquipmentAttribute })
+      .then(() => {
+        this.setState(prevState => ({
+          exercises: prevState.exercises.map(ex => 
+            ex.exerciseId === exerciseId ? { ...ex, equipmentAttribute: newEquipmentAttribute } : ex
+          )
+        }));
+      })
+      .catch(error => {
+        console.error('Error updating equipment attribute:', error);
+      });
+  }
+
+  handleSaveWeightPerSide(exerciseId: string, newWeightPerSide: number) {
+    // ExercisesSessionService.updateWeightPerSide(exerciseId, { weightPerSide: newWeightPerSide })
+    //   .then(() => {
+    //     this.setState(prevState => ({
+    //       exercises: prevState.exercises.map(ex => 
+    //         ex.exerciseId === exerciseId ? { ...ex, weightPerSide: newWeightPerSide } : ex
+    //       )
+    //     }));
+    //   })
+    //   .catch(error => {
+    //     console.error('Error updating weight per side:', error);
+    //   });
+  }
+
   render() {
-    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions } = this.state;
+    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions, equipmentOptions } = this.state;
     const { t } = this.props;
 
     const sessionPartNames = sessionPartOptions.map(option => option.name);
     const quantityTypeNames = quantityTypeOptions.map(option => option.name);
     const exercisesNames = exercisesOptions.map(option => option.name);
-    const unitsNames = unitsOptions.map(option => option.name); // Unit names for the select options
+    const unitsNames = unitsOptions.map(option => option.name); 
+    const equipmentNames = equipmentOptions.map(option => option.name); 
 
     return (
       <div>
@@ -278,6 +339,9 @@ class GetExerciseSession extends Component<Props, State> {
               <th>{t("table.notes")}</th>
               <th>{t("table.rest_time")}</th>
               <th>{t("table.tempo")}</th>
+              <th>{t("table.equipment")}</th>
+              <th>{t("table.equipment_attribute")}</th>
+              <th>{t("table.weight_per_side")}</th>
               <th>{t("table.options")}</th>
             </tr>
           </thead>
@@ -348,6 +412,25 @@ class GetExerciseSession extends Component<Props, State> {
                   <EditableCell
                     value={row.tempo ?? ''}
                     onSave={(newValue) => this.handleSaveTempo(row.exerciseId, newValue)}
+                  />
+                </td>
+                <td>
+                  <EditableSelectCell
+                    value={row.equipmentName}
+                    options={equipmentNames}
+                    onSave={(newValue) => this.handleSaveEquipment(row.exerciseId, newValue)}
+                  />
+                </td>
+                <td>
+                  <EditableCell
+                    value={row.equipmentAttribute ?? ''}
+                    onSave={(newValue) => this.handleSaveEquipmentAttribute(row.exerciseId, newValue)}
+                  />
+                </td>
+                <td>
+                  <EditableNumberCell
+                    value={row.weightPerSide ?? 0}
+                    onSave={(newValue) => this.handleSaveWeightPerSide(row.exerciseId, newValue)}
                   />
                 </td>
                 <td><Options exerciseId={row.exerciseId} sessionId={row.sessionId} /></td>
