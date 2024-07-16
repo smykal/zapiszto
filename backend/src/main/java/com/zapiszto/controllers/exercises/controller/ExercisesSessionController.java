@@ -4,10 +4,12 @@ import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDictUnitDto;
 import com.zapiszto.controllers.exercises.dto.UpdateExerciseDto;
 import com.zapiszto.controllers.exercises.dto.UpdateNotesDto;
 import com.zapiszto.controllers.exercises.dto.UpdateQuantityDto;
 import com.zapiszto.controllers.exercises.dto.UpdateRestTimeDto;
+import com.zapiszto.controllers.exercises.dto.UpdateSetsDto;
 import com.zapiszto.controllers.exercises.dto.UpdateTempoDto;
 import com.zapiszto.controllers.exercises.dto.UpdateVolumeDto;
 import com.zapiszto.controllers.exercises.service.ExercisesSessionService;
@@ -118,6 +120,24 @@ public class ExercisesSessionController implements ControllerCommon {
       @RequestBody UpdateExerciseDto updateExerciseDto
   ) {
     exercisesSessionService.updateExercise(id, updateExerciseDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_dict_unit/{id}")
+  public ResponseEntity<String> updateExerciseDictUnit(
+      @PathVariable UUID id,
+      @RequestBody UpdateDictUnitDto updateDictUnitDto
+  ) {
+    exercisesSessionService.updateDictUnit(id, updateDictUnitDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_sets/{id}")
+  public ResponseEntity<String> updateExerciseVolume(
+      @PathVariable UUID id,
+      @RequestBody UpdateSetsDto updateSetsDto
+  ) {
+    exercisesSessionService.updateSets(id, updateSetsDto);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }

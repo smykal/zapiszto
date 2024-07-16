@@ -61,6 +61,17 @@ class ExercisesSessionService {
   updateExercise(exerciseId: string, updateExercise: { id: string }) {
     return axios.patch(`${API_URL}/update_exercise_exercise/${exerciseId}`, updateExercise, { headers: authHeader() });
   }
+
+  updateDictUnit(exerciseId: string, updateDictUnit: { dictUnitId: string }) {
+    return axios.patch(`${API_URL}/update_exercise_dict_unit/${exerciseId}`, updateDictUnit, { headers: authHeader() });
+  }
+
+  updateSets(exerciseId: string, updateSetsDto: { sets: number }) {
+    return axios.patch(`${API_URL}/update_exercise_sets/${exerciseId}`,
+      updateSetsDto,
+      { headers: authHeader() }
+    );
+  }
 }
 
 export default new ExercisesSessionService();

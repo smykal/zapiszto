@@ -122,7 +122,8 @@
         "orderId": "Порядок",
         "rest_time": "час відпочинку",
         "tempo": "темп",
-        "session_part": "Мета"
+        "session_part": "Мета",
+        "sets": "серія"
     },
     "invitations": {
         "title": "запрошення",

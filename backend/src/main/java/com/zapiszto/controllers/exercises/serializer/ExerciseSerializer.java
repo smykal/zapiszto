@@ -94,6 +94,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .restTime(exercise.getRestTime())
         .tempo(exercise.getTempo())
         .dictSessionPartName(getSessionName(dictSessionParts, exercise.getDictSessionPartId()))
+        .sets(exercise.getSets())
         .build();
   }
 
@@ -246,6 +247,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .notes(DEFAULT_NOTES)
         .restTime(DEFAULT_REST_TIME)
         .tempo(DEFAULT_TEMPO)
+        .sets(DEFAULT_SETS)
         .build();
   }
 }

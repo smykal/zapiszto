@@ -97,4 +97,7 @@ public class ExerciseEntity {
 
   @Column(name = "dict_session_part_id")
   UUID dictSessionPartId;
+
+  @Column(name = "sets")
+  int sets;
 }

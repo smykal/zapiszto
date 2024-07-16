@@ -122,7 +122,8 @@
         "orderId": "Orden",
         "rest_time": "tiempo de descanso",
         "tempo": "ritmo",
-        "session_part": "Propósito"
+        "session_part": "Propósito",
+        "sets": "series"
     },
     "invitations": {
         "title": "invitaciones",

@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.exercises.dto;
+package com.zapiszto.controllers.dictionaries.dictEquipment.dto;
 
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -15,7 +15,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UpdateDictUnitDto {
+public class DictEquipmentDto {
+  UUID id;
+  String dict;
+  UUID dict_id;
   String name;
-  UUID dictUnitId;
 }

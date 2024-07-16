@@ -173,6 +173,7 @@ export type ExerciseSession = {
                                 restTime: number | null; 
                                 tempo: string | null;
                                 dictSessionPartName: string;
+                                sets: number;
 };
 
 export type NewInvitation = {
@@ -365,4 +366,16 @@ export type DictSessionPartDto = {
                                   dict: string;
                                   dict_id: string;
                                   name: string
+}
+
+export interface DictEquipment {
+                                  id: string;
+                                  name: string;
+                                  dict: string;
+                                  dict_id: string;
+}
+
+export interface NewDictEquipment {
+                                    id: string;
+                                    name: string;
 }

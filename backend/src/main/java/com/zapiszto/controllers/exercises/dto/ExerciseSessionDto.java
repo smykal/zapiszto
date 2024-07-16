@@ -29,4 +29,5 @@ public class ExerciseSessionDto {
   Integer restTime;
   String tempo;
   String dictSessionPartName;
+  int sets;
 }

@@ -1,11 +1,10 @@
 package com.zapiszto.controllers.dictionaries.dictSessionPart.serializer;
 
+import com.zapiszto.controllers.common.SerializerCommon;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.dto.DictSessionPartDto;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionPartEntity;
 
-public class DictSessionPartSerializer {
-  private static final String PER_USER = "PER_USER";
-  private static final String BASIC = "BASIC";
+public class DictSessionPartSerializer implements SerializerCommon {
 
   public static DictSessionPartDto convert(DictSessionPartEntity dictSessionPart) {
     if(dictSessionPart.getDictSessionPartBasicEntity() != null) {

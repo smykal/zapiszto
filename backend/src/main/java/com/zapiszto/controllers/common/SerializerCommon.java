@@ -21,4 +21,5 @@ public interface SerializerCommon {
   String DEFAULT_NOTES = "notes";
   int DEFAULT_REST_TIME = 60;
   String DEFAULT_TEMPO = "XXXX";
+  int DEFAULT_SETS = 3;
 }

@@ -3,12 +3,13 @@ import Options from './Options';
 import EditableSelectCell from '../../../../../common/EditableSelectCell';
 import EditableCell from '../../../../../common/EditableCell';
 import EditableNumberCell from '../../../../../common/EditableNumberCell';
-import { ExerciseSession, DictSessionPartDto, DictQuantityType, DictExercises } from '../../../../../types/types';
+import { ExerciseSession, DictSessionPartDto, DictQuantityType, DictExercises, DictUnits } from '../../../../../types/types';
 import { withTranslation } from "react-i18next";
 import ExercisesSessionService from '../../../../../services/exercises/session/ExercisesSessionService';
 import DictSessionPartService from '../../../../../services/dict/DictSessionPartService';
 import DictQuantityTypeService from '../../../../../services/dict/DictQuantityTypeService';
 import DictExercisesService from '../../../../../services/dict/DictExercisesService';
+import DictUnitsService from '../../../../../services/dict/DictUnitsService';
 
 type Props = {
   session_id: string;
@@ -20,6 +21,7 @@ type State = {
   sessionPartOptions: DictSessionPartDto[];
   quantityTypeOptions: DictQuantityType[];
   exercisesOptions: DictExercises[];
+  unitsOptions: DictUnits[]; // Add units options state
 }
 
 class GetExerciseSession extends Component<Props, State> {
@@ -29,7 +31,8 @@ class GetExerciseSession extends Component<Props, State> {
       exercises: [],
       sessionPartOptions: [],
       quantityTypeOptions: [],
-      exercisesOptions: []
+      exercisesOptions: [],
+      unitsOptions: [] // Initialize units options
     };
   }
 
@@ -38,6 +41,7 @@ class GetExerciseSession extends Component<Props, State> {
     this.loadSessionPartOptions();
     this.loadQuantityTypeOptions();
     this.loadExercisesOptions();
+    this.loadUnitsOptions(); // Load units options
   }
 
   loadExercises() {
@@ -79,6 +83,16 @@ class GetExerciseSession extends Component<Props, State> {
       })
       .catch(error => {
         console.error('Error loading quantity type options:', error);
+      });
+  }
+
+  loadUnitsOptions() {
+    DictUnitsService.getDictUnits()
+      .then(response => {
+        this.setState({ unitsOptions: response.data });
+      })
+      .catch(error => {
+        console.error('Error loading units options:', error);
       });
   }
 
@@ -206,27 +220,61 @@ class GetExerciseSession extends Component<Props, State> {
       });
   }
 
+  handleSaveUnit(exerciseId: string, newUnitName: string) { 
+    const newUnit = this.state.unitsOptions.find(option => option.name === newUnitName);
+
+    if (newUnit) {
+      ExercisesSessionService.updateDictUnit(exerciseId, {dictUnitId: newUnit.id})
+        .then(() => {
+          this.setState(prevState => ({
+            exercises: prevState.exercises.map(ex => 
+              ex.exerciseId === exerciseId ? { ...ex, dictUnitName: newUnitName } : ex
+            )
+          }));
+        })
+        .catch(error => {
+          console.error('Error updating unit:', error);
+        });
+    }
+  }
+
+  handleSaveSets(exerciseId: string, newSets: number) { 
+    ExercisesSessionService.updateSets(exerciseId, { sets: newSets })
+      .then(() => {
+        this.setState(prevState => ({
+          exercises: prevState.exercises.map(ex => 
+            ex.exerciseId === exerciseId ? { ...ex, sets: newSets } : ex
+          )
+        }));
+      })
+      .catch(error => {
+        console.error('Error updating sets:', error);
+      });
+  }
+
   render() {
-    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions } = this.state;
+    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions } = this.state;
     const { t } = this.props;
 
     const sessionPartNames = sessionPartOptions.map(option => option.name);
     const quantityTypeNames = quantityTypeOptions.map(option => option.name);
     const exercisesNames = exercisesOptions.map(option => option.name);
+    const unitsNames = unitsOptions.map(option => option.name); // Unit names for the select options
 
     return (
       <div>
         <table style={{ minWidth: '600px', width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
-              <th>{t("table.order_number")}</th>
+              <th>{/*t("table.order_number")*/}</th>
               <th>{t("table.session_part")}</th>
               <th>{t("table.category")}</th>
               <th>{t("table.exercise")}</th>
-              <th>{t("table.volume")}</th>
+              <th>{/*t("table.volume")*/}</th>
               <th>{t("table.unit")}</th>
-              <th>{t("table.quantity")}</th>
-              <th>{t("table.type")}</th>
+              <th>{/*t("table.quantity")*/}</th>
+              <th>{/*t("table.type")*/}</th>
+              <th>{t("table.sets")}</th>
               <th>{t("table.notes")}</th>
               <th>{t("table.rest_time")}</th>
               <th>{t("table.tempo")}</th>
@@ -258,7 +306,13 @@ class GetExerciseSession extends Component<Props, State> {
                     onSave={(newValue) => this.handleSaveVolume(row.exerciseId, newValue)}
                   />
                 </td>
-                <td>{row.dictUnitName}</td>
+                <td>
+                  <EditableSelectCell
+                    value={row.dictUnitName}
+                    options={unitsNames}
+                    onSave={(newValue) => this.handleSaveUnit(row.exerciseId, newValue)}
+                  />
+                </td>
                 <td>
                   <EditableNumberCell
                     value={row.quantity ?? 0}
@@ -270,6 +324,12 @@ class GetExerciseSession extends Component<Props, State> {
                     value={row.dictQuantityTypeName}
                     options={quantityTypeNames}
                     onSave={(newValue) => this.handleSaveQuantityType(row.exerciseId, newValue)}
+                  />
+                </td>
+                <td>
+                  <EditableNumberCell
+                    value={row.sets ?? 0}
+                    onSave={(newValue) => this.handleSaveSets(row.exerciseId, newValue)}
                   />
                 </td>
                 <td>

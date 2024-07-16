@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.dictionaries.dictUnits.repository;
 
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,6 +27,7 @@ public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, UUID
   List<DictUnitsEntity> getAllForUser(@Param("userId") Long userId);
 
   @Modifying
+  @Transactional
   @Query(nativeQuery = true, value = """
       DELETE FROM public.dict_units
         WHERE dict_units_per_user_id = :itemToDelete
@@ -34,6 +36,7 @@ public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, UUID
 
 
   @Modifying
+  @Transactional
   @Query(nativeQuery = true, value = """
       DELETE FROM public.dict_units_per_user
         WHERE id = :itemToDelete
@@ -43,6 +46,7 @@ public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, UUID
                                  @Param("userId") Long userId);
 
   @Modifying
+  @Transactional
   @Query(nativeQuery = true, value = """
       DELETE FROM public.dict_units
         WHERE dict_units_basic_id = :itemToDelete
@@ -51,6 +55,7 @@ public interface DictUnitsRepository extends JpaRepository<DictUnitsEntity, UUID
 
 
   @Modifying
+  @Transactional
   @Query(nativeQuery = true, value = """
       DELETE FROM public.dict_units_basic
         WHERE id = :itemToDelete

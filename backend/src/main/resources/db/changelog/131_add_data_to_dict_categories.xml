@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-to-dict_category" author="smykalm">
+        <sql>
+            SELECT setval('dict_category_basic_id_seq', (SELECT MAX(id) FROM dict_category_basic));
+            SELECT setval('dict_category_id_seq', (SELECT MAX(id) FROM dict_category));
+
+            INSERT INTO public.dict_category_basic ("name", description) VALUES ('shoulders', 'Shoulders category');
+            INSERT INTO public.dict_category (dict_category_basic_id)   VALUES ((SELECT id FROM public.dict_category_basic WHERE name = 'shoulders'));
+
+            INSERT INTO public.dict_category_basic ("name", description) VALUES ('abdomen', 'Abdomen category');
+            INSERT INTO public.dict_category (dict_category_basic_id)   VALUES ((SELECT id FROM public.dict_category_basic WHERE name = 'abdomen'));
+
+            INSERT INTO public.dict_category_basic ("name", description) VALUES ('calf', 'Calf category');
+            INSERT INTO public.dict_category (dict_category_basic_id)   VALUES ((SELECT id FROM public.dict_category_basic WHERE name = 'calf'));
+
+            INSERT INTO public.dict_category_basic ("name", description) VALUES ('stretching', 'Stretching category');
+            INSERT INTO public.dict_category (dict_category_basic_id)   VALUES ((SELECT id FROM public.dict_category_basic WHERE name = 'stretching'));
+
+            INSERT INTO public.dict_category_basic ("name", description) VALUES ('mobilization', 'Mobilization category');
+            INSERT INTO public.dict_category (dict_category_basic_id)   VALUES ((SELECT id FROM public.dict_category_basic WHERE name = 'mobilization'));
+
+            INSERT INTO public.dict_category_basic ("name", description) VALUES ('rolling', 'Rolling category');
+            INSERT INTO public.dict_category (dict_category_basic_id)   VALUES ((SELECT id FROM public.dict_category_basic WHERE name = 'rolling'));
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

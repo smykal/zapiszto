@@ -122,7 +122,8 @@
         "orderId": "Порядок",
         "rest_time": "время отдыха",
         "tempo": "темп",
-        "session_part": "Цель"
+        "session_part": "Цель",
+        "sets": "подходы"
     },
     "invitations": {
         "title": "приглашения",
