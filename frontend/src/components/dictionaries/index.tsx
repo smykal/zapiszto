@@ -5,6 +5,7 @@ import ShowDictQuantityTypes from './dictQuantityType/ShowDictQuantityType'
 import ShowDictUnits from "./dictUnits/ShowDictUnits";
 import ShowDictCategory from "./dictCategory/ShowDictCategory";
 import ShowDictBodyTest from "./dictBodyTests/ShowDictBodyTest";
+import ShowDictEquipment from "./dictEquipment/ShowDictEquipment";
 import { useTranslation } from "react-i18next";
 import AuthService from "../../services/auth.service";
 import IUser from '../../types/user.type';
@@ -19,7 +20,7 @@ const Training = () => {
         if (user) {
             setCurrentUser(user);
         }
-        
+
         const lastActiveDictTabIndex = localStorage.getItem('lastActiveDictTabIndex');
         if (lastActiveDictTabIndex !== null) {
             setActiveDictTabIndex(parseInt(lastActiveDictTabIndex, 10));
@@ -46,6 +47,9 @@ const Training = () => {
                     {(hasRole("ROLE_TRAINER") || hasRole("ROLE_ADMIN")) && (
                         <Tab>{t("dictionaries.dict_body_test")}</Tab>
                     )}
+                    {(hasRole("ROLE_TRAINER") || hasRole("ROLE_ADMIN")) && (
+                        <Tab>{t("dictionaries.dict_equipment")}</Tab>
+                    )}
                 </TabList>
                 <TabPanel><ShowDictCategory /></TabPanel>
                 <TabPanel><ShowDictExercises /></TabPanel>
@@ -53,7 +57,12 @@ const Training = () => {
                 <TabPanel><ShowDictUnits /></TabPanel>
                 {(hasRole("ROLE_TRAINER") || hasRole("ROLE_ADMIN")) && (
                     <TabPanel><ShowDictBodyTest /></TabPanel>
+
                 )}
+                {(hasRole("ROLE_TRAINER") || hasRole("ROLE_ADMIN")) && (
+                    <TabPanel><ShowDictEquipment /></TabPanel>
+                )}
+
             </Tabs>
         </div>
     );
