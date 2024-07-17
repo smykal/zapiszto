@@ -80,6 +80,10 @@ class ExercisesSessionService {
   updateEquipmentAttribute(exerciseId: string, updateEquipmentAttributeDto: { equipmentAttribute: string }) {
     return axios.patch(`${API_URL}/update_exercise_equipment_attribute/${exerciseId}`, updateEquipmentAttributeDto, { headers: authHeader() });
   }
+
+  deleteExercise(sessionId: string, exerciseId: string) {
+    return axios.delete(`${API_URL}/delete_exercise_session/${sessionId}/${exerciseId}`, { headers: authHeader() });
+  }
 }
 
 export default new ExercisesSessionService();
