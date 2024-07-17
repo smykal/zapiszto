@@ -81,6 +81,14 @@ class ExercisesSessionService {
     return axios.patch(`${API_URL}/update_exercise_equipment_attribute/${exerciseId}`, updateEquipmentAttributeDto, { headers: authHeader() });
   }
 
+  updateExerciseOrderNumberUp(sessionId: string, exerciseId: string) {
+    return axios.patch(`${API_URL}/update_exercise_order_number_up/${sessionId}/${exerciseId}`,{}, { headers: authHeader() });
+  }
+
+  updateExerciseOrderNumberDown(sessionId: string, exerciseId: string) {
+    return axios.patch(`${API_URL}/update_exercise_order_number_down/${sessionId}/${exerciseId}`,{}, { headers: authHeader() });
+  }
+  
   deleteExercise(sessionId: string, exerciseId: string) {
     return axios.delete(`${API_URL}/delete_exercise_session/${sessionId}/${exerciseId}`, { headers: authHeader() });
   }

@@ -316,7 +316,7 @@ class GetExerciseSession extends Component<Props, State> {
     //   });
   }
 
-  handleExerciseDeleted = (updatedExercises: ExerciseSession[]) => {
+  handleExerciseOptions = (updatedExercises: ExerciseSession[]) => {
     this.setState({ exercises: updatedExercises });
   };
 
@@ -441,7 +441,7 @@ class GetExerciseSession extends Component<Props, State> {
                     onSave={(newValue) => this.handleSaveWeightPerSide(row.exerciseId, newValue)}
                   />
                 </td>
-                <td><Options exerciseId={row.exerciseId} sessionId={row.sessionId} onExerciseDeleted={this.handleExerciseDeleted} /></td>
+                <td><Options exerciseId={row.exerciseId} sessionId={row.sessionId} onExerciseOption={this.handleExerciseOptions} /></td>
               </tr>
             ))}
           </tbody>

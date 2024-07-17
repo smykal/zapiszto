@@ -2,10 +2,10 @@ package com.zapiszto.controllers.exercises.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDictEquipmentDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictUnitDto;
-import com.zapiszto.controllers.exercises.dto.UpdateDictEquipmentDto;
 import com.zapiszto.controllers.exercises.dto.UpdateEquipmentAttributeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateExerciseDto;
 import com.zapiszto.controllers.exercises.dto.UpdateNotesDto;
@@ -14,7 +14,6 @@ import com.zapiszto.controllers.exercises.dto.UpdateRestTimeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateSetsDto;
 import com.zapiszto.controllers.exercises.dto.UpdateTempoDto;
 import com.zapiszto.controllers.exercises.dto.UpdateVolumeDto;
-import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.service.ExercisesSessionService;
 import java.util.List;
 import java.util.UUID;
@@ -38,9 +37,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1")
 @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')  or hasRole('TRAINER')")
 public class ExercisesSessionController implements ControllerCommon {
+
   @Autowired
   ExercisesSessionService exercisesSessionService;
-
 
   @GetMapping("/get_exercise/session/{sessionId}")
   public ResponseEntity<List<ExerciseSessionDto>> getExercises(
@@ -74,7 +73,7 @@ public class ExercisesSessionController implements ControllerCommon {
   }
 
   @PatchMapping("/update_exercise_notes/{id}")
-  public ResponseEntity<String> updateExerciseDictQuantityType(
+  public ResponseEntity<String> updateExerciseNotes(
       @PathVariable UUID id,
       @RequestBody UpdateNotesDto updateNotesDto
   ) {
@@ -162,6 +161,27 @@ public class ExercisesSessionController implements ControllerCommon {
     var weightPerSide = exercisesSessionService.updateEquipmentAttribute(id, updateEquipmentAttributeDto);
     return new ResponseEntity<>(weightPerSide, HttpStatus.OK);
   }
+
+  @PatchMapping("/update_exercise_order_number_up/{sessionId}/{exerciseId}")
+  public ResponseEntity<List<ExerciseSessionDto>> updateUp(
+      @PathVariable UUID sessionId,
+      @PathVariable UUID exerciseId
+  ) {
+    var userId = extractUserId();
+    var exerciseSessionDtoList = exercisesSessionService.updateExerciseOrderNumberUp(sessionId, exerciseId, userId);
+    return new ResponseEntity<>(exerciseSessionDtoList, HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_order_number_down/{sessionId}/{exerciseId}")
+  public ResponseEntity<List<ExerciseSessionDto>> updateDown(
+      @PathVariable UUID sessionId,
+      @PathVariable UUID exerciseId
+  ) {
+    var userId = extractUserId();
+    var exerciseSessionDtoList = exercisesSessionService.updateExerciseOrderNumberDown(sessionId, exerciseId, userId);
+    return new ResponseEntity<>(exerciseSessionDtoList, HttpStatus.OK);
+  }
+
 
   @DeleteMapping("/delete_exercise_session/{sessionId}/{exerciseId}")
   public ResponseEntity<List<ExerciseSessionDto>> delete(

@@ -25,6 +25,7 @@ import com.zapiszto.controllers.exercises.repository.ExerciseSessionRepository;
 import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -159,9 +160,10 @@ public class ExercisesSessionService {
       }catch (NumberFormatException e) {
         // Log or handle the error appropriately
         System.err.println("Invalid equipment attribute value: " + exerciseEntity.getEquipmentAttribute());
+      } finally {
+        exerciseSessionRepository.save(exerciseEntity);
+        return exerciseEntity.getWeightPerSide();
       }
-      exerciseSessionRepository.save(exerciseEntity);
-      return exerciseEntity.getWeightPerSide();
     } else {
       throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
     }
@@ -268,6 +270,54 @@ public class ExercisesSessionService {
 
     List<ExerciseEntity> entities = exerciseSessionRepository.saveAll(exerciseEntities);
     return entities.stream()
+        .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
+        .collect(Collectors.toList());
+  }
+  @Transactional
+  public List<ExerciseSessionDto> updateExerciseOrderNumberUp(UUID sessionId, UUID exerciseId, Long userId) {
+    return updateOrderNumber(sessionId, exerciseId, -1, userId);
+  }
+
+  @Transactional
+  public List<ExerciseSessionDto> updateExerciseOrderNumberDown(UUID sessionId, UUID exerciseId, Long userId) {
+    return updateOrderNumber(sessionId, exerciseId, 1, userId);
+  }
+
+  private List<ExerciseSessionDto> updateOrderNumber(UUID sessionId, UUID exerciseId, int direction, Long userId) {
+    var dictExercises = dictExercisesRepository.getAllForUser(userId);
+    var dictQuantityType = dictQuantityTypeRepository.getAllForUser(userId);
+    var dictUnits = dictUnitsRepository.getAllForUser(userId);
+    var dictSessionParts = dictSessionPartRepository.getAllForUser(userId);
+    var dictEquipment = dictEquipmentRepository.getAllForUser(userId);
+
+    List<ExerciseEntity> exerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
+        .stream()
+        .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
+        .collect(Collectors.toList());
+
+    int index = -1;
+    for (int i = 0; i < exerciseEntities.size(); i++) {
+      if (exerciseEntities.get(i).getId().equals(exerciseId)) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index != -1 && ((direction == -1 && index > 0) || (direction == 1 && index < exerciseEntities.size() - 1))) {
+      int newIndex = index + direction;
+      ExerciseEntity currentExercise = exerciseEntities.get(index);
+      ExerciseEntity targetExercise = exerciseEntities.get(newIndex);
+
+      int currentOrderNumber = currentExercise.getOrderNumber();
+      currentExercise.setOrderNumber(targetExercise.getOrderNumber());
+      targetExercise.setOrderNumber(currentOrderNumber);
+
+      exerciseSessionRepository.save(currentExercise);
+      exerciseSessionRepository.save(targetExercise);
+    }
+
+    return exerciseSessionRepository.getAllBySessionId(sessionId).stream()
+        .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
         .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
         .collect(Collectors.toList());
   }
