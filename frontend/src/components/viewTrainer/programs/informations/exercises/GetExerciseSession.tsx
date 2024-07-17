@@ -208,10 +208,13 @@ class GetExerciseSession extends Component<Props, State> {
 
   handleSaveVolume(exerciseId: string, newVolume: number) {
     ExercisesSessionService.updateVolume(exerciseId, { volume: newVolume })
-      .then(() => {
+      .then(response => {
+        const newWeightPerSide = response.data; // Get the weight per side from the response
         this.setState(prevState => ({
           exercises: prevState.exercises.map(ex => 
-            ex.exerciseId === exerciseId ? { ...ex, volume: newVolume } : ex
+            ex.exerciseId === exerciseId ? 
+            { ...ex, volume: newVolume, weightPerSide: newWeightPerSide !== null ? newWeightPerSide : ex.weightPerSide } 
+            : ex
           )
         }));
       })
@@ -286,10 +289,11 @@ class GetExerciseSession extends Component<Props, State> {
 
   handleSaveEquipmentAttribute(exerciseId: string, newEquipmentAttribute: string) {
     ExercisesSessionService.updateEquipmentAttribute(exerciseId, { equipmentAttribute: newEquipmentAttribute })
-      .then(() => {
+      .then(response => {
+        const newWeightPerSide = response.data; // Get the weight per side from the response
         this.setState(prevState => ({
           exercises: prevState.exercises.map(ex => 
-            ex.exerciseId === exerciseId ? { ...ex, equipmentAttribute: newEquipmentAttribute } : ex
+            ex.exerciseId === exerciseId ? { ...ex, equipmentAttribute: newEquipmentAttribute, weightPerSide: newWeightPerSide } : ex
           )
         }));
       })
@@ -416,20 +420,20 @@ class GetExerciseSession extends Component<Props, State> {
                 </td>
                 <td>
                   <EditableSelectCell
-                    value={row.equipmentName}
+                    value={row.equipmentName || "--"}
                     options={equipmentNames}
                     onSave={(newValue) => this.handleSaveEquipment(row.exerciseId, newValue)}
                   />
                 </td>
                 <td>
                   <EditableCell
-                    value={row.equipmentAttribute ?? ''}
+                    value={row.equipmentAttribute ?? '--'}
                     onSave={(newValue) => this.handleSaveEquipmentAttribute(row.exerciseId, newValue)}
                   />
                 </td>
                 <td>
                   <EditableNumberCell
-                    value={row.weightPerSide ?? 0}
+                    value={row.weightPerSide ?? ""}
                     onSave={(newValue) => this.handleSaveWeightPerSide(row.exerciseId, newValue)}
                   />
                 </td>

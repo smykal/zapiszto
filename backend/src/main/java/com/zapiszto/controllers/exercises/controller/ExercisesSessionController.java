@@ -5,6 +5,8 @@ import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictUnitDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDictEquipmentDto;
+import com.zapiszto.controllers.exercises.dto.UpdateEquipmentAttributeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateExerciseDto;
 import com.zapiszto.controllers.exercises.dto.UpdateNotesDto;
 import com.zapiszto.controllers.exercises.dto.UpdateQuantityDto;
@@ -12,6 +14,7 @@ import com.zapiszto.controllers.exercises.dto.UpdateRestTimeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateSetsDto;
 import com.zapiszto.controllers.exercises.dto.UpdateTempoDto;
 import com.zapiszto.controllers.exercises.dto.UpdateVolumeDto;
+import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.service.ExercisesSessionService;
 import java.util.List;
 import java.util.UUID;
@@ -97,12 +100,12 @@ public class ExercisesSessionController implements ControllerCommon {
   }
 
   @PatchMapping("/update_exercise_volume/{id}")
-  public ResponseEntity<String> updateExerciseVolume(
+  public ResponseEntity<Float> updateExerciseVolume(
       @PathVariable UUID id,
       @RequestBody UpdateVolumeDto updateVolumeDto
   ) {
-    exercisesSessionService.updateVolume(id, updateVolumeDto);
-    return new ResponseEntity<>(HttpStatus.OK);
+    var weightPerSide = exercisesSessionService.updateVolume(id, updateVolumeDto);
+    return new ResponseEntity<>(weightPerSide, HttpStatus.OK);
   }
 
   @PatchMapping("/update_exercise_quantity/{id}")
@@ -133,11 +136,29 @@ public class ExercisesSessionController implements ControllerCommon {
   }
 
   @PatchMapping("/update_exercise_sets/{id}")
-  public ResponseEntity<String> updateExerciseVolume(
+  public ResponseEntity<String> updateExerciseSets(
       @PathVariable UUID id,
       @RequestBody UpdateSetsDto updateSetsDto
   ) {
     exercisesSessionService.updateSets(id, updateSetsDto);
     return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_equipment/{id}")
+  public ResponseEntity<String> update(
+      @PathVariable UUID id,
+      @RequestBody UpdateDictEquipmentDto updateDictEquipmentDto
+  ) {
+    exercisesSessionService.updateDictEquipment(id, updateDictEquipmentDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_exercise_equipment_attribute/{id}")
+  public ResponseEntity<Float> update(
+      @PathVariable UUID id,
+      @RequestBody UpdateEquipmentAttributeDto updateEquipmentAttributeDto
+  ) {
+    var weightPerSide = exercisesSessionService.updateEquipmentAttribute(id, updateEquipmentAttributeDto);
+    return new ResponseEntity<>(weightPerSide, HttpStatus.OK);
   }
 }

@@ -1,7 +1,9 @@
 package com.zapiszto.controllers.exercises.service;
 
+import com.zapiszto.controllers.dictionaries.dictEquipment.repository.DictEquipmentRepository;
 import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExercisesRepository;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.repository.DictQuantityTypeRepository;
+import com.zapiszto.controllers.dictionaries.dictSessionPart.repository.DictSessionPartRepository;
 import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
 import com.zapiszto.controllers.exercises.dto.ExerciseTrainingDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseTrainingDto;
@@ -29,6 +31,8 @@ public class ExercisesTrainingService {
 
   @Autowired
   DictUnitsRepository dictUnitsRepository;
+
+
 
   public void addExercise(NewExerciseTrainingDto newExerciseTrainingDto, Long userId) {
     int trainingId = newExerciseTrainingDto.getTrainingId();

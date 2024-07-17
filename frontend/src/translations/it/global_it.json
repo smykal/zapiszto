@@ -123,7 +123,10 @@
         "rest_time": "tempo di riposo",
         "tempo": "ritmo",
         "session_part": "Scopo",
-        "sets": "serie"
+        "sets": "serie",
+        "equipment": "attrezzatura",
+        "equipment_attribute": "attributo dell'attrezzatura",
+        "weight_per_side": "peso per lato"
     },
     "invitations": {
         "title": "inviti",
