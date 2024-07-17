@@ -24,6 +24,7 @@ import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.repository.ExerciseSessionRepository;
 import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -248,6 +249,27 @@ public class ExercisesSessionService {
       // Handle the case where the entity was not found, e.g., throw an exception or return null
       throw new EntityNotFoundException("ExerciseEntity not found for ID: " + id);
     }
+  }
+
+  @Transactional
+  public List<ExerciseSessionDto> delete(UUID sessionId, UUID exerciseId, Long userId) {
+    var dictExercises = dictExercisesRepository.getAllForUser(userId);
+    var dictQuantityType = dictQuantityTypeRepository.getAllForUser(userId);
+    var dictUnits = dictUnitsRepository.getAllForUser(userId);
+    var dictSessionParts = dictSessionPartRepository.getAllForUser(userId);
+    var dictEquipment = dictEquipmentRepository.getAllForUser(userId);
+    exerciseSessionRepository.deleteById(exerciseId);
+    List<ExerciseEntity> exerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId);
+
+    for (int i = 0; i < exerciseEntities.size(); i++) {
+      ExerciseEntity exercise = exerciseEntities.get(i);
+      exercise.setOrderNumber(i + 1); // Numeracja od 1
+    }
+
+    List<ExerciseEntity> entities = exerciseSessionRepository.saveAll(exerciseEntities);
+    return entities.stream()
+        .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
+        .collect(Collectors.toList());
   }
 }
 
