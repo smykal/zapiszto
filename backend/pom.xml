@@ -19,6 +19,7 @@
 		<java.version>17</java.version>
 	</properties>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -103,16 +104,13 @@
 				<configuration>
 					<!-- for showing output of sentry-cli -->
 					<debugSentryCli>true</debugSentryCli>
-
 					<org>smykalm</org>
-
 					<project>zapiszto</project>
-
 					<!-- in case you're self hosting, provide the URL here -->
-					<url>http://localhost:8080/</url>
-
+					<!-- <url>http://localhost:8080/</url>-->
 					<!-- provide your auth token via SENTRY_AUTH_TOKEN environment variable -->
-					<authToken>"sntrys_eyJpYXQiOjE3MjEyNDk3MzkuMTY2OTA2LCJ1cmwiOiJodHRwczovL3NlbnRyeS5pbyIsInJlZ2lvbl91cmwiOiJodHRwczovL2RlLnNlbnRyeS5pbyIsIm9yZyI6InNteWthbG0ifQ"</authToken>
+					<!-- <authToken>${env.SENTRY_AUTH_TOKEN}</authToken>-->
+					<authToken>"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"</authToken>
 				</configuration>
 				<executions>
 					<execution>
@@ -128,7 +126,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-
 	</build>
-
 </project>

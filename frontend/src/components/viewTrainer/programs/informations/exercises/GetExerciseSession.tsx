@@ -320,6 +320,16 @@ class GetExerciseSession extends Component<Props, State> {
     this.setState({ exercises: updatedExercises });
   };
 
+  handleAddExercise = async () => {
+    const { session_id } = this.props;
+    try {
+      const response = await ExercisesSessionService.addExercise(session_id);
+      this.setState({ exercises: response.data });
+    } catch (error) {
+      console.error('Error adding exercise:', error);
+    }
+  };
+
   render() {
     const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions, equipmentOptions } = this.state;
     const { t } = this.props;
@@ -446,6 +456,7 @@ class GetExerciseSession extends Component<Props, State> {
             ))}
           </tbody>
         </table>
+        <button onClick={this.handleAddExercise}>{t('buttons.add_exercise')}</button>
       </div>
     );
   }

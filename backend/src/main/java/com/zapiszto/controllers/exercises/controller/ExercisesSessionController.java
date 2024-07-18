@@ -41,6 +41,19 @@ public class ExercisesSessionController implements ControllerCommon {
   @Autowired
   ExercisesSessionService exercisesSessionService;
 
+  @GetMapping("/add_exercise/session/{sessionId}")
+  public ResponseEntity<List<ExerciseSessionDto>> addExercise(
+      @PathVariable("sessionId") UUID sessionId
+  ) {
+    var userId = extractUserId();
+    try {
+      List<ExerciseSessionDto> exerciseSessionDtoList = exercisesSessionService.addExerciseSession(sessionId, userId);
+      return new ResponseEntity<>(exerciseSessionDtoList, HttpStatus.OK);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
   @GetMapping("/get_exercise/session/{sessionId}")
   public ResponseEntity<List<ExerciseSessionDto>> getExercises(
       @PathVariable("sessionId") UUID sessionId

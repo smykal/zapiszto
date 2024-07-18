@@ -92,6 +92,9 @@ class ExercisesSessionService {
   deleteExercise(sessionId: string, exerciseId: string) {
     return axios.delete(`${API_URL}/delete_exercise_session/${sessionId}/${exerciseId}`, { headers: authHeader() });
   }
+  addExercise(sessionId: string) {
+    return axios.get(`${API_URL}/add_exercise/session/${sessionId}`, { headers: authHeader() });
+  }
 }
 
 export default new ExercisesSessionService();

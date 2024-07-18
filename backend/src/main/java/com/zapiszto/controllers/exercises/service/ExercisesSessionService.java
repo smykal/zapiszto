@@ -25,6 +25,7 @@ import com.zapiszto.controllers.exercises.repository.ExerciseSessionRepository;
 import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -318,6 +319,57 @@ public class ExercisesSessionService {
 
     return exerciseSessionRepository.getAllBySessionId(sessionId).stream()
         .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
+        .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
+        .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public List<ExerciseSessionDto> addExerciseSession(UUID sessionId, Long userId) {
+    var dictExercises = dictExercisesRepository.getAllForUser(userId);
+    var dictQuantityType = dictQuantityTypeRepository.getAllForUser(userId);
+    var dictUnits = dictUnitsRepository.getAllForUser(userId);
+    var dictSessionParts = dictSessionPartRepository.getAllForUser(userId);
+    var dictEquipment = dictEquipmentRepository.getAllForUser(userId);
+
+    List<ExerciseEntity> exerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
+        .stream()
+        .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
+        .collect(Collectors.toList());
+
+    if (exerciseEntities.isEmpty()) {
+      return Collections.emptyList();
+    }
+
+    ExerciseEntity lastExercise = exerciseEntities.get(exerciseEntities.size() - 1);
+
+    ExerciseEntity newExercise = ExerciseEntity.builder()
+        .id(UUID.randomUUID())
+        .sessionId(sessionId)
+        .trainingId(lastExercise.getTrainingId())
+        .dictExerciseId(lastExercise.getDictExerciseId())
+        .quantity(lastExercise.getQuantity())
+        .dictQuantityTypeId(lastExercise.getDictQuantityTypeId())
+        .volume(lastExercise.getVolume())
+        .dictUnitId(lastExercise.getDictUnitId())
+        .notes(lastExercise.getNotes())
+        .orderNumber(lastExercise.getOrderNumber() + 1)
+        .restTime(lastExercise.getRestTime())
+        .tempo(lastExercise.getTempo())
+        .dictSessionPartId(lastExercise.getDictSessionPartId())
+        .sets(lastExercise.getSets())
+        .dictEquipmentId(lastExercise.getDictEquipmentId())
+        .equipmentAttribute(lastExercise.getEquipmentAttribute())
+        .weightPerSide(lastExercise.getWeightPerSide())
+        .build();
+
+    exerciseSessionRepository.save(newExercise);
+
+    List<ExerciseEntity> updatedExerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
+        .stream()
+        .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
+        .collect(Collectors.toList());
+
+    return updatedExerciseEntities.stream()
         .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
         .collect(Collectors.toList());
   }
