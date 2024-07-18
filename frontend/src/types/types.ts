@@ -94,14 +94,15 @@ export type NewDictQuantityType = {
 }
 
 export type DictUnits = {
-                          id: number;
-                          dict: string;
-                          dict_id: number;
-                          name: string;
+                          id: string
+                          dict: string
+                          dict_id: string
+                          name: string
                           shortcut: string
 }
 
 export type NewDictUnit = {
+                            id: string
                             name: string,
                             shortcut: string
 }
@@ -172,6 +173,10 @@ export type ExerciseSession = {
                                 restTime: number | null; 
                                 tempo: string | null;
                                 dictSessionPartName: string;
+                                sets: number;
+                                equipmentName: string;
+                                equipmentAttribute: string;
+                                weightPerSide: number;
 };
 
 export type NewInvitation = {
@@ -248,7 +253,7 @@ export type NewGoal = {
                         clientId: string,
                         dictBodyParamId: number | null,
                         dictBodyTestId: number | null,
-                        dictUnitId: number,
+                        dictUnitId: string,
                         action: string,
                         value: string,
                         goalDate: string
@@ -364,4 +369,16 @@ export type DictSessionPartDto = {
                                   dict: string;
                                   dict_id: string;
                                   name: string
+}
+
+export interface DictEquipment {
+                                  id: string;
+                                  name: string;
+                                  dict: string;
+                                  dict_id: string;
+}
+
+export interface NewDictEquipment {
+                                    id: string;
+                                    name: string;
 }

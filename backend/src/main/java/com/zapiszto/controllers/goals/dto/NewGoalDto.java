@@ -22,7 +22,7 @@ public class NewGoalDto {
   UUID clientId;
   Integer dictBodyParamId;
   Integer dictBodyTestId;
-  Integer dictUnitId;
+  UUID dictUnitId;
   String action;
   String value;
   LocalDate goalDate;

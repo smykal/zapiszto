@@ -122,7 +122,11 @@
         "orderId": "Order",
         "rest_time": "rest time",
         "tempo": "tempo",
-        "session_part": "purpose"
+        "session_part": "purpose",
+        "sets": "sets",
+        "equipment": "equipment",
+        "equipment_attribute": "equipment attribute",
+        "weight_per_side": "weight per side"
     },
     "invitations": {
         "title": "invitations",

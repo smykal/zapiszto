@@ -29,8 +29,8 @@ const ShowDictUnits: React.FC = () => {
         setDictUnits(prevUnits => [...prevUnits, newUnit]);
     };
 
-    const handleDeleteUnit = (unitId: number) => {
-        setDictUnits(prevUnits => prevUnits.filter(unit => unit.id !== unitId));
+    const handleDeleteUnit = (unitId: string) => {
+        setDictUnits(prevUnits => prevUnits.filter(unit => unit.dict_id !== unitId));
     };
 
     const handleShowBasicChange = () => {

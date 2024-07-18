@@ -122,7 +122,11 @@
         "tempo": "tempo",
         "session_part": "Cel",
         "gender_not_set": "Płeć nie została jeszcze ustawiona",
-        "age_not_set": "Wiek nie został jeszcze ustawiony"
+        "age_not_set": "Wiek nie został jeszcze ustawiony",
+        "sets": "serie",
+        "equipment": "sprzęt",
+        "equipment_attribute": "atrybut sprzętu",
+        "weight_per_side": "waga na stronę"
     },
     "invitations": {
         "title": "zaproszenia",

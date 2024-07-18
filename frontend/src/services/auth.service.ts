@@ -60,6 +60,13 @@ class AuthService {
     return axios.delete(AUTH_URL + `deleteAccount`, { headers: authHeader() });
     this.logout();
   }
+
+  updatePassword(oldPassword: string, newPassword: string) {
+    return axios.post(AUTH_URL + 'updatePassword', {
+      oldPassword,
+      newPassword
+    }, { headers: authHeader() });
+  }
 }
 
 export default new AuthService();

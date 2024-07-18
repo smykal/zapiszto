@@ -17,5 +17,5 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UpdateDictUnitDto {
   String name;
-  UUID id;
+  UUID dictUnitId;
 }

@@ -122,7 +122,11 @@
         "orderId": "Orden",
         "rest_time": "tiempo de descanso",
         "tempo": "ritmo",
-        "session_part": "Propósito"
+        "session_part": "Propósito",
+        "sets": "series",
+        "equipment": "equipo",
+        "equipment_attribute": "atributo del equipo",
+        "weight_per_side": "peso por lado"
     },
     "invitations": {
         "title": "invitaciones",

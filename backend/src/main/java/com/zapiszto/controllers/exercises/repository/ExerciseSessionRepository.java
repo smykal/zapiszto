@@ -17,7 +17,7 @@ public interface ExerciseSessionRepository extends JpaRepository<ExerciseEntity,
   Integer getOrderNumber(@Param("sessionId") UUID sessionId);
 
   @Query(nativeQuery = true, value = """
-      select * from exercises e where e.session_id =:sessionId
+      select * from exercises e where e.session_id =:sessionId order by order_number
       """)
   List<ExerciseEntity> getAllBySessionId(@Param("sessionId") UUID sessionId);
 }

@@ -18,8 +18,10 @@ class DictUnitsService {
             });
     }
 
-    deleteDictUnits(itemToDelete: number) {
+    deleteDictUnits(itemToDelete: string) {
         return axios.delete(API_URL + '/delete_unit_per_user/' + itemToDelete, { headers: authHeader() })
     }
+
+
 }
 export default new DictUnitsService();

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add_columns_to_exercises" author="smykalm">
+        <!-- Add dict_equipment_id column -->
+        <addColumn tableName="exercises">
+            <column name="dict_equipment_id" type="uuid">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
+        <!-- Add equipment_attribute column -->
+        <addColumn tableName="exercises">
+            <column name="equipment_attribute" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
+        <!-- Add weight_per_side column -->
+        <addColumn tableName="exercises">
+            <column name="weight_per_side" type="real">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
+        <!-- Add foreign key constraint for dict_equipment_id -->
+        <addForeignKeyConstraint
+                baseTableName="exercises"
+                baseColumnNames="dict_equipment_id"
+                constraintName="fk_exercises_dict_equipment"
+                referencedTableName="dict_equipment"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

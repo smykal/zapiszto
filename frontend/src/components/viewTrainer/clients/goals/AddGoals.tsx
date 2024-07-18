@@ -89,7 +89,7 @@ const AddGoals: React.FC<ClientDetailsProps> = ({ client }) => {
                         clientId: client.id,
                         dictBodyParamId: values.dictBodyParamId ? Number(values.dictBodyParamId) : null,
                         dictBodyTestId: values.dictBodyTestId ? Number(values.dictBodyTestId) : null,
-                        dictUnitId: Number(values.dictUnitId),
+                        dictUnitId: String(values.dictUnitId),
                     };
                     GoalsService.postNewGoal(newGoal)
                         .then(() => {

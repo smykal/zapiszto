@@ -60,7 +60,7 @@ public class GoalEntity {
   DictUnitsEntity dictUnitsEntity;
 
   @Column(name = "dict_unit_id")
-  Integer dictUnitsId;
+  UUID dictUnitsId;
 
   @Column(name = "action")
   String action;

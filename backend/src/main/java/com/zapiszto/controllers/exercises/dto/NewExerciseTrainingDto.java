@@ -22,6 +22,6 @@ public class NewExerciseTrainingDto {
   int quantity;
   UUID dictQuantityTypeId;
   int volume;
-  int dictUnitId;
+  UUID dictUnitId;
   String notes;
 }

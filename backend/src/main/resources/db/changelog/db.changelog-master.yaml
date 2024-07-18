@@ -251,3 +251,19 @@ databaseChangeLog:
       file: db/changelog/125_add_data_to_dict_units.xml
   - include:
       file: db/changelog/126_add_data_to_dict_exercises.xml
+  - include:
+      file: db/changelog/127_remove_data.xml
+  - include:
+      file: db/changelog/128_modify_dict_units.xml
+  - include:
+      file: db/changelog/129_add_data_to_dict_units.xml
+  - include:
+      file: db/changelog/130_modify_table_exercises.xml
+  - include:
+      file: db/changelog/131_add_data_to_dict_categories.xml
+  - include:
+      file: db/changelog/132_add_table_dict_equipment.xml
+  - include:
+      file: db/changelog/133_modify_table_exercises.xml
+  - include:
+      file: db/changelog/134_add_data_to_dict_equipment.xml

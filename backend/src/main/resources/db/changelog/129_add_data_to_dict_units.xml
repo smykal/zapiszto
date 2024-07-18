@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-insert-into-dict_unit_basic" author="smykalm">
+        <insert tableName="dict_units_basic">
+            <column name="id" value="a1d6f87b-9e5b-4dfb-8b9e-1234567890ab"/>
+            <column name="name" value="kilogram"/>
+            <column name="shortcut" value="kg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2-insert-into-dict_unit" author="smykalm">
+        <insert tableName="dict_units">
+            <column name="id" value="d7e9a7f6-b5f4-41a8-bf3a-0987654321cd"/>
+            <column name="dict_units_basic_id" value="a1d6f87b-9e5b-4dfb-8b9e-1234567890ab"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3-insert-into-dict_unit_basic" author="smykalm">
+        <insert tableName="dict_units_basic">
+            <column name="id" value="b2d7e6f5-8e4a-42b9-af7a-6543210987ef"/>
+            <column name="name" value="pound"/>
+            <column name="shortcut" value="lb"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="4-insert-into-dict_unit" author="smykalm">
+        <insert tableName="dict_units">
+            <column name="id" value="c6f8e7d5-a8b4-49a8-bc7a-abcdef123456"/>
+            <column name="dict_units_basic_id" value="b2d7e6f5-8e4a-42b9-af7a-6543210987ef"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

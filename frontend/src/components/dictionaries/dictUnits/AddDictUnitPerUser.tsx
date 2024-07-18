@@ -21,6 +21,7 @@ export default class AddDictUnitPerUser extends Component<Props, State> {
         const isNameExisting = dictUnits.some(item => item.name === values.newDictUnitName);
         if (!isNameExisting) {
             const newDictUnit: NewDictUnit = {
+                id: crypto.randomUUID(),
                 name: values.newDictUnitName,
                 shortcut: values.newDictUnitShortcut
             };
@@ -28,10 +29,9 @@ export default class AddDictUnitPerUser extends Component<Props, State> {
                 .then(response => {
                     const addedUnit = {
                         ...newDictUnit,
-                        id: Math.max(...dictUnits.map(u => u.id)) + 1, // Simulate the new ID
                         dict: "PER_USER",
-                        dict_id: Math.max(...dictUnits.map(u => u.dict_id)) + 1 // Simulate the new dict_id
-                    };
+                        dict_id: crypto.randomUUID(),   // Simulate the new dict_id 
+                    };                                  // or would be better to get from response
                     onAddUnit(addedUnit);
                 })
                 .catch(error => {
@@ -48,8 +48,8 @@ export default class AddDictUnitPerUser extends Component<Props, State> {
             <div>
                 <Formik
                     initialValues={{
-                        newDictUnitName: 'name',
-                        newDictUnitShortcut: 'shortcut'
+                        newDictUnitName: '',
+                        newDictUnitShortcut: ''
                     }}
                     validationSchema={Yup.object({
                         newDictUnitName: Yup.string()

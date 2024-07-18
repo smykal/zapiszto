@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.exercises.entity;
 
+import com.zapiszto.controllers.dictionaries.dictEquipment.entity.DictEquipmentEntity;
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionPartEntity;
@@ -77,7 +78,7 @@ public class ExerciseEntity {
   DictUnitsEntity dictUnitsEntity;
 
   @Column(name = "dict_unit_id", nullable = false)
-  int dictUnitId;
+  UUID dictUnitId;
 
   @Column(name = "notes")
   String notes;
@@ -97,4 +98,21 @@ public class ExerciseEntity {
 
   @Column(name = "dict_session_part_id")
   UUID dictSessionPartId;
+
+  @Column(name = "sets")
+  int sets;
+
+  @ManyToOne
+  @JoinColumn(name = "dict_equipment_id", referencedColumnName = "id", insertable = false, updatable = false)
+  DictEquipmentEntity dictEquipmentEntity;
+
+  @Column(name = "dict_equipment_id")
+  UUID dictEquipmentId;
+
+  @Column(name = "equipment_attribute")
+  String equipmentAttribute;
+
+  @Column(name = "weight_per_side", precision = 2)
+  Float weightPerSide;
+
 }
