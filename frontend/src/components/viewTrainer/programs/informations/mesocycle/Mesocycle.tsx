@@ -47,6 +47,21 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
       });
   };
 
+  const handleSaveComment = (id: string, newComment: string) => {
+    MesocycleService.updateMesocycleComment(id, newComment)
+      .then(() => {
+        setMesocycles((prevMesocycles) =>
+          prevMesocycles.map((mesocycle) =>
+            mesocycle.id === id ? { ...mesocycle, comments: newComment } : mesocycle
+          )
+        );
+      })
+      .catch(error => {
+        console.error('Error updating comment:', error);
+        setMessage(t('mesocycle.update_error'));
+      });
+  };
+
   return (
     <div>
       {message && <p>{message}</p>}
@@ -60,13 +75,14 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
           <TabPanel key={mesocycle.id}>
             <p>
               {t('table.label')}:{' '}
-              <EditableCell value={mesocycle.label} onSave={(newLabel) => handleSaveLabel(mesocycle.id, newLabel)} />
+              <EditableCell value={mesocycle.label || ''} onSave={(newLabel) => handleSaveLabel(mesocycle.id, newLabel)} />
             </p>
             <p>{t('table.duration')}: {mesocycle.duration} tygodnie</p>
-            <p>{t('table.comments')}: {mesocycle.comments}</p>
-            <p>{t('table.dictType')}: {mesocycle.dictType}</p>
-            <p>{t('table.dictId')}: {mesocycle.dictId}</p>
-            <p>{t('table.dictName')}: {mesocycle.dictName}</p>
+            <p>
+              {t('table.comments')}:{' '}
+              <EditableCell value={mesocycle.comments || ''} onSave={(newComment) => handleSaveComment(mesocycle.id, newComment)} />
+            </p>
+            <p>{t('table.dict_mesocycle_phase')}: {mesocycle.dictName}</p>
             <Microcycle mesocycleId={mesocycle.id} />
           </TabPanel>
         ))}

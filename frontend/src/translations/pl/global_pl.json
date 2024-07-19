@@ -126,7 +126,9 @@
         "sets": "serie",
         "equipment": "sprzęt",
         "equipment_attribute": "atrybut sprzętu",
-        "weight_per_side": "waga na stronę"
+        "weight_per_side": "waga na stronę",
+        "label": "tytuł",
+        "dict_mesocycle_phase": "kierunek rozwoju"
     },
     "invitations": {
         "title": "zaproszenia",

@@ -40,9 +40,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({ mesocycleId }) => {
         </TabList>
         {microcycles.map((microcycle, index) => (
           <TabPanel key={microcycle.id}>
-            <h3>{t('microcycle.details_for')} {microcycle.orderId}</h3>
-            <p><strong>{t('table.dictType')}:</strong> {microcycle.dictType}</p>
-            <p><strong>{t('table.dictName')}:</strong> {microcycle.dictName}</p>
+            <p>tutaj pobrać dla każdego kolejnego tygodnia domyślną wartość z dict_mesocycle_phase</p>
             <Session microcycleId={microcycle.id} />
           </TabPanel>
         ))}

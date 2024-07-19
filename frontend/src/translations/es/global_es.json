@@ -126,7 +126,9 @@
         "sets": "series",
         "equipment": "equipo",
         "equipment_attribute": "atributo del equipo",
-        "weight_per_side": "peso por lado"
+        "weight_per_side": "peso por lado",
+        "label": "título",
+        "dict_mesocycle_phase": "dirección de desarrollo"
     },
     "invitations": {
         "title": "invitaciones",

@@ -346,9 +346,6 @@ export type MicrocycleDto = {
                               id: string;
                               mesocycleId: string;
                               orderId: number;
-                              dictType: string;
-                              dictId: number;
-                              dictName: string;
 }
 
 export type PeriodizationDto = {

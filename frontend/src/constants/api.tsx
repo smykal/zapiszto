@@ -7,8 +7,8 @@ const RECAPTHCA_LOCALHOST = '6LfpUvgpAAAAAH4mqrcWNgVcavvJCLDjN6Tr2Arv'
 export const RECAPTCHA_SITE_KEY = RECAPTHCA_LOCALHOST
 
 
-//export const API_URL = URL_LOCALHOST;
-//export const AUTH_URL = URL_AUTH_LOCALHOST;
+export const API_URL = URL_LOCALHOST;
+export const AUTH_URL = URL_AUTH_LOCALHOST;
 
-export const API_URL = URL_RENDER;
-export const AUTH_URL = URL_AUTH_RENDER;
+//export const API_URL = URL_RENDER;
+//export const AUTH_URL = URL_AUTH_RENDER;

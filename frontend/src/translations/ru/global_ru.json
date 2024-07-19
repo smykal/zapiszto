@@ -126,7 +126,9 @@
         "sets": "подходы",
         "equipment": "оборудование",
         "equipment_attribute": "атрибут оборудования",
-        "weight_per_side": "вес на сторону"
+        "weight_per_side": "вес на сторону",
+        "label": "название",
+        "dict_mesocycle_phase": "направление развития"
     },
     "invitations": {
         "title": "приглашения",
