@@ -3,6 +3,7 @@ import Options from './Options';
 import EditableSelectCell from '../../../../../common/EditableSelectCell';
 import EditableCell from '../../../../../common/EditableCell';
 import EditableNumberCell from '../../../../../common/EditableNumberCell';
+import EditableNumberFloatCell from '../../../../../common/EditableNumberFloatCell';
 import { ExerciseSession, DictSessionPartDto, DictQuantityType, DictExercises, DictUnits, DictEquipment } from '../../../../../types/types';
 import { withTranslation } from "react-i18next";
 import ExercisesSessionService from '../../../../../services/exercises/session/ExercisesSessionService';
@@ -383,7 +384,7 @@ class GetExerciseSession extends Component<Props, State> {
                   />
                 </td>
                 <td>
-                  <EditableNumberCell
+                  <EditableNumberFloatCell
                     value={row.volume ?? 0}
                     onSave={(newValue) => this.handleSaveVolume(row.exerciseId, newValue)}
                   />
