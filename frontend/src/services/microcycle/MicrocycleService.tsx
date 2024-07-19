@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MicrocycleDto } from '../../types/types';
+import { MicrocycleDto, MicrocycleStatsDto } from '../../types/types';
 import { API_URL } from '../../constants/api';
 import authHeader from '../auth-header'; // Assuming you have a method to get auth headers
 
@@ -7,6 +7,10 @@ import authHeader from '../auth-header'; // Assuming you have a method to get au
 class MicrocycleService {
   getMicrocycles(mesocycleId: string) {
     return axios.get<MicrocycleDto[]>(`${API_URL}/get_microcycles/${mesocycleId}`, { headers: authHeader() });
+  }
+
+  getMicrocycleStats(microcycleId: string) {
+    return axios.get<MicrocycleStatsDto[]>(`${API_URL}/get_microcycle_stats/${microcycleId}`, { headers: authHeader() });
   }
 }
 
