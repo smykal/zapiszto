@@ -22,7 +22,7 @@ public class ExerciseSessionDto {
   String dictCategoryName;
   int quantity;
   String dictQuantityTypeName;
-  int volume;
+  Float volume;
   String dictUnitName;
   String notes;
   int orderNumber;

@@ -16,7 +16,7 @@ public interface SerializerCommon {
   UUID DEFAULT_DICT_SESSION_PART_ID = UUID.fromString("550e8400-e29b-41d4-a716-446655440003");
   int DEFAULT_QUANTITY = 8;
   UUID DEFAULT_DICT_QUANTITY_TYPE = UUID.fromString("b9358d45-fc90-4ee6-88fb-73eda8482c6f");
-  int DEFAULT_VOLUME = 50;
+  Float DEFAULT_VOLUME = 50f;
   UUID DEFAULLT_DICT_UNIT_ID = UUID.fromString("d7e9a7f6-b5f4-41a8-bf3a-0987654321cd");
   String DEFAULT_NOTES = "notes";
   int DEFAULT_REST_TIME = 60;
