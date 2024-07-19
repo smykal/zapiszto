@@ -143,10 +143,19 @@ public class MesocycleService {
 
   @Modifying
   @Transactional
-  public void updateMesocycleLabel(String id, String label) {
-    MesocycleEntity mesocycleEntity = mesocycleRepository.findById(UUID.fromString(id))
+  public void updateMesocycleLabel(UUID id, String label) {
+    MesocycleEntity mesocycleEntity = mesocycleRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Mesocycle not found"));
     mesocycleEntity.setLabel(label);
+    mesocycleRepository.save(mesocycleEntity);
+  }
+
+  @Modifying
+  @Transactional
+  public void updateMesocycleComment(UUID id, String comment) {
+    MesocycleEntity mesocycleEntity = mesocycleRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Mesocycle not found"));
+    mesocycleEntity.setComments(comment);
     mesocycleRepository.save(mesocycleEntity);
   }
 }

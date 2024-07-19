@@ -18,7 +18,4 @@ public class MicrocycleDto {
   String id;
   String mesocycleId;
   int orderId;
-
-
-
 }
