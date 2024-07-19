@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import MicrocycleService from '../../../../../services/microcycle/MicrocycleService';
+import MicrocycleStats from './MicrocycleStats';
 import Session from '../session/Session';
 import { MicrocycleDto } from '../../../../../types/types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -41,6 +42,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({ mesocycleId }) => {
         {microcycles.map((microcycle, index) => (
           <TabPanel key={microcycle.id}>
             <p>tutaj pobrać dla każdego kolejnego tygodnia domyślną wartość z dict_mesocycle_phase</p>
+            <MicrocycleStats microcycleId={microcycle.id} /> 
             <Session microcycleId={microcycle.id} />
           </TabPanel>
         ))}

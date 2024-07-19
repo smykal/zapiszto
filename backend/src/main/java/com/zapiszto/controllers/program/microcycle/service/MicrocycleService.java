@@ -3,12 +3,13 @@ package com.zapiszto.controllers.program.microcycle.service;
 import com.zapiszto.controllers.program.macrocycle.dto.NewMacrocycleDto;
 import com.zapiszto.controllers.program.mesocycle.entity.MesocycleEntity;
 import com.zapiszto.controllers.program.microcycle.dto.MicrocycleDto;
+import com.zapiszto.controllers.program.microcycle.dto.MicrocycleStatsDto;
 import com.zapiszto.controllers.program.microcycle.entity.MicrocycleEntity;
 import com.zapiszto.controllers.program.microcycle.repository.MicrocycleRepository;
 import com.zapiszto.controllers.program.microcycle.serializer.MicrocycleSerializer;
-import com.zapiszto.controllers.program.sessions.serializer.SessionSerializer;
 import com.zapiszto.controllers.program.sessions.service.SessionService;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -81,5 +82,27 @@ public class MicrocycleService {
     List<MicrocycleEntity> microcycleEntities = microcycleRepository.saveAll(microcycles);
     return microcycleEntities;
 
+  }
+
+  public List<MicrocycleStatsDto> getMicrocycleStats(UUID microcycleId) {
+    List<Object[]> microcycleStats = microcycleRepository.findMicrocycleStats(microcycleId);
+
+    if (microcycleStats.isEmpty()) {
+      return Collections.singletonList(new MicrocycleStatsDto(
+          "",  // category
+          null,  // repetitions
+          null   // sets
+      ));
+    }
+
+    return microcycleStats.stream()
+        .map(result ->
+            new MicrocycleStatsDto(
+                (String) result[0],  // category
+                (Long) result[1], // repetitions
+                (Long) result[2]  // sets
+            )
+        )
+        .collect(Collectors.toList());
   }
 }

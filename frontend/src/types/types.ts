@@ -348,6 +348,12 @@ export type MicrocycleDto = {
                               orderId: number;
 }
 
+export type MicrocycleStatsDto = {
+                                    category: string;
+                                    repetitions: number;
+                                    sets: number;
+}
+
 export type PeriodizationDto = {
                               name: string;
                               description: string;
