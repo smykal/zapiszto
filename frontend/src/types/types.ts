@@ -385,3 +385,10 @@ export interface NewDictEquipment {
                                     id: string;
                                     name: string;
 }
+
+export interface ExerciseStats {
+                                orderId: number;
+                                category: string;
+                                repetitions: number;
+                                sets: number;
+}
