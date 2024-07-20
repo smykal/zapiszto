@@ -3,6 +3,7 @@ package com.zapiszto.controllers.program.microcycle.controller;
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.program.mesocycle.dto.MesocycleDto;
 import com.zapiszto.controllers.program.microcycle.dto.MicrocycleDto;
+import com.zapiszto.controllers.program.microcycle.dto.MicrocycleStatsDto;
 import com.zapiszto.controllers.program.microcycle.service.MicrocycleService;
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +37,22 @@ public class MicrocycleController implements ControllerCommon {
       var microcycles = microcycleService.getMicrocycle(mesocycleId);
       return new ResponseEntity<>(
           microcycles,
+          HttpStatus.OK
+      );
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+  }
+
+  @GetMapping("get_microcycle_stats/{microcycleId}")
+  public ResponseEntity<List<MicrocycleStatsDto>> getMicrocycleStats(
+      @PathVariable UUID microcycleId
+  ) {
+    var trainerId = extractUserId();
+    try {
+      var result = microcycleService.getMicrocycleStats(microcycleId);
+      return new ResponseEntity<>(
+          result,
           HttpStatus.OK
       );
     } catch (NullPointerException e) {

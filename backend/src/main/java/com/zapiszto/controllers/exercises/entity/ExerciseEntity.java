@@ -71,7 +71,7 @@ public class ExerciseEntity {
   UUID dictQuantityTypeId;
 
   @Column(name = "volume", nullable = false)
-  int volume;
+  Float volume;
 
   @ManyToOne
   @JoinColumn(name = "dict_unit_id", referencedColumnName = "id", insertable = false, updatable = false)

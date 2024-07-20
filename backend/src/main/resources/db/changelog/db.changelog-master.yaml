@@ -267,3 +267,5 @@ databaseChangeLog:
       file: db/changelog/133_modify_table_exercises.xml
   - include:
       file: db/changelog/134_add_data_to_dict_equipment.xml
+  - include:
+      file: db/changelog/135_modify_table_exercises.xml

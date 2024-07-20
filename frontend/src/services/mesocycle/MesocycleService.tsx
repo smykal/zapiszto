@@ -12,8 +12,12 @@ class MesocycleService {
     return axios.get<MesocycleDto[]>(`${API_URL}/get_mesocycles/${macrocycleId}`, { headers: authHeader() });
   }
 
-  updateMesocycleLabel(mesocycleId: string, newLabel: string) { // Zmiana na PATCH
+  updateMesocycleLabel(mesocycleId: string, newLabel: string) {
     return axios.patch(`${API_URL}/update_mesocycle_label/${mesocycleId}`, { label: newLabel }, { headers: authHeader() });
+  }
+
+  updateMesocycleComment(mesocycleId: string, newComment: string) {
+    return axios.patch(`${API_URL}/update_mesocycle_comment/${mesocycleId}`, { comment: newComment }, { headers: authHeader() });
   }
 }
 

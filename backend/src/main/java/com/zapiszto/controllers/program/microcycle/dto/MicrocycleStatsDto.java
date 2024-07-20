@@ -14,8 +14,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MicrocycleDto {
-  String id;
-  String mesocycleId;
-  int orderId;
+public class MicrocycleStatsDto {
+  String category;
+  Long repetitions;
+  Long sets;
 }

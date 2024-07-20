@@ -3,10 +3,12 @@ package com.zapiszto.controllers.program.mesocycle.controller;
 import com.zapiszto.controllers.common.ControllerCommon;
 import com.zapiszto.controllers.program.mesocycle.dto.MesocycleDto;
 import com.zapiszto.controllers.program.mesocycle.dto.NewMesocycleDto;
+import com.zapiszto.controllers.program.mesocycle.dto.UpdateCommentDto;
 import com.zapiszto.controllers.program.mesocycle.dto.UpdateLabelDto;
 import com.zapiszto.controllers.program.mesocycle.service.MesocycleService;
 import com.zapiszto.controllers.program.programs.dto.ProgramNameDto;
 import java.util.List;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,9 +65,17 @@ public class MesocycleController implements ControllerCommon {
 
   @PatchMapping("/update_mesocycle_label/{id}")
   public ResponseEntity<String> updateProgramName(
-      @PathVariable String id,
+      @PathVariable UUID id,
       @RequestBody UpdateLabelDto updateLabelDto) {
     mesocycleService.updateMesocycleLabel(id, updateLabelDto.getLabel());
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PatchMapping("/update_mesocycle_comment/{mesocycleId}")
+  public ResponseEntity<String> updateMesocycleComment(
+      @PathVariable UUID mesocycleId,
+      @RequestBody UpdateCommentDto updateCommentDto) {
+    mesocycleService.updateMesocycleComment(mesocycleId, updateCommentDto.getComment());
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }

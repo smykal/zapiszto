@@ -20,7 +20,7 @@ public class ExerciseTrainingDto {
   String dictExerciseName;
   int quantity;
   String dictQuantityTypeName;
-  int volume;
+  Float volume;
   String dictUnitName;
   String notes;
   int orderNumber;

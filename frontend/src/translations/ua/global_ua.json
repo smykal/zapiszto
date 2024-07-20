@@ -126,7 +126,9 @@
         "sets": "серія",
         "equipment": "обладнання",
         "equipment_attribute": "атрибут обладнання",
-        "weight_per_side": "вага на сторону"
+        "weight_per_side": "вага на сторону",
+        "label": "заголовок",
+        "dict_mesocycle_phase": "напрямок розвитку"
     },
     "invitations": {
         "title": "запрошення",

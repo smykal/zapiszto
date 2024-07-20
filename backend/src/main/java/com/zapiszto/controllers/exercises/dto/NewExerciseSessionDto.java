@@ -21,7 +21,7 @@ public class NewExerciseSessionDto {
   UUID dictExerciseId;
   int quantity;
   UUID dictQuantityTypeId;
-  int volume;
+  Float volume;
   UUID dictUnitId;
   String notes;
   Integer restTime;
