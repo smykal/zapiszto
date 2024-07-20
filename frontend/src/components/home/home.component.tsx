@@ -40,6 +40,9 @@ export default class Home extends Component<Props, State> {
       <div style={{ width: "400px", height: "500px" }}>
         <header>
           <h3>{this.state.content}</h3>
+          <p>test_user_account: Alinka, pw: Alinka</p>
+          <p>test_trener_account: trener, pw: trener</p>
+          <p>backend stand up after 180 seconds becouse right now it is being hosted at free version of render</p>
         </header>
       </div>
     );
