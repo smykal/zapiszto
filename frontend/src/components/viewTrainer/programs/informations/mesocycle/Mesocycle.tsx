@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import Microcycle from "../microcycle/Microcycle";
 import EditableCell from '../../../../../common/EditableCell';
+import Diagram from "./diagrams/Diagram";
 import 'react-tabs/style/react-tabs.css';
 
 interface MesocycleProps {
@@ -83,6 +84,7 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
               <EditableCell value={mesocycle.comments || ''} onSave={(newComment) => handleSaveComment(mesocycle.id, newComment)} />
             </p>
             <p>{t('table.dict_mesocycle_phase')}: {mesocycle.dictName}</p>
+            <Diagram mesocycleId={mesocycle.id} />
             <Microcycle mesocycleId={mesocycle.id} />
           </TabPanel>
         ))}
