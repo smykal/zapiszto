@@ -1,6 +1,5 @@
 package com.zapiszto.controllers.program.microcycle.repository;
 
-import com.zapiszto.controllers.program.microcycle.dto.MicrocycleStatsDto;
 import com.zapiszto.controllers.program.microcycle.entity.MicrocycleEntity;
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +7,6 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -25,7 +23,8 @@ public interface MicrocycleRepository extends JpaRepository<MicrocycleEntity, UU
       """)
   Optional<Integer> findMaxOrderIdByMesocycleId(@Param("mesocycleId") UUID mesocycleId);
 
-  @Query(nativeQuery = true, value = """
+  @Query(
+      nativeQuery = true, value = """
       select 	coalesce(dcb."name", dcpu."name") 	as category
       	,	sum(e.sets * e.quantity) 			as repetitions
       	,	sum(e.sets)							as sets
