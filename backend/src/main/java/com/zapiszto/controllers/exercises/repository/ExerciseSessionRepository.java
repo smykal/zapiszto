@@ -20,4 +20,8 @@ public interface ExerciseSessionRepository extends JpaRepository<ExerciseEntity,
       select * from exercises e where e.session_id =:sessionId order by order_number
       """)
   List<ExerciseEntity> getAllBySessionId(@Param("sessionId") UUID sessionId);
+
+  List<ExerciseEntity> findBySessionId(UUID sessionId);
+
+  List<ExerciseEntity> deleteBySessionId(UUID sessionId);
 }

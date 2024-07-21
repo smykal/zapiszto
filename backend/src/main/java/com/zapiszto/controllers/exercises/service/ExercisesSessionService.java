@@ -24,6 +24,8 @@ import com.zapiszto.controllers.exercises.dto.UpdateVolumeDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.repository.ExerciseSessionRepository;
 import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
+import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
+import com.zapiszto.controllers.program.sessions.repository.SessionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import java.util.Collections;
@@ -39,6 +41,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class ExercisesSessionService {
+  @Autowired
+  private SessionRepository sessionRepository;
 
   @Autowired
   ExerciseSessionRepository exerciseSessionRepository;
@@ -385,6 +389,64 @@ public class ExercisesSessionService {
     return updatedExerciseEntities.stream()
         .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
         .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public void copyExercisesToNextSession(UUID sessionId) {
+    //znalezienie next sesionId
+    UUID nextSessionId = findNextSessionId(sessionId);
+
+    // Usuwanie istniejących ćwiczeń w docelowej sesji
+    exerciseSessionRepository.deleteBySessionId(nextSessionId);
+
+    // Pobranie ćwiczeń z sesji źródłowej
+    List<ExerciseEntity> exercisesToCopy = exerciseSessionRepository.findBySessionId(sessionId);
+
+    // Utworzenie nowych encji ćwiczeń dla sesji docelowej
+    List<ExerciseEntity> copiedExercises = exercisesToCopy.stream()
+        .map(exercise -> {
+          ExerciseEntity newExercise = new ExerciseEntity();
+          newExercise.setSessionId(nextSessionId);
+          newExercise.setQuantity(exercise.getQuantity());
+          newExercise.setVolume(exercise.getVolume());
+          newExercise.setNotes(exercise.getNotes());
+          newExercise.setOrderNumber(exercise.getOrderNumber());
+          newExercise.setRestTime(exercise.getRestTime());
+          newExercise.setTempo(exercise.getTempo());
+          newExercise.setDictSessionPartId(exercise.getDictSessionPartId());
+          newExercise.setDictExerciseId(exercise.getDictExerciseId());
+          newExercise.setDictQuantityTypeId(exercise.getDictQuantityTypeId());
+          newExercise.setDictUnitId(exercise.getDictUnitId());
+          newExercise.setSets(exercise.getSets());
+          newExercise.setDictEquipmentId(exercise.getDictEquipmentId());
+          newExercise.setEquipmentAttribute(exercise.getEquipmentAttribute());
+          newExercise.setWeightPerSide(exercise.getWeightPerSide());
+          newExercise.setDuration(exercise.getDuration());
+          return newExercise;
+        })
+        .collect(Collectors.toList());
+
+    // Zapisanie nowych ćwiczeń w repozytorium
+    exerciseSessionRepository.saveAll(copiedExercises);
+  }
+
+  public UUID findNextSessionId(UUID sessionId) {
+    var referenceById = sessionRepository.getReferenceById(sessionId);
+
+    var currentOrderNumber = referenceById.getOrderId();
+    var currentMicrocycleNumber = referenceById.getMicrocycleId();
+
+    Optional<UUID> nextByMicrocycleIdAndOrderId = sessionRepository.getNextByMicrocycleIdAndOrderId(currentMicrocycleNumber, currentOrderNumber + 1);
+    if (nextByMicrocycleIdAndOrderId.isPresent()) {
+      return nextByMicrocycleIdAndOrderId.get();
+    } else {
+      Optional<UUID> firstSessionOfNextMicrocycle = sessionRepository.getFirstSessionOfNextMicrocycle(sessionId);
+      if (firstSessionOfNextMicrocycle.isPresent()) {
+        return firstSessionOfNextMicrocycle.get();
+      } else {
+        throw new RuntimeException("No next session found");
+      }
+    }
   }
 }
 
