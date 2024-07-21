@@ -72,6 +72,10 @@ class ExercisesSessionService {
   updateExerciseOrderNumberDown(sessionId: string, exerciseId: string) {
     return axios.patch(`${API_URL}/update_exercise_order_number_down/${sessionId}/${exerciseId}`,{}, { headers: authHeader() });
   }
+
+  updateExerciseDuration(exerciseId: string, updateDurationDto: { duration: number }) {
+    return axios.patch(`${API_URL}/update_exercise_duration/${exerciseId}`, updateDurationDto, { headers: authHeader() });
+  }
   
   deleteExercise(sessionId: string, exerciseId: string) {
     return axios.delete(`${API_URL}/delete_exercise_session/${sessionId}/${exerciseId}`, { headers: authHeader() });

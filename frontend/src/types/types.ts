@@ -177,6 +177,7 @@ export type ExerciseSession = {
                                 equipmentName: string;
                                 equipmentAttribute: string;
                                 weightPerSide: number;
+                                duration: number;
 };
 
 export type NewInvitation = {
