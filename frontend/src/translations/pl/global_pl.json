@@ -128,7 +128,9 @@
         "equipment_attribute": "atrybut sprzętu",
         "weight_per_side": "waga na stronę",
         "label": "tytuł",
-        "dict_mesocycle_phase": "kierunek rozwoju"
+        "dict_mesocycle_phase": "kierunek rozwoju",
+        "exercise_duration": "czas ćwiczenia [sek]",
+        "training_time": "czas treningu [min]"
     },
     "invitations": {
         "title": "zaproszenia",

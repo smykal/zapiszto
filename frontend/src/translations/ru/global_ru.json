@@ -128,7 +128,9 @@
         "equipment_attribute": "атрибут оборудования",
         "weight_per_side": "вес на сторону",
         "label": "название",
-        "dict_mesocycle_phase": "направление развития"
+        "dict_mesocycle_phase": "направление развития",
+        "exercise_duration": "время упражнения [сек]",
+        "training_time": "время тренировки [мин]"
     },
     "invitations": {
         "title": "приглашения",
