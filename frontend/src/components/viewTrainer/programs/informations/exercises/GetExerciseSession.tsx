@@ -12,6 +12,8 @@ import DictQuantityTypeService from '../../../../../services/dict/DictQuantityTy
 import DictExercisesService from '../../../../../services/dict/DictExercisesService';
 import DictUnitsService from '../../../../../services/dict/DictUnitsService';
 import DictEquipmentService from '../../../../../services/dict/DictEquipmentService';
+import Modal from '../../../../../constants/Modal';
+import CopyToNextSession from './CopyToNextSession'; // Import the new component
 
 type Props = {
   session_id: string;
@@ -25,6 +27,7 @@ type State = {
   exercisesOptions: DictExercises[];
   unitsOptions: DictUnits[];
   equipmentOptions: DictEquipment[]; // Add equipment options state
+  showModal: boolean; // Add modal state
 }
 
 class GetExerciseSession extends Component<Props, State> {
@@ -36,7 +39,8 @@ class GetExerciseSession extends Component<Props, State> {
       quantityTypeOptions: [],
       exercisesOptions: [],
       unitsOptions: [],
-      equipmentOptions: [] // Initialize equipment options
+      equipmentOptions: [], // Initialize equipment options
+      showModal: false // Initialize modal state
     };
   }
 
@@ -331,8 +335,30 @@ class GetExerciseSession extends Component<Props, State> {
     }
   };
 
+  handleShowModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
+  };
+
+  handleSaveDuration = (exerciseId: string, newDuration: number) => {
+    ExercisesSessionService.updateExerciseDuration(exerciseId, { duration: newDuration })
+      .then(() => {
+        this.setState(prevState => ({
+          exercises: prevState.exercises.map(ex => 
+            ex.exerciseId === exerciseId ? { ...ex, duration: newDuration } : ex
+          )
+        }));
+      })
+      .catch(error => {
+        console.error('Error updating duration:', error);
+      });
+  };
+
   render() {
-    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions, equipmentOptions } = this.state;
+    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions, equipmentOptions, showModal } = this.state;
     const { t } = this.props;
 
     const sessionPartNames = sessionPartOptions.map(option => option.name);
@@ -361,6 +387,7 @@ class GetExerciseSession extends Component<Props, State> {
               <th>{t("table.equipment")}</th>
               <th>{t("table.equipment_attribute")}</th>
               <th>{t("table.weight_per_side")}</th>
+              <th>{t("table.duration")}</th> {/* Dodane pole duration */}
               <th>{t("table.options")}</th>
             </tr>
           </thead>
@@ -452,12 +479,22 @@ class GetExerciseSession extends Component<Props, State> {
                     onSave={(newValue) => this.handleSaveWeightPerSide(row.exerciseId, newValue)}
                   />
                 </td>
+                <td>
+                  <EditableNumberCell
+                    value={row.duration ?? 0}
+                    onSave={(newValue) => this.handleSaveDuration(row.exerciseId, newValue)}
+                  />
+                </td>
                 <td><Options exerciseId={row.exerciseId} sessionId={row.sessionId} onExerciseOption={this.handleExerciseOptions} /></td>
               </tr>
             ))}
           </tbody>
         </table>
         <button onClick={this.handleAddExercise}>{t('buttons.add_exercise')}</button>
+        <button onClick={this.handleShowModal}>{t('buttons.copy_to_next_session')}</button> {/* Add new button */}
+        <Modal show={showModal} onClose={this.handleCloseModal} title={t('buttons.copy_to_next_session')}>
+          <CopyToNextSession onClose={this.handleCloseModal} /> {/* Include new component in modal */}
+        </Modal>
       </div>
     );
   }

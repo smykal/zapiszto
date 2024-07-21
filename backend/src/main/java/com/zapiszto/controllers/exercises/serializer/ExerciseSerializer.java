@@ -101,6 +101,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .equipmentName(getEquipmentName(dictEquipments, exercise.getDictEquipmentId()))
         .equipmentAttribute(exercise.getEquipmentAttribute())
         .weightPerSide(exercise.getWeightPerSide())
+        .duration(exercise.getDuration())
         .build();
   }
 

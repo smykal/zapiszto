@@ -86,15 +86,15 @@ const Diagram: React.FC<DiagramProps> = ({ mesocycleId }) => {
     <div>
       <Chart
         chartType="LineChart"
-        width="100%"
-        height="400px"
+        width="50%"
+        height="200px"
         data={data.repetitions}
         options={repetitionsOptions}
       />
       <Chart
         chartType="LineChart"
-        width="100%"
-        height="400px"
+        width="50%"
+        height="200px"
         data={data.sets}
         options={setsOptions}
       />

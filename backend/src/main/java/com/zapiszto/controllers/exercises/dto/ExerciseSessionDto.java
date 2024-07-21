@@ -33,4 +33,5 @@ public class ExerciseSessionDto {
   String equipmentName;
   String equipmentAttribute;
   Float weightPerSide;
+  Integer duration;
 }

@@ -115,4 +115,7 @@ public class ExerciseEntity {
   @Column(name = "weight_per_side", precision = 2)
   Float weightPerSide;
 
+  @Column(name = "duration")
+  Integer duration;
+
 }
