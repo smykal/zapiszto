@@ -1,14 +1,20 @@
 import React from 'react';
+import ExercisesSessionService from '../../../../../services/exercises/session/ExercisesSessionService';
 
 interface CopyToNextSessionProps {
   onClose: () => void;
+  sessionId: string;
 }
 
-const CopyToNextSession: React.FC<CopyToNextSessionProps> = ({ onClose }) => {
-  const handleCopy = () => {
-    // Implement the copy logic here
-    console.log('Copying to next session...');
-    onClose(); // Close the modal after copying
+const CopyToNextSession: React.FC<CopyToNextSessionProps> = ({ onClose, sessionId }) => {
+  const handleCopy = async () => {
+    try {
+      await ExercisesSessionService.copyExercisesToNextSession(sessionId);
+      console.log('Copying to next session...');
+      onClose(); // Close the modal after copying
+    } catch (error) {
+      console.error('Error copying to next session:', error);
+    }
   };
 
   return (

@@ -83,6 +83,10 @@ class ExercisesSessionService {
   addExercise(sessionId: string) {
     return axios.get(`${API_URL}/add_exercise/session/${sessionId}`, { headers: authHeader() });
   }
+
+  copyExercisesToNextSession(sessionId: string) {
+    return axios.post(`${API_URL}/copy_exercises_to_next_session/${sessionId}`, {}, { headers: authHeader() });
+  }
 }
 
 export default new ExercisesSessionService();

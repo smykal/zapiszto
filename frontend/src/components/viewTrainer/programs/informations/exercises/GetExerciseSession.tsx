@@ -500,7 +500,7 @@ class GetExerciseSession extends Component<Props, State> {
         <button onClick={this.handleAddExercise}>{t('buttons.add_exercise')}</button>
         <button onClick={this.handleShowModal}>{t('buttons.copy_to_next_session')}</button> {/* Add new button */}
         <Modal show={showModal} onClose={this.handleCloseModal} title={t('buttons.copy_to_next_session')}>
-          <CopyToNextSession onClose={this.handleCloseModal} /> {/* Include new component in modal */}
+          <CopyToNextSession onClose={this.handleCloseModal} sessionId={this.props.session_id} /> {/* Include new component in modal */}
         </Modal>
       </div>
     );
