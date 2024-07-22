@@ -13,9 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,8 +51,33 @@ public class SessionController implements ControllerCommon {
   @PatchMapping("/update_session_datetime/{id}")
   public ResponseEntity<String> updateProgramName(
       @PathVariable UUID id,
-      @RequestBody UpdateDateTimeDto updateDateTimeDto) {
+      @RequestBody UpdateDateTimeDto updateDateTimeDto
+  ) {
     sessionService.updateSessionDateTime(id, updateDateTimeDto.getDateTime());
     return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PostMapping("/add_session/{microcycleId}")
+  public ResponseEntity<SessionDto> addSession(
+      @PathVariable UUID microcycleId
+  ) {
+    try {
+      var session = sessionService.addSession(microcycleId);
+      return new ResponseEntity<>(session, HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @DeleteMapping("/delete_session/{sessionId}")
+  public ResponseEntity<String> deleteSession(
+      @PathVariable UUID sessionId
+  ) {
+    try {
+      sessionService.deleteSession(sessionId);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Error deleting session", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }

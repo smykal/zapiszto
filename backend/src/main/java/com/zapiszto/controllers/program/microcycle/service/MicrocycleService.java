@@ -105,4 +105,19 @@ public class MicrocycleService {
         )
         .collect(Collectors.toList());
   }
+
+  @Transactional
+  public void addMicrocycle(UUID mesocycleId) {
+    int orderId = microcycleRepository.findMaxOrderIdByMesocycleId(mesocycleId)
+        .orElse(0);
+
+    MicrocycleEntity microcycleEntity = MicrocycleEntity.builder()
+        .id(UUID.randomUUID())
+        .mesocycleId(mesocycleId)
+        .orderId(orderId)
+        .build();
+
+    microcycleRepository.save(microcycleEntity);
+    sessionService.addSessions(3, microcycleEntity.getId(), 60);
+  }
 }
