@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../../auth-header';
-import { NewDictExercises, NewDictQuantityType, NewExercise, NewDictUnit, NewDictCategory } from '../../../types/types'
+import { NewDictExercises, NewDictQuantityType, NewExercise, NewDictUnit, NewDictCategory, CopyParametersDto } from '../../../types/types'
 import { API_URL } from '../../../constants/api'
 
 class ExercisesSessionService {
@@ -84,8 +84,8 @@ class ExercisesSessionService {
     return axios.get(`${API_URL}/add_exercise/session/${sessionId}`, { headers: authHeader() });
   }
 
-  copyExercisesToNextSession(sessionId: string) {
-    return axios.post(`${API_URL}/copy_exercises_to_next_session/${sessionId}`, {}, { headers: authHeader() });
+  copyExercisesToNextSession(sessionId: string, copyParametersDto: CopyParametersDto) {
+    return axios.post(`${API_URL}/copy_exercises_to_next_session/${sessionId}`, copyParametersDto, { headers: authHeader() });
   }
 }
 

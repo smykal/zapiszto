@@ -393,3 +393,9 @@ export interface ExerciseStats {
                                 repetitions: number;
                                 sets: number;
 }
+
+export interface CopyParametersDto {
+  weightIncrease: number;
+  weightIncreaseUnit: string;
+  repetitions: number;
+}

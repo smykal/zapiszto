@@ -6,6 +6,7 @@ import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExerci
 import com.zapiszto.controllers.dictionaries.dictQuantityType.repository.DictQuantityTypeRepository;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.repository.DictSessionPartRepository;
 import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
+import com.zapiszto.controllers.exercises.dto.CopyParametersDto;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
@@ -61,6 +62,9 @@ public class ExercisesSessionService {
 
   @Autowired
   DictEquipmentRepository dictEquipmentRepository;
+
+  final String KG = "kg";
+  final String PROC = "%";
 
   public void addExercise(NewExerciseSessionDto newExerciseSessionDto) {
 
@@ -392,7 +396,7 @@ public class ExercisesSessionService {
   }
 
   @Transactional
-  public void copyExercisesToNextSession(UUID sessionId) {
+  public void copyExercisesToNextSession(UUID sessionId, CopyParametersDto copyParametersDto) {
     //znalezienie next sesionId
     UUID nextSessionId = findNextSessionId(sessionId);
 
@@ -407,8 +411,13 @@ public class ExercisesSessionService {
         .map(exercise -> {
           ExerciseEntity newExercise = new ExerciseEntity();
           newExercise.setSessionId(nextSessionId);
-          newExercise.setQuantity(exercise.getQuantity());
-          newExercise.setVolume(exercise.getVolume());
+          newExercise.setQuantity(exercise.getQuantity() + copyParametersDto.getRepetitions());
+          if (copyParametersDto.getWeightIncreaseUnit().equals(KG)) {
+            newExercise.setVolume(exercise.getVolume() + copyParametersDto.getWeightIncrease());
+          } else {
+            float increase = exercise.getVolume() * copyParametersDto.getWeightIncrease() / 100;
+            newExercise.setVolume(exercise.getVolume() + increase);
+          }
           newExercise.setNotes(exercise.getNotes());
           newExercise.setOrderNumber(exercise.getOrderNumber());
           newExercise.setRestTime(exercise.getRestTime());

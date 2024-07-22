@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.exercises.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
+import com.zapiszto.controllers.exercises.dto.CopyParametersDto;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictEquipmentDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
@@ -208,10 +209,12 @@ public class ExercisesSessionController implements ControllerCommon {
 
   @PostMapping("/copy_exercises_to_next_session/{sessionId}")
   public ResponseEntity<String> copyExercisesToNextSession(
-      @PathVariable UUID sessionId
+      @PathVariable UUID sessionId,
+      @RequestBody CopyParametersDto copyParametersDto
+
   ) {
     try {
-      exercisesSessionService.copyExercisesToNextSession(sessionId);
+      exercisesSessionService.copyExercisesToNextSession(sessionId, copyParametersDto);
       return new ResponseEntity<>("Exercises copied successfully", HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>("Error copying exercises", HttpStatus.INTERNAL_SERVER_ERROR);
