@@ -23,24 +23,25 @@ public interface SessionRepository extends JpaRepository<SessionEntity, UUID> {
       """)
   Optional<Integer> findMaxOrderIdByMicrocycleId(@Param("microcycleId") UUID microcycleId);
 
-  @Query("SELECT s.id FROM SessionEntity s WHERE s.microcycleId = :microcycleId AND s.orderId = :orderId")
-  Optional<UUID> getNextByMicrocycleIdAndOrderId(@Param("microcycleId") UUID microcycleId, @Param("orderId") int orderId);
-
-  @Query("SELECT ss.id " +
-      "FROM SessionEntity ss " +
-      "LEFT JOIN MicrocycleEntity m ON ss.microcycleId = m.id " +
-      "WHERE m.mesocycleId IN (" +
-      "    SELECT mi.mesocycleId " +
-      "    FROM MicrocycleEntity mi " +
-      "    LEFT JOIN SessionEntity s ON s.microcycleId = mi.id " +
-      "    WHERE s.id = :sessionId" +
-      ") " +
-      "AND m.orderId IN (" +
-      "    SELECT mi.orderId + 1 " +
-      "    FROM MicrocycleEntity mi " +
-      "    LEFT JOIN SessionEntity s ON s.microcycleId = mi.id " +
-      "    WHERE s.id = :sessionId" +
-      ") " +
-      "AND ss.orderId = 1")
-  Optional<UUID> getFirstSessionOfNextMicrocycle(@Param("sessionId") UUID sessionId);
+  @Query(nativeQuery = true, value = """
+        select s.id from sessions s 
+        left join microcycle m on s.microcycle_id = m.id 
+        left join mesocycle m2 on m.mesocycle_id = m2.id 
+        WHERE m2.macrocycle_id in (
+            select m2.macrocycle_id from sessions s 
+            left join microcycle m on s.microcycle_id = m.id 
+            left join mesocycle m2 on m.mesocycle_id = m2.id 
+            WHERE s.id = :currentSessionId
+        )
+        and m.order_id in (
+            select m.order_id + 1 from sessions s 
+            left join microcycle m on s.microcycle_id = m.id 
+            WHERE s.id = :currentSessionId
+        )
+        and s.order_id in (
+            select s.order_id from sessions s 
+            WHERE s.id = :currentSessionId
+        )
+        """)
+  Optional<UUID> findNextSessionId(@Param("currentSessionId") UUID currentSessionId);
 }

@@ -37,7 +37,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Slf4j
 @Service
@@ -439,23 +441,9 @@ public class ExercisesSessionService {
     exerciseSessionRepository.saveAll(copiedExercises);
   }
 
-  public UUID findNextSessionId(UUID sessionId) {
-    var referenceById = sessionRepository.getReferenceById(sessionId);
-
-    var currentOrderNumber = referenceById.getOrderId();
-    var currentMicrocycleNumber = referenceById.getMicrocycleId();
-
-    Optional<UUID> nextByMicrocycleIdAndOrderId = sessionRepository.getNextByMicrocycleIdAndOrderId(currentMicrocycleNumber, currentOrderNumber + 1);
-    if (nextByMicrocycleIdAndOrderId.isPresent()) {
-      return nextByMicrocycleIdAndOrderId.get();
-    } else {
-      Optional<UUID> firstSessionOfNextMicrocycle = sessionRepository.getFirstSessionOfNextMicrocycle(sessionId);
-      if (firstSessionOfNextMicrocycle.isPresent()) {
-        return firstSessionOfNextMicrocycle.get();
-      } else {
-        throw new RuntimeException("No next session found");
-      }
-    }
+  public UUID findNextSessionId(UUID currentSessionId) {
+    return sessionRepository.findNextSessionId(currentSessionId)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No next session found"));
   }
 }
 
