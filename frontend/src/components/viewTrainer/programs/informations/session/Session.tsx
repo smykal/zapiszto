@@ -19,16 +19,23 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [currentSession, setCurrentSession] = useState<SessionDto | null>(null);
   const [newDateTime, setNewDateTime] = useState<Date | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   useEffect(() => {
     loadSessions();
   }, [microcycleId]);
 
-  const loadSessions = () => {
+  const loadSessions = (newSessionId?: string) => {
     SessionService.getSessions(microcycleId)
       .then(response => {
         const sortedSessions = response.data.sort((a: SessionDto, b: SessionDto) => a.orderId - b.orderId);
         setSessions(sortedSessions);
+        if (newSessionId) {
+          const newIndex = sortedSessions.findIndex((session: SessionDto) => session.id === newSessionId);
+          setSelectedIndex(newIndex);
+        } else {
+          setSelectedIndex(0);
+        }
       })
       .catch(error => {
         console.error('Error loading sessions:', error);
@@ -66,14 +73,41 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
     }
   };
 
+  const handleAddSession = () => {
+    SessionService.addSession(microcycleId)
+      .then(response => {
+        const newSession = response.data;
+        loadSessions(newSession.id);  // Ponowne załadowanie sesji po dodaniu nowej sesji i przejście do nowej zakładki
+      })
+      .catch(error => {
+        console.error('Error adding session:', error);
+        setMessage(t('session.add_error'));
+      });
+  };
+
+  const handleDeleteSession = () => {
+    if (currentSession) {
+      SessionService.deleteSession(currentSession.id)
+        .then(() => {
+          loadSessions();  // Ponowne załadowanie sesji po usunięciu sesji
+          handleCloseModal();
+        })
+        .catch(error => {
+          console.error('Error deleting session:', error);
+          setMessage(t('session.delete_error'));
+        });
+    }
+  };
+
   return (
     <div>
       {message && <p>{message}</p>}
-      <Tabs>
+      <Tabs selectedIndex={selectedIndex} onSelect={(index) => setSelectedIndex(index)}>
         <TabList>
           {sessions.map((session) => (
             <Tab key={session.id}>{t('session.session')}: {session.orderId}</Tab>
           ))}
+          <Tab onClick={handleAddSession}>+</Tab>
         </TabList>
         {sessions.map((session) => (
           <TabPanel key={session.id}>
@@ -94,6 +128,7 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
           dateFormat="Pp"
         />
         <button onClick={handleSaveDateTime}>{t('buttons.save')}</button>
+        <button onClick={handleDeleteSession}>{t('buttons.delete')}</button> {/* Przycisk do usuwania */}
       </Modal>
     </div>
   );
