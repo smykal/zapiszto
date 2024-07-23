@@ -12,6 +12,14 @@ class MicrocycleService {
   getMicrocycleStats(microcycleId: string) {
     return axios.get<MicrocycleStatsDto[]>(`${API_URL}/get_microcycle_stats/${microcycleId}`, { headers: authHeader() });
   }
+
+  addMicrocycle(mesocycleId: string) {
+    return axios.post(`${API_URL}/add_microcycle/${mesocycleId}`, {}, { headers: authHeader() });
+  }
+
+  deleteMicrocycle(microcycleId: string) {
+    return axios.delete(`${API_URL}/delete_microcycle/${microcycleId}`, { headers: authHeader() });
+  }
 }
 
 export default new MicrocycleService();
