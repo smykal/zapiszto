@@ -9,13 +9,13 @@ interface CopyToNextSessionProps {
 
 const CopyToNextSession: React.FC<CopyToNextSessionProps> = ({ onClose, sessionId }) => {
   const [weightIncrease, setWeightIncrease] = useState<number>(0);
-  const [weightIncreaseUnit, setWeightIncreaseUnit] = useState<string>('kg');
+  const [weightIncreaseUnit, setWeightIncreaseUnit] = useState<string>('%');
   const [repetitions, setRepetitions] = useState<number>(0);
 
   const handleCopy = async () => {
     const copyParametersDto: CopyParametersDto = {
       weightIncrease: weightIncrease || 0,
-      weightIncreaseUnit: weightIncreaseUnit || 'kg',
+      weightIncreaseUnit: weightIncreaseUnit || '%',
       repetitions: repetitions || 0,
     };
 
@@ -30,25 +30,37 @@ const CopyToNextSession: React.FC<CopyToNextSessionProps> = ({ onClose, sessionI
 
   return (
     <div>
-      <h2>Copy to Next Session</h2>
       <form>
         <div>
-          <label>Weight Increase:</label>
-          <input
-            type="number"
-            value={weightIncrease}
-            onChange={(e) => setWeightIncrease(Number(e.target.value))}
-          />
-        </div>
-        <div>
           <label>Weight Increase Unit:</label>
-          <select
-            value={weightIncreaseUnit}
-            onChange={(e) => setWeightIncreaseUnit(e.target.value)}
-          >
-            <option value="kg">kg</option>
-            <option value="proc">%</option>
-          </select>
+          <div>
+            <label>
+              <input
+                type="radio"
+                value="kg"
+                checked={weightIncreaseUnit === 'kg'}
+                onChange={(e) => setWeightIncreaseUnit(e.target.value)}
+              />
+              kg
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="%"
+                checked={weightIncreaseUnit === '%'}
+                onChange={(e) => setWeightIncreaseUnit(e.target.value)}
+              />
+              %
+            </label>
+          </div>
+          <div>
+            <label>Weight Increase:</label>
+            <input
+              type="number"
+              value={weightIncrease}
+              onChange={(e) => setWeightIncrease(Number(e.target.value))}
+            />
+          </div>
         </div>
         <div>
           <label>Repetitions:</label>

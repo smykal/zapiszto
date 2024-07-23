@@ -32,16 +32,16 @@ const MicrocycleStats: React.FC<MicrocycleStatsProps> = ({ microcycleId }) => {
         <thead>
           <tr>
             <th>Category</th>
-            <th>Repetitions</th>
             <th>Sets</th>
+            <th>Repetitions</th>
           </tr>
         </thead>
         <tbody>
           {stats.map((stat, index) => (
             <tr key={index}>
               <td>{stat.category}</td>
-              <td>{stat.repetitions}</td>
               <td>{stat.sets}</td>
+              <td>{stat.repetitions}</td>
             </tr>
           ))}
         </tbody>
