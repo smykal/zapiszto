@@ -354,17 +354,27 @@ public class ExercisesSessionService {
     var dictSessionParts = dictSessionPartRepository.getAllForUser(userId);
     var dictEquipment = dictEquipmentRepository.getAllForUser(userId);
 
-    List<ExerciseEntity> exerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
+    List<ExerciseEntity> exerciseEntities;
+    exerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
         .stream()
         .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
-        .collect(Collectors.toList());
+        .toList();
 
     if (exerciseEntities.isEmpty()) {
-      return Collections.emptyList();
+      ExerciseEntity exerciseEntity = ExerciseSerializer.generateDefaultExerciseSession(sessionId);
+      ExerciseEntity save = exerciseSessionRepository.save(exerciseEntity);
+
+      List<ExerciseEntity> updatedExerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
+          .stream()
+          .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
+          .toList();
+
+      return updatedExerciseEntities.stream()
+          .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
+          .collect(Collectors.toList());
     }
 
     ExerciseEntity lastExercise = exerciseEntities.get(exerciseEntities.size() - 1);
-
     ExerciseEntity newExercise = ExerciseEntity.builder()
         .id(UUID.randomUUID())
         .sessionId(sessionId)

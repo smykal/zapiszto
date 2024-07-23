@@ -114,10 +114,15 @@ public class MicrocycleService {
     MicrocycleEntity microcycleEntity = MicrocycleEntity.builder()
         .id(UUID.randomUUID())
         .mesocycleId(mesocycleId)
-        .orderId(orderId)
+        .orderId(orderId + 1)
         .build();
 
-    microcycleRepository.save(microcycleEntity);
-    sessionService.addSessions(3, microcycleEntity.getId(), 60);
+    MicrocycleEntity save = microcycleRepository.save(microcycleEntity);
+    sessionService.addSessions(3, save.getId(), 60);
+  }
+
+  @Transactional
+  public void deleteMicrocycle(UUID microcycleId) {
+    microcycleRepository.deleteById(microcycleId);
   }
 }
