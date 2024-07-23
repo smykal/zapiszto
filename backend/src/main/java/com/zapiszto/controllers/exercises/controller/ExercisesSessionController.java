@@ -211,7 +211,6 @@ public class ExercisesSessionController implements ControllerCommon {
   public ResponseEntity<String> copyExercisesToNextSession(
       @PathVariable UUID sessionId,
       @RequestBody CopyParametersDto copyParametersDto
-
   ) {
     try {
       exercisesSessionService.copyExercisesToNextSession(sessionId, copyParametersDto);
