@@ -7,6 +7,7 @@ import GetExerciseSession from '../exercises/GetExerciseSession';
 import Modal from '../../../../../constants/Modal';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import DeleteSession from './DeleteSession'; // Importujemy nowy komponent
 
 interface SessionProps {
   microcycleId: string;
@@ -85,18 +86,9 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
       });
   };
 
-  const handleDeleteSession = () => {
-    if (currentSession) {
-      SessionService.deleteSession(currentSession.id)
-        .then(() => {
-          loadSessions();  // Ponowne załadowanie sesji po usunięciu sesji
-          handleCloseModal();
-        })
-        .catch(error => {
-          console.error('Error deleting session:', error);
-          setMessage(t('session.delete_error'));
-        });
-    }
+  const handleSessionDeleted = () => {
+    loadSessions();  // Ponowne załadowanie sesji po usunięciu sesji
+    handleCloseModal();
   };
 
   return (
@@ -117,6 +109,7 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
               <button onClick={() => handleOpenModal(session)}>{t('buttons.edit')}</button>
             </p>
             <GetExerciseSession session_id={session.id} />
+            <DeleteSession session={session} onSessionDeleted={handleSessionDeleted} /> {/* Nowy przycisk do usuwania */}
           </TabPanel>
         ))}
       </Tabs>
@@ -128,7 +121,6 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
           dateFormat="Pp"
         />
         <button onClick={handleSaveDateTime}>{t('buttons.save')}</button>
-        <button onClick={handleDeleteSession}>{t('buttons.delete')}</button> {/* Przycisk do usuwania */}
       </Modal>
     </div>
   );
