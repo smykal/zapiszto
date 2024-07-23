@@ -6,6 +6,9 @@ import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import Microcycle from "../microcycle/Microcycle";
 import EditableCell from '../../../../../common/EditableCell';
 import Diagram from "./diagrams/Diagram";
+import DeleteMesocycle from './DeleteMesocycle'; // Import DeleteMesocycle component
+import AddMesocycle from './AddMesocycle'; // Import AddMesocycle component
+import Modal from '../../../../../constants/Modal'; // Import Modal component
 import 'react-tabs/style/react-tabs.css';
 
 interface MesocycleProps {
@@ -16,16 +19,18 @@ interface MesocycleProps {
 const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft }) => {
   const [mesocycles, setMesocycles] = useState<MesocycleDto[]>([]);
   const [message, setMessage] = useState<string>('');
+  const [showModal, setShowModal] = useState<boolean>(false); // State for modal visibility
   const { t } = useTranslation('global');
 
   useEffect(() => {
     loadMesocycles();
   }, [macrocycleId]);
 
-  const loadMesocycles = () => {
+  const loadMesocycles = (newMesocycleId?: string) => {
     MesocycleService.getMesocycles(macrocycleId)
       .then(response => {
-        setMesocycles(response.data);
+        const sortedMesocycles = response.data.sort((a: MesocycleDto, b: MesocycleDto) => a.orderId - b.orderId);
+        setMesocycles(sortedMesocycles);
       })
       .catch(error => {
         console.error('Error loading mesocycles:', error);
@@ -63,6 +68,23 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
       });
   };
 
+  const handleMesocycleDeleted = () => {
+    loadMesocycles();  // Reload mesocycles after one is deleted
+  };
+
+  const handleAddMesocycle = () => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
+  const handleMesocycleAdded = () => {
+    setShowModal(false);
+    loadMesocycles();  // Reload mesocycles after adding a new one
+  };
+
   return (
     <div>
       {message && <p>{message}</p>}
@@ -71,9 +93,11 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
           {mesocycles.map((mesocycle) => (
             <Tab key={mesocycle.id}>{mesocycle.label || mesocycle.orderId}</Tab>
           ))}
+          <Tab onClick={handleAddMesocycle}>+</Tab> {/* Tab with plus sign */}
         </TabList>
         {mesocycles.map((mesocycle) => (
           <TabPanel key={mesocycle.id}>
+            <DeleteMesocycle mesocycle={mesocycle} onMesocycleDeleted={handleMesocycleDeleted} />
             <p>
               {t('table.label')}:{' '}
               <EditableCell value={mesocycle.label || ''} onSave={(newLabel) => handleSaveLabel(mesocycle.id, newLabel)} />
@@ -89,6 +113,9 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
           </TabPanel>
         ))}
       </Tabs>
+      <Modal show={showModal} onClose={handleModalClose} title={t('mesocycle.add_title')}>
+        <AddMesocycle macrocycleId={macrocycleId} onMesocycleAdded={handleMesocycleAdded} />
+      </Modal>
     </div>
   );
 };

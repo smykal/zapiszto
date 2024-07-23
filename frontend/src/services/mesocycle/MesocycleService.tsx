@@ -19,6 +19,10 @@ class MesocycleService {
   updateMesocycleComment(mesocycleId: string, newComment: string) {
     return axios.patch(`${API_URL}/update_mesocycle_comment/${mesocycleId}`, { comment: newComment }, { headers: authHeader() });
   }
+
+  deleteMesocycle(mesocycleId: string) {
+    return axios.delete(`${API_URL}/delete_mesocycle/${mesocycleId}`, { headers: authHeader() });
+  }
 }
 
 export default new MesocycleService();
