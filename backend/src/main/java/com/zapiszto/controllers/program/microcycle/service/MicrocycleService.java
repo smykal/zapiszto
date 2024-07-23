@@ -50,8 +50,8 @@ public class MicrocycleService {
     //microcycleRepository.saveAll(microcycles);
 
     for (MicrocycleEntity microcycle : microcycles) {
-      microcycleRepository.save(microcycle);
-      sessionService.addSessions(sessionsforMicrocycle, microcycle.getId(), sessionDuration);
+      MicrocycleEntity save = microcycleRepository.save(microcycle);
+      sessionService.addSessions(sessionsforMicrocycle, save.getId(), sessionDuration);
     }
   }
 

@@ -74,6 +74,37 @@ public class MesocycleService {
     return mesocycleSerializer.convertList(mesocyclesByMacrocycleId);
   }
 
+  public void addMesocycle(NewMesocycleDto newMesocycleDto, UUID makrocycleId) {
+    UUID id = UUID.fromString(newMesocycleDto.getId());
+    UUID macrocycleId = makrocycleId;
+    int mesocyleDuration = newMesocycleDto.getDuration();
+
+    int orderId = mesocycleRepository.findMaxOrderIdByMacrocycleId(macrocycleId)
+        .map(maxOrderId -> maxOrderId + 1)
+        .orElse(1);
+
+    MesocycleEntity mesocycleEntity = MesocycleEntity.builder()
+        .id(id)
+        .macrocycleId(macrocycleId)
+        .duration(mesocyleDuration)
+        .orderId(orderId)
+        .comments(newMesocycleDto.getComments())
+        .dictMesocyclePhaseId(9)
+        .build();
+    mesocycleRepository.save(mesocycleEntity);
+    log.info("Dodano nowy mezocykl o id {} z orderId {}", id, orderId);
+
+    MacrocycleEntity macrocycleByMacrocycleId = macrocycleRepository.getMacrocycleByMacrocycleId(macrocycleId);
+    int durationLeft = macrocycleByMacrocycleId.getDurationLeft();
+    durationLeft = durationLeft - mesocyleDuration;
+    macrocycleByMacrocycleId.setDurationLeft(durationLeft);
+
+    macrocycleRepository.save(macrocycleByMacrocycleId);
+    log.info("update macrocycle id {}, durationLeft set {}", macrocycleId, durationLeft);
+
+    microcycleService.addMicrocycles(mesocyleDuration, id, 3, 60);
+  }
+
   @Transactional
   public void addMesocycle(
       int macrocycleDuration,
@@ -112,7 +143,7 @@ public class MesocycleService {
     }
   }
 
-  public List<MesocycleEntity> addMezocycle(MacrocycleEntity macrocycleEntity, NewMacrocycleDto newMacrocycleDto) {
+  public List<MesocycleEntity> addMesocycle(MacrocycleEntity macrocycleEntity, NewMacrocycleDto newMacrocycleDto) {
     int orderId = mesocycleRepository.findMaxOrderIdByMacrocycleId(macrocycleEntity.getId())
         .map(maxOrderId -> maxOrderId + 1)
         .orElse(1);
@@ -158,4 +189,11 @@ public class MesocycleService {
     mesocycleEntity.setComments(comment);
     mesocycleRepository.save(mesocycleEntity);
   }
+
+  @Transactional
+  public void deleteMesocycle(UUID mesocycleId) {
+    mesocycleRepository.deleteById(mesocycleId);
+  }
+
+
 }

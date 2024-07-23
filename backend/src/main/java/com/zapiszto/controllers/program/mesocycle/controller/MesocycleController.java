@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,6 +48,22 @@ public class MesocycleController implements ControllerCommon {
     }
   }
 
+  @PostMapping("/add_mesocycle/{makrocycleId}")
+  public ResponseEntity<String> addMesocycle(
+      @PathVariable UUID makrocycleId,
+      @RequestBody NewMesocycleDto newMesocycleDto
+  ) {
+    var trainerId = extractUserId();
+    try {
+      mesocycleService.addMesocycle(newMesocycleDto, makrocycleId);
+      return new ResponseEntity<>(HttpStatus.CREATED);
+    } catch (NullPointerException e) {
+      return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+    }
+  }
+
+
+
   @GetMapping("/get_mesocycles/{macrocycleId}")
   public ResponseEntity<List<MesocycleDto>> getMesocycles(
       @PathVariable String macrocycleId
@@ -77,5 +94,16 @@ public class MesocycleController implements ControllerCommon {
       @RequestBody UpdateCommentDto updateCommentDto) {
     mesocycleService.updateMesocycleComment(mesocycleId, updateCommentDto.getComment());
     return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @DeleteMapping("/delete_mesocycle/{mesocycleId}")
+  public ResponseEntity<String> deleteMesocycle(
+      @PathVariable UUID mesocycleId) {
+    try {
+      mesocycleService.deleteMesocycle(mesocycleId);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Error deleting mesocycle", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }

@@ -8,6 +8,10 @@ class MesocycleService {
     return axios.post(`${API_URL}/add_mesocycle`, newMesocycle, { headers: authHeader() });
   }
 
+  addSingleMesocycle(newMesocycle: NewMesocycleDto, macrocycleId: string) {
+    return axios.post(`${API_URL}/add_mesocycle/${macrocycleId}`, newMesocycle, { headers: authHeader() });
+  }
+
   getMesocycles(macrocycleId: string) {
     return axios.get<MesocycleDto[]>(`${API_URL}/get_mesocycles/${macrocycleId}`, { headers: authHeader() });
   }

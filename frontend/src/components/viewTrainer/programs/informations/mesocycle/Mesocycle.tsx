@@ -7,7 +7,7 @@ import Microcycle from "../microcycle/Microcycle";
 import EditableCell from '../../../../../common/EditableCell';
 import Diagram from "./diagrams/Diagram";
 import DeleteMesocycle from './DeleteMesocycle'; // Import DeleteMesocycle component
-import AddMesocycle from './AddMesocycle'; // Import AddMesocycle component
+import AddSingleMesocycle from './AddSingleMesocycle'; // Import AddMesocycle component
 import Modal from '../../../../../constants/Modal'; // Import Modal component
 import 'react-tabs/style/react-tabs.css';
 
@@ -114,7 +114,7 @@ const Mesocycle: React.FC<MesocycleProps> = ({ macrocycleId, initialDurationLeft
         ))}
       </Tabs>
       <Modal show={showModal} onClose={handleModalClose} title={t('mesocycle.add_title')}>
-        <AddMesocycle macrocycleId={macrocycleId} onMesocycleAdded={handleMesocycleAdded} />
+        <AddSingleMesocycle macrocycleId={macrocycleId} onMesocycleAdded={handleMesocycleAdded} />
       </Modal>
     </div>
   );
