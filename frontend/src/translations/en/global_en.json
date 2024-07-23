@@ -128,7 +128,9 @@
         "equipment_attribute": "equipment attribute",
         "weight_per_side": "weight per side",
         "label": "tittle",
-        "dict_mesocycle_phase": "development direction"
+        "dict_mesocycle_phase": "development direction",
+        "exercise_duration": "exercise time [sec]",
+        "training_time": "training time [min]"
     },
     "invitations": {
         "title": "invitations",

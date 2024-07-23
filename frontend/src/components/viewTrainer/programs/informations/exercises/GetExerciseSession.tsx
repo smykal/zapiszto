@@ -12,6 +12,8 @@ import DictQuantityTypeService from '../../../../../services/dict/DictQuantityTy
 import DictExercisesService from '../../../../../services/dict/DictExercisesService';
 import DictUnitsService from '../../../../../services/dict/DictUnitsService';
 import DictEquipmentService from '../../../../../services/dict/DictEquipmentService';
+import Modal from '../../../../../constants/Modal';
+import CopyToNextSession from './CopyToNextSession'; // Import the new component
 
 type Props = {
   session_id: string;
@@ -25,6 +27,7 @@ type State = {
   exercisesOptions: DictExercises[];
   unitsOptions: DictUnits[];
   equipmentOptions: DictEquipment[]; // Add equipment options state
+  showModal: boolean; // Add modal state
 }
 
 class GetExerciseSession extends Component<Props, State> {
@@ -36,7 +39,8 @@ class GetExerciseSession extends Component<Props, State> {
       quantityTypeOptions: [],
       exercisesOptions: [],
       unitsOptions: [],
-      equipmentOptions: [] // Initialize equipment options
+      equipmentOptions: [], // Initialize equipment options
+      showModal: false // Initialize modal state
     };
   }
 
@@ -331,8 +335,30 @@ class GetExerciseSession extends Component<Props, State> {
     }
   };
 
+  handleShowModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
+  };
+
+  handleSaveDuration = (exerciseId: string, newDuration: number) => {
+    ExercisesSessionService.updateExerciseDuration(exerciseId, { duration: newDuration })
+      .then(() => {
+        this.setState(prevState => ({
+          exercises: prevState.exercises.map(ex => 
+            ex.exerciseId === exerciseId ? { ...ex, duration: newDuration } : ex
+          )
+        }));
+      })
+      .catch(error => {
+        console.error('Error updating duration:', error);
+      });
+  };
+
   render() {
-    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions, equipmentOptions } = this.state;
+    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions, equipmentOptions, showModal } = this.state;
     const { t } = this.props;
 
     const sessionPartNames = sessionPartOptions.map(option => option.name);
@@ -340,6 +366,8 @@ class GetExerciseSession extends Component<Props, State> {
     const exercisesNames = exercisesOptions.map(option => option.name);
     const unitsNames = unitsOptions.map(option => option.name); 
     const equipmentNames = equipmentOptions.map(option => option.name); 
+
+    let cumulativeDuration = 0;
 
     return (
       <div>
@@ -361,103 +389,119 @@ class GetExerciseSession extends Component<Props, State> {
               <th>{t("table.equipment")}</th>
               <th>{t("table.equipment_attribute")}</th>
               <th>{t("table.weight_per_side")}</th>
+              <th>{t("table.exercise_duration")}</th> 
+              <th>{t("table.training_time")}</th> 
               <th>{t("table.options")}</th>
             </tr>
           </thead>
           <tbody>
-            {exercises.map((row) => (
-              <tr key={row.exerciseId} style={{ borderBottom: '1px solid #ddd' }}>
-                <td>{row.orderNumber}</td>
-                <td>
-                  <EditableSelectCell
-                    value={row.dictSessionPartName}
-                    options={sessionPartNames}
-                    onSave={(newValue) => this.handleSaveSessionPart(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>{row.dictCategoryName}</td>
-                <td>
-                  <EditableSelectCell
-                    value={row.dictExerciseName}
-                    options={exercisesNames}
-                    onSave={(newValue) => this.handleSaveExercise(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableNumberFloatCell
-                    value={row.volume ?? 0}
-                    onSave={(newValue) => this.handleSaveVolume(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableSelectCell
-                    value={row.dictUnitName}
-                    options={unitsNames}
-                    onSave={(newValue) => this.handleSaveUnit(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableNumberCell
-                    value={row.quantity ?? 0}
-                    onSave={(newValue) => this.handleSaveQuantity(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableSelectCell
-                    value={row.dictQuantityTypeName}
-                    options={quantityTypeNames}
-                    onSave={(newValue) => this.handleSaveQuantityType(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableNumberCell
-                    value={row.sets ?? 0}
-                    onSave={(newValue) => this.handleSaveSets(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableCell
-                    value={row.notes ?? ''}
-                    onSave={(newValue) => this.handleSaveNotes(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableNumberCell
-                    value={row.restTime ?? 0}
-                    onSave={(newValue) => this.handleSaveRestTime(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableCell
-                    value={row.tempo ?? ''}
-                    onSave={(newValue) => this.handleSaveTempo(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableSelectCell
-                    value={row.equipmentName || "--"}
-                    options={equipmentNames}
-                    onSave={(newValue) => this.handleSaveEquipment(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableCell
-                    value={row.equipmentAttribute ?? '--'}
-                    onSave={(newValue) => this.handleSaveEquipmentAttribute(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td>
-                  <EditableNumberCell
-                    value={row.weightPerSide ?? ""}
-                    onSave={(newValue) => this.handleSaveWeightPerSide(row.exerciseId, newValue)}
-                  />
-                </td>
-                <td><Options exerciseId={row.exerciseId} sessionId={row.sessionId} onExerciseOption={this.handleExerciseOptions} /></td>
-              </tr>
-            ))}
+            {exercises.map((row) => {
+              cumulativeDuration += ((row.duration ?? 0) + (row.restTime ?? 0)) * row.sets / 60;
+              return (
+                <tr key={row.exerciseId} style={{ borderBottom: '1px solid #ddd' }}>
+                  <td>{row.orderNumber}</td>
+                  <td>
+                    <EditableSelectCell
+                      value={row.dictSessionPartName}
+                      options={sessionPartNames}
+                      onSave={(newValue) => this.handleSaveSessionPart(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>{row.dictCategoryName}</td>
+                  <td>
+                    <EditableSelectCell
+                      value={row.dictExerciseName}
+                      options={exercisesNames}
+                      onSave={(newValue) => this.handleSaveExercise(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableNumberFloatCell
+                      value={row.volume ?? 0}
+                      onSave={(newValue) => this.handleSaveVolume(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableSelectCell
+                      value={row.dictUnitName}
+                      options={unitsNames}
+                      onSave={(newValue) => this.handleSaveUnit(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableNumberCell
+                      value={row.quantity ?? 0}
+                      onSave={(newValue) => this.handleSaveQuantity(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableSelectCell
+                      value={row.dictQuantityTypeName}
+                      options={quantityTypeNames}
+                      onSave={(newValue) => this.handleSaveQuantityType(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableNumberCell
+                      value={row.sets ?? 0}
+                      onSave={(newValue) => this.handleSaveSets(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableCell
+                      value={row.notes ?? ''}
+                      onSave={(newValue) => this.handleSaveNotes(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableNumberCell
+                      value={row.restTime ?? 0}
+                      onSave={(newValue) => this.handleSaveRestTime(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableCell
+                      value={row.tempo ?? ''}
+                      onSave={(newValue) => this.handleSaveTempo(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableSelectCell
+                      value={row.equipmentName || "--"}
+                      options={equipmentNames}
+                      onSave={(newValue) => this.handleSaveEquipment(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableCell
+                      value={row.equipmentAttribute ?? '--'}
+                      onSave={(newValue) => this.handleSaveEquipmentAttribute(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableNumberCell
+                      value={row.weightPerSide ?? ""}
+                      onSave={(newValue) => this.handleSaveWeightPerSide(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>
+                    <EditableNumberCell
+                      value={row.duration ?? 0}
+                      onSave={(newValue) => this.handleSaveDuration(row.exerciseId, newValue)}
+                    />
+                  </td>
+                  <td>{parseInt(cumulativeDuration.toFixed(1))}</td>
+                  <td><Options exerciseId={row.exerciseId} sessionId={row.sessionId} onExerciseOption={this.handleExerciseOptions} /></td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         <button onClick={this.handleAddExercise}>{t('buttons.add_exercise')}</button>
+        <button onClick={this.handleShowModal}>{t('buttons.copy_to_next_session')}</button> {/* Add new button */}
+        <Modal show={showModal} onClose={this.handleCloseModal} title={t('buttons.copy_to_next_session')}>
+          <CopyToNextSession onClose={this.handleCloseModal} sessionId={this.props.session_id} /> {/* Include new component in modal */}
+        </Modal>
       </div>
     );
   }

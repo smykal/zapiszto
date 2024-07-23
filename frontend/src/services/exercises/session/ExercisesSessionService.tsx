@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../../auth-header';
-import { NewDictExercises, NewDictQuantityType, NewExercise, NewDictUnit, NewDictCategory } from '../../../types/types'
+import { NewDictExercises, NewDictQuantityType, NewExercise, NewDictUnit, NewDictCategory, CopyParametersDto } from '../../../types/types'
 import { API_URL } from '../../../constants/api'
 
 class ExercisesSessionService {
@@ -72,12 +72,20 @@ class ExercisesSessionService {
   updateExerciseOrderNumberDown(sessionId: string, exerciseId: string) {
     return axios.patch(`${API_URL}/update_exercise_order_number_down/${sessionId}/${exerciseId}`,{}, { headers: authHeader() });
   }
+
+  updateExerciseDuration(exerciseId: string, updateDurationDto: { duration: number }) {
+    return axios.patch(`${API_URL}/update_exercise_duration/${exerciseId}`, updateDurationDto, { headers: authHeader() });
+  }
   
   deleteExercise(sessionId: string, exerciseId: string) {
     return axios.delete(`${API_URL}/delete_exercise_session/${sessionId}/${exerciseId}`, { headers: authHeader() });
   }
   addExercise(sessionId: string) {
     return axios.get(`${API_URL}/add_exercise/session/${sessionId}`, { headers: authHeader() });
+  }
+
+  copyExercisesToNextSession(sessionId: string, copyParametersDto: CopyParametersDto) {
+    return axios.post(`${API_URL}/copy_exercises_to_next_session/${sessionId}`, copyParametersDto, { headers: authHeader() });
   }
 }
 

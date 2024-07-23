@@ -1,11 +1,13 @@
 package com.zapiszto.controllers.exercises.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
+import com.zapiszto.controllers.exercises.dto.CopyParametersDto;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictEquipmentDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictUnitDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDurationDto;
 import com.zapiszto.controllers.exercises.dto.UpdateEquipmentAttributeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateExerciseDto;
 import com.zapiszto.controllers.exercises.dto.UpdateNotesDto;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -195,6 +198,28 @@ public class ExercisesSessionController implements ControllerCommon {
     return new ResponseEntity<>(exerciseSessionDtoList, HttpStatus.OK);
   }
 
+  @PatchMapping("/update_exercise_duration/{id}")
+  public ResponseEntity<String> updateExerciseDuration(
+      @PathVariable UUID id,
+      @RequestBody UpdateDurationDto updateDurationDto
+  ) {
+    exercisesSessionService.updateDuration(id, updateDurationDto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PostMapping("/copy_exercises_to_next_session/{sessionId}")
+  public ResponseEntity<String> copyExercisesToNextSession(
+      @PathVariable UUID sessionId,
+      @RequestBody CopyParametersDto copyParametersDto
+
+  ) {
+    try {
+      exercisesSessionService.copyExercisesToNextSession(sessionId, copyParametersDto);
+      return new ResponseEntity<>("Exercises copied successfully", HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Error copying exercises", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 
   @DeleteMapping("/delete_exercise_session/{sessionId}/{exerciseId}")
   public ResponseEntity<List<ExerciseSessionDto>> delete(

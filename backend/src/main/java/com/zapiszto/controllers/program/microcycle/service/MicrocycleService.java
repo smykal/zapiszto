@@ -50,8 +50,8 @@ public class MicrocycleService {
     //microcycleRepository.saveAll(microcycles);
 
     for (MicrocycleEntity microcycle : microcycles) {
-      microcycleRepository.save(microcycle);
-      sessionService.addSessions(sessionsforMicrocycle, microcycle.getId(), sessionDuration);
+      MicrocycleEntity save = microcycleRepository.save(microcycle);
+      sessionService.addSessions(sessionsforMicrocycle, save.getId(), sessionDuration);
     }
   }
 
@@ -104,5 +104,25 @@ public class MicrocycleService {
             )
         )
         .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public void addMicrocycle(UUID mesocycleId) {
+    int orderId = microcycleRepository.findMaxOrderIdByMesocycleId(mesocycleId)
+        .orElse(0);
+
+    MicrocycleEntity microcycleEntity = MicrocycleEntity.builder()
+        .id(UUID.randomUUID())
+        .mesocycleId(mesocycleId)
+        .orderId(orderId + 1)
+        .build();
+
+    MicrocycleEntity save = microcycleRepository.save(microcycleEntity);
+    sessionService.addSessions(3, save.getId(), 60);
+  }
+
+  @Transactional
+  public void deleteMicrocycle(UUID microcycleId) {
+    microcycleRepository.deleteById(microcycleId);
   }
 }

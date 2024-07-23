@@ -6,12 +6,14 @@ import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExerci
 import com.zapiszto.controllers.dictionaries.dictQuantityType.repository.DictQuantityTypeRepository;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.repository.DictSessionPartRepository;
 import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
+import com.zapiszto.controllers.exercises.dto.CopyParametersDto;
 import com.zapiszto.controllers.exercises.dto.ExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.NewExerciseSessionDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictQuantityTypeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictSessionPartDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictUnitDto;
 import com.zapiszto.controllers.exercises.dto.UpdateDictEquipmentDto;
+import com.zapiszto.controllers.exercises.dto.UpdateDurationDto;
 import com.zapiszto.controllers.exercises.dto.UpdateEquipmentAttributeDto;
 import com.zapiszto.controllers.exercises.dto.UpdateExerciseDto;
 import com.zapiszto.controllers.exercises.dto.UpdateNotesDto;
@@ -23,6 +25,8 @@ import com.zapiszto.controllers.exercises.dto.UpdateVolumeDto;
 import com.zapiszto.controllers.exercises.entity.ExerciseEntity;
 import com.zapiszto.controllers.exercises.repository.ExerciseSessionRepository;
 import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
+import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
+import com.zapiszto.controllers.program.sessions.repository.SessionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import java.util.Collections;
@@ -33,11 +37,15 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Slf4j
 @Service
 public class ExercisesSessionService {
+  @Autowired
+  private SessionRepository sessionRepository;
 
   @Autowired
   ExerciseSessionRepository exerciseSessionRepository;
@@ -56,6 +64,9 @@ public class ExercisesSessionService {
 
   @Autowired
   DictEquipmentRepository dictEquipmentRepository;
+
+  final String KG = "kg";
+  final String PROC = "%";
 
   public void addExercise(NewExerciseSessionDto newExerciseSessionDto) {
 
@@ -218,6 +229,18 @@ public class ExercisesSessionService {
     }
   }
 
+  public void updateDuration(UUID id, UpdateDurationDto updateDurationDto) {
+    Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
+
+    if (exerciseEntityOptional.isPresent()) {
+      ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
+      exerciseEntity.setDuration(updateDurationDto.getDuration());
+      exerciseSessionRepository.save(exerciseEntity);
+    } else {
+      throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
+    }
+  }
+
   public void updateDictEquipment(UUID id, UpdateDictEquipmentDto updateDictEquipmentDto) {
     Optional<ExerciseEntity> exerciseEntityOptional = exerciseSessionRepository.findById(id);
 
@@ -331,17 +354,27 @@ public class ExercisesSessionService {
     var dictSessionParts = dictSessionPartRepository.getAllForUser(userId);
     var dictEquipment = dictEquipmentRepository.getAllForUser(userId);
 
-    List<ExerciseEntity> exerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
+    List<ExerciseEntity> exerciseEntities;
+    exerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
         .stream()
         .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
-        .collect(Collectors.toList());
+        .toList();
 
     if (exerciseEntities.isEmpty()) {
-      return Collections.emptyList();
+      ExerciseEntity exerciseEntity = ExerciseSerializer.generateDefaultExerciseSession(sessionId);
+      ExerciseEntity save = exerciseSessionRepository.save(exerciseEntity);
+
+      List<ExerciseEntity> updatedExerciseEntities = exerciseSessionRepository.getAllBySessionId(sessionId)
+          .stream()
+          .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
+          .toList();
+
+      return updatedExerciseEntities.stream()
+          .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
+          .collect(Collectors.toList());
     }
 
     ExerciseEntity lastExercise = exerciseEntities.get(exerciseEntities.size() - 1);
-
     ExerciseEntity newExercise = ExerciseEntity.builder()
         .id(UUID.randomUUID())
         .sessionId(sessionId)
@@ -372,6 +405,55 @@ public class ExercisesSessionService {
     return updatedExerciseEntities.stream()
         .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
         .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public void copyExercisesToNextSession(UUID sessionId, CopyParametersDto copyParametersDto) {
+    //znalezienie next sesionId
+    UUID nextSessionId = findNextSessionId(sessionId);
+
+    // Usuwanie istniejących ćwiczeń w docelowej sesji
+    exerciseSessionRepository.deleteBySessionId(nextSessionId);
+
+    // Pobranie ćwiczeń z sesji źródłowej
+    List<ExerciseEntity> exercisesToCopy = exerciseSessionRepository.findBySessionId(sessionId);
+
+    // Utworzenie nowych encji ćwiczeń dla sesji docelowej
+    List<ExerciseEntity> copiedExercises = exercisesToCopy.stream()
+        .map(exercise -> {
+          ExerciseEntity newExercise = new ExerciseEntity();
+          newExercise.setSessionId(nextSessionId);
+          newExercise.setQuantity(exercise.getQuantity() + copyParametersDto.getRepetitions());
+          if (copyParametersDto.getWeightIncreaseUnit().equals(KG)) {
+            newExercise.setVolume(exercise.getVolume() + copyParametersDto.getWeightIncrease());
+          } else {
+            float increase = exercise.getVolume() * copyParametersDto.getWeightIncrease() / 100;
+            newExercise.setVolume(exercise.getVolume() + increase);
+          }
+          newExercise.setNotes(exercise.getNotes());
+          newExercise.setOrderNumber(exercise.getOrderNumber());
+          newExercise.setRestTime(exercise.getRestTime());
+          newExercise.setTempo(exercise.getTempo());
+          newExercise.setDictSessionPartId(exercise.getDictSessionPartId());
+          newExercise.setDictExerciseId(exercise.getDictExerciseId());
+          newExercise.setDictQuantityTypeId(exercise.getDictQuantityTypeId());
+          newExercise.setDictUnitId(exercise.getDictUnitId());
+          newExercise.setSets(exercise.getSets());
+          newExercise.setDictEquipmentId(exercise.getDictEquipmentId());
+          newExercise.setEquipmentAttribute(exercise.getEquipmentAttribute());
+          newExercise.setWeightPerSide(exercise.getWeightPerSide());
+          newExercise.setDuration(exercise.getDuration());
+          return newExercise;
+        })
+        .collect(Collectors.toList());
+
+    // Zapisanie nowych ćwiczeń w repozytorium
+    exerciseSessionRepository.saveAll(copiedExercises);
+  }
+
+  public UUID findNextSessionId(UUID currentSessionId) {
+    return sessionRepository.findNextSessionId(currentSessionId)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No next session found"));
   }
 }
 

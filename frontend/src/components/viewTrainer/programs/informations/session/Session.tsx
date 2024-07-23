@@ -7,6 +7,7 @@ import GetExerciseSession from '../exercises/GetExerciseSession';
 import Modal from '../../../../../constants/Modal';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import DeleteSession from './DeleteSession'; // Importujemy nowy komponent
 
 interface SessionProps {
   microcycleId: string;
@@ -19,16 +20,23 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [currentSession, setCurrentSession] = useState<SessionDto | null>(null);
   const [newDateTime, setNewDateTime] = useState<Date | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   useEffect(() => {
     loadSessions();
   }, [microcycleId]);
 
-  const loadSessions = () => {
+  const loadSessions = (newSessionId?: string) => {
     SessionService.getSessions(microcycleId)
       .then(response => {
         const sortedSessions = response.data.sort((a: SessionDto, b: SessionDto) => a.orderId - b.orderId);
         setSessions(sortedSessions);
+        if (newSessionId) {
+          const newIndex = sortedSessions.findIndex((session: SessionDto) => session.id === newSessionId);
+          setSelectedIndex(newIndex);
+        } else {
+          setSelectedIndex(0);
+        }
       })
       .catch(error => {
         console.error('Error loading sessions:', error);
@@ -66,14 +74,32 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
     }
   };
 
+  const handleAddSession = () => {
+    SessionService.addSession(microcycleId)
+      .then(response => {
+        const newSession = response.data;
+        loadSessions(newSession.id);  // Ponowne załadowanie sesji po dodaniu nowej sesji i przejście do nowej zakładki
+      })
+      .catch(error => {
+        console.error('Error adding session:', error);
+        setMessage(t('session.add_error'));
+      });
+  };
+
+  const handleSessionDeleted = () => {
+    loadSessions();  // Ponowne załadowanie sesji po usunięciu sesji
+    handleCloseModal();
+  };
+
   return (
     <div>
       {message && <p>{message}</p>}
-      <Tabs>
+      <Tabs selectedIndex={selectedIndex} onSelect={(index) => setSelectedIndex(index)}>
         <TabList>
           {sessions.map((session) => (
             <Tab key={session.id}>{t('session.session')}: {session.orderId}</Tab>
           ))}
+          <Tab onClick={handleAddSession}>+</Tab>
         </TabList>
         {sessions.map((session) => (
           <TabPanel key={session.id}>
@@ -83,6 +109,7 @@ const Session: React.FC<SessionProps> = ({ microcycleId }) => {
               <button onClick={() => handleOpenModal(session)}>{t('buttons.edit')}</button>
             </p>
             <GetExerciseSession session_id={session.id} />
+            <DeleteSession session={session} onSessionDeleted={handleSessionDeleted} /> {/* Nowy przycisk do usuwania */}
           </TabPanel>
         ))}
       </Tabs>

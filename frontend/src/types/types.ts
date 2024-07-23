@@ -177,6 +177,7 @@ export type ExerciseSession = {
                                 equipmentName: string;
                                 equipmentAttribute: string;
                                 weightPerSide: number;
+                                duration: number;
 };
 
 export type NewInvitation = {
@@ -384,4 +385,17 @@ export interface DictEquipment {
 export interface NewDictEquipment {
                                     id: string;
                                     name: string;
+}
+
+export interface ExerciseStats {
+                                orderId: number;
+                                category: string;
+                                repetitions: number;
+                                sets: number;
+}
+
+export interface CopyParametersDto {
+  weightIncrease: number;
+  weightIncreaseUnit: string;
+  repetitions: number;
 }

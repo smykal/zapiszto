@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.program.sessions.service;
 
+import com.zapiszto.controllers.exercises.service.ExercisesSessionService;
 import com.zapiszto.controllers.program.macrocycle.dto.NewMacrocycleDto;
 import com.zapiszto.controllers.program.mesocycle.entity.MesocycleEntity;
 import com.zapiszto.controllers.program.microcycle.entity.MicrocycleEntity;
@@ -26,6 +27,9 @@ public class SessionService {
 
   @Autowired
   SessionRepository sessionRepository;
+
+  @Autowired
+  ExercisesSessionService exercisesSessionService;
 
   @Transactional
   public void addSessions(int sessionsForMicrocycle, UUID microcycleId, int sessionDuration) {
@@ -78,6 +82,7 @@ public class SessionService {
     }
   }
 
+  @Transactional
   public void deleteSession(UUID id) {
     sessionRepository.deleteById(id);
   }
@@ -110,5 +115,27 @@ public class SessionService {
         .orElseThrow(() -> new RuntimeException("Session not found"));
     sessionEntity.setDateTime(dateTime);
     sessionRepository.save(sessionEntity);
+  }
+
+  @Transactional
+  public SessionDto addSession(UUID microcycleId) {
+    int orderId = sessionRepository.findMaxOrderIdByMicrocycleId(microcycleId)
+        .orElse(0);
+
+    SessionEntity sessionEntity = SessionEntity.builder()
+        .id(UUID.randomUUID())
+        .microcycleId(microcycleId)
+        .orderId(orderId+1)
+        .label(String.valueOf(60))
+        .build();
+    SessionEntity save = sessionRepository.save(sessionEntity);
+    addExercisesToSession(save.getId());
+
+    return SessionSerializer.convert(sessionEntity);
+  }
+
+  @Transactional
+  protected void addExercisesToSession(UUID sessionId) {
+    exercisesSessionService.addExercise(sessionId);
   }
 }

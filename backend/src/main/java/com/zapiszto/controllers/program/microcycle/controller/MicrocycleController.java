@@ -13,8 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,4 +61,29 @@ public class MicrocycleController implements ControllerCommon {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
   }
+
+  @PostMapping("/add_microcycle/{mesocycleId}")
+  public ResponseEntity<String> addMicrocycle(
+      @PathVariable UUID mesocycleId
+  ) {
+    try {
+      microcycleService.addMicrocycle(mesocycleId);
+      return new ResponseEntity<>("Microcycle created successfully", HttpStatus.OK);
+    }catch (Exception e) {
+      return new ResponseEntity<>("Error creating microcycle", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @DeleteMapping("/delete_microcycle/{microcycleId}")
+  public ResponseEntity<String> deleteMicrocycle(
+      @PathVariable UUID microcycleId
+  ) {
+    try {
+      microcycleService.deleteMicrocycle(microcycleId);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Error deleting microcycle", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
 }

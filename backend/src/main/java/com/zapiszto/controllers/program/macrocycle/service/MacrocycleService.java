@@ -75,7 +75,7 @@ public class MacrocycleService {
   public void addProgram(NewMacrocycleDto newMacrocycleDto) {
     MacrocycleEntity macrocycleEntity = addMacrocycle(newMacrocycleDto);
 
-    List<MesocycleEntity> mesocycleEntities = mesocycleService.addMezocycle(macrocycleEntity, newMacrocycleDto);
+    List<MesocycleEntity> mesocycleEntities = mesocycleService.addMesocycle(macrocycleEntity, newMacrocycleDto);
 
     for (MesocycleEntity mesocycleEntity: mesocycleEntities) {
       List<MicrocycleEntity> microcycleEntities = microcycleService.addMicrocycles(mesocycleEntity, newMacrocycleDto);
