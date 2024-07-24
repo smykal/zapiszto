@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface ClientsRepository extends JpaRepository<ClientEntity, Integer> {
+public interface ClientsRepository extends JpaRepository<ClientEntity, UUID> {
 
   List<ClientEntity> getAllByTrainerId(long trainerId);
 
