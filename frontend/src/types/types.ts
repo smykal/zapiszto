@@ -280,6 +280,7 @@ export interface Program {
                           programName: string;
                           createdBy: number;
                           createDate: string;
+                          clientName: string;
 }
 
 export interface NewProgram {
