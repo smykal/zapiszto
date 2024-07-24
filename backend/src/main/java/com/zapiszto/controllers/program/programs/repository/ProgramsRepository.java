@@ -14,9 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface ProgramsRepository extends JpaRepository<ProgramEntity, UUID> {
   @Query(nativeQuery = true, value = """
-      select * from programs p where p.trainer_id = :trainerId
+       select p.*, c.client_name from programs p
+      	      			left join programs_details pd on p.id = pd.id
+      	      			left join clients c on pd.assigned_client = c.id
+      	      where p.trainer_id = :trainerId
       """)
-  List<ProgramEntity> getAllByTrainerId(long trainerId);
+  List<Object[]> getAllByTrainerId(long trainerId);
 
   @Query(nativeQuery = true, value = """
       select * from programs p where p.id = :id

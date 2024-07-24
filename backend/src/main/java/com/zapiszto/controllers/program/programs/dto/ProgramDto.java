@@ -1,5 +1,9 @@
 package com.zapiszto.controllers.program.programs.dto;
 
+import java.sql.Timestamp;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +19,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProgramDto {
-  String id;
+  UUID id;
   String programName;
   String createDate;
-  String createdBy;
+  Long createdBy;
+  String clientName;
 }
