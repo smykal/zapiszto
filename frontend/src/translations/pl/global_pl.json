@@ -92,7 +92,10 @@
         "delete_client": "usuń klienta",
         "add_program": "Dodaj Program",
         "delete_program": "Usuń Program",
-        "save": "zapisz"
+        "save": "zapisz",
+        "add_exercise": "dodaj ćwiczenie",
+        "copy_to_next_session": "skopiuj na następny tydzień",
+        "copy_to_next_day_session": "skopiuj na następny dzień"
     },
     "validation": {
         "this_field_is_required": "to pole jest wymagane",

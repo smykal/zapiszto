@@ -94,7 +94,10 @@
         "delete_client": "eliminar cliente",
         "add_program": "Añadir Programa",
         "delete_program": "Eliminar Programa",
-        "save": "guardar"
+        "save": "guardar",
+        "add_exercise": "añadir ejercicio",
+        "copy_to_next_session": "copiar a la próxima semana",
+        "copy_to_next_day_session": "copiar al próximo día"
     },
     "validation": {
         "this_field_is_required": "este campo es obligatorio",

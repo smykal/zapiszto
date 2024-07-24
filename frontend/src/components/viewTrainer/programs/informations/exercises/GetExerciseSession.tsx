@@ -13,7 +13,9 @@ import DictExercisesService from '../../../../../services/dict/DictExercisesServ
 import DictUnitsService from '../../../../../services/dict/DictUnitsService';
 import DictEquipmentService from '../../../../../services/dict/DictEquipmentService';
 import Modal from '../../../../../constants/Modal';
-import CopyToNextSession from './CopyToNextSession'; // Import the new component
+import CopyToNextWeekSession from './CopyToNextWeekSession';
+import CopyToNextDaySession from './CopyToNextDaySession';
+
 
 type Props = {
   session_id: string;
@@ -28,6 +30,7 @@ type State = {
   unitsOptions: DictUnits[];
   equipmentOptions: DictEquipment[]; // Add equipment options state
   showModal: boolean; // Add modal state
+  showNextDayModal: boolean; // Add new state for next day modal
 }
 
 class GetExerciseSession extends Component<Props, State> {
@@ -40,7 +43,8 @@ class GetExerciseSession extends Component<Props, State> {
       exercisesOptions: [],
       unitsOptions: [],
       equipmentOptions: [], // Initialize equipment options
-      showModal: false // Initialize modal state
+      showModal: false, // Initialize modal state
+      showNextDayModal: false // Initialize new state
     };
   }
 
@@ -343,6 +347,14 @@ class GetExerciseSession extends Component<Props, State> {
     this.setState({ showModal: false });
   };
 
+  handleShowNextDayModal = () => {
+    this.setState({ showNextDayModal: true });
+  };
+  
+  handleCloseNextDayModal = () => {
+    this.setState({ showNextDayModal: false });
+  };
+
   handleSaveDuration = (exerciseId: string, newDuration: number) => {
     ExercisesSessionService.updateExerciseDuration(exerciseId, { duration: newDuration })
       .then(() => {
@@ -358,17 +370,17 @@ class GetExerciseSession extends Component<Props, State> {
   };
 
   render() {
-    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions, equipmentOptions, showModal } = this.state;
+    const { exercises, sessionPartOptions, quantityTypeOptions, exercisesOptions, unitsOptions, equipmentOptions, showModal, showNextDayModal } = this.state;
     const { t } = this.props;
-
+  
     const sessionPartNames = sessionPartOptions.map(option => option.name);
     const quantityTypeNames = quantityTypeOptions.map(option => option.name);
     const exercisesNames = exercisesOptions.map(option => option.name);
-    const unitsNames = unitsOptions.map(option => option.name); 
-    const equipmentNames = equipmentOptions.map(option => option.name); 
-
+    const unitsNames = unitsOptions.map(option => option.name);
+    const equipmentNames = equipmentOptions.map(option => option.name);
+  
     let cumulativeDuration = 0;
-
+  
     return (
       <div>
         <table style={{ minWidth: '600px', width: '100%', borderCollapse: 'collapse' }}>
@@ -389,8 +401,8 @@ class GetExerciseSession extends Component<Props, State> {
               <th>{t("table.equipment")}</th>
               <th>{t("table.equipment_attribute")}</th>
               <th>{t("table.weight_per_side")}</th>
-              <th>{t("table.exercise_duration")}</th> 
-              <th>{t("table.training_time")}</th> 
+              <th>{t("table.exercise_duration")}</th>
+              <th>{t("table.training_time")}</th>
               <th>{t("table.options")}</th>
             </tr>
           </thead>
@@ -498,9 +510,13 @@ class GetExerciseSession extends Component<Props, State> {
           </tbody>
         </table>
         <button onClick={this.handleAddExercise}>{t('buttons.add_exercise')}</button>
-        <button onClick={this.handleShowModal}>{t('buttons.copy_to_next_session')}</button> {/* Add new button */}
+        <button onClick={this.handleShowModal}>{t('buttons.copy_to_next_session')}</button>
+        <button onClick={this.handleShowNextDayModal}>{t('buttons.copy_to_next_day_session')}</button> {/* Add new button */}
         <Modal show={showModal} onClose={this.handleCloseModal} title={t('buttons.copy_to_next_session')}>
-          <CopyToNextSession onClose={this.handleCloseModal} sessionId={this.props.session_id} /> {/* Include new component in modal */}
+          <CopyToNextWeekSession onClose={this.handleCloseModal} sessionId={this.props.session_id} />
+        </Modal>
+        <Modal show={showNextDayModal} onClose={this.handleCloseNextDayModal} title={t('buttons.copy_to_next_day_session')}>
+          <CopyToNextDaySession onClose={this.handleCloseNextDayModal} sessionId={this.props.session_id} />
         </Modal>
       </div>
     );

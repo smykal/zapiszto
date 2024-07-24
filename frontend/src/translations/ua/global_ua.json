@@ -98,7 +98,10 @@
         "delete_client": "видалити клієнта",
         "add_program": "Додати Програму",
         "delete_program": "Видалити Програму",
-        "save": "зберегти"
+        "save": "зберегти",
+        "add_exercise": "додати вправу",
+        "copy_to_next_session": "скопіювати на наступний тиждень",
+        "copy_to_next_day_session": "скопіювати на наступний день"
     },
     "table": {
         "id": "#",

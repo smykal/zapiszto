@@ -1,6 +1,5 @@
 package com.zapiszto.controllers.exercises.service;
 
-import com.zapiszto.controllers.dictionaries.dictCategory.repository.DictCategoryRepository;
 import com.zapiszto.controllers.dictionaries.dictEquipment.repository.DictEquipmentRepository;
 import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExercisesRepository;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.repository.DictQuantityTypeRepository;
@@ -28,8 +27,8 @@ import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
 import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
 import com.zapiszto.controllers.program.sessions.repository.SessionRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.transaction.Transactional;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -404,7 +403,54 @@ public class ExercisesSessionService {
   }
 
   @Transactional
-  public void copyExercisesToNextSession(UUID sessionId, CopyParametersDto copyParametersDto) {
+  public void copyExercisesToNextDaySession(UUID sessionId, CopyParametersDto copyParametersDto) {
+    SessionEntity referenceById = sessionRepository.getReferenceById(sessionId);
+
+    //znalezienie next sesionId
+    UUID nextSessionId = findNextSessionId(referenceById.getMicrocycleId(), referenceById.getOrderId());
+
+    // Usuwanie istniejących ćwiczeń w docelowej sesji
+    exerciseSessionRepository.deleteBySessionId(nextSessionId);
+
+    // Pobranie ćwiczeń z sesji źródłowej
+    List<ExerciseEntity> exercisesToCopy = exerciseSessionRepository.findBySessionId(sessionId);
+
+    // Utworzenie nowych encji ćwiczeń dla sesji docelowej
+    List<ExerciseEntity> copiedExercises = exercisesToCopy.stream()
+        .map(exercise -> {
+          ExerciseEntity newExercise = new ExerciseEntity();
+          newExercise.setSessionId(nextSessionId);
+          newExercise.setQuantity(exercise.getQuantity() + copyParametersDto.getRepetitions());
+          if (copyParametersDto.getWeightIncreaseUnit()
+              .equals(KG)) {
+            newExercise.setVolume(exercise.getVolume() + copyParametersDto.getWeightIncrease());
+          } else {
+            float increase = exercise.getVolume() * copyParametersDto.getWeightIncrease() / 100;
+            newExercise.setVolume(exercise.getVolume() + increase);
+          }
+          newExercise.setNotes(exercise.getNotes());
+          newExercise.setOrderNumber(exercise.getOrderNumber());
+          newExercise.setRestTime(exercise.getRestTime());
+          newExercise.setTempo(exercise.getTempo());
+          newExercise.setDictSessionPartId(exercise.getDictSessionPartId());
+          newExercise.setDictExerciseId(exercise.getDictExerciseId());
+          newExercise.setDictQuantityTypeId(exercise.getDictQuantityTypeId());
+          newExercise.setDictUnitId(exercise.getDictUnitId());
+          newExercise.setSets(exercise.getSets());
+          newExercise.setDictEquipmentId(exercise.getDictEquipmentId());
+          newExercise.setEquipmentAttribute(exercise.getEquipmentAttribute());
+          newExercise.setWeightPerSide(countWeightPerSide(exercise.getEquipmentAttribute(), newExercise.getVolume()));
+          newExercise.setDuration(exercise.getDuration());
+          return newExercise;
+        })
+        .collect(Collectors.toList());
+
+    // Zapisanie nowych ćwiczeń w repozytorium
+    exerciseSessionRepository.saveAll(copiedExercises);
+  }
+
+  @Transactional
+  public void copyExercisesToNextWeekSession(UUID sessionId, CopyParametersDto copyParametersDto) {
     //znalezienie next sesionId
     UUID nextSessionId = findNextSessionId(sessionId);
 
@@ -448,8 +494,13 @@ public class ExercisesSessionService {
     exerciseSessionRepository.saveAll(copiedExercises);
   }
 
+  public UUID findNextSessionId(UUID currentMicrocycleId, Integer orderId) {
+    return sessionRepository.findNextWeekSessionId(currentMicrocycleId, orderId)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No next session found"));
+  }
+
   public UUID findNextSessionId(UUID currentSessionId) {
-    return sessionRepository.findNextSessionId(currentSessionId)
+    return sessionRepository.findNextWeekSessionId(currentSessionId)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No next session found"));
   }
 

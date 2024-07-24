@@ -94,7 +94,10 @@
         "delete_client": "удалить клиента",
         "add_program": "Добавить Программу",
         "delete_program": "Удалить Программу",
-        "save": "сохранить"
+        "save": "сохранить",
+        "add_exercise": "добавить упражнение",
+        "copy_to_next_session": "копировать на следующую неделю",
+        "copy_to_next_day_session": "копировать на следующий день"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
