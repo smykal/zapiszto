@@ -18,21 +18,38 @@ public class ProgramsSerializer {
   private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
   public ProgramDto convert(ProgramEntity programEntity) {
-    return ProgramDto.builder()
-        .id(programEntity.getId())
-        .programName(programEntity.getName())
-        .createDate(programEntity.getInsert_date().format(formatter))
-        .createdBy(programEntity.getTrainerId())
-        .build();
+    return new ProgramDto(
+        programEntity.getId(),
+        programEntity.getName(),
+        programEntity.getInsert_date()
+            .format(formatter),
+        programEntity.getTrainerId(),
+        null);
+
+//    return ProgramDto.builder()
+//        .id(programEntity.getId())
+//        .programName(programEntity.getName())
+//        .createDate(programEntity.getInsert_date()
+//            .format(formatter))
+//        .createdBy(programEntity.getTrainerId())
+//        .build();
   }
 
   public ProgramDto convert(Object[] programObject) {
-    return ProgramDto.builder()
-        .id((UUID) programObject[0])
-        .programName((String) programObject[3])
-        .createDate(((Timestamp) programObject[2]).toString())
-        .createdBy((Long) programObject[1])
-        .clientName((String) programObject[4])
-        .build();
+    return new ProgramDto(
+        (UUID) programObject[0],
+        (String) programObject[3],
+        ((Timestamp) programObject[2]).toString(),
+        (Long) programObject[1],
+        (String) programObject[4]);
+
+
+//    return ProgramDto.builder()
+//        .id((UUID) programObject[0])
+//        .programName((String) programObject[3])
+//        .createDate(((Timestamp) programObject[2]).toString())
+//        .createdBy((Long) programObject[1])
+//        .clientName((String) programObject[4])
+//        .build();
   }
 }
