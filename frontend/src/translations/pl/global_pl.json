@@ -191,7 +191,11 @@
         "duration_left": "Pozostały czas trwania (miesiące)",
         "add_button": "Dodaj Makrocykl",
         "created_successfully": "Makrocykl został pomyślnie utworzony",
-        "creation_error": "Wystąpił błąd podczas tworzenia makrocyklu"
+        "creation_error": "Wystąpił błąd podczas tworzenia makrocyklu",
+        "sessions_per_microcycle": "Ile treningów na tydzień?",
+        "session_duration": "Jak długo trwa trening?",
+        "periodization": "Jaki jest cel treningu?",
+        "select_periodization": "wybierz cel"
     },
     "mesocycle": {
         "title": "Utwórz Nowy Mezocykl",

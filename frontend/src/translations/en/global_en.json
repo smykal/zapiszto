@@ -191,7 +191,11 @@
         "duration_left": "Remaining Duration (months)",
         "add_button": "Add Macrocycle",
         "created_successfully": "Macrocycle created successfully",
-        "creation_error": "Error creating macrocycle"
+        "creation_error": "Error creating macrocycle",
+        "sessions_per_microcycle": "How many trainings per week?",
+        "session_duration": "How long training takes?",
+        "periodization": "What is purpose of training?",
+        "select_periodization": "select purpose" 
     },
     "mesocycle": {
         "title": "Create New Mesocycle",

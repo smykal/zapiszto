@@ -191,7 +191,11 @@
         "duration_left": "Duración Restante (meses)",
         "add_button": "Agregar Macrociclo",
         "created_successfully": "Macrociclo creado con éxito",
-        "creation_error": "Error al crear el macrociclo"
+        "creation_error": "Error al crear el macrociclo",
+        "sessions_per_microcycle": "¿Cuántos entrenamientos por semana?",
+        "session_duration": "¿Cuánto dura el entrenamiento?",
+        "periodization": "¿Cuál es el propósito del entrenamiento?",
+        "select_periodization": "selecciona el propósito"
     },
     "mesocycle": {
         "title": "Crear Nuevo Mesociclo",

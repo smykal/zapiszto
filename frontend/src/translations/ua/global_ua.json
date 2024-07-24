@@ -191,7 +191,11 @@
         "duration_left": "Залишок Тривалості (місяці)",
         "add_button": "Додати Макроцикл",
         "created_successfully": "Макроцикл успішно створено",
-        "creation_error": "Помилка при створенні макроциклу"
+        "creation_error": "Помилка при створенні макроциклу",
+        "sessions_per_microcycle": "Скільки тренувань на тиждень?",
+        "session_duration": "Скільки триває тренування?",
+        "periodization": "Яка мета тренування?",
+        "select_periodization": "виберіть мету"
     },
     "mesocycle": {
         "title": "Створити Новий Мезоцикл",
