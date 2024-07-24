@@ -193,8 +193,8 @@
         "created_successfully": "Macrocycle created successfully",
         "creation_error": "Error creating macrocycle",
         "sessions_per_microcycle": "How many trainings per week?",
-        "session_duration": "How long training takes?",
-        "periodization": "What is purpose of training?",
+        "session_duration": "How long is your training?",
+        "periodization": "What would you like to achieve?",
         "select_periodization": "select purpose" 
     },
     "mesocycle": {

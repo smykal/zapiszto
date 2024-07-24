@@ -89,7 +89,7 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
       ) : (
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="sessionsForMicrocycle">{t('macrocycle.sessions_per_microcycle')}:</label>
+            <label htmlFor="sessionsForMicrocycle">{t('macrocycle.sessions_per_microcycle')}</label>
             <select
               id="sessionsForMicrocycle"
               value={sessionsForMicrocycle}
@@ -103,7 +103,7 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
             </select>
           </div>
           <div>
-            <label htmlFor="durationSession">{t('macrocycle.session_duration')}:</label>
+            <label htmlFor="durationSession">{t('macrocycle.session_duration')}</label>
             <select
               id="durationSession"
               value={durationSession}
@@ -117,7 +117,7 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
             </select>
           </div>
           <div>
-            <label htmlFor="periodization">{t('macrocycle.periodization')}:</label>
+            <label htmlFor="periodization">{t('macrocycle.periodization')}</label>
             <select
               id="periodization"
               value={selectedPeriodization}
