@@ -183,7 +183,9 @@
         "created_by": "Creado Por",
         "select_program_message": "Por favor, seleccione un programa.",
         "confirm_delete": "Confirmar para eliminar el programa",
-        "program_name_exists": "El nombre del programa ya existe"
+        "program_name_exists": "El nombre del programa ya existe",
+        "informations": "informaciones",
+        "macrocicle": "plan de entrenamiento"
     },
     "macrocycle": {
         "title": "Crear Nuevo Macrociclo",

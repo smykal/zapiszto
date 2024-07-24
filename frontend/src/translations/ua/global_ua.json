@@ -183,7 +183,9 @@
         "created_by": "Створено",
         "select_program_message": "Будь ласка, виберіть програму.",
         "confirm_delete": "Підтвердити видалення програми",
-        "program_name_exists": "Назва програми вже існує"
+        "program_name_exists": "Назва програми вже існує",
+        "informations": "інформація",
+        "macrocicle": "тренувальний план"
     },
     "macrocycle": {
         "title": "Створити Новий Макроцикл",

@@ -34,7 +34,7 @@ public class ProgramsService {
   ProgramsSerializer programsSerializer;
 
   public List<ProgramDto> getPrograms(long trainerId) {
-    List<Object[]> allByTrainerId = programsRepository.getAllByTrainerId(trainerId);
+    var allByTrainerId = programsRepository.getAllByTrainerId(trainerId);
     return allByTrainerId.stream().map(programsSerializer::convert)
         .collect(Collectors.toList());
   }

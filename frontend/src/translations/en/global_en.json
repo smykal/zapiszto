@@ -183,7 +183,9 @@
         "created_by": "Created By",
         "select_program_message": "Please select a program.",
         "confirm_delete": "Confirm to delete program",
-        "program_name_exists": "Program name already exists"
+        "program_name_exists": "Program name already exists",
+        "informations": "informations",
+        "macrocicle": "training plan"
     },
     "macrocycle": {
         "title": "Create New Macrocycle",

@@ -25,14 +25,6 @@ public class ProgramsSerializer {
             .format(formatter),
         programEntity.getTrainerId(),
         null);
-
-//    return ProgramDto.builder()
-//        .id(programEntity.getId())
-//        .programName(programEntity.getName())
-//        .createDate(programEntity.getInsert_date()
-//            .format(formatter))
-//        .createdBy(programEntity.getTrainerId())
-//        .build();
   }
 
   public ProgramDto convert(Object[] programObject) {
@@ -42,14 +34,5 @@ public class ProgramsSerializer {
         ((Timestamp) programObject[2]).toString(),
         (Long) programObject[1],
         (String) programObject[4]);
-
-
-//    return ProgramDto.builder()
-//        .id((UUID) programObject[0])
-//        .programName((String) programObject[3])
-//        .createDate(((Timestamp) programObject[2]).toString())
-//        .createdBy((Long) programObject[1])
-//        .clientName((String) programObject[4])
-//        .build();
   }
 }
