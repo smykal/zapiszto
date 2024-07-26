@@ -273,3 +273,5 @@ databaseChangeLog:
       file: db/changelog/136_modify_table_exercises.xml
   - include:
       file: db/changelog/137_modify_table_microcycle.xml
+  - include:
+      file: db/changelog/138_drop_data_from_body_params.xml

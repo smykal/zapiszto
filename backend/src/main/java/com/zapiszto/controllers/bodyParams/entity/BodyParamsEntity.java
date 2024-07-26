@@ -2,7 +2,9 @@ package com.zapiszto.controllers.bodyParams.entity;
 
 import com.zapiszto.controllers.account.entity.User;
 import com.zapiszto.controllers.dictionaries.dictBodyParams.entity.DictBodyParamsEntity;
+import com.zapiszto.controllers.encryption.Encrypt;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +42,7 @@ public class BodyParamsEntity {
   DictBodyParamsEntity dictBodyParams;
 
   @Column(name = "value")
+  @Convert(converter = Encrypt.class)
   String value;
 
   @Column(name = "user_id")
