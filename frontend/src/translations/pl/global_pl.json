@@ -209,7 +209,8 @@
         "creation_error": "Wystąpił błąd podczas tworzenia mezocyklu"
     },
     "microcycle": {
-        "week": "tydzień"
+        "week": "tydzień",
+        "share": "udostępnij"
     },
     "session": {
         "no_date": "data nie jest jeszcze ustawiona",

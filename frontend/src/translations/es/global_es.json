@@ -209,7 +209,8 @@
         "creation_error": "Error al crear el mesociclo"
     },
     "microcycle": {
-        "week": "semana"
+        "week": "semana",
+        "share": "compartir"
     },
     "session": {
         "no_date": "aún no se ha establecido la fecha",

@@ -20,6 +20,10 @@ class MicrocycleService {
   deleteMicrocycle(microcycleId: string) {
     return axios.delete(`${API_URL}/delete_microcycle/${microcycleId}`, { headers: authHeader() });
   }
+
+  updateMicrocycleShare(microcycleId: string, share: boolean) {
+    return axios.patch(`${API_URL}/update_microcycle_share/${microcycleId}?share=${share}`, {}, { headers: authHeader() });
+  }
 }
 
 export default new MicrocycleService();

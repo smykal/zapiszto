@@ -384,6 +384,7 @@ export type MicrocycleDto = {
                               id: string;
                               mesocycleId: string;
                               orderId: number;
+                              share: boolean;
 }
 
 export type MicrocycleStatsDto = {

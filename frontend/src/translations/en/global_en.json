@@ -209,7 +209,8 @@
         "creation_error": "Error creating mesocycle"
     },
     "microcycle": {
-        "week": "week"
+        "week": "week",
+        "share": "share"
     },
     "session": {
         "no_date": "no date set yet",

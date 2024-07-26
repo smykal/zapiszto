@@ -27,7 +27,7 @@ const DeleteMicrocycle: React.FC<DeleteMicrocycleProps> = ({ microcycle, onMicro
 
   return (
     <button onClick={handleDelete} className="myButton">
-      {t('buttons.delete_microcycle')}
+      {t('buttons.delete')}
     </button>
   );
 };
