@@ -51,5 +51,6 @@ public class MicrocycleEntity {
   @OneToMany(mappedBy = "microcycleEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
   private List<SessionEntity> sessions;
 
-
+  @Column(name = "share")
+  boolean share;
 }
