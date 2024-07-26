@@ -71,7 +71,9 @@ public class ClientProgramService {
   private ClientProgramMesocycleDto convertToClientProgramMesocycleDto(MesocycleEntity mesocycleEntity, Long trainerId) {
     return new ClientProgramMesocycleDto(
         mesocycleEntity.getOrderId(),
-        mesocycleEntity.getMicrocycles().stream().map(x -> convertToClientProgramMicrocycleDto(x, trainerId)).collect(Collectors.toList())
+        mesocycleEntity.getMicrocycles().stream()
+            .filter(MicrocycleEntity::isShare)
+            .map(x -> convertToClientProgramMicrocycleDto(x, trainerId)).collect(Collectors.toList())
     );
   }
 

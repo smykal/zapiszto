@@ -1,7 +1,6 @@
 package com.zapiszto.controllers.program.microcycle.controller;
 
 import com.zapiszto.controllers.common.ControllerCommon;
-import com.zapiszto.controllers.program.mesocycle.dto.MesocycleDto;
 import com.zapiszto.controllers.program.microcycle.dto.MicrocycleDto;
 import com.zapiszto.controllers.program.microcycle.dto.MicrocycleStatsDto;
 import com.zapiszto.controllers.program.microcycle.service.MicrocycleService;
@@ -71,15 +70,16 @@ public class MicrocycleController implements ControllerCommon {
     try {
       microcycleService.addMicrocycle(mesocycleId);
       return new ResponseEntity<>("Microcycle created successfully", HttpStatus.OK);
-    }catch (Exception e) {
+    } catch (Exception e) {
       return new ResponseEntity<>("Error creating microcycle", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
   @PatchMapping("/update_microcycle_share/{microcycleId}")
-  public ResponseEntity<String> updateShare(@PathVariable UUID microcycleId,
-                                            @RequestParam boolean share
-                                            ) {
+  public ResponseEntity<String> updateShare(
+      @PathVariable UUID microcycleId,
+      @RequestParam boolean share
+  ) {
     microcycleService.updateShare(microcycleId, share);
     return new ResponseEntity<>(null, HttpStatus.OK);
   }
@@ -95,7 +95,6 @@ public class MicrocycleController implements ControllerCommon {
       return new ResponseEntity<>("Error deleting microcycle", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
-
 
 
 }
