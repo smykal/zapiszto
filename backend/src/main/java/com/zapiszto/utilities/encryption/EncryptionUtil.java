@@ -21,6 +21,9 @@ public class EncryptionUtil {
   private String algo;
 
   public String encrypt(String value) {
+    if (value == null) {
+      return null;
+    }
     try {
       IvParameterSpec iv = new IvParameterSpec(initVector.getBytes(StandardCharsets.UTF_8));
       SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
@@ -37,6 +40,9 @@ public class EncryptionUtil {
   }
 
   public String decrypt(String encrypted) {
+    if (encrypted == null) {
+      return null;
+    }
     try {
       IvParameterSpec iv = new IvParameterSpec(initVector.getBytes(StandardCharsets.UTF_8));
       SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
