@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.encryption;
+package com.zapiszto.utilities.encryption;
 
 import jakarta.persistence.AttributeConverter;
 import org.springframework.beans.factory.annotation.Autowired;

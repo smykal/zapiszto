@@ -1,4 +1,4 @@
-package com.zapiszto.controllers.encryption;
+package com.zapiszto.utilities.encryption;
 
 import java.nio.charset.StandardCharsets;
 import javax.crypto.Cipher;
