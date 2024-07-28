@@ -9,4 +9,4 @@ ENV SPRING_CONFIG_LOCATION=file:/app/application.properties
 
 EXPOSE 8080
 
-CMD java -jar zapiszTo-6.9.6-SNAPSHOT.jar --envname=prod
+CMD java -jar zapiszTo-6.9.6-SNAPSHOT.jar --envname=prod -Dspring.profiles.active=render
