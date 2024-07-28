@@ -1,6 +1,7 @@
 import axios from 'axios';
 import authHeader from '../auth-header';
 import {API_URL} from '../../constants/api'
+import { BodyParamDto } from '../../types/types';
 
 class BodyParamsService {
 
@@ -51,13 +52,8 @@ class BodyParamsService {
     return axios.get(API_URL + '/cpf', {headers: authHeader() });
   }
 
-  postBodyParam(field_1: string, field_2: string, userId: number) {
-    const test_data = {
-      dict_body_params_id: field_1,
-      value: field_2,
-      userId: userId
-    };
-    return axios.post(API_URL + '/add_body_param', test_data, { headers: authHeader() })
+  postBodyParam(bodyParamDto: BodyParamDto) {
+    return axios.post(API_URL + '/add_body_param', bodyParamDto, { headers: authHeader() })
       .then(response => {
         console.log('Odpowiedź z serwera:', response.data);
       })

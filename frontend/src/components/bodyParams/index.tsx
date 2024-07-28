@@ -10,7 +10,7 @@ export default class BodyParams extends Component {
     return (
       <div>
             <ShowBodyParams />
-            <PutBodyParam />
+            <PutBodyParam clientId={null}/>
             <ShowDiagram />
       </div>
     );

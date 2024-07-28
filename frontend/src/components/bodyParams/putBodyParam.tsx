@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import ZapiszToService from '../../services/bodyParams'
+import BodyParamsService from '../../services/bodyParams';
 import AuthService from "../../services/auth.service";
 import { withTranslation } from "react-i18next";
-
+import { BodyParamDto } from "../../types/types";
 
 type Props = {
   t: any;
+  clientId: string | null;
 };
 
 type State = {
-  field_1: string,
-  field_2: string,
-  currentUserId: number;
+  dictBodyParam: string,
+  value: string,
   bodyParameters: { id: string; name: string }[];
 };
 
@@ -23,58 +23,48 @@ class PutBodyParam extends Component<Props, State> {
     this.handlePost = this.handlePost.bind(this);
 
     this.state = {
-      field_1: '',
-      field_2: '',
-      currentUserId: 99,
+      dictBodyParam: '',
+      value: '',
       bodyParameters: []
     };
   }
 
   componentDidMount() {
-    const currentUser = AuthService.getCurrentUser();
-    if (currentUser) {
-      this.setState({
-        currentUserId: currentUser.id,
-      });
-    }
-    ZapiszToService.getDictBodyParams().then(
+    BodyParamsService.getDictBodyParams().then(
       response => {
         this.setState({
           bodyParameters: response.data
-        })
+        });
       }
-    )
-  }
-
-  componentWillUnmount() {
-    window.location.reload();
+    );
   }
 
   validationSchema() {
     return Yup.object().shape({
-      field_1: Yup.number().required("This field is required!"),
-      field_2: Yup.number().required("This field is required!"),
+      dictBodyParam: Yup.number().required("This field is required!"),
+      value: Yup.number().required("This field is required!"),
     });
   }
 
+  handlePost(formValue: { dictBodyParam: string; value: string }) {
+    const { dictBodyParam, value } = formValue;
+    const { clientId } = this.props;
 
-  handlePost(formValue: { field_1: string; field_2: string }) {
-    const { field_1, field_2 } = formValue;
-    ZapiszToService.postBodyParam(
-      field_1,
-      field_2,
-      this.state.currentUserId
-    )
+    const bodyParamDto: BodyParamDto = {
+      dict_body_params_id: Number(dictBodyParam),
+      value: value,
+      clientId: clientId || ''
+    };
 
-    window.location.reload();
+    BodyParamsService.postBodyParam(bodyParamDto);
   }
 
   render() {
     const { t } = this.props;
 
     const initialValues = {
-      field_1: this.state.field_1,
-      field_2: this.state.field_2
+      dictBodyParam: this.state.dictBodyParam,
+      value: this.state.value
     };
 
     return (
@@ -87,7 +77,7 @@ class PutBodyParam extends Component<Props, State> {
           <Form>
             <div style={{ display: 'flex', marginBottom: '20px' }}>
               <div style={{ marginBottom: '10px', marginRight: '10px' }}>
-                <Field as="select" name="field_1" className="form-control">
+                <Field as="select" name="dictBodyParam" className="form-control">
                   <option value="" disabled>
                     {t("buttons.select_attribute")}
                   </option>
@@ -97,11 +87,11 @@ class PutBodyParam extends Component<Props, State> {
                     </option>
                   ))}
                 </Field>
-                <ErrorMessage name="field_1" component="div" className="error" />
+                <ErrorMessage name="dictBodyParam" component="div" className="error" />
               </div>
               <div style={{ flex: 1, marginRight: '10px' }}>
-                <Field name="field_2" type="text" className="form-control" />
-                <ErrorMessage name="field_2" component="div" className="error" />
+                <Field name="value" type="text" className="form-control" />
+                <ErrorMessage name="value" component="div" className="error" />
               </div>
               <div style={{ flex: 1 }}>
                 <button type="submit" className="btn btn-primary btn-block">
@@ -115,4 +105,4 @@ class PutBodyParam extends Component<Props, State> {
     );
   }
 }
-export default  withTranslation("global")(PutBodyParam)
+export default withTranslation("global")(PutBodyParam);

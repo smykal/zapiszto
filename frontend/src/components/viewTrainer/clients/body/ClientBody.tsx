@@ -19,8 +19,8 @@ const ClientBody: React.FC<ClientDetailsProps> =  ({client}) => {
             <Tab key="tests">Tests</Tab>
             <Tab key="body_params">Body Params</Tab>
         </TabList>
-        <TabPanel key="tests"> <ClientBodyTests client={client} /></TabPanel>
-        <TabPanel key="body_params"> <ClientBodyParams client={client} /> </TabPanel>
+            <TabPanel key="tests"> <ClientBodyTests client={client} /></TabPanel>
+            <TabPanel key="body_params"> <ClientBodyParams client={client} /> </TabPanel>
       </Tabs>
     </div>
   );

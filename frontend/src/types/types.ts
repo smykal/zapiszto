@@ -4,7 +4,13 @@ export type BodyParamsItem = {
                               dict_body_params_name: string;
                               value: number;
                               insert_date: string;
-  };
+}
+
+export interface BodyParamDto  {
+                                  dict_body_params_id: number
+                                  value: string
+                                  clientId: string
+} 
 
 export type DictBodyParam = {
                               id: number;
