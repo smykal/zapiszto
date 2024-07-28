@@ -4,6 +4,7 @@ import { Client, BodyParamsItem } from '../../../../types/types';
 import Service from '../../../../services/bodyParams';
 import DisplayBodyParamsByUserId from './DisplayBodyParamsByUserId';
 import Collapsible from 'react-collapsible';
+import PutBodyParam from '../../../bodyParams/putBodyParam';
 
 interface ClientDetailsProps {
     client?: Client; // Użyj opcjonalnego typu
@@ -60,6 +61,7 @@ const ClientBodyParams: React.FC<ClientDetailsProps> = ({ client }) => {
                         </Collapsible>
                     </li>
                 ))}
+                <PutBodyParam clientId={client.id}/>
             </ul>
         </div>
     );

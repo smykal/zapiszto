@@ -277,3 +277,5 @@ databaseChangeLog:
       file: db/changelog/138_drop_data_from_body_params.xml
   - include:
       file: db/changelog/139_modify_table_user.xml
+  - include:
+      file: db/changelog/140_modify_table_body_params.xml

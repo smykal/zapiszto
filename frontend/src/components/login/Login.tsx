@@ -3,9 +3,6 @@ import { Navigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { withTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-
-
 import AuthService from "../../services/auth.service";
 
 type Props = {
@@ -17,20 +14,23 @@ type State = {
   username: string,
   password: string,
   loading: boolean,
-  message: string
+  message: string,
+  recoverPassword: boolean
 };
 
 class Login extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleRecoverPassword = this.handleRecoverPassword.bind(this);
 
     this.state = {
       redirect: null,
       username: "",
       password: "",
       loading: false,
-      message: ""
+      message: "",
+      recoverPassword: false
     };
   }
 
@@ -39,7 +39,7 @@ class Login extends Component<Props, State> {
 
     if (currentUser) {
       this.setState({ redirect: "/profile" });
-    };
+    }
   }
 
   componentWillUnmount() {
@@ -60,7 +60,6 @@ class Login extends Component<Props, State> {
       message: "",
       loading: true
     });
-
 
     AuthService.login(username, password).then(
       () => {
@@ -84,10 +83,21 @@ class Login extends Component<Props, State> {
     );
   }
 
+  handleRecoverPassword() {
+    this.setState({
+      recoverPassword: true
+    });
+  }
+
   render() {
     if (this.state.redirect) {
-      return <Navigate to={this.state.redirect} />
+      return <Navigate to={this.state.redirect} />;
     }
+
+    if (this.state.recoverPassword) {
+      return <Navigate to="/recover_password" />;
+    }
+
     const { t } = this.props;
     const { loading, message } = this.state;
 
@@ -132,9 +142,13 @@ class Login extends Component<Props, State> {
               </div>
 
               <div className="form-group">
-                <Link to="/recover-password" className="form-control">
+                <button
+                  type="button"
+                  className="form-control btn-link"
+                  onClick={this.handleRecoverPassword}
+                >
                   {t("login.forgot_password")}
-                </Link>
+                </button>
               </div>
 
               <div className="form-group">
@@ -160,4 +174,5 @@ class Login extends Component<Props, State> {
     );
   }
 }
-export default withTranslation("global")(Login)
+
+export default withTranslation("global")(Login);

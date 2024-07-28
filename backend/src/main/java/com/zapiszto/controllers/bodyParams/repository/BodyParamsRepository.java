@@ -23,6 +23,7 @@ public interface BodyParamsRepository extends JpaRepository<BodyParamsEntity, In
             value ,
             user_id,
             insert_date,
+            client_id,
             ROW_NUMBER() OVER (PARTITION BY dict_body_params_id ORDER BY insert_date DESC) AS row_num
           FROM
             public.body_params bp
@@ -33,7 +34,8 @@ public interface BodyParamsRepository extends JpaRepository<BodyParamsEntity, In
           dict_body_params_id,
           value,
           user_id,
-          insert_date
+          insert_date,
+          client_id
         FROM
           ranked_rows
         where 1=1

@@ -6,9 +6,11 @@ import com.zapiszto.controllers.bodyParams.dto.BodyParamsDto;
 import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameAndDateDto;
 import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.zapiszto.controllers.bodyParams.service.BodyParamsService;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -100,13 +102,13 @@ public class BodyParamsController implements ControllerCommon {
   }
 
   @PostMapping("/add_body_param")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public ResponseEntity<String> saveTestItem(
-      @RequestBody BodyParamsDto bodyParamsDto
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN') or hasRole('TRAINER')")
+  public ResponseEntity<String> saveBodyParam(
+     @Valid @RequestBody BodyParamsDto bodyParamsDto
   ) {
     var userId = extractUserId();
     try {
-      bodyParamsService.saveBodyParam(bodyParamsDto);
+      bodyParamsService.saveBodyParam(bodyParamsDto, userId);
       log.info("post body parameters for user: {} ", userId);
       return new ResponseEntity<>(HttpStatus.CREATED);
     } catch (NullPointerException e) {

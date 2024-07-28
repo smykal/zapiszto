@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.bodyParams.entity;
 
 import com.zapiszto.controllers.account.entity.User;
+import com.zapiszto.controllers.clients.entity.ClientEntity;
 import com.zapiszto.controllers.dictionaries.dictBodyParams.entity.DictBodyParamsEntity;
 import com.zapiszto.utilities.encryption.Encrypt;
 import jakarta.persistence.Column;
@@ -14,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,6 +52,13 @@ public class BodyParamsEntity {
 
   @Column(name = "insert_date")
   ZonedDateTime insert_date;
+
+  @ManyToOne
+  @JoinColumn(name = "client_id", referencedColumnName = "id", insertable = false, updatable = false)
+  ClientEntity clientEntity;
+
+  @Column(name = "client_id")
+  UUID clientId;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)

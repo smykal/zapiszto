@@ -12,6 +12,7 @@ import com.zapiszto.controllers.dictionaries.dictBodyParams.repository.DictBodyP
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.AopInvocationException;
@@ -35,9 +36,13 @@ public class BodyParamsService {
   @Autowired
   private ClientsRepository clientsRepository;
 
-  public void saveBodyParam(BodyParamsDto bodyParamsDto) {
-    var dictBodyParamEntity = dictBodyParamsRepository.getDictBodyParamById(bodyParamsDto.getDict_body_params_id());
-    var bodyParamEntity = bodyParamsSerializer.getTestTableEntityFromDto(bodyParamsDto, dictBodyParamEntity);
+  public void saveBodyParam(BodyParamsDto bodyParamsDto, Long userId) {
+    var dictBodyParamEntity = dictBodyParamsRepository.getDictBodyParamById(bodyParamsDto.dict_body_params_id());
+    if(bodyParamsDto.clientId() != null) {
+      var userIdByClientId = clientsRepository.getByIdUuid(bodyParamsDto.clientId());
+      userId = userIdByClientId.getUserId();
+    }
+    var bodyParamEntity = bodyParamsSerializer.getTestTableEntityFromDto(bodyParamsDto, dictBodyParamEntity, userId);
     bodyParamEntity.setInsert_date(ZonedDateTime.now());
     bodyParamsRepository.save(bodyParamEntity);
   }
