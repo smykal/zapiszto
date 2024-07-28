@@ -67,6 +67,15 @@ class AuthService {
       newPassword
     }, { headers: authHeader() });
   }
+
+  forgotPassword(email: string) {
+    return axios.post(AUTH_URL + `forgot_password`, { email });
+  }
+
+  resetPassword(token: string, newPassword: string) {
+    return axios.post(`${AUTH_URL}reset_password`, { token, newPassword });
+  }
+  
 }
 
 export default new AuthService();
