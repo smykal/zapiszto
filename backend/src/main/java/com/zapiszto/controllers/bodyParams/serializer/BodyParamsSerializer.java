@@ -19,24 +19,14 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class BodyParamsSerializer {
 
-  public BodyParamsEntity getTestTableEntityFromDto(BodyParamsDto bodyParamsDto, DictBodyParamsEntity dictBodyParamsEntity) {
+  public BodyParamsEntity getTestTableEntityFromDto(BodyParamsDto bodyParamsDto, DictBodyParamsEntity dictBodyParamsEntity, Long userId) {
 
     return BodyParamsEntity.builder()
         .dictBodyParams(dictBodyParamsEntity)
-        .value(bodyParamsDto.getValue())
-        .userId(bodyParamsDto.getUserId())
+        .value(bodyParamsDto.value())
+        .userId(userId)
+        .clientId(bodyParamsDto.clientId())
         .build();
-  }
-
-  public List<BodyParamsDto> convertDtoListoToEntityList(List<BodyParamsEntity> bodyParamsEntityList) {
-    return bodyParamsEntityList.stream()
-        .map(bodyParamsEntity -> BodyParamsDto
-            .builder()
-            .dict_body_params_id(bodyParamsEntity.getDictBodyParams().getId())
-            .value(bodyParamsEntity.getValue())
-            .userId(bodyParamsEntity.getUserId())
-            .build())
-        .collect(Collectors.toList());
   }
 
   public List<BodyParamsWithNameDto> convertEntityListToDtoWithParamName(List<BodyParamsEntity> bodyParamsEntityList) {

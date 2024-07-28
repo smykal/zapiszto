@@ -1,18 +1,14 @@
 package com.zapiszto.controllers.bodyParams.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.util.UUID;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class BodyParamsDto {
-  private int dict_body_params_id;
-  private String value;
-  private Long userId;
+public record BodyParamsDto(
+    @NotNull
+    Integer dict_body_params_id,
+    @NotBlank
+    String value,
+    UUID clientId
+) {
 }

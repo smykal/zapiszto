@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add column client_id to body_params" author="smykalm">
+        <addColumn tableName="body_params">
+            <column name="client_id" type="uuid"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="add foreign key to client_id in body_params" author="smykalm">
+        <addForeignKeyConstraint
+                constraintName="fk_body_params_clients"
+                baseTableName="body_params"
+                baseColumnNames="client_id"
+                referencedTableName="clients"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>
