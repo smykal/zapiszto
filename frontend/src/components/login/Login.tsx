@@ -4,6 +4,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { withTranslation } from "react-i18next";
 import AuthService from "../../services/auth.service";
+import Modal from "../../constants/Modal";
+import RecoverPassword from "./RecoverPassword";
 
 type Props = {
   t: any;
@@ -15,7 +17,7 @@ type State = {
   password: string,
   loading: boolean,
   message: string,
-  recoverPassword: boolean
+  showRecoverPasswordModal: boolean
 };
 
 class Login extends Component<Props, State> {
@@ -23,6 +25,7 @@ class Login extends Component<Props, State> {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRecoverPassword = this.handleRecoverPassword.bind(this);
+    this.closeRecoverPasswordModal = this.closeRecoverPasswordModal.bind(this);
 
     this.state = {
       redirect: null,
@@ -30,7 +33,7 @@ class Login extends Component<Props, State> {
       password: "",
       loading: false,
       message: "",
-      recoverPassword: false
+      showRecoverPasswordModal: false
     };
   }
 
@@ -85,7 +88,13 @@ class Login extends Component<Props, State> {
 
   handleRecoverPassword() {
     this.setState({
-      recoverPassword: true
+      showRecoverPasswordModal: true
+    });
+  }
+
+  closeRecoverPasswordModal() {
+    this.setState({
+      showRecoverPasswordModal: false
     });
   }
 
@@ -94,12 +103,8 @@ class Login extends Component<Props, State> {
       return <Navigate to={this.state.redirect} />;
     }
 
-    if (this.state.recoverPassword) {
-      return <Navigate to="/recover_password" />;
-    }
-
     const { t } = this.props;
-    const { loading, message } = this.state;
+    const { loading, message, showRecoverPasswordModal } = this.state;
 
     const initialValues = {
       username: "",
@@ -170,6 +175,14 @@ class Login extends Component<Props, State> {
             </Form>
           </Formik>
         </div>
+
+        <Modal
+          show={showRecoverPasswordModal}
+          onClose={this.closeRecoverPasswordModal}
+          title={t("login.forgot_password")}
+        >
+          <RecoverPassword />
+        </Modal>
       </div>
     );
   }
