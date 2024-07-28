@@ -34,20 +34,21 @@ public class ProgramsService {
   ProgramsSerializer programsSerializer;
 
   public List<ProgramDto> getPrograms(long trainerId) {
-    List<ProgramEntity> allByTrainerId = programsRepository.getAllByTrainerId(trainerId);
+    var allByTrainerId = programsRepository.getAllByTrainerId(trainerId);
     return allByTrainerId.stream().map(programsSerializer::convert)
         .collect(Collectors.toList());
   }
 
   @Transactional
   public void addProgram(NewProgramDto newProgramDto, long trainerId) {
-    UUID uuid = UUID.fromString(newProgramDto.getId());
+    UUID uuid = UUID.fromString(newProgramDto.id());
     ProgramEntity programEntity = ProgramEntity.builder()
         .id(uuid)
-        .name(newProgramDto.getProgramName())
+        .name(newProgramDto.programName())
         .trainerId(trainerId)
         .insert_date(ZonedDateTime.now())
         .build();
+
     programsRepository.save(programEntity);
 
     ProgramDetailsEntity programDetailsEntity = ProgramDetailsEntity.builder()
@@ -67,7 +68,7 @@ public class ProgramsService {
   public void updateProgramName(String id, ProgramNameDto programNameDto) {
     ProgramEntity programEntity = programsRepository.findByUuid(UUID.fromString(id))
         .orElseThrow(() -> new RuntimeException("Program not found"));
-    programEntity.setName(programNameDto.getProgramName());
+    programEntity.setName(programNameDto.programName());
     programsRepository.save(programEntity);
   }
 }

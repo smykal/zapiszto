@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.AopInvocationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,10 +67,14 @@ public class BodyParamsService {
     return bodyParamsSerializer.convertEntityListToDtoWithParamName(actualBodyParamsById);
   }
 
-  public List<BodyMassIndexDto> getBodyMassIndex(Long userId){
-    var bodyHeight = bodyParamsRepository.getLastHeight(userId);
-    var bodyParamsEntities = bodyParamsRepository.getWeight(userId);
-    return bodyParamsSerializer.convert(bodyParamsEntities, bodyHeight);
+  public List<BodyMassIndexDto> getBodyMassIndex(Long userId) {
+    try {
+      var bodyHeight = bodyParamsRepository.getLastHeight(userId);
+      var bodyParamsEntities = bodyParamsRepository.getWeight(userId);
+      return bodyParamsSerializer.convert(bodyParamsEntities, bodyHeight);
+    } catch (AopInvocationException e) {
+      throw new RuntimeException("Error retrieving body mass index", e);
+    }
   }
 
   public boolean checkIfUserBelongsToTrainer(Long userId, Long trainerId){

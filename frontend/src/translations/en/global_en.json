@@ -94,7 +94,10 @@
         "delete_client": "delete client",
         "add_program": "Add Program",
         "delete_program": "Delete Program",
-        "save": "save"
+        "save": "save",
+        "add_exercise": "add exercise",
+        "copy_to_next_session": "copy to next week",
+        "copy_to_next_day_session": "copy to next day"
     },
     "validation": {
         "this_field_is_required": "this field is required",
@@ -180,7 +183,9 @@
         "created_by": "Created By",
         "select_program_message": "Please select a program.",
         "confirm_delete": "Confirm to delete program",
-        "program_name_exists": "Program name already exists"
+        "program_name_exists": "Program name already exists",
+        "informations": "informations",
+        "macrocicle": "training plan"
     },
     "macrocycle": {
         "title": "Create New Macrocycle",
@@ -188,7 +193,11 @@
         "duration_left": "Remaining Duration (months)",
         "add_button": "Add Macrocycle",
         "created_successfully": "Macrocycle created successfully",
-        "creation_error": "Error creating macrocycle"
+        "creation_error": "Error creating macrocycle",
+        "sessions_per_microcycle": "How many trainings per week?",
+        "session_duration": "How long is your training?",
+        "periodization": "What would you like to achieve?",
+        "select_periodization": "select purpose" 
     },
     "mesocycle": {
         "title": "Create New Mesocycle",
@@ -200,7 +209,8 @@
         "creation_error": "Error creating mesocycle"
     },
     "microcycle": {
-        "week": "week"
+        "week": "week",
+        "share": "share"
     },
     "session": {
         "no_date": "no date set yet",

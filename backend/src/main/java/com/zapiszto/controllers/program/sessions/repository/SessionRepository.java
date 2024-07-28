@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.program.sessions.repository;
 
 import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -43,5 +44,33 @@ public interface SessionRepository extends JpaRepository<SessionEntity, UUID> {
             WHERE s.id = :currentSessionId
         )
         """)
-  Optional<UUID> findNextSessionId(@Param("currentSessionId") UUID currentSessionId);
+  Optional<UUID> findNextWeekSessionId(@Param("currentSessionId") UUID currentSessionId);
+
+  @Query(nativeQuery = true, value = """
+      			SELECT COALESCE(
+          (SELECT s.id
+           FROM sessions s
+           WHERE s.microcycle_id = :currentMicrocycleId
+             AND s.order_id = :orderId + 1),
+          (SELECT ss.id
+           FROM sessions ss
+           LEFT JOIN microcycle m ON ss.microcycle_id = m.id
+           WHERE m.mesocycle_id IN (
+                 SELECT mi.mesocycle_id
+                 FROM microcycle mi
+                 LEFT JOIN sessions s ON s.microcycle_id = mi.id
+                 WHERE s.id = :currentMicrocycleId
+           )
+           AND m.order_id IN (
+                 SELECT mi.order_id + 1
+                 FROM microcycle mi
+                 LEFT JOIN sessions s ON s.microcycle_id = mi.id
+                 WHERE s.id = :currentMicrocycleId
+           )
+           AND ss.order_id = 1)
+      ) AS next_session_id
+      """)
+  Optional<UUID> findNextWeekSessionId(@Param("currentMicrocycleId") UUID currentMicrocycleId,
+                                        @Param("orderId") int orderId );
 }
+

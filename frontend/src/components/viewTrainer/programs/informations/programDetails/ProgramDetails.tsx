@@ -3,6 +3,7 @@ import ProgramsService from '../../../../../services/programs';
 import ClientsService from '../../../../../services/clients';
 import { ProgramDetails as ProgramDetailsType, Client } from '../../../../../types/types';
 import CurrentUserGoals from '../currentUserGoals/CurrentUserGoals';
+import EditableSelectCell from '../../../../../common/EditableSelectCell';
 
 interface ProgramDetailsProps {
   programId: string;
@@ -38,12 +39,11 @@ const ProgramDetails: React.FC<ProgramDetailsProps> = ({ programId }) => {
     fetchClients();
   }, [programId]);
 
-  const handleAssignClient = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const assignedClient = e.target.value;
+  const handleAssignClient = async (newAssignedClient: string) => {
     if (programDetails) {
       try {
-        await ProgramsService.updateProgramAssignedClient(programId, assignedClient);
-        setProgramDetails({ ...programDetails, assignedClient });
+        await ProgramsService.updateProgramAssignedClient(programId, newAssignedClient);
+        setProgramDetails({ ...programDetails, assignedClient: newAssignedClient });
       } catch (error) {
         console.error('Error updating assigned client:', error);
       }
@@ -63,19 +63,22 @@ const ProgramDetails: React.FC<ProgramDetailsProps> = ({ programId }) => {
     return <p>Program details not found.</p>;
   }
 
+  const clientNames = clients.map(client => client.clientName);
+
   return (
     <div>
-      <p><strong>Assigned Client:</strong> {getClientName(programDetails.assignedClient)}</p>
       <p>
-        <strong>Change Assigned Client:</strong>
-        <select onChange={handleAssignClient} value={programDetails.assignedClient || ''}>
-          <option value="">Select a client</option>
-          {clients.map(client => (
-            <option key={client.id} value={client.id}>
-              {client.clientName}
-            </option>
-          ))}
-        </select>
+        <strong>Assigned Client:</strong> 
+        <EditableSelectCell 
+          value={getClientName(programDetails.assignedClient)} 
+          options={clientNames} 
+          onSave={(newValue) => {
+            const selectedClient = clients.find(client => client.clientName === newValue);
+            if (selectedClient) {
+              handleAssignClient(selectedClient.id);
+            }
+          }} 
+        />
       </p>
       {programDetails.assignedClient && <CurrentUserGoals clientId={programDetails.assignedClient} />}
     </div>

@@ -31,7 +31,7 @@ public class DiagramController {
   public ResponseEntity<List<ExerciseStatsDto>> getExerciseStats(
       @PathVariable UUID mesocycleId) {
     try {
-      List<ExerciseStatsDto> stats = diagramService.getExerciseStats(mesocycleId);
+      var stats = diagramService.getExerciseStats(mesocycleId);
       return new ResponseEntity<>(stats, HttpStatus.OK);
     } catch (Exception e) {
       log.error("Error retrieving exercise stats", e);

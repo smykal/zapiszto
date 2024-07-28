@@ -208,13 +208,25 @@ public class ExercisesSessionController implements ControllerCommon {
   }
 
   @PostMapping("/copy_exercises_to_next_session/{sessionId}")
-  public ResponseEntity<String> copyExercisesToNextSession(
+  public ResponseEntity<String> copyExercisesToNextWeekSession(
       @PathVariable UUID sessionId,
       @RequestBody CopyParametersDto copyParametersDto
-
   ) {
     try {
-      exercisesSessionService.copyExercisesToNextSession(sessionId, copyParametersDto);
+      exercisesSessionService.copyExercisesToNextWeekSession(sessionId, copyParametersDto);
+      return new ResponseEntity<>("Exercises copied successfully", HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Error copying exercises", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @PostMapping("/copy_exercises_to_next_day_session/{sessionId}")
+  public ResponseEntity<String> copyExercisesToNextDaySession(
+      @PathVariable UUID sessionId,
+      @RequestBody CopyParametersDto copyParametersDto
+  ) {
+    try {
+      exercisesSessionService.copyExercisesToNextDaySession(sessionId, copyParametersDto);
       return new ResponseEntity<>("Exercises copied successfully", HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>("Error copying exercises", HttpStatus.INTERNAL_SERVER_ERROR);

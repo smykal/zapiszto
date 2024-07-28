@@ -51,7 +51,7 @@ public interface BodyParamsRepository extends JpaRepository<BodyParamsEntity, In
             order by insert_date desc
             limit 1
       """)
-  int getLastHeight(
+  Integer getLastHeight(
       @Param("userId") Long userId
   );
 

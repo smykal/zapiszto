@@ -216,6 +216,42 @@ export type NewClient = {
                           userId: number
 }
 
+export interface ClientProgramDto {
+  name: string;
+  macrocycles: ClientProgramMacrocycleDto[];
+}
+
+export interface ClientProgramMacrocycleDto {
+  id: string;
+  mesocycles: ClientProgramMesocycleDto[];
+}
+
+export interface ClientProgramMesocycleDto {
+  orderId: number;
+  microcycles: ClientProgramMicrocycleDto[];
+}
+
+export interface ClientProgramMicrocycleDto {
+  orderId: number;
+  sessions: ClientProgramSessionDto[];
+}
+
+export interface ClientProgramSessionDto {
+  orderId: number;
+  exercises: ClientProgramExerciseDto[];
+}
+
+export interface ClientProgramExerciseDto {
+  orderId: number;
+  purpose: string;
+  category: string;
+  exercise: string;
+  weight: number;
+  weightUnit: string;
+  repetitions: number;
+  repetitionsUnit: string;
+}
+
 export type NewDictBodyTest = {
                                 name: string,
                                 description: string,
@@ -280,6 +316,7 @@ export interface Program {
                           programName: string;
                           createdBy: number;
                           createDate: string;
+                          clientName: string;
 }
 
 export interface NewProgram {
@@ -347,6 +384,7 @@ export type MicrocycleDto = {
                               id: string;
                               mesocycleId: string;
                               orderId: number;
+                              share: boolean;
 }
 
 export type MicrocycleStatsDto = {

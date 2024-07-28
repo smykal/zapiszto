@@ -98,7 +98,10 @@
         "delete_client": "видалити клієнта",
         "add_program": "Додати Програму",
         "delete_program": "Видалити Програму",
-        "save": "зберегти"
+        "save": "зберегти",
+        "add_exercise": "додати вправу",
+        "copy_to_next_session": "скопіювати на наступний тиждень",
+        "copy_to_next_day_session": "скопіювати на наступний день"
     },
     "table": {
         "id": "#",
@@ -180,7 +183,9 @@
         "created_by": "Створено",
         "select_program_message": "Будь ласка, виберіть програму.",
         "confirm_delete": "Підтвердити видалення програми",
-        "program_name_exists": "Назва програми вже існує"
+        "program_name_exists": "Назва програми вже існує",
+        "informations": "інформація",
+        "macrocicle": "тренувальний план"
     },
     "macrocycle": {
         "title": "Створити Новий Макроцикл",
@@ -188,7 +193,11 @@
         "duration_left": "Залишок Тривалості (місяці)",
         "add_button": "Додати Макроцикл",
         "created_successfully": "Макроцикл успішно створено",
-        "creation_error": "Помилка при створенні макроциклу"
+        "creation_error": "Помилка при створенні макроциклу",
+        "sessions_per_microcycle": "Скільки тренувань на тиждень?",
+        "session_duration": "Скільки триває тренування?",
+        "periodization": "Яка мета тренування?",
+        "select_periodization": "виберіть мету"
     },
     "mesocycle": {
         "title": "Створити Новий Мезоцикл",
@@ -200,7 +209,8 @@
         "creation_error": "Помилка при створенні мезоциклу"
     },
     "microcycle": {
-        "week": "тиждень"
+        "week": "тиждень",
+        "share": "поділитися"
     },
     "session": {
         "no_date": "дату ще не встановлено",

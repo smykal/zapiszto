@@ -11,6 +11,7 @@ import com.zapiszto.controllers.program.sessions.service.SessionService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -115,6 +116,7 @@ public class MicrocycleService {
         .id(UUID.randomUUID())
         .mesocycleId(mesocycleId)
         .orderId(orderId + 1)
+        .share(false)
         .build();
 
     MicrocycleEntity save = microcycleRepository.save(microcycleEntity);
@@ -124,5 +126,12 @@ public class MicrocycleService {
   @Transactional
   public void deleteMicrocycle(UUID microcycleId) {
     microcycleRepository.deleteById(microcycleId);
+  }
+
+  public void updateShare(UUID microcycleId, boolean share) {
+    MicrocycleEntity referenceById = microcycleRepository.getReferenceById(microcycleId);
+    referenceById.setShare(share);
+
+    microcycleRepository.save(referenceById);
   }
 }

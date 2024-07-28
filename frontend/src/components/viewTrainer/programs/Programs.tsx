@@ -54,19 +54,20 @@ const Programs = () => {
 
   return (
     <div style={{ display: 'flex' }}>
-      <div style={{ width: '20%', padding: '10px', borderRight: '1px solid #ccc' }}>
+      <div style={{padding: '10px', borderRight: '1px solid #ccc' }}>
         <button onClick={() => setShowForm(!showForm)}>{t('buttons.add_program')}</button>
         <ul id="programsList">
           {programs.map(program => (
             <li key={program.id} onClick={() => handleProgramClick(program)}>
               <span className={selectedProgram?.id === program.id ? 'selected-program' : ''}>
-                {program.programName}
+                {program.programName}:
+                {program.clientName ? program.clientName : 'brak'}
               </span>
             </li>
           ))}
         </ul>
       </div>
-      <div style={{ width: '80%', padding: '10px' }}>
+      <div style={{ width: '100%', padding: '10px' }}>
         {showForm ? (
           <AddProgramForm onProgramAdded={handleProgramAdded} existingPrograms={programs} />
         ) : selectedProgram ? (

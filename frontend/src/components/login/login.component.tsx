@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { withTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 
 import AuthService from "../../services/auth.service";
@@ -128,6 +129,12 @@ class Login extends Component<Props, State> {
                   component="div"
                   className="alert alert-danger"
                 />
+              </div>
+
+              <div className="form-group">
+                <Link to="/recover-password" className="form-control">
+                  {t("login.forgot_password")}
+                </Link>
               </div>
 
               <div className="form-group">

@@ -92,7 +92,10 @@
         "delete_client": "usuń klienta",
         "add_program": "Dodaj Program",
         "delete_program": "Usuń Program",
-        "save": "zapisz"
+        "save": "zapisz",
+        "add_exercise": "dodaj ćwiczenie",
+        "copy_to_next_session": "skopiuj na następny tydzień",
+        "copy_to_next_day_session": "skopiuj na następny dzień"
     },
     "validation": {
         "this_field_is_required": "to pole jest wymagane",
@@ -180,7 +183,9 @@
         "created_by": "Utworzony Przez",
         "select_program_message": "Proszę wybrać program.",
         "confirm_delete": "Potwierdź, aby usunąć program",
-        "program_name_exists": "Nazwa programu już istnieje"
+        "program_name_exists": "Nazwa programu już istnieje",
+        "informations": "informacje",
+        "macrocicle": "plan treningowy"
     },
     "macrocycle": {
         "title": "Utwórz Nowy Makrocykl",
@@ -188,7 +193,11 @@
         "duration_left": "Pozostały czas trwania (miesiące)",
         "add_button": "Dodaj Makrocykl",
         "created_successfully": "Makrocykl został pomyślnie utworzony",
-        "creation_error": "Wystąpił błąd podczas tworzenia makrocyklu"
+        "creation_error": "Wystąpił błąd podczas tworzenia makrocyklu",
+        "sessions_per_microcycle": "Ile treningów na tydzień?",
+        "session_duration": "Jak długo trwa trening?",
+        "periodization": "Jaki jest cel treningu?",
+        "select_periodization": "wybierz cel"
     },
     "mesocycle": {
         "title": "Utwórz Nowy Mezocykl",
@@ -200,7 +209,8 @@
         "creation_error": "Wystąpił błąd podczas tworzenia mezocyklu"
     },
     "microcycle": {
-        "week": "tydzień"
+        "week": "tydzień",
+        "share": "udostępnij"
     },
     "session": {
         "no_date": "data nie jest jeszcze ustawiona",

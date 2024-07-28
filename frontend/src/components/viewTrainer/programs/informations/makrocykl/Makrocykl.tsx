@@ -12,8 +12,7 @@ interface MakrocyklProps {
 const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
   const { t } = useTranslation('global');
   const [macrocycle, setMacrocycle] = useState<MacrocycleDto | null>(null);
-  const [duration, setDuration] = useState<number>(4);
-  const [mesocycleDuration, setMesocycleDuration] = useState<number>(4);
+  const [mesocycleDuration] = useState<number>(4); // Fixed value 4
   const [periodizations, setPeriodizations] = useState<PeriodizationDto[]>([]);
   const [selectedPeriodization, setSelectedPeriodization] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -57,8 +56,8 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
     const newMacrocycle: NewMacrocycleDto = {
       id: crypto.randomUUID(),
       programId: programId,
-      duration: duration,
-      mesocycleDuration: mesocycleDuration,
+      duration: 4, // Fixed value 4
+      mesocycleDuration: 4, // Fixed value 4
       periodization: selectedPeriodization,
       durationSession: durationSession,
       sessionsForMicrocycle: sessionsForMicrocycle,
@@ -90,35 +89,7 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
       ) : (
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="duration">{t('macrocycle.duration')}:</label>
-            <select
-              id="duration"
-              value={duration}
-              onChange={(e) => setDuration(Number(e.target.value))}
-            >
-              {[...Array(9)].map((_, index) => (
-                <option key={index + 4} value={index + 4}>
-                  {index + 4}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="mesocycleDuration">{t('macrocycle.mesocycle_duration')}:</label>
-            <select
-              id="mesocycleDuration"
-              value={mesocycleDuration}
-              onChange={(e) => setMesocycleDuration(Number(e.target.value))}
-            >
-              {[...Array(9)].map((_, index) => (
-                <option key={index + 4} value={index + 4}>
-                  {index + 4}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="sessionsForMicrocycle">{t('macrocycle.sessions_per_microcycle')}:</label>
+            <label htmlFor="sessionsForMicrocycle">{t('macrocycle.sessions_per_microcycle')}</label>
             <select
               id="sessionsForMicrocycle"
               value={sessionsForMicrocycle}
@@ -132,7 +103,7 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
             </select>
           </div>
           <div>
-            <label htmlFor="durationSession">{t('macrocycle.session_duration')}:</label>
+            <label htmlFor="durationSession">{t('macrocycle.session_duration')}</label>
             <select
               id="durationSession"
               value={durationSession}
@@ -146,14 +117,14 @@ const Makrocykl: React.FC<MakrocyklProps> = ({ programId }) => {
             </select>
           </div>
           <div>
-            <label htmlFor="periodization">{t('macrocycle.periodization')}:</label>
+            <label htmlFor="periodization">{t('macrocycle.periodization')}</label>
             <select
               id="periodization"
               value={selectedPeriodization}
               onChange={handlePeriodizationChange}
               required
             >
-              <option value="">{t('macrocycle.select_periodization')}</option>
+              <option value="" disabled>{t('macrocycle.select_periodization')}</option>
               {periodizations.map((periodization) => (
                 <option key={periodization.name} value={periodization.name}>
                   {periodization.name}

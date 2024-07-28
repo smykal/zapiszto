@@ -5,7 +5,7 @@ import MicrocycleStats from './MicrocycleStats';
 import Session from '../session/Session';
 import { MicrocycleDto } from '../../../../../types/types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import DeleteMicrocycle from './DeleteMicrocycle'; // Importujemy nowy komponent
+import DeleteMicrocycle from './DeleteMicrocycle';
 
 interface MicrocycleProps {
   mesocycleId: string;
@@ -43,7 +43,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({ mesocycleId }) => {
     MicrocycleService.addMicrocycle(mesocycleId)
       .then(response => {
         const newMicrocycle = response.data;
-        loadMicrocycles(newMicrocycle.id);  // Ponowne załadowanie mikrocykli po dodaniu nowego mikrocyklu i przejście do nowej zakładki
+        loadMicrocycles(newMicrocycle.id);
       })
       .catch(error => {
         console.error('Error adding microcycle:', error);
@@ -52,7 +52,18 @@ const Microcycle: React.FC<MicrocycleProps> = ({ mesocycleId }) => {
   };
 
   const handleMicrocycleDeleted = () => {
-    loadMicrocycles();  // Ponowne załadowanie mikrocykli po usunięciu mikrocyklu
+    loadMicrocycles();
+  };
+
+  const handleShareChange = (microcycleId: string, share: boolean) => {
+    MicrocycleService.updateMicrocycleShare(microcycleId, share)
+      .then(() => {
+        loadMicrocycles();
+      })
+      .catch(error => {
+        console.error('Error updating microcycle share:', error);
+        setMessage(t('microcycle.update_share_error'));
+      });
   };
 
   return (
@@ -67,8 +78,16 @@ const Microcycle: React.FC<MicrocycleProps> = ({ mesocycleId }) => {
         </TabList>
         {microcycles.map((microcycle) => (
           <TabPanel key={microcycle.id}>
-            <DeleteMicrocycle microcycle={microcycle} onMicrocycleDeleted={handleMicrocycleDeleted} /> {/* Nowy przycisk do usuwania */}
-            <p>tutaj pobrać dla każdego kolejnego tygodnia domyślną wartość z dict_mesocycle_phase</p>
+            <DeleteMicrocycle microcycle={microcycle} onMicrocycleDeleted={handleMicrocycleDeleted} />
+            <label>
+              <input
+                type="checkbox"
+                checked={microcycle.share}
+                onChange={(e) => handleShareChange(microcycle.id, e.target.checked)}
+              />
+              {t('microcycle.share')}
+            </label>
+            <p>{t('microcycle.default_value', { week: microcycle.orderId })}</p>
             <MicrocycleStats microcycleId={microcycle.id} />
             <Session microcycleId={microcycle.id} />
           </TabPanel>

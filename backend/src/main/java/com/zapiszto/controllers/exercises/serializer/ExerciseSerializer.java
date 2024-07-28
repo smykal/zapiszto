@@ -1,7 +1,6 @@
 package com.zapiszto.controllers.exercises.serializer;
 
 import com.zapiszto.controllers.common.SerializerCommon;
-import com.zapiszto.controllers.dictionaries.dictEquipment.dto.DictEquipmentDto;
 import com.zapiszto.controllers.dictionaries.dictEquipment.entity.DictEquipmentEntity;
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
@@ -96,7 +95,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .orderNumber(exercise.getOrderNumber())
         .restTime(exercise.getRestTime())
         .tempo(exercise.getTempo())
-        .dictSessionPartName(getSessionName(dictSessionParts, exercise.getDictSessionPartId()))
+        .dictSessionPartName(getSessionPartName(dictSessionParts, exercise.getDictSessionPartId()))
         .sets(exercise.getSets())
         .equipmentName(getEquipmentName(dictEquipments, exercise.getDictEquipmentId()))
         .equipmentAttribute(exercise.getEquipmentAttribute())
@@ -105,7 +104,7 @@ public class ExerciseSerializer implements SerializerCommon {
         .build();
   }
 
-  private static String getDictCategoryName(List<DictExercisesEntity> dictExercises, UUID dictExerciseId) {
+  public static String getDictCategoryName(List<DictExercisesEntity> dictExercises, UUID dictExerciseId) {
     Optional<DictExercisesEntity> exerciseOptional = dictExercises.stream()
         .filter(exercise -> exercise.getId()
             .equals(dictExerciseId))
@@ -138,7 +137,7 @@ public class ExerciseSerializer implements SerializerCommon {
     return null;
   }
 
-  private static String getSessionName(List<DictSessionPartEntity> dictSessionPart, UUID dictSessionPartId) {
+  public static String getSessionPartName(List<DictSessionPartEntity> dictSessionPart, UUID dictSessionPartId) {
     Optional<DictSessionPartEntity> sessionPartOptional = dictSessionPart.stream()
         .filter(sessionPart -> sessionPart.getId()
             .equals(dictSessionPartId))
@@ -158,7 +157,7 @@ public class ExerciseSerializer implements SerializerCommon {
   }
 
 
-  private static String getExerciseName(List<DictExercisesEntity> dictExercises, UUID dictExerciseId) {
+  public static String getExerciseName(List<DictExercisesEntity> dictExercises, UUID dictExerciseId) {
     Optional<DictExercisesEntity> exerciseOptional = dictExercises.stream()
         .filter(exercise -> exercise.getId()
             .equals(dictExerciseId))
@@ -178,7 +177,7 @@ public class ExerciseSerializer implements SerializerCommon {
     return null;
   }
 
-  private static String getQuantityTypeName(List<DictQuantityTypeEntity> dictQuantityType, UUID dictQuantityTypeId) {
+  public static String getQuantityTypeName(List<DictQuantityTypeEntity> dictQuantityType, UUID dictQuantityTypeId) {
     Optional<DictQuantityTypeEntity> quantityTypeEntity = dictQuantityType.stream()
         .filter(quantityType -> quantityType.getId()
             .equals(dictQuantityTypeId))
@@ -209,7 +208,7 @@ public class ExerciseSerializer implements SerializerCommon {
   }
 
 
-  private static String getUnitName(List<DictUnitsEntity> dictUnits, UUID dictUnitId) {
+  public static String getUnitName(List<DictUnitsEntity> dictUnits, UUID dictUnitId) {
     Optional<DictUnitsEntity> unitEntity = dictUnits.stream()
         .filter(dictUnit -> dictUnit.getId().equals(dictUnitId))
         .findFirst();

@@ -94,7 +94,10 @@
         "delete_client": "удалить клиента",
         "add_program": "Добавить Программу",
         "delete_program": "Удалить Программу",
-        "save": "сохранить"
+        "save": "сохранить",
+        "add_exercise": "добавить упражнение",
+        "copy_to_next_session": "копировать на следующую неделю",
+        "copy_to_next_day_session": "копировать на следующий день"
     },
     "validation": {
         "this_field_is_required": "это поле обязательно",
@@ -180,7 +183,9 @@
         "created_by": "Создано",
         "select_program_message": "Пожалуйста, выберите программу.",
         "confirm_delete": "Подтвердите удаление программы",
-        "program_name_exists": "Название программы уже существует"
+        "program_name_exists": "Название программы уже существует",
+        "informations": "информация",
+        "macrocicle": "план тренировки"
     },
     "macrocycle": {
         "title": "Создать Новый Макроцикл",
@@ -188,7 +193,11 @@
         "duration_left": "Оставшаяся Продолжительность (месяцы)",
         "add_button": "Добавить Макроцикл",
         "created_successfully": "Макроцикл успешно создан",
-        "creation_error": "Ошибка при создании макроцикла"
+        "creation_error": "Ошибка при создании макроцикла",
+        "sessions_per_microcycle": "Сколько тренировок в неделю?",
+        "session_duration": "Сколько длится тренировка?",
+        "periodization": "Какова цель тренировки?",
+        "select_periodization": "выберите цель"
     },
     "mesocycle": {
         "title": "Создать Новый Мезоцикл",
@@ -200,7 +209,8 @@
         "creation_error": "Ошибка при создании мезоцикла"
     },
     "microcycle": {
-        "week": "неделя"
+        "week": "неделя",
+        "share": "поделиться"
     },
     "session": {
         "no_date": "дата еще не установлена",

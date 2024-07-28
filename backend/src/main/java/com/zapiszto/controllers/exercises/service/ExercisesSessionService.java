@@ -1,6 +1,5 @@
 package com.zapiszto.controllers.exercises.service;
 
-import com.zapiszto.controllers.dictionaries.dictCategory.repository.DictCategoryRepository;
 import com.zapiszto.controllers.dictionaries.dictEquipment.repository.DictEquipmentRepository;
 import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExercisesRepository;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.repository.DictQuantityTypeRepository;
@@ -28,8 +27,8 @@ import com.zapiszto.controllers.exercises.serializer.ExerciseSerializer;
 import com.zapiszto.controllers.program.sessions.entity.SessionEntity;
 import com.zapiszto.controllers.program.sessions.repository.SessionRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.transaction.Transactional;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -164,18 +163,14 @@ public class ExercisesSessionService {
     if (exerciseEntityOptional.isPresent()) {
       ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
       exerciseEntity.setVolume(updateVolumeDto.getVolume());
-      try {
-        float equipmentAttribute =Float.parseFloat(exerciseEntity.getEquipmentAttribute());
-        float weight = exerciseEntity.getVolume();
-        float weightPerSide = (weight - equipmentAttribute) / 2;
-        exerciseEntity.setWeightPerSide(weightPerSide);
-      }catch (NumberFormatException e) {
-        // Log or handle the error appropriately
-        System.err.println("Invalid equipment attribute value: " + exerciseEntity.getEquipmentAttribute());
-      } finally {
-        exerciseSessionRepository.save(exerciseEntity);
-        return exerciseEntity.getWeightPerSide();
-      }
+      exerciseEntity.setWeightPerSide(countWeightPerSide(
+          exerciseEntity.getEquipmentAttribute(),
+          exerciseEntity.getVolume()
+      ));
+
+      exerciseSessionRepository.save(exerciseEntity);
+      return exerciseEntity.getWeightPerSide();
+
     } else {
       throw new EntityNotFoundException("Exercise entity not found with ID: " + id);
     }
@@ -260,15 +255,11 @@ public class ExercisesSessionService {
       ExerciseEntity exerciseEntity = exerciseEntityOptional.get();
       exerciseEntity.setEquipmentAttribute(updateEquipmentAttributeDto.getEquipmentAttribute());
 
-      try {
-        float equipmentAttribute = Float.parseFloat(updateEquipmentAttributeDto.getEquipmentAttribute());
-        float weight = exerciseEntity.getVolume();
-        float weightPerSide = (weight - equipmentAttribute) / 2;
-        exerciseEntity.setWeightPerSide(weightPerSide);
-      } catch (NumberFormatException e) {
-        // Log or handle the error appropriately
-        System.err.println("Invalid equipment attribute value: " + updateEquipmentAttributeDto.getEquipmentAttribute());
-      }
+      exerciseEntity.setWeightPerSide(countWeightPerSide(
+          updateEquipmentAttributeDto.getEquipmentAttribute(),
+          exerciseEntity.getVolume()
+      ));
+
       exerciseSessionRepository.save(exerciseEntity);
       return exerciseEntity.getWeightPerSide();
     } else {
@@ -297,6 +288,7 @@ public class ExercisesSessionService {
         .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
         .collect(Collectors.toList());
   }
+
   @Transactional
   public List<ExerciseSessionDto> updateExerciseOrderNumberUp(UUID sessionId, UUID exerciseId, Long userId) {
     return updateOrderNumber(sessionId, exerciseId, -1, userId);
@@ -321,7 +313,9 @@ public class ExercisesSessionService {
 
     int index = -1;
     for (int i = 0; i < exerciseEntities.size(); i++) {
-      if (exerciseEntities.get(i).getId().equals(exerciseId)) {
+      if (exerciseEntities.get(i)
+          .getId()
+          .equals(exerciseId)) {
         index = i;
         break;
       }
@@ -340,7 +334,8 @@ public class ExercisesSessionService {
       exerciseSessionRepository.save(targetExercise);
     }
 
-    return exerciseSessionRepository.getAllBySessionId(sessionId).stream()
+    return exerciseSessionRepository.getAllBySessionId(sessionId)
+        .stream()
         .sorted(Comparator.comparingInt(ExerciseEntity::getOrderNumber))
         .map(exercise -> ExerciseSerializer.convert(exercise, dictExercises, dictQuantityType, dictUnits, dictSessionParts, dictEquipment))
         .collect(Collectors.toList());
@@ -408,9 +403,11 @@ public class ExercisesSessionService {
   }
 
   @Transactional
-  public void copyExercisesToNextSession(UUID sessionId, CopyParametersDto copyParametersDto) {
+  public void copyExercisesToNextDaySession(UUID sessionId, CopyParametersDto copyParametersDto) {
+    SessionEntity referenceById = sessionRepository.getReferenceById(sessionId);
+
     //znalezienie next sesionId
-    UUID nextSessionId = findNextSessionId(sessionId);
+    UUID nextSessionId = findNextSessionId(referenceById.getMicrocycleId(), referenceById.getOrderId());
 
     // Usuwanie istniejących ćwiczeń w docelowej sesji
     exerciseSessionRepository.deleteBySessionId(nextSessionId);
@@ -424,7 +421,8 @@ public class ExercisesSessionService {
           ExerciseEntity newExercise = new ExerciseEntity();
           newExercise.setSessionId(nextSessionId);
           newExercise.setQuantity(exercise.getQuantity() + copyParametersDto.getRepetitions());
-          if (copyParametersDto.getWeightIncreaseUnit().equals(KG)) {
+          if (copyParametersDto.getWeightIncreaseUnit()
+              .equals(KG)) {
             newExercise.setVolume(exercise.getVolume() + copyParametersDto.getWeightIncrease());
           } else {
             float increase = exercise.getVolume() * copyParametersDto.getWeightIncrease() / 100;
@@ -441,7 +439,7 @@ public class ExercisesSessionService {
           newExercise.setSets(exercise.getSets());
           newExercise.setDictEquipmentId(exercise.getDictEquipmentId());
           newExercise.setEquipmentAttribute(exercise.getEquipmentAttribute());
-          newExercise.setWeightPerSide(exercise.getWeightPerSide());
+          newExercise.setWeightPerSide(countWeightPerSide(exercise.getEquipmentAttribute(), newExercise.getVolume()));
           newExercise.setDuration(exercise.getDuration());
           return newExercise;
         })
@@ -451,9 +449,80 @@ public class ExercisesSessionService {
     exerciseSessionRepository.saveAll(copiedExercises);
   }
 
-  public UUID findNextSessionId(UUID currentSessionId) {
-    return sessionRepository.findNextSessionId(currentSessionId)
+  @Transactional
+  public void copyExercisesToNextWeekSession(UUID sessionId, CopyParametersDto copyParametersDto) {
+    //znalezienie next sesionId
+    UUID nextSessionId = findNextSessionId(sessionId);
+
+    // Usuwanie istniejących ćwiczeń w docelowej sesji
+    exerciseSessionRepository.deleteBySessionId(nextSessionId);
+
+    // Pobranie ćwiczeń z sesji źródłowej
+    List<ExerciseEntity> exercisesToCopy = exerciseSessionRepository.findBySessionId(sessionId);
+
+    // Utworzenie nowych encji ćwiczeń dla sesji docelowej
+    List<ExerciseEntity> copiedExercises = exercisesToCopy.stream()
+        .map(exercise -> {
+          ExerciseEntity newExercise = new ExerciseEntity();
+          newExercise.setSessionId(nextSessionId);
+          newExercise.setQuantity(exercise.getQuantity() + copyParametersDto.getRepetitions());
+          if (copyParametersDto.getWeightIncreaseUnit()
+              .equals(KG)) {
+            newExercise.setVolume(exercise.getVolume() + copyParametersDto.getWeightIncrease());
+          } else {
+            float increase = exercise.getVolume() * copyParametersDto.getWeightIncrease() / 100;
+            newExercise.setVolume(exercise.getVolume() + increase);
+          }
+          newExercise.setNotes(exercise.getNotes());
+          newExercise.setOrderNumber(exercise.getOrderNumber());
+          newExercise.setRestTime(exercise.getRestTime());
+          newExercise.setTempo(exercise.getTempo());
+          newExercise.setDictSessionPartId(exercise.getDictSessionPartId());
+          newExercise.setDictExerciseId(exercise.getDictExerciseId());
+          newExercise.setDictQuantityTypeId(exercise.getDictQuantityTypeId());
+          newExercise.setDictUnitId(exercise.getDictUnitId());
+          newExercise.setSets(exercise.getSets());
+          newExercise.setDictEquipmentId(exercise.getDictEquipmentId());
+          newExercise.setEquipmentAttribute(exercise.getEquipmentAttribute());
+          newExercise.setWeightPerSide(countWeightPerSide(exercise.getEquipmentAttribute(), newExercise.getVolume()));
+          newExercise.setDuration(exercise.getDuration());
+          return newExercise;
+        })
+        .collect(Collectors.toList());
+
+    // Zapisanie nowych ćwiczeń w repozytorium
+    exerciseSessionRepository.saveAll(copiedExercises);
+  }
+
+  public UUID findNextSessionId(UUID currentMicrocycleId, Integer orderId) {
+    return sessionRepository.findNextWeekSessionId(currentMicrocycleId, orderId)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No next session found"));
+  }
+
+  public UUID findNextSessionId(UUID currentSessionId) {
+    return sessionRepository.findNextWeekSessionId(currentSessionId)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No next session found"));
+  }
+
+  public Float countWeightPerSide(String equipmentAttribute, Float weight) {
+    if (equipmentAttribute == null || equipmentAttribute.isEmpty()) {
+      return null;
+    } else {
+      if (isNumericRegex(equipmentAttribute)){
+        Float parsedEquipmentAttribute = Float.parseFloat(equipmentAttribute);
+        return (weight - parsedEquipmentAttribute) / 2;
+      } else {
+        return null;
+      }
+    }
+  }
+
+  public static boolean isNumericRegex(String str) {
+    if (str == null || str.isEmpty()) {
+      return false;
+    }
+    String regex = "-?\\d+(\\.\\d+)?";
+    return str.matches(regex);
   }
 }
 

@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import AuthService from "./services/auth.service";
 import IUser from './types/user.type';
 import Login from "./components/login/login.component";
+import RecoverPassword from "./components/login/RecoverPassword";
+import ResetPassword from "./components/login/ResetPassword";
 import Register from "./components/register/register.component";
 import Home from "./components/home/home.component";
 import Profile from "./components/profile/profile.component";
@@ -163,6 +165,8 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/recover-password" element={<RecoverPassword />} />
+          <Route path="/reset_password" element={<ResetPassword />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
