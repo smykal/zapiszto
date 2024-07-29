@@ -4,9 +4,11 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { withTranslation } from "react-i18next";
 import AuthService from "../../services/auth.service";
+import withNavigate from '../../constants/withNavigate'; // Importuj HOC
 
 type Props = {
   t: any;
+  navigate: any; // Dodaj typowanie dla navigate
 };
 
 type State = {
@@ -84,18 +86,12 @@ class Login extends Component<Props, State> {
   }
 
   handleRecoverPassword() {
-    this.setState({
-      recoverPassword: true
-    });
+    this.props.navigate('/recover_password');
   }
 
   render() {
     if (this.state.redirect) {
       return <Navigate to={this.state.redirect} />;
-    }
-
-    if (this.state.recoverPassword) {
-      return <Navigate to="/recover_password" />;
     }
 
     const { t } = this.props;
@@ -175,4 +171,4 @@ class Login extends Component<Props, State> {
   }
 }
 
-export default withTranslation("global")(Login);
+export default withNavigate(withTranslation("global")(Login));
