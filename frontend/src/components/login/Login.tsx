@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Navigate } from "react-router-dom";
 import * as Yup from "yup";
 import { withTranslation } from "react-i18next";
 import AuthService from "../../services/auth.service";
-import withNavigate from '../../constants/withNavigate'; // Importuj HOC
+import RecoverPassword from "./RecoverPassword"; // Importuj RecoverPassword
 
 type Props = {
   t: any;
-  navigate: any; // Dodaj typowanie dla navigate
 };
 
 type State = {
@@ -17,14 +16,14 @@ type State = {
   password: string,
   loading: boolean,
   message: string,
-  recoverPassword: boolean
+  showRecoverPassword: boolean // Zmienna do przechowywania stanu wyświetlania RecoverPassword
 };
 
 class Login extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
-    this.handleRecoverPassword = this.handleRecoverPassword.bind(this);
+    this.handleShowRecoverPassword = this.handleShowRecoverPassword.bind(this);
 
     this.state = {
       redirect: null,
@@ -32,7 +31,7 @@ class Login extends Component<Props, State> {
       password: "",
       loading: false,
       message: "",
-      recoverPassword: false
+      showRecoverPassword: false
     };
   }
 
@@ -42,10 +41,6 @@ class Login extends Component<Props, State> {
     if (currentUser) {
       this.setState({ redirect: "/profile" });
     }
-  }
-
-  componentWillUnmount() {
-    window.location.reload();
   }
 
   validationSchema() {
@@ -85,8 +80,10 @@ class Login extends Component<Props, State> {
     );
   }
 
-  handleRecoverPassword() {
-    this.props.navigate('/recover_password');
+  handleShowRecoverPassword() {
+    this.setState({
+      showRecoverPassword: true
+    });
   }
 
   render() {
@@ -95,12 +92,16 @@ class Login extends Component<Props, State> {
     }
 
     const { t } = this.props;
-    const { loading, message } = this.state;
+    const { loading, message, showRecoverPassword } = this.state;
 
     const initialValues = {
       username: "",
       password: "",
     };
+
+    if (showRecoverPassword) {
+      return <RecoverPassword />; // Renderuj komponent RecoverPassword jeśli showRecoverPassword jest true
+    }
 
     return (
       <div className="col-md-12">
@@ -113,7 +114,7 @@ class Login extends Component<Props, State> {
 
           <Formik
             initialValues={initialValues}
-            validationSchema={this.validationSchema}
+            validationSchema={this.validationSchema()}
             onSubmit={this.handleLogin}
           >
             <Form>
@@ -141,7 +142,7 @@ class Login extends Component<Props, State> {
                 <button
                   type="button"
                   className="form-control btn-link"
-                  onClick={this.handleRecoverPassword}
+                  onClick={this.handleShowRecoverPassword}
                 >
                   {t("login.forgot_password")}
                 </button>
@@ -171,4 +172,4 @@ class Login extends Component<Props, State> {
   }
 }
 
-export default withNavigate(withTranslation("global")(Login));
+export default withTranslation("global")(Login);
