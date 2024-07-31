@@ -53,18 +53,19 @@ ul {
   align-items: center;
   padding-left: 0;
   margin-bottom: 0;
-  flex-wrap: wrap; /* Enable wrapping for small screens */
+  flex-wrap: nowrap; /* Zmieniono na nowrap, aby uniemożliwić łamanie linii */
 }
 
 .nav-item {
-  margin-right: 5px;
-  margin-left: 10px;
+  margin-right: 10px; /* Opcjonalnie zwiększ margines dla lepszego wyglądu */
+  display: flex;
 }
 
 .nav-link {
   color: var(--true-white);
   text-decoration: none;
   font-size: 1rem;
+  white-space: nowrap; /* Zapobiega łamaniu się tekstu */
 }
 
 .nav-link:hover {
@@ -174,22 +175,22 @@ tbody tr:hover {
   padding: 5px 0px;
   font-size: 14px;
   font-weight: bold;
-  color: #cccccc;
-  background-color: #343a40;
+  color: var(--true-white);
+  background-color: var(--primary-color);
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
 }
 
 .Collapsible__trigger:hover {
-  background-color: #221b1b97;
-  color: #ffffff;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   transform: scale(1.01);
 }
 
 .Collapsible__contentInner {
   padding: 10px 10px;
-  background-color: #cccccc;
+  background-color: var(--fake-white);
   border-radius: 4px;
 }
 
@@ -210,7 +211,7 @@ tbody tr:hover {
 }
 
 #clientsList .selected-client {
-  background-color: #343a40;
+  background-color: var(--primary-color);
   color: white;
   padding: 10px;
   margin: 0;
@@ -246,7 +247,7 @@ tbody tr:hover {
 }
 
 #programsList .selected-program {
-  background-color: #343a40;
+  background-color: var(--primary-color);
   color: white;
   padding: 10px;
   margin: 0;

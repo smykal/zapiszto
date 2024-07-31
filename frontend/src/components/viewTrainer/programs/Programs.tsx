@@ -52,6 +52,15 @@ const Programs = () => {
     }
   };
 
+  const handleDuplicateProgram = async (id: string, programName: string) => {
+    try {
+      await ProgramsService.duplicateProgram(id, programName);
+      fetchPrograms();
+    } catch (error) {
+      console.error('Error duplicating program:', error);
+    }
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <div style={{padding: '10px', borderRight: '1px solid #ccc' }}>
@@ -75,6 +84,7 @@ const Programs = () => {
             program={selectedProgram} 
             onProgramDeleted={handleProgramDeleted} 
             onSaveProgramName={handleSaveProgramName}
+            onDuplicateProgram={handleDuplicateProgram} // Przekazanie metody handleDuplicateProgram
           />
         ) : (
           <div>{t('programs.select_program_message')}</div>

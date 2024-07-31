@@ -30,6 +30,10 @@ class ProgramsService {
   updateProgramAssignedClient(programId: string, assignedClient: string) {
     return axios.patch(`${API_URL}/update_program`, { programId, assignedClient }, { headers: authHeader() });
   }
+
+  duplicateProgram(id: string, programName: string) {
+    return axios.post(`${API_URL}/duplicate_program/${id}`, programName, { headers: authHeader() });
+  }
   
 }
 
