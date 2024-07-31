@@ -11,6 +11,7 @@ type Props = {
 
 type State = {
   newPassword: string,
+  confirmPassword: string,
   loading: boolean,
   message: string
 };
@@ -22,11 +23,15 @@ const ResetPassword: React.FC<Props> = ({ t }) => {
 
   const validationSchema = () => {
     return Yup.object().shape({
-      newPassword: Yup.string().required("This field is required!"),
+      newPassword: Yup.string()
+        .required(t("reset_password.new_password_required")),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("newPassword"), null], t("reset_password.passwords_must_match"))
+        .required(t("reset_password.confirm_password_required")),
     });
   };
 
-  const handleResetPassword = (formValue: { newPassword: string }) => {
+  const handleResetPassword = (formValue: { newPassword: string; confirmPassword: string }) => {
     const { newPassword } = formValue;
     const token = searchParams.get("token") || "";
 
@@ -53,6 +58,7 @@ const ResetPassword: React.FC<Props> = ({ t }) => {
 
   const initialValues = {
     newPassword: "",
+    confirmPassword: "",
   };
 
   return (
@@ -69,6 +75,12 @@ const ResetPassword: React.FC<Props> = ({ t }) => {
               <label htmlFor="newPassword">{t("reset_password.new_password")}</label>
               <Field name="newPassword" type="password" className="form-control" />
               <ErrorMessage name="newPassword" component="div" className="alert alert-danger" />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="confirmPassword">{t("reset_password.confirm_password")}</label>
+              <Field name="confirmPassword" type="password" className="form-control" />
+              <ErrorMessage name="confirmPassword" component="div" className="alert alert-danger" />
             </div>
 
             <div className="form-group">

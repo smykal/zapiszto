@@ -56,9 +56,9 @@ const App = () => {
     <div>
       <nav className="navbar">
         <Link to={"/"} className="navbar-brand">
-          zapiszTo
+          <img src="/images/navigation/logo.png" alt="zapiszTo" style={{ height: "40px" }} />
         </Link>
-        <ul className="navbar-nav mr-auto">
+        <ul>
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               {t("navigation.home")}
@@ -80,7 +80,7 @@ const App = () => {
               </Link>
             </li>
           )}
-          
+
           {showUserBoard && ( // Conditionally render for user role
             <>
               <li className="nav-item">
@@ -100,7 +100,7 @@ const App = () => {
               </li>
             </>
           )}
-          
+
           {showTrainerBoard && ( // Conditionally render for trainer users
             <>
               <li className="nav-item">
@@ -110,12 +110,12 @@ const App = () => {
               </li>
               <li className="nav-item">
                 <Link to={"/programs"} className="nav-link">
-                {t("navigation.programs")}
+                  {t("navigation.programs")}
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to={"/clients"} className="nav-link">
-                {t("navigation.clients")}
+                  {t("navigation.clients")}
                 </Link>
               </li>
             </>
@@ -131,6 +131,8 @@ const App = () => {
             </li>
             <li className="nav-item">
               <a href="/login" className="nav-link" onClick={logOut}>
+                <img src="/images/navigation/log_out.png" alt="zapiszTo" style={{ height: "40px" }} />
+
                 {t("navigation.log_out")}
               </a>
             </li>
@@ -142,12 +144,12 @@ const App = () => {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/login"} className="nav-link">
-                {t("navigation.log_in")}
+                <img src="/images/navigation/log_in.png" alt="zapiszTo" style={{ height: "40px" }} />
               </Link>
             </li>
             <li className="nav-item">
               <Link to={"/register"} className="nav-link">
-                {t("navigation.sign_in")}
+                <img src="/images/navigation/register.png" alt="zapiszTo" style={{ height: "40px" }} />
               </Link>
             </li>
             <li className="nav-item">
@@ -155,7 +157,7 @@ const App = () => {
             </li>
           </ul>
         )}
-        
+
       </nav>
 
       <div id="content">
