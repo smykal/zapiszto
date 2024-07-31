@@ -8,6 +8,7 @@ import com.zapiszto.controllers.bodyParams.dto.BodyParamsWithNameDto;
 import com.zapiszto.controllers.bodyParams.service.BodyParamsService;
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -96,9 +97,8 @@ public class BodyParamsController implements ControllerCommon {
       log.info("get bmi for user: {} ", userId);
       return new ResponseEntity<>(response, HttpStatus.OK);
     } catch (NullPointerException e) {
-      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+      return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
-
   }
 
   @PostMapping("/add_body_param")

@@ -74,4 +74,13 @@ public class ProgramsController implements ControllerCommon {
     programsService.deleteProgram(id);
     return new ResponseEntity<>(HttpStatus.OK);
   }
+
+  @PostMapping("/duplicate_program/{id}")
+  public ResponseEntity<String> duplicateProgram(
+      @PathVariable UUID id,
+      @RequestBody String programName
+  ) {
+    programsService.duplicateProgram(id, programName);
+    return new ResponseEntity<>(HttpStatus.CREATED);
+  }
 }
