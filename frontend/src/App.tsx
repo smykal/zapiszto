@@ -132,8 +132,6 @@ const App = () => {
             <li className="nav-item">
               <a href="/login" className="nav-link" onClick={logOut}>
                 <img src="/images/navigation/log_out.png" alt="zapiszTo" style={{ height: "40px" }} />
-
-                {t("navigation.log_out")}
               </a>
             </li>
             <li className="nav-item">
