@@ -31,17 +31,23 @@ const App = () => {
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     if (user) {
-      setCurrentUser(user);
-      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-      setShowTrainerBoard(user.roles.includes("ROLE_TRAINER"));
-      setShowUserBoard(user.roles.includes("ROLE_USER"));
+      updateUserState(user);
     }
     EventBus.on("logout", logOut);
     return () => {
       EventBus.remove("logout", logOut);
     };
   }, []);
+
+  const updateUserState = (user: IUser) => {
+    if (user && user.roles) {
+      setCurrentUser(user);
+      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+      setShowTrainerBoard(user.roles.includes("ROLE_TRAINER"));
+      setShowUserBoard(user.roles.includes("ROLE_USER"));
+    }
+  };
 
   const logOut = () => {
     AuthService.logout();
@@ -58,7 +64,7 @@ const App = () => {
         <Link to={"/"} className="navbar-brand">
           <img src="/images/navigation/logo.png" alt="zapiszTo" style={{ height: "40px" }} />
         </Link>
-        <ul>
+        <ul className="navbar-nav">
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               {t("navigation.home")}
@@ -81,7 +87,7 @@ const App = () => {
             </li>
           )}
 
-          {showUserBoard && ( // Conditionally render for user role
+          {showUserBoard && (
             <>
               <li className="nav-item">
                 <Link to={"/bodyParams"} className="nav-link">
@@ -101,7 +107,7 @@ const App = () => {
             </>
           )}
 
-          {showTrainerBoard && ( // Conditionally render for trainer users
+          {showTrainerBoard && (
             <>
               <li className="nav-item">
                 <Link to={"/dictionaries"} className="nav-link">
@@ -155,14 +161,13 @@ const App = () => {
             </li>
           </ul>
         )}
-
       </nav>
 
       <div id="content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login updateUserState={updateUserState} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset_password" element={<ResetPassword />} />
           <Route path="/profile" element={<Profile />} />

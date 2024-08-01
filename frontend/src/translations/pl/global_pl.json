@@ -22,7 +22,8 @@
         "terms_accepted": "Zapoznałem się i akceptuję regulamin",
         "privacy_accepted": "Zapoznałem się i akceptuję politykę prywatności",
         "terms": "Warunki i zasady",
-        "privacy": "Polityka prywatności"
+        "privacy": "Polityka prywatności",
+        "forgot_password": "zapomniałeś hasła"
     },
     "dictionaries": {
         "dict_category": "kategoria ćwiczeń",

@@ -22,7 +22,8 @@
         "terms_accepted": "I have read and accept the terms and conditions",
         "privacy_accepted": "I have read and accept the privacy policy",
         "terms": "Terms and Conditions",
-        "privacy": "Privacy Policy"
+        "privacy": "Privacy Policy",
+        "forgot_password": "forgot password"
     },
     "dictionaries": {
         "dict_category": "dict category",
@@ -197,7 +198,7 @@
         "sessions_per_microcycle": "How many trainings per week?",
         "session_duration": "How long is your training?",
         "periodization": "What would you like to achieve?",
-        "select_periodization": "select purpose" 
+        "select_periodization": "select purpose"
     },
     "mesocycle": {
         "title": "Create New Mesocycle",
