@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import IUser from "../../types/user.type";
 import { Navigate } from "react-router-dom";
 import * as Yup from "yup";
 import { withTranslation } from "react-i18next";
 import AuthService from "../../services/auth.service";
-import RecoverPassword from "./RecoverPassword"; // Importuj RecoverPassword
+import RecoverPassword from "./RecoverPassword";
 
 type Props = {
   t: any;
+  updateUserState: (user: IUser) => void;
 };
 
 type State = {
@@ -16,7 +18,7 @@ type State = {
   password: string,
   loading: boolean,
   message: string,
-  showRecoverPassword: boolean // Zmienna do przechowywania stanu wyświetlania RecoverPassword
+  showRecoverPassword: boolean
 };
 
 class Login extends Component<Props, State> {
@@ -52,6 +54,7 @@ class Login extends Component<Props, State> {
 
   handleLogin(formValue: { username: string; password: string }) {
     const { username, password } = formValue;
+    const { updateUserState } = this.props;
 
     this.setState({
       message: "",
@@ -59,7 +62,8 @@ class Login extends Component<Props, State> {
     });
 
     AuthService.login(username, password).then(
-      () => {
+      (data) => {
+        updateUserState(data);
         this.setState({
           redirect: "/profile"
         });
@@ -100,61 +104,56 @@ class Login extends Component<Props, State> {
     };
 
     if (showRecoverPassword) {
-      return <RecoverPassword />; // Renderuj komponent RecoverPassword jeśli showRecoverPassword jest true
+      return <RecoverPassword />;
     }
 
     return (
-      <div className="col-md-12">
+      <div>
         <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
-
           <Formik
             initialValues={initialValues}
             validationSchema={this.validationSchema()}
             onSubmit={this.handleLogin}
           >
             <Form>
-              <div className="form-group">
-                <label htmlFor="username">{t("login.username")}</label>
-                <Field name="username" type="text" className="form-control" />
-                <ErrorMessage
-                  name="username"
-                  component="div"
-                  className="alert alert-danger"
-                />
+              <div className="field-container">
+                <label htmlFor="username" className="field-label">
+                  <img src="/images/login/user.png" alt="username-img" />
+                </label>
+                <div className="field-input">
+                  <Field name="username" type="text" />
+                  <ErrorMessage name="username" component="div" />
+                </div>
               </div>
 
-              <div className="form-group">
-                <label htmlFor="password">{t("login.password")}</label>
-                <Field name="password" type="password" className="form-control" />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="alert alert-danger"
-                />
+              <div className="field-container">
+                <label htmlFor="password" className="field-label">
+                  <img src="/images/login/password.png" alt="password-img" />
+                </label>
+                <div className="field-input">
+                  <Field name="password" type="password" />
+                  <ErrorMessage name="password" component="div" />
+                </div>
               </div>
 
-              <div className="form-group">
-                <button
-                  type="button"
-                  className="form-control btn-link"
-                  onClick={this.handleShowRecoverPassword}
-                >
-                  {t("login.forgot_password")}
-                </button>
-              </div>
+              <div className="centered-button">
+                <div>
+                  <button type="submit" disabled={loading}>
+                    {loading && (
+                      <span className="spinner-border spinner-border-sm"></span>
+                    )}
+                    <span>{t("login.login")}</span>
+                  </button>
+                </div>
 
-              <div className="form-group">
-                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                  {loading && (
-                    <span className="spinner-border spinner-border-sm"></span>
-                  )}
-                  <span>{t("login.login")}</span>
-                </button>
+                <div>
+                  <button
+                    type="button"
+                    onClick={this.handleShowRecoverPassword}
+                  >
+                    {t("login.forgot_password")}
+                  </button>
+                </div>
               </div>
 
               {message && (

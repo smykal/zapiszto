@@ -22,7 +22,8 @@
         "terms_accepted": "Ho letto e accetto i termini e le condizioni",
         "privacy_accepted": "Ho letto e accetto la politica sulla privacy",
         "terms": "Termini e condizioni",
-        "privacy": "Informativa sulla privacy"
+        "privacy": "Informativa sulla privacy",
+        "forgot_password": "password dimenticata"
     },
     "dictionaries": {
         "dict_category": "categoria degli esercizi",

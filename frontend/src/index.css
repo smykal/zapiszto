@@ -5,7 +5,6 @@
   --dark-color: #333;
   --fake-white: #cccccc;
   --true-white: #ffffff;
-
   --shadow: 0 4px 8px 0 var(--fake-white);
 }
 
@@ -25,10 +24,6 @@ body {
   background-size: auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
 ul {
   padding: 0px;
 }
@@ -39,13 +34,9 @@ ul {
   justify-content: space-between;
   background-color: var(--primary-color);
   padding: 5px 5px 5px 5px;
-  flex-wrap: wrap; /* Enable wrapping for small screens */
+  flex-wrap: nowrap;
   box-shadow: var(--shadow);
 }
-
-/* .navbar-brand {
-  color: var(--true-white);
-} */
 
 .navbar-nav {
   list-style: none;
@@ -53,11 +44,11 @@ ul {
   align-items: center;
   padding-left: 0;
   margin-bottom: 0;
-  flex-wrap: nowrap; /* Zmieniono na nowrap, aby uniemożliwić łamanie linii */
+  flex-wrap: nowrap;
 }
 
 .nav-item {
-  margin-right: 10px; /* Opcjonalnie zwiększ margines dla lepszego wyglądu */
+  margin-right: 10px;
   display: flex;
 }
 
@@ -65,7 +56,7 @@ ul {
   color: var(--true-white);
   text-decoration: none;
   font-size: 1rem;
-  white-space: nowrap; /* Zapobiega łamaniu się tekstu */
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -74,18 +65,18 @@ ul {
 }
 
 .language-select {
-  background-color: var(--secondary-color); /* Kolor tła */
-  color: var(--dark-color); /* Kolor czcionki */
-  width: min-content; /* Szerokość elementu */
-  padding: 2px; /* Padding wewnętrzny */
-  border-radius: 2px; /* Zaokrąglone rogi */
-  font-size: 10px; /* Rozmiar czcionki */
-  font-family: Arial, sans-serif; /* Czcionka */
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  width: min-content;
+  padding: 2px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-family: Arial, sans-serif;
 }
 
 .language-select option {
-  color: var(--dark-color); /* Kolor czcionki w opcjach */
-  background-color: var(--secondary-color); /* Kolor tła w opcjach */
+  color: var(--dark-color);
+  background-color: var(--secondary-color);
 }
 
 .ml-auto {
@@ -96,10 +87,14 @@ ul {
   height: 50px;
 }
 
-.card-container.card {
-  max-width: 300px !important;
-  padding: 20px 20px;
+.card-container {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   border-radius: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
@@ -107,179 +102,57 @@ ul {
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
-  -moz-box-shadow: var(--shadow);
-  -webkit-box-shadow: var(--shadow);
   box-shadow: var(--shadow);
-}
-.container {
-  background-color: #f7f7f7;
 }
 
 button {
   background-color: var(--primary-color);
   color: var(--true-white);
-  padding: 2px 10px;
-  border: none;
-  border-radius: 5px !important;
+  padding: 0px 10px;
+  border: 3px solid var(--primary-color);   
+  border-radius: 5px;
   box-shadow: var(--shadow);
   transition-duration: 0.4s;
-  padding: 3px;
-  margin: 2px !important;
   letter-spacing: 2px;
+  box-sizing: border-box; 
 }
 
 button:hover {
   transform: scale(1.05);
-  color: var(--fake-white);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 10px 0;
-  font-size: 12px;
-  text-align: left;
-}
-
-th,td {
-  padding: 2px;
-  border-bottom: 1px solid #ddd;
-}
-
-thead {
-  background-color: #f2f2f2;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-tbody tr:hover {
-  background-color: #f1f1f1;
-}
-
-#content {
-  padding: 20px 20px;
-}
-
-.Collapsible {
-  margin-bottom: 10px;
-  width: 100%
-}
-
-.Collapsible__trigger {
-  display: block;
-  padding: 5px 0px;
-  font-size: 14px;
-  font-weight: bold;
-  color: var(--true-white);
-  background-color: var(--primary-color);
-  border-radius: 4px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.Collapsible__trigger:hover {
-  background-color: var(--secondary-color);
   color: var(--primary-color);
-  transform: scale(1.01);
+  background-color: var(--secondary-color);
 }
 
-.Collapsible__contentInner {
-  padding: 10px 10px;
-  background-color: var(--fake-white);
-  border-radius: 4px;
-}
-
-.form-row {
+.field-container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;
+  padding: 20px 0 0 0;
+  width: 100%;
 }
 
-.form-group {
-  margin-right: 10px;
-  max-width: none;
+.field-label img {
+  height: 40px;
+  padding: 0 20px 0 0;
 }
 
-.form-group:last-child {
-  margin-right: 0;
+.field-input {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 15px 10px;
+  flex-grow: 1;
 }
 
-#clientsList .selected-client {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 10px;
-  margin: 0;
-  display: block;
+.centered-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-#clientsList li {
-  padding: 10px;
-  margin: 5px 0;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-#clientsList li:hover .selected-client,
-#clientsList li:hover span {
-  background-color: #221b1b97;
-  color: white;
-  transform: scale(1.05);
-  border-radius: 5px;
-}
-
-#clientsList ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-#clientsList span {
-  display: block;
-  padding: 10px;
-  margin: 0;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-#programsList .selected-program {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 10px;
-  margin: 0;
-  display: block;
-}
-
-#programsList li {
-  padding: 10px;
-  margin: 5px 0;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-#programsList li:hover .selected-program,
-#programsList li:hover span {
-  background-color: #221b1b97;
-  color: white;
-  transform: scale(1.05);
-  border-radius: 5px;
-}
-
-#programsList ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-#programsList span {
-  display: block;
-  padding: 10px;
-  margin: 0;
-  cursor: pointer;
-  border-radius: 5px;
+.centered-button div {
+  padding: 0 0 10px 0;
 }
 
 @media (max-width: 768px) {
@@ -297,10 +170,6 @@ tbody tr:hover {
 
   .nav-link {
     font-size: 4vw;
-  }
-
-  #content {
-    padding: 20px 20px;
   }
 
   button {
