@@ -14,16 +14,6 @@ label {
   background-position: center 33%; /* Przesuń tło w górę przy najechaniu */
 }
 
-.profile-img-card {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-}
-
 .input_workbook {
   display: flex;
   justify-content: flex-end;

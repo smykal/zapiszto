@@ -72,35 +72,43 @@ class RecoverPassword extends Component<Props, State> {
     };
 
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
-          <h2>{t("recover_password.title")}</h2>
+      <div>
+        <div >
           <Formik
             initialValues={initialValues}
             validationSchema={this.validationSchema}
             onSubmit={this.handleRecoverPassword}
           >
             <Form>
-              <div className="form-group">
-                <label htmlFor="email">{t("recover_password.email")}</label>
-                <Field name="email" type="email" className="form-control" />
-                <ErrorMessage name="email" component="div" className="alert alert-danger" />
-              </div>
-
-              <div className="form-group">
-                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                  {loading && <span className="spinner-border spinner-border-sm"></span>}
-                  <span>{t("recover_password.send_link")}</span>
-                </button>
-              </div>
-
-              {message && (
-                <div className="form-group">
-                  <div className="alert alert-danger" role="alert">
-                    {message}
+              <div className="card card-container">
+                <h2>{t("login.recover_password")}</h2>
+                <div className="field-container">
+                  <label htmlFor="email" className="field-label">
+                    <img src="/images/login/email.png" alt="email-img" />
+                  </label>
+                  <div className="field-input">
+                    <Field name="email" type="email" placeholder={t("login.email")} className="form-field" />
+                    <ErrorMessage name="email" component="div" className="alert alert-danger" />
                   </div>
+
                 </div>
-              )}
+
+                <div>
+                  <button type="submit" disabled={loading}>
+                    {loading && <span className="spinner-border spinner-border-sm"></span>}
+                    <span>{t("login.send_link")}</span>
+                  </button>
+                </div>
+
+                {message && (
+                  <div className="form-group">
+                    <div className="alert alert-danger" role="alert">
+                      {message}
+                    </div>
+                  </div>
+                )}
+              </div>
+
             </Form>
           </Formik>
         </div>

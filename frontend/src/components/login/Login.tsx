@@ -121,7 +121,7 @@ class Login extends Component<Props, State> {
                   <img src="/images/login/user.png" alt="username-img" />
                 </label>
                 <div className="field-input">
-                  <Field name="username" type="text" />
+                  <Field name="username" type="text" placeholder={t("login.username")} className="form-field" />
                   <ErrorMessage name="username" component="div" />
                 </div>
               </div>
@@ -131,7 +131,7 @@ class Login extends Component<Props, State> {
                   <img src="/images/login/password.png" alt="password-img" />
                 </label>
                 <div className="field-input">
-                  <Field name="password" type="password" />
+                  <Field name="password" type="password" placeholder={t("login.password")} className="form-field" />
                   <ErrorMessage name="password" component="div" />
                 </div>
               </div>

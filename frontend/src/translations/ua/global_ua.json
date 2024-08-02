@@ -23,7 +23,17 @@
         "privacy_accepted": "Я прочитав і приймаю політику конфіденційності",
         "terms": "Умови та положення",
         "privacy": "Політика конфіденційності",
-        "forgot_password": "забув пароль"
+        "forgot_password": "забув пароль",
+        "repeat_password": "повторіть пароль",
+        "role_user": "Я конкурент",
+        "role_trainer": "Я професійний тренер",
+        "role_admin": "Я майстер Йода",
+        "recover_password": "відновити пароль",
+        "send_link": "надіслати посилання",
+        "new_password": "новий пароль",
+        "new_password_confirm": "підтвердьте новий пароль",
+        "reset": "надіслати новий пароль",
+        "reset_password": "введіть новий пароль"
     },
     "dictionaries": {
         "dict_category": "категорія вправ",

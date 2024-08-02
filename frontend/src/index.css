@@ -19,9 +19,28 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('../public/images/background.png');
-  background-repeat: repeat;
-  background-size: auto;
+  /* background-image: url('../public/images/background.png'); */
+  background-image: url('../public/images/c8077901-db8b-4150-84a2-3ee68910d1e1.jpg');
+  /* background-repeat: repeat; */
+  background-size: 100%
+}
+
+::placeholder {
+  text-align: center;
+}
+
+.form-field {
+   width: 100%;
+  padding: 6px; /* Dodaj padding dla lepszego wyglądu */
+  box-sizing: border-box; /* Uwzględnia padding i obramowanie w szerokości */
+  border: 3px solid var(--primary-color);   
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  margin-left: auto;
+}
+
+.form-field:active {
+  border: 3px solid var(--accent-color);   
 }
 
 ul {
@@ -88,7 +107,7 @@ ul {
 }
 
 .card-container {
-  max-width: 300px;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -135,6 +154,7 @@ button:hover {
 .field-label img {
   height: 40px;
   padding: 0 20px 0 0;
+  width: 50px;
 }
 
 .field-input {
