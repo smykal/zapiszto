@@ -62,41 +62,53 @@ const ResetPassword: React.FC<Props> = ({ t }) => {
   };
 
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-        <h2>{t("reset_password.title")}</h2>
+    <div>
+      <div>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleResetPassword}
         >
           <Form>
-            <div className="form-group">
-              <label htmlFor="newPassword">{t("reset_password.new_password")}</label>
-              <Field name="newPassword" type="password" className="form-control" />
-              <ErrorMessage name="newPassword" component="div" className="alert alert-danger" />
-            </div>
+            <div className="card card-container">
+              <h2>{t("login.reset_password")}</h2>
+              <div className="field-container">
+                <label htmlFor="newPassword" className="field-label">
+                  <img src="/images/login/password.png" alt="password-img" />
+                </label>
+                <div className="field-input">
+                  <Field name="newPassword" type="password" placeholder={t("login.password")} className="form-field" />
+                  <ErrorMessage name="newPassword" component="div" className="alert alert-danger" />
+                </div>
 
-            <div className="form-group">
-              <label htmlFor="confirmPassword">{t("reset_password.confirm_password")}</label>
-              <Field name="confirmPassword" type="password" className="form-control" />
-              <ErrorMessage name="confirmPassword" component="div" className="alert alert-danger" />
-            </div>
+              </div>
 
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                {loading && <span className="spinner-border spinner-border-sm"></span>}
-                <span>{t("reset_password.reset")}</span>
-              </button>
-            </div>
-
-            {message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {message}
+              <div className="field-container">
+                <label htmlFor="confirmPassword" className="field-label">
+                  <img src="/images/login/password.png" alt="password-img" />
+                </label>
+                <div className="field-input">
+                  <Field name="confirmPassword" type="password" placeholder={t("login.repeat_password")} className="form-field" />
+                  <ErrorMessage name="confirmPassword" component="div" className="alert alert-danger" />
                 </div>
               </div>
-            )}
+
+              <div >
+                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                  {loading && <span className="spinner-border spinner-border-sm"></span>}
+                  <span>{t("reset_password.reset")}</span>
+                </button>
+              </div>
+
+              {message && (
+                <div className="field-container">
+                  <div className="alert alert-danger" role="alert">
+                    {message}
+                  </div>
+                </div>
+              )}
+
+            </div>
           </Form>
         </Formik>
       </div>

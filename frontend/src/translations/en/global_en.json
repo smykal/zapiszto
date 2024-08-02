@@ -23,7 +23,17 @@
         "privacy_accepted": "I have read and accept the privacy policy",
         "terms": "Terms and Conditions",
         "privacy": "Privacy Policy",
-        "forgot_password": "forgot password"
+        "forgot_password": "forgot password",
+        "repeat_password": "repeat password",
+        "role_user": "I am a competitor",
+        "role_trainer": "I am a proffesional trainer",
+        "role_admin": "I am master Yoda",
+        "recover_password": "recover password",
+        "send_link": "send link",
+        "new_password": "new password",
+        "new_password_confirm": "confirm new password",
+        "reset": "send new password",
+        "reset_password": "input new password"
     },
     "dictionaries": {
         "dict_category": "dict category",

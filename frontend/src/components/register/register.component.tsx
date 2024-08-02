@@ -10,6 +10,7 @@ import Terms from "../../constants/Terms";
 import Privacy from "../../constants/Privacy";
 
 
+
 type Props = {
   t: any;
 };
@@ -18,6 +19,7 @@ type State = {
   username: string;
   email: string;
   password: string;
+  repeatPassword: string;
   successful: boolean;
   message: string;
   role: string[];
@@ -42,6 +44,7 @@ class Register extends Component<Props, State> {
       username: "",
       email: "",
       password: "",
+      repeatPassword: "",
       successful: false,
       message: "",
       role: [],
@@ -74,6 +77,9 @@ class Register extends Component<Props, State> {
             val && val.toString().length >= 6 && val.toString().length <= 40
         )
         .required("This field is required!"),
+      repeatPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required("This field is required!"),
       role: Yup.string().required("This field is required!"),
       termsAccepted: Yup.boolean().oneOf([true], "You must accept the terms and conditions"),
       privacyAccepted: Yup.boolean().oneOf([true], "You must accept the privacy policy"),
@@ -85,7 +91,7 @@ class Register extends Component<Props, State> {
     this.setState({ recaptchaToken: token });
   }
 
-  handleRegister(formValue: { username: string; email: string; password: string; role: string; termsAccepted: boolean; privacyAccepted: boolean; recaptchaToken: string | null }) {
+  handleRegister(formValue: { username: string; email: string; password: string; repeatPassword: string; role: string; termsAccepted: boolean; privacyAccepted: boolean; recaptchaToken: string | null }) {
     const { username, email, password, role } = formValue;
 
     this.setState({
@@ -138,6 +144,7 @@ class Register extends Component<Props, State> {
       username: "",
       email: "",
       password: "",
+      repeatPassword: "",
       role: "ROLE_USER",
       termsAccepted: false,
       privacyAccepted: false,
@@ -145,64 +152,86 @@ class Register extends Component<Props, State> {
     };
 
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
-
-          <Formik
-            initialValues={initialValues}
-            validationSchema={this.validationSchema()}
-            onSubmit={this.handleRegister}
-          >
-            {({ setFieldValue }) => (
-              <Form>
-                {!successful && (
-                  <div>
-                    <div className="form-group">
-                      <label htmlFor="username"> {t("login.username")} </label>
-                      <Field name="username" type="text" className="form-control" />
+      <div>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={this.validationSchema()}
+          onSubmit={this.handleRegister}
+        >
+          {({ setFieldValue }) => (
+            <Form>
+              {!successful && (
+                <div className="card card-container">
+                  <div className="field-container">
+                    <label htmlFor="username" className="field-label">
+                      <img src="/images/login/user.png" alt="username-img" />
+                    </label>
+                    <div className="field-input">
+                      <Field name="username" type="text" placeholder={t("login.username")} className="form-field" />
                       <ErrorMessage
                         name="username"
                         component="div"
                         className="alert alert-danger"
                       />
                     </div>
+                  </div>
 
-                    <div className="form-group">
-                      <label htmlFor="email"> {t("login.email")} </label>
-                      <Field name="email" type="email" className="form-control" />
+                  <div className="field-container">
+                    <label htmlFor="email" className="field-label">
+                      <img src="/images/login/email.png" alt="email-img" />
+                    </label>
+                    <div className="field-input">
+                      <Field name="email" type="email" placeholder={t("login.email")} className="form-field" />
                       <ErrorMessage
                         name="email"
                         component="div"
                         className="alert alert-danger"
                       />
                     </div>
+                  </div>
 
-                    <div className="form-group">
-                      <label htmlFor="password"> {t("login.password")} </label>
-                      <Field name="password" type="password" className="form-control" />
+                  <div className="field-container">
+                    <label htmlFor="password" className="field-label">
+                      <img src="/images/login/password.png" alt="password-img" />
+                    </label>
+                    <div className="field-input">
+                      <Field name="password" type="password" placeholder={t("login.password")} className="form-field" />
                       <ErrorMessage
                         name="password"
                         component="div"
                         className="alert alert-danger"
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="role user">
-                        <Field type="radio" name="role" value="user" /> ROLE_USER
-                      </label>
-                      <label htmlFor="role trener">
-                        <Field type="radio" name="role" value="trainer" /> ROLE_TRENER
-                      </label>
-                      <label htmlFor="role admin">
-                        <Field type="radio" name="role" value="admin" /> ROLE_ADMIN
-                      </label>
+                  </div>
+
+                  <div className="field-container">
+                    <label htmlFor="repeatPassword" className="field-label">
+                      <img src="/images/login/password.png" alt="password-img" />
+                    </label>
+                    <div className="field-input">
+                      <Field name="repeatPassword" type="password" placeholder={t("login.repeat_password")} className="form-field" />
+                      <ErrorMessage
+                        name="repeatPassword"
+                        component="div"
+                        className="alert alert-danger"
+                      />
                     </div>
-                    <div className="form-group">
+                  </div>
+
+                  <div>
+                    <label htmlFor="role user">
+                      <Field type="radio" name="role" value="user" /> {t("login.role_user")}
+                    </label>
+                    <label htmlFor="role trainer">
+                      <Field type="radio" name="role" value="trainer" /> {t("login.role_trainer")}
+                    </label>
+                    <label htmlFor="role admin">
+                      <Field type="radio" name="role" value="admin" /> {t("login.role_admin")}
+                    </label>
+                  </div>
+
+                  <div className="field-container">
+                    <div className="field-input">
                       <label>
                         <Field type="checkbox" name="termsAccepted" />
                         <span onClick={this.showTermsModal} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
@@ -215,55 +244,63 @@ class Register extends Component<Props, State> {
                         className="alert alert-danger"
                       />
                     </div>
-                    <div className="form-group">
+                  </div>
+
+                  <div className="field-container">
+                    <div className="field-input">
                       <label>
                         <Field type="checkbox" name="privacyAccepted" />
                         <span onClick={this.showPrivacyModal} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                           {t("login.privacy_accepted")}
                         </span>
+                        <ErrorMessage
+                          name="privacyAccepted"
+                          component="div"
+                          className="alert alert-danger"
+                        />
                       </label>
-                      <ErrorMessage
-                        name="privacyAccepted"
-                        component="div"
-                        className="alert alert-danger"
-                      />
                     </div>
-                    <div className="form-group">
-                      <ReCAPTCHA
-                        sitekey={RECAPTCHA_SITE_KEY}
-                        onChange={(token) => {
-                          setFieldValue("recaptchaToken", token);
-                          this.onRecaptchaChange(token);
-                        }}
-                      />
-                      <ErrorMessage
-                        name="recaptchaToken"
-                        component="div"
-                        className="alert alert-danger"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <button type="submit">{t("login.register")}</button>
-                    </div>
-                  </div>
-                )}
 
-                {message && (
-                  <div className="form-group">
-                    <div
-                      className={
-                        successful ? "alert alert-success" : "alert alert-danger"
-                      }
-                      role="alert"
-                    >
-                      {message}
-                    </div>
+
+
                   </div>
-                )}
-              </Form>
-            )}
-          </Formik>
-        </div>
+
+                  <div className="field-container">
+                    <ReCAPTCHA
+                      sitekey={RECAPTCHA_SITE_KEY}
+                      onChange={(token) => {
+                        setFieldValue("recaptchaToken", token);
+                        this.onRecaptchaChange(token);
+                      }}
+                    />
+                    <ErrorMessage
+                      name="recaptchaToken"
+                      component="div"
+                      className="alert alert-danger"
+                    />
+                  </div>
+
+                  <div >
+                    <button type="submit">{t("login.register")}</button>
+                  </div>
+                </div>
+              )}
+
+              {message && (
+                <div className="field-container">
+                  <div
+                    className={
+                      successful ? "alert alert-success" : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    {message}
+                  </div>
+                </div>
+              )}
+            </Form>
+          )}
+        </Formik>
 
         <Modal show={showTermsModal} onClose={this.hideTermsModal} title={t("login.terms")}>
           <Terms />

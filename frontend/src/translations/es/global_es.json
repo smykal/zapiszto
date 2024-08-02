@@ -23,7 +23,17 @@
         "privacy_accepted": "He leído y acepto la política de privacidad",
         "terms": "Términos y condiciones",
         "privacy": "Política de privacidad",
-        "forgot_password": "olvidó su contraseña"
+        "forgot_password": "olvidó su contraseña",
+        "repeat_password": "repite la contraseña",
+        "role_user": "Soy un competidor",
+        "role_trainer": "Soy un entrenador profesional",
+        "role_admin": "Soy maestro Yoda",
+        "recover_password": "recuperar contraseña",
+        "send_link": "enviar enlace",
+        "new_password": "nueva contraseña",
+        "new_password_confirm": "confirmar nueva contraseña",
+        "reset": "enviar nueva contraseña",
+        "reset_password": "ingresar nueva contraseña"
     },
     "dictionaries": {
         "dict_category": "categoría de ejercicios",
