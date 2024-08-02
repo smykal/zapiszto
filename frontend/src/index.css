@@ -21,8 +21,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-image: url('../public/images/background.png'); */
   background-image: url('../public/images/c8077901-db8b-4150-84a2-3ee68910d1e1.jpg');
-  /* background-repeat: repeat; */
-  background-size: 100%
+  background-size: auto;
 }
 
 ::placeholder {
