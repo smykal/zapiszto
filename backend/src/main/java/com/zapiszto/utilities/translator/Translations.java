@@ -3,11 +3,8 @@ package com.zapiszto.utilities.translator;
 import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
 import java.util.Map;
 import java.util.Optional;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
-@Slf4j
-@Component
+
 public class Translations {
 
   public static String translate(Map<String, String> value, Languages language) {
@@ -22,7 +19,9 @@ public class Translations {
     }
 
     if (result == null) {
-      Optional<String> anyValue = value.values().stream().findFirst();
+      Optional<String> anyValue = value.values()
+          .stream()
+          .findFirst();
       result = anyValue.orElse(null);
     }
 
