@@ -40,15 +40,15 @@ class ExercisesService {
     return axios.get(API_URL + '/get_quantity_type_per_user', { headers: authHeader() })
   }
 
-  postDictQuantityTypePerUser(requestBody: NewDictQuantityType) {
-    return axios.post(API_URL + '/add_quantity_type_per_user', requestBody, { headers: authHeader() })
-    .then(response => {
-      console.log('Odpowiedź z serwera:', response.data);
-    })
-    .catch(error => {
-      console.error('Błąd podczas wysyłania zapytania:', error);
-    });
-  }
+  // postDictQuantityTypePerUser(requestBody: NewDictQuantityType) {
+  //   return axios.post(API_URL + '/add_quantity_type_per_user', requestBody, { headers: authHeader() })
+  //   .then(response => {
+  //     console.log('Odpowiedź z serwera:', response.data);
+  //   })
+  //   .catch(error => {
+  //     console.error('Błąd podczas wysyłania zapytania:', error);
+  //   });
+  // }
 
   deleteDictQuantityType(itemToDelete: string) {
     return axios.delete(API_URL + '/delete_quantity_type_per_user/' + itemToDelete, { headers: authHeader() })

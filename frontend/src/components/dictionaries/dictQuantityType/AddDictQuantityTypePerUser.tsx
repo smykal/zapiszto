@@ -1,22 +1,24 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { DictQuantityType, NewDictQuantityType } from "../../../types/types";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import Service from '../../../services/exercises/';
+import Service from '../../../services/dict/DictQuantityTypeService';
 import * as Yup from 'yup';
+import { LANGUAGES, Language } from "../../../translations/Languages"; 
 
 type Props = {
     dictQuantityType: DictQuantityType[];
     onAddQuantityType: (newQuantityType: DictQuantityType) => void;
 };
 
-class AddDictQuantityTypePerUser extends Component<Props> {
-    postDictQuantityType = (values: { newDictQuantityTypeName: string, newDictQuantityTypeShortcut: string }) => {
-        const { dictQuantityType, onAddQuantityType } = this.props;
+const AddDictQuantityTypePerUser: React.FC<Props> = ({ dictQuantityType, onAddQuantityType }) => {
+    const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES[0].code);
+
+    const postDictQuantityType = (values: { newDictQuantityTypeName: string, newDictQuantityTypeShortcut: string }) => {
         const isNameExisting = dictQuantityType.some(quantityType => quantityType.name === values.newDictQuantityTypeName);
         if (!isNameExisting) {
             const newDictQuantityType: NewDictQuantityType = {
                 id: crypto.randomUUID(), // Generate a new UUID
-                name: values.newDictQuantityTypeName,
+                name: { [selectedLanguage]: values.newDictQuantityTypeName },
                 shortcut: values.newDictQuantityTypeShortcut
             };
             Service.postDictQuantityTypePerUser(newDictQuantityType)
@@ -24,7 +26,9 @@ class AddDictQuantityTypePerUser extends Component<Props> {
                 console.log("Wysłano nowy typ ilości:", values.newDictQuantityTypeName);
                 // Simulate the server response as the service method does not return data
                 const newQuantityType: DictQuantityType = {
-                    ...newDictQuantityType,
+                    id: newDictQuantityType.id,
+                    name: values.newDictQuantityTypeName, // Use the specific name value for the selected language
+                    shortcut: newDictQuantityType.shortcut,
                     dict: "PER_USER",
                     dict_id: crypto.randomUUID(), // Simulate the new dict_id
                 };
@@ -38,45 +42,59 @@ class AddDictQuantityTypePerUser extends Component<Props> {
         }
     };
 
-    render() {
-        const { dictQuantityType } = this.props;
-
-        return (
-            <div>
-                <Formik
-                    initialValues={{
-                        newDictQuantityTypeName: '',
-                        newDictQuantityTypeShortcut: ''
-                    }}
-                    validationSchema={Yup.object({
-                        newDictQuantityTypeName: Yup.string()
-                            .required('Pole jest wymagane')
-                            .notOneOf(dictQuantityType.map(item => item.name), 'Nazwa już istnieje'),
-                        newDictQuantityTypeShortcut: Yup.string()
-                            .required('Pole jest wymagane')
-                    })}
-                    onSubmit={(values, { setSubmitting }) => {
-                        setTimeout(() => {
-                            this.postDictQuantityType(values);
-                            setSubmitting(false);
-                        }, 400);
-                    }}
-                >
-                    {formik => (
-                        <Form>
+    return (
+        <div>
+            <Formik
+                initialValues={{
+                    newDictQuantityTypeName: '',
+                    newDictQuantityTypeShortcut: ''
+                }}
+                validationSchema={Yup.object({
+                    newDictQuantityTypeName: Yup.string()
+                        .required('Pole jest wymagane')
+                        .notOneOf(dictQuantityType.map(item => item.name), 'Nazwa już istnieje'),
+                    newDictQuantityTypeShortcut: Yup.string()
+                        .required('Pole jest wymagane')
+                })}
+                onSubmit={(values, { setSubmitting }) => {
+                    setTimeout(() => {
+                        postDictQuantityType(values);
+                        setSubmitting(false);
+                    }, 400);
+                }}
+            >
+                {formik => (
+                    <Form>
+                        <div>
+                            <label htmlFor="language">Language</label>
+                            <select
+                                id="language"
+                                value={selectedLanguage}
+                                onChange={(e) => setSelectedLanguage(e.target.value)}
+                            >
+                                {LANGUAGES.map((lang: Language) => (
+                                    <option key={lang.code} value={lang.code}>
+                                        {lang.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <label htmlFor="newDictQuantityTypeName">Name</label>
                             <Field name="newDictQuantityTypeName" type="text" className="form-control" />
                             <ErrorMessage name="newDictQuantityTypeName" component="div" className="error" />
-                            
+                        </div>
+                        <div>
+                            <label htmlFor="newDictQuantityTypeShortcut">Shortcut</label>
                             <Field name="newDictQuantityTypeShortcut" type="text" className="form-control" />
                             <ErrorMessage name="newDictQuantityTypeShortcut" component="div" className="error" />
-
-                            <button type="submit" disabled={formik.isSubmitting}>Add</button>
-                        </Form>
-                    )}
-                </Formik>
-            </div>
-        );
-    }
-}
+                        </div>
+                        <button type="submit" disabled={formik.isSubmitting}>Add</button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
+    );
+};
 
 export default AddDictQuantityTypePerUser;

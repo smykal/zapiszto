@@ -92,11 +92,10 @@ export type DictQuantityType = {
                                 shortcut: string
 }
 
-export type NewDictQuantityType = {
-                                    id: string
-                                    name: string,
-                                    shortcut: string
-
+export interface NewDictQuantityType {
+                                      id: string;
+                                      name: { [key: string]: string };
+                                      shortcut: string;
 }
 
 export type DictUnits = {
@@ -238,24 +237,24 @@ export interface ClientProgramMesocycleDto {
 }
 
 export interface ClientProgramMicrocycleDto {
-  orderId: number;
-  sessions: ClientProgramSessionDto[];
+                                            orderId: number;
+                                            sessions: ClientProgramSessionDto[];
 }
 
 export interface ClientProgramSessionDto {
-  orderId: number;
-  exercises: ClientProgramExerciseDto[];
+                                          orderId: number;
+                                          exercises: ClientProgramExerciseDto[];
 }
 
 export interface ClientProgramExerciseDto {
-  orderId: number;
-  purpose: string;
-  category: string;
-  exercise: string;
-  weight: number;
-  weightUnit: string;
-  repetitions: number;
-  repetitionsUnit: string;
+                                          orderId: number;
+                                          purpose: string;
+                                          category: string;
+                                          exercise: string;
+                                          weight: number;
+                                          weightUnit: string;
+                                          repetitions: number;
+                                          repetitionsUnit: string;
 }
 
 export type NewDictBodyTest = {
@@ -439,7 +438,7 @@ export interface ExerciseStats {
 }
 
 export interface CopyParametersDto {
-  weightIncrease: number;
-  weightIncreaseUnit: string;
-  repetitions: number;
+                                  weightIncrease: number;
+                                  weightIncreaseUnit: string;
+                                  repetitions: number;
 }
