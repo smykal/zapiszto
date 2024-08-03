@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.dictionaries.dictQuantityType.service;
 
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.repository.DictQuantityTypeBasicRepository;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePerUser.repository.DictQuantityTypePerUserRepository;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.DictQuantityTypeDto;
@@ -9,7 +10,10 @@ import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePe
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.NewDictQuantityTypeDto;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.serializer.DictQuantityTypeSerializer;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +34,9 @@ public class DictQuantityTypeService {
 
   @Autowired
   DictQuantityTypePerUserRepository dictQuantityTypePerUserRepository;
+
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
 
 
   @Transactional
@@ -88,8 +95,9 @@ public class DictQuantityTypeService {
 
   public List<DictQuantityTypeDto> getDictQuantityType(Long userId) {
     List<DictQuantityTypeEntity> all = dictQuantityTypeRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
 
-    return all.stream().map(DictQuantityTypeSerializer::convert)
+    return all.stream().map(dictQuantityType -> DictQuantityTypeSerializer.convert(dictQuantityType, lang))
         .collect(Collectors.toList());
   }
 

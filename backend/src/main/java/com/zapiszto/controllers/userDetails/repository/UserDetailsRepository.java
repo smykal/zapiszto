@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.userDetails.repository;
 
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
 import com.zapiszto.controllers.userDetails.entity.UserDetailsEntity;
 import java.time.ZonedDateTime;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -67,6 +68,13 @@ public interface UserDetailsRepository extends JpaRepository<UserDetailsEntity, 
       @Param("userBirthdate") ZonedDateTime userBirthdate,
       @Param("userId") long userId
   );
+
+  @Query(nativeQuery = true, value = """
+      select code from dict_languages dl
+      left join user_details ud on dl.id = ud.dict_language_id
+      where ud.user_id = :userId
+      """)
+  Languages userLanguage(@Param("userId") Long userId);
 
   @Modifying
   @Transactional

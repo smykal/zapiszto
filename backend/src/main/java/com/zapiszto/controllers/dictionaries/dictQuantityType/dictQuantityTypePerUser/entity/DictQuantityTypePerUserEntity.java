@@ -1,6 +1,7 @@
 package com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePerUser.entity;
 
 import com.zapiszto.controllers.account.entity.User;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -13,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.HashMap;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "dict_quantity_type_per_user")
@@ -40,8 +44,9 @@ public class DictQuantityTypePerUserEntity {
   @Column(name = "user_id")
   Long user_id;
 
+  @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "name")
-  String name;
+  HashMap<String, String> name;
 
   @Column(name = "shortcut")
   String shortcut;

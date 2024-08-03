@@ -19,7 +19,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-image: url('../public/images/background.png'); */
   background-image: url('../public/images/c8077901-db8b-4150-84a2-3ee68910d1e1.jpg');
   background-size: auto;
 }
@@ -29,9 +28,9 @@ body {
 }
 
 .form-field {
-   width: 100%;
-  padding: 6px; /* Dodaj padding dla lepszego wyglądu */
-  box-sizing: border-box; /* Uwzględnia padding i obramowanie w szerokości */
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
   border: 3px solid var(--primary-color);   
   border-radius: 5px;
   box-shadow: var(--shadow);
@@ -43,7 +42,23 @@ body {
 }
 
 ul {
-  padding: 0px;
+  padding: 0;
+}
+
+tr td:nth-child(even) {
+  background-color: #f2f2f2; /* Color for even elements */
+}
+
+tr td:nth-child(odd) {
+  background-color: #e6e6e6; /* Color for odd elements */
+}
+
+tr td:nth-child(even):hover {
+  background-color: #cccccc; /* Hover color for even elements */
+}
+
+tr td:nth-child(odd):hover {
+  background-color: #b3b3b3; /* Hover color for odd elements */
 }
 
 .navbar {
@@ -51,7 +66,7 @@ ul {
   align-items: center;
   justify-content: space-between;
   background-color: var(--primary-color);
-  padding: 5px 5px 5px 5px;
+  padding: 5px;
   flex-wrap: nowrap;
   box-shadow: var(--shadow);
 }
@@ -94,7 +109,7 @@ ul {
 
 .language-select option {
   color: var(--dark-color);
-  background-color: var(--secondary-color);
+  background-color: var (--secondary-color);
 }
 
 .ml-auto {
@@ -174,6 +189,149 @@ button:hover {
   padding: 0 0 10px 0;
 }
 
+.invitations-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+/* Stylizowanie wszystkich elementów Collapsible */
+
+.Collapsible {
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.Collapsible__trigger {
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.Collapsible__trigger.is-open {
+  color: var(--dark-color);
+}
+
+.Collapsible__contentInner {
+  padding: 10px;
+  background-color: var(--secondary-color);
+}
+
+.invitation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.invitation-item {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: var(--true-white);
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+}
+
+.invitation-item-empty {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: var(--fake-white);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.single-invitation {
+  margin-bottom: 10px;
+}
+
+.invitation-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.invitation-actions button {
+  background-color: var(--primary-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.invitation-actions button:hover {
+  background-color: var(--accent-color);
+}
+
+#clientsList .selected-client {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+  margin: 0;
+  display: block;
+}
+
+#clientsList li {
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#clientsList li:hover .selected-client,
+#clientsList li:hover span {
+  background-color: #221b1b97;
+  color: white;
+  transform: scale(1.05);
+  border-radius: 5px;
+}
+
+#clientsList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#clientsList span {
+  display: block;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#programsList .selected-program {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+  margin: 0;
+  display: block;
+}
+
+#programsList li {
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#programsList li:hover .selected-program,
+#programsList li:hover span {
+  background-color: #221b1b97;
+  color: white;
+  transform: scale(1.05);
+  border-radius: 5px;
+}
+
+#programsList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 4vw;
@@ -206,4 +364,13 @@ button:hover {
   .Collapsible__contentInner {
     font-size: 3vw;
   }
+}
+
+.client-details-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
 }

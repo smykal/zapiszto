@@ -7,8 +7,6 @@ import ApproveInvitation from './ApproveInvitation';
 import RejectInvitation from './RejectInvitation';
 import Collapsible from 'react-collapsible';
 import SendInvitation from "../invitations/SendInvitation";
-
-
 type Props = {
     t: any
 };
@@ -59,65 +57,65 @@ class GetInvitations extends Component<Props, State> {
         const { invitationsSent, invitationsRecived, invitationsAccepted, invitationsRejected } = this.state;
 
         return (
-            <div className="container">
-                <header className="jumbotron">
+            <div className="invitations-container">
+                <header>
                     <h3>{t("invitations.title")}</h3>
                     <SendInvitation />
 
-                    <Collapsible trigger={`${t("invitations.title_sent")} (${invitationsSent.length})`} open={false}>
-                        <ul>
+                    <Collapsible trigger={`${t("invitations.title_sent")} (${invitationsSent.length})`} open={false} className="collapsible" openedClassName="collapsible-opened">
+                        <ul className="invitation-list">
                             {invitationsSent.length > 0 ? (
                                 invitationsSent.map(invitation => (
-                                    <li key={invitation.id} >
+                                    <li key={invitation.id} className="invitation-item">
                                         <SingleInvitation invitation={invitation} />
                                     </li>
                                 ))
                             ) : (
-                                <li>{t("invitations.no_sent")}</li>
+                                <li className="invitation-item-empty">{t("invitations.no_sent")}</li>
                             )}
                         </ul>
                     </Collapsible>
 
-                    <Collapsible trigger={`${t("invitations.title_recived")} (${invitationsRecived.length})`} open={false}>
-                        <ul>
+                    <Collapsible trigger={`${t("invitations.title_recived")} (${invitationsRecived.length})`} open={false} className="collapsible" openedClassName="collapsible-opened">
+                        <ul className="invitation-list">
                             {invitationsRecived.length > 0 ? (
                                 invitationsRecived.map(invitation => (
-                                    <li key={invitation.id}>
+                                    <li key={invitation.id} className="invitation-item">
                                         <SingleInvitation invitation={invitation} />
                                         <ApproveInvitation invitation={invitation} />
                                         <RejectInvitation invitation={invitation} />
                                     </li>
                                 ))
                             ) : (
-                                <li>{t("invitations.no_recived")}</li>
+                                <li className="invitation-item-empty">{t("invitations.no_recived")}</li>
                             )}
                         </ul>
                     </Collapsible>
 
-                    <Collapsible trigger={`${t("invitations.title_approved")} (${invitationsAccepted.length})`} open={false}>
-                        <ul>
+                    <Collapsible trigger={`${t("invitations.title_approved")} (${invitationsAccepted.length})`} open={false} className="collapsible" openedClassName="collapsible-opened">
+                        <ul className="invitation-list">
                             {invitationsAccepted.length > 0 ? (
                                 invitationsAccepted.map(invitation => (
-                                    <li key={invitation.id}>
+                                    <li key={invitation.id} className="invitation-item">
                                         <SingleInvitation invitation={invitation} />
                                     </li>
                                 ))
                             ) : (
-                                <li>{t("invitations.no_approved")}</li>
+                                <li className="invitation-item-empty">{t("invitations.no_approved")}</li>
                             )}
                         </ul>
                     </Collapsible>
 
-                    <Collapsible trigger={`${t("invitations.title_rejected")} (${invitationsRejected.length})`} open={false}>
-                        <ul>
+                    <Collapsible trigger={`${t("invitations.title_rejected")} (${invitationsRejected.length})`} open={false} className="collapsible" openedClassName="collapsible-opened">
+                        <ul className="invitation-list">
                             {invitationsRejected.length > 0 ? (
                                 invitationsRejected.map(invitation => (
-                                    <li key={invitation.id}>
+                                    <li key={invitation.id} className="invitation-item">
                                         <SingleInvitation invitation={invitation} />
                                     </li>
                                 ))
                             ) : (
-                                <li>{t("invitations.no_rejected")}</li>
+                                <li className="invitation-item-empty">{t("invitations.no_rejected")}</li>
                             )}
                         </ul>
                     </Collapsible>

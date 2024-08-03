@@ -279,3 +279,7 @@ databaseChangeLog:
       file: db/changelog/139_modify_table_user.xml
   - include:
       file: db/changelog/140_modify_table_body_params.xml
+  - include:
+      file: db/changelog/141_modify_table_dict_quantity_type_basic.xml
+  - include:
+      file: db/changelog/142_modify_table_dict_quantity_type_per_user.xml

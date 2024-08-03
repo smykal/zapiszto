@@ -1,5 +1,8 @@
 package com.zapiszto.controllers.dictionaries.dictQuantityType.dto;
 
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,6 +20,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NewDictQuantityTypeDto {
   UUID id;
-  String name;
+  HashMap<String, String> name;
   String shortcut;
 }
