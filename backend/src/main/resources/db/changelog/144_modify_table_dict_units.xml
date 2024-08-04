@@ -1,0 +1,82 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="temporary change datatype" author="smykalm">
+        <modifyDataType tableName="dict_units_basic" columnName="name" newDataType="varchar"/>
+        <modifyDataType tableName="dict_units_basic" columnName="shortcut" newDataType="varchar"/>
+    </changeSet>
+
+    <changeSet id="input json kilogram" author="smykalm">
+        <update tableName="dict_units_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                "en": "kilogram",
+                "es": "kilogramo",
+                "it": "chilogrammo",
+                "pl": "kilogram",
+                "ru": "килограмм",
+                "ua": "кілограм"
+                }
+                ]]>
+            </column>
+            <column name="shortcut" type="varchar">
+                <![CDATA[
+                {
+                "en": "kg",
+                "es": "kg",
+                "it": "kg",
+                "pl": "kg",
+                "ru": "кг",
+                "ua": "кг"
+                }
+                ]]>
+            </column>
+            <where>id = 'a1d6f87b-9e5b-4dfb-8b9e-1234567890ab'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="input json pound" author="smykalm">
+        <update tableName="dict_units_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                "en": "pound",
+                "es": "libra",
+                "it": "libbra",
+                "pl": "funt",
+                "ru": "фунт",
+                "ua": "фунт"
+                }
+                ]]>
+            </column>
+            <column name="shortcut" type="varchar">
+                <![CDATA[
+                {
+                "en": "lb",
+                "es": "lb",
+                "it": "lb",
+                "pl": "lb",
+                "ru": "фн",
+                "ua": "фн"
+                }
+                ]]>
+            </column>
+            <where>id = 'b2d7e6f5-8e4a-42b9-af7a-6543210987ef'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="finaly change datatype" author="smykalm">
+        <modifyDataType tableName="dict_units_basic" columnName="name" newDataType="jsonb"/>
+        <modifyDataType tableName="dict_units_basic" columnName="shortcut" newDataType="jsonb"/>
+    </changeSet>
+
+    <changeSet id="finaly change datatype for jsonb" author="smykalm">
+        <modifyDataType tableName="dict_units_per_user" columnName="name" newDataType="jsonb"/>
+        <modifyDataType tableName="dict_units_per_user" columnName="shortcut" newDataType="jsonb"/>
+    </changeSet>
+
+</databaseChangeLog>

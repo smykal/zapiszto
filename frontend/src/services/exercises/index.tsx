@@ -22,23 +22,23 @@ class ExercisesService {
     return axios.delete(API_URL + '/delete_exercise_per_user/' + itemToDelete, { headers: authHeader() })
   }
 
-  getDictUnits() {
-    return axios.get(API_URL + '/get_units_per_user', { headers: authHeader() })
-  }
+  // getDictUnits() {
+  //   return axios.get(API_URL + '/get_units_per_user', { headers: authHeader() })
+  // }
 
-  postDictUnitPerUser(requestBody: NewDictUnit) {
-    return axios.post(API_URL + '/add_units_per_user', requestBody, { headers: authHeader() })
-    .then(response => {
-      console.log('Odpowiedź z serwera:', response.data);
-    })
-    .catch(error => {
-      console.error('Błąd podczas wysyłania zapytania:', error);
-    });
-  }
+  // postDictUnitPerUser(requestBody: NewDictUnit) {
+  //   return axios.post(API_URL + '/add_units_per_user', requestBody, { headers: authHeader() })
+  //   .then(response => {
+  //     console.log('Odpowiedź z serwera:', response.data);
+  //   })
+  //   .catch(error => {
+  //     console.error('Błąd podczas wysyłania zapytania:', error);
+  //   });
+  // }
 
-  getDictQuantityType() {
-    return axios.get(API_URL + '/get_quantity_type_per_user', { headers: authHeader() })
-  }
+  // getDictQuantityType() {
+  //   return axios.get(API_URL + '/get_quantity_type_per_user', { headers: authHeader() })
+  // }
 
   // postDictQuantityTypePerUser(requestBody: NewDictQuantityType) {
   //   return axios.post(API_URL + '/add_quantity_type_per_user', requestBody, { headers: authHeader() })

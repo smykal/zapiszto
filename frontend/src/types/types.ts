@@ -108,8 +108,8 @@ export type DictUnits = {
 
 export type NewDictUnit = {
                             id: string
-                            name: string,
-                            shortcut: string
+                            name: { [key: string]: string };
+                            shortcut: { [key: string]: string };
 }
 
 export type NewDictCategory = {

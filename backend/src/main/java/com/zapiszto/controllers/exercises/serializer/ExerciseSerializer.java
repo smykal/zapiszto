@@ -217,20 +217,20 @@ public class ExerciseSerializer implements SerializerCommon {
       DictUnitsEntity dictUnitsEntity = unitEntity.get();
       if (dictUnitsEntity.getDictUnitsBasicEntity() != null) {
         String shortcut = dictUnitsEntity.getDictUnitsBasicEntity()
-            .getShortcut();
+            .getShortcut().get("en");
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
         return dictUnitsEntity.getDictUnitsBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (dictUnitsEntity.getDictUnitsPerUserEntity() != null) {
         String shortcut = dictUnitsEntity.getDictUnitsPerUserEntity()
-            .getShortcut();
+            .getShortcut().get("en");
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
         return dictUnitsEntity.getDictUnitsPerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     }
     return null;
