@@ -1,8 +1,6 @@
-// src/components/dictEquipment/ShowDictEquipment.tsx
-
 import React, { useState, useEffect } from "react";
-import { DictEquipment } from "../../../types/types"; 
-import DictEquipmentService from '../../../services/dict/DictEquipmentService'
+import { DictEquipment } from "../../../types/types";
+import DictEquipmentService from '../../../services/dict/DictEquipmentService';
 import AddDictEquipmentPerUser from "./AddDictEquipmentPerUser";
 import Options from "./Options";
 import { useTranslation } from "react-i18next";
