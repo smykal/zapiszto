@@ -1,0 +1,67 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="temporary change datatype" author="smykalm">
+        <modifyDataType tableName="dict_session_part_basic" columnName="name" newDataType="varchar"/>
+    </changeSet>
+
+    <changeSet id="input json warm up" author="smykalm">
+        <update tableName="dict_session_part_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                "en": "warm up",
+                "es": "calentamiento",
+                "it": "riscaldamento",
+                "pl": "rozgrzewka",
+                "ru": "разминка",
+                "ua": "розминка"
+                }
+                ]]>
+            </column>
+            <where>id = '550e8400-e29b-41d4-a716-446655440000'</where>
+        </update>
+        <update tableName="dict_session_part_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                "en": "general",
+                "es": "general",
+                "it": "generale",
+                "pl": "ogólny",
+                "ru": "общий",
+                "ua": "загальний"
+                }
+                ]]>
+            </column>
+            <where>id = '550e8400-e29b-41d4-a716-446655440001'</where>
+        </update>
+        <update tableName="dict_session_part_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                "en": "cool down",
+                "es": "enfriamiento",
+                "it": "defaticamento",
+                "pl": "schładzanie",
+                "ru": "заминка",
+                "ua": "заміна"
+                }
+                ]]>
+            </column>
+            <where>id = '550e8400-e29b-41d4-a716-446655440002'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="finaly change datatype" author="smykalm">
+        <modifyDataType tableName="dict_session_part_basic" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+    <changeSet id="finaly change datatype for jsonb" author="smykalm">
+        <modifyDataType tableName="dict_session_part_per_user" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+</databaseChangeLog>

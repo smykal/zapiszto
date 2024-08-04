@@ -1,26 +1,35 @@
 package com.zapiszto.controllers.dictionaries.dictSessionPart.serializer;
 
 import com.zapiszto.controllers.common.SerializerCommon;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.dto.DictSessionPartDto;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionPartEntity;
+import com.zapiszto.utilities.translator.Translations;
 
-public class DictSessionPartSerializer implements SerializerCommon {
+public class DictSessionPartSerializer extends Translations implements SerializerCommon {
 
-  public static DictSessionPartDto convert(DictSessionPartEntity dictSessionPart) {
-    if(dictSessionPart.getDictSessionPartBasicEntity() != null) {
-      return DictSessionPartDto.builder()
-          .id(dictSessionPart.getId())
-          .dict(BASIC)
-          .dict_id(dictSessionPart.getDictSessionPartBasicEntity().getId())
-          .name(dictSessionPart.getDictSessionPartBasicEntity().getName())
-          .build();
+  public static DictSessionPartDto convert(DictSessionPartEntity dictSessionPart, Languages language) {
+    if (dictSessionPart.getDictSessionPartBasicEntity() != null) {
+      var name = dictSessionPart.getDictSessionPartBasicEntity()
+          .getName();
+
+      return new DictSessionPartDto(
+          dictSessionPart.getId(),
+          BASIC,
+          dictSessionPart.getDictSessionPartBasicEntity()
+              .getId(),
+          translate(name, language)
+      );
     } else {
-      return DictSessionPartDto.builder()
-          .id(dictSessionPart.getId())
-          .dict(PER_USER)
-          .dict_id(dictSessionPart.getDictSessionPartPerUserEntity().getId())
-          .name(dictSessionPart.getDictSessionPartPerUserEntity().getName())
-          .build();
+      var name = dictSessionPart.getDictSessionPartBasicEntity()
+          .getName();
+      return new DictSessionPartDto(
+          dictSessionPart.getId(),
+          PER_USER,
+          dictSessionPart.getDictSessionPartPerUserEntity()
+              .getId(),
+          translate(name, language)
+      );
     }
   }
 }

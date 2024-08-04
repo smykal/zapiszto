@@ -287,3 +287,5 @@ databaseChangeLog:
       file: db/changelog/143_modify_table_dict_quantity_type_basic.xml
   - include:
       file: db/changelog/144_modify_table_dict_units.xml
+  - include:
+      file: db/changelog/145_modify_table_dict_session_part.xml

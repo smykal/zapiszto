@@ -147,10 +147,10 @@ public class ExerciseSerializer implements SerializerCommon {
       DictSessionPartEntity exercise = sessionPartOptional.get();
       if (exercise.getDictSessionPartBasicEntity() != null) {
         return exercise.getDictSessionPartBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (exercise.getDictSessionPartPerUserEntity() != null) {
         return exercise.getDictSessionPartPerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     }
     return null;
