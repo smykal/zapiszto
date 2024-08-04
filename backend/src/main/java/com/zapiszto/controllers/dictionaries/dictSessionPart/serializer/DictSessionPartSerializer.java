@@ -20,6 +20,7 @@ public class DictSessionPartSerializer extends Translations implements Serialize
               .getId(),
           translate(name, language)
       );
+
     } else {
       var name = dictSessionPart.getDictSessionPartBasicEntity()
           .getName();
