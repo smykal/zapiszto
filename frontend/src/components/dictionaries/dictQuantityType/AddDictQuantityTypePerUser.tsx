@@ -19,7 +19,7 @@ const AddDictQuantityTypePerUser: React.FC<Props> = ({ dictQuantityType, onAddQu
             const newDictQuantityType: NewDictQuantityType = {
                 id: crypto.randomUUID(), // Generate a new UUID
                 name: { [selectedLanguage]: values.newDictQuantityTypeName },
-                shortcut: values.newDictQuantityTypeShortcut
+                shortcut: { [selectedLanguage]: values.newDictQuantityTypeShortcut }
             };
             Service.postDictQuantityTypePerUser(newDictQuantityType)
             .then(() => {
@@ -28,7 +28,7 @@ const AddDictQuantityTypePerUser: React.FC<Props> = ({ dictQuantityType, onAddQu
                 const newQuantityType: DictQuantityType = {
                     id: newDictQuantityType.id,
                     name: values.newDictQuantityTypeName, // Use the specific name value for the selected language
-                    shortcut: newDictQuantityType.shortcut,
+                    shortcut: values.newDictQuantityTypeShortcut,
                     dict: "PER_USER",
                     dict_id: crypto.randomUUID(), // Simulate the new dict_id
                 };

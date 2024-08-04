@@ -42,9 +42,9 @@ public class DictQuantityTypeService {
   @Transactional
   public void addDictQuantityType(NewDictQuantityTypeDto newDictUnitDto, Long userId) {
     var item = DictQuantityTypePerUserEntity.builder()
-        .id(newDictUnitDto.getId())
-        .name(newDictUnitDto.getName())
-        .shortcut(newDictUnitDto.getShortcut())
+        .id(newDictUnitDto.id())
+        .name(newDictUnitDto.name())
+        .shortcut(newDictUnitDto.shortcut())
         .user_id(userId)
         .build();
 
@@ -52,8 +52,8 @@ public class DictQuantityTypeService {
 
     log.info("add new item to dict_QuantityType_per_user: id {}, value {}, shortcut {}, user {}",
         dictQuantityTypePerUserEntity.getId(),
-        newDictUnitDto.getName(),
-        newDictUnitDto.getShortcut(),
+        newDictUnitDto.name(),
+        newDictUnitDto.shortcut(),
         userId);
 
     DictQuantityTypeEntity dictQuantityTypeEntity = DictQuantityTypeEntity.builder()
@@ -71,16 +71,16 @@ public class DictQuantityTypeService {
   @Transactional
   public void addDictQuantityType(NewDictQuantityTypeDto newDictUnitDto) {
     var item = DictQuantityTypeBasicEntity.builder()
-        .name(newDictUnitDto.getName())
-        .shortcut(newDictUnitDto.getShortcut())
+        .name(newDictUnitDto.name())
+        .shortcut(newDictUnitDto.shortcut())
         .build();
 
     DictQuantityTypeBasicEntity dictQuantityTypeBasicEntity = dictQuantityTypeBasicRepository.save(item);
 
     log.info("add new item to dict_QuantityType_basic: id {}, value {}, shortcut {}",
         dictQuantityTypeBasicEntity.getId(),
-        newDictUnitDto.getName(),
-        newDictUnitDto.getShortcut());
+        newDictUnitDto.name(),
+        newDictUnitDto.shortcut());
 
     DictQuantityTypeEntity dictQuantityTypeEntity = DictQuantityTypeEntity.builder()
         .dictQuantityTypeBasicEntity(dictQuantityTypeBasicEntity)
@@ -126,5 +126,4 @@ public class DictQuantityTypeService {
       throw new RuntimeException("Cannot delete dict quantity type due to data integrity violation");
     }
   }
-
 }

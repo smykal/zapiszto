@@ -283,3 +283,5 @@ databaseChangeLog:
       file: db/changelog/141_modify_table_dict_quantity_type_basic.xml
   - include:
       file: db/changelog/142_modify_table_dict_quantity_type_per_user.xml
+  - include:
+      file: db/changelog/143_modify_table_dict_quantity_type_basic.xml

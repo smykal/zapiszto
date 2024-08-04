@@ -95,8 +95,8 @@ export type DictQuantityType = {
 export interface NewDictQuantityType {
                                       id: string;
                                       name: { [key: string]: string };
-                                      shortcut: string;
-}
+                                      shortcut: { [key: string]: string };
+                                    }
 
 export type DictUnits = {
                           id: string

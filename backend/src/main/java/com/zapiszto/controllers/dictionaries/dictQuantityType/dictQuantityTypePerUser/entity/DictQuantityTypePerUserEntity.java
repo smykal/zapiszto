@@ -48,8 +48,9 @@ public class DictQuantityTypePerUserEntity {
   @Column(name = "name")
   HashMap<String, String> name;
 
+  @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "shortcut")
-  String shortcut;
+  HashMap<String, String> shortcut;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)

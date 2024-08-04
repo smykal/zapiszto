@@ -187,7 +187,7 @@ public class ExerciseSerializer implements SerializerCommon {
       DictQuantityTypeEntity quantityType = quantityTypeEntity.get();
       if (quantityType.getDictQuantityTypeBasicEntity() != null) {
         String shortcut = quantityType.getDictQuantityTypeBasicEntity()
-            .getShortcut();
+            .getShortcut().get("en");
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
@@ -195,7 +195,7 @@ public class ExerciseSerializer implements SerializerCommon {
             .getName().get("en");
       } else if (quantityType.getDictQuantityTypePerUserEntity() != null) {
         String shortcut = quantityType.getDictQuantityTypePerUserEntity()
-            .getShortcut();
+            .getShortcut().get("en");
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }

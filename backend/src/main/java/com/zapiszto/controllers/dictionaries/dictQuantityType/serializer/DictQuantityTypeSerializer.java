@@ -6,31 +6,37 @@ import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.DictQuantityTy
 import com.zapiszto.controllers.dictionaries.dictQuantityType.entity.DictQuantityTypeEntity;
 import com.zapiszto.utilities.translator.Translations;
 
-public class DictQuantityTypeSerializer extends Translations {
-  private static final String PER_USER = "PER_USER";
-  private static final String BASIC = "BASIC";
+public class DictQuantityTypeSerializer extends Translations implements SerializerCommon {
 
   public static DictQuantityTypeDto convert(DictQuantityTypeEntity dictQuantityType, Languages language) {
-    if(dictQuantityType.getDictQuantityTypeBasicEntity() != null) {
-      var quantityType = dictQuantityType.getDictQuantityTypeBasicEntity().getName();
+    if (dictQuantityType.getDictQuantityTypeBasicEntity() != null) {
+      var name = dictQuantityType.getDictQuantityTypeBasicEntity()
+          .getName();
+      var shortcut = dictQuantityType.getDictQuantityTypeBasicEntity()
+          .getShortcut();
 
-      return DictQuantityTypeDto.builder()
-          .id(dictQuantityType.getId())
-          .dict(BASIC)
-          .dict_id(dictQuantityType.getDictQuantityTypeBasicEntity().getId())
-          .name(translate(quantityType, language))
-          .shortcut(dictQuantityType.getDictQuantityTypeBasicEntity().getShortcut())
-          .build();
+      return new DictQuantityTypeDto(
+          dictQuantityType.getId(),
+          BASIC,
+          dictQuantityType.getDictQuantityTypeBasicEntity()
+              .getId(),
+          translate(name, language),
+          translate(shortcut, language)
+      );
     } else {
-      var quantityType = dictQuantityType.getDictQuantityTypePerUserEntity().getName();
+      var name = dictQuantityType.getDictQuantityTypePerUserEntity()
+          .getName();
+      var shortcut = dictQuantityType.getDictQuantityTypePerUserEntity()
+          .getShortcut();
 
-      return DictQuantityTypeDto.builder()
-          .id(dictQuantityType.getId())
-          .dict(PER_USER)
-          .dict_id(dictQuantityType.getDictQuantityTypePerUserEntity().getId())
-          .name(translate(quantityType, language))
-          .shortcut(dictQuantityType.getDictQuantityTypePerUserEntity().getShortcut())
-          .build();
+      return new DictQuantityTypeDto(
+          dictQuantityType.getId(),
+          PER_USER,
+          dictQuantityType.getDictQuantityTypePerUserEntity()
+              .getId(),
+          translate(name, language),
+          translate(shortcut, language)
+      );
     }
   }
 }

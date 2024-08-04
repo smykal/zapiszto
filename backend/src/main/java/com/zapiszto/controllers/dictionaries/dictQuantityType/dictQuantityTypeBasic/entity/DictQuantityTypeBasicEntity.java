@@ -39,6 +39,7 @@ public class DictQuantityTypeBasicEntity {
   @Column(name = "name")
   HashMap<String, String> name;
 
+  @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "shortcut")
-  String shortcut;
+  HashMap<String, String> shortcut;
 }
