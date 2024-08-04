@@ -427,8 +427,8 @@ export interface DictEquipment {
 
 export interface NewDictEquipment {
                                     id: string;
-                                    name: string;
-}
+                                    name: { [key: string]: string };
+                                  }
 
 export interface ExerciseStats {
                                 orderId: number;

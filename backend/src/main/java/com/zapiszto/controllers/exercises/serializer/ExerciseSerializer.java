@@ -246,10 +246,10 @@ public class ExerciseSerializer implements SerializerCommon {
       DictEquipmentEntity exercise = exerciseOptional.get();
       if (exercise.getDictEquipmentBasicEntity() != null) {
         return exercise.getDictEquipmentBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (exercise.getDictEquipmentPerUserEntity() != null) {
         return exercise.getDictEquipmentPerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     }
     return null;

@@ -289,3 +289,5 @@ databaseChangeLog:
       file: db/changelog/144_modify_table_dict_units.xml
   - include:
       file: db/changelog/145_modify_table_dict_session_part.xml
+  - include:
+      file: db/changelog/146_modify_table_dict_equipment.xml

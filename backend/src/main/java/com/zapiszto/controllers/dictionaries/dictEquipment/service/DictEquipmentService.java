@@ -9,6 +9,8 @@ import com.zapiszto.controllers.dictionaries.dictEquipment.dto.NewDictEquipmentD
 import com.zapiszto.controllers.dictionaries.dictEquipment.entity.DictEquipmentEntity;
 import com.zapiszto.controllers.dictionaries.dictEquipment.repository.DictEquipmentRepository;
 import com.zapiszto.controllers.dictionaries.dictEquipment.serializer.DictEquipmentSerializer;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +30,12 @@ public class DictEquipmentService {
   @Autowired
   DictEquipmentPerUserRepository dictEquipmentPerUserRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
   public void addDictEquipment(NewDictEquipmentDto newDictEquipmentDto, Long userId) {
     var item = DictEquipmentPerUserEntity.builder()
-        .name(newDictEquipmentDto.getName())
+        .name(newDictEquipmentDto.name())
         .user_id(userId)
         .build();
 
@@ -39,7 +44,7 @@ public class DictEquipmentService {
     log.info(
         "add new item to dict_units_per_user: id {}, value {}, user {}",
         dictEquipmentPerUserEntity.getId(),
-        newDictEquipmentDto.getName(),
+        newDictEquipmentDto.name(),
         userId
     );
 
@@ -59,7 +64,7 @@ public class DictEquipmentService {
 
   public void addDictEquipment(NewDictEquipmentDto newDictEquipmentDto) {
     var item = DictEquipmentBasicEntity.builder()
-        .name(newDictEquipmentDto.getName())
+        .name(newDictEquipmentDto.name())
         .build();
 
     DictEquipmentBasicEntity dictEquipmentBasicEntity = dictEquipmentBasicRepository.save(item);
@@ -67,7 +72,7 @@ public class DictEquipmentService {
     log.info(
         "add new item to dict_units_basic: id {}, value {}, shortcut {}",
         dictEquipmentBasicEntity.getId(),
-        newDictEquipmentDto.getName()
+        newDictEquipmentDto.name()
     );
 
     DictEquipmentEntity dictEquipmentEntity = DictEquipmentEntity.builder()
@@ -86,9 +91,10 @@ public class DictEquipmentService {
 
   public List<DictEquipmentDto> getDictEquipment(Long userId) {
     List<DictEquipmentEntity> all = dictEquipmentRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
 
     return all.stream()
-        .map(DictEquipmentSerializer::convert)
+        .map(dictEquipmentEntity -> DictEquipmentSerializer.convert(dictEquipmentEntity, lang))
         .collect(Collectors.toList());
 
   }
@@ -103,7 +109,6 @@ public class DictEquipmentService {
       log.error("Error deleting dict unit: {}", e.getMessage());
       throw new RuntimeException("Cannot delete dict unit due to data integrity violation");
     }
-
   }
 
   public String deleteDictEquipmentBasic(Long userId, int itemToDelete) {
