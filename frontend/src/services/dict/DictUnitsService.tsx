@@ -5,17 +5,17 @@ import { API_URL } from '../../constants/api'
 
 class DictUnitsService {
     getDictUnits() {
-        return axios.get(API_URL + '/get_units_per_user', { headers: authHeader() })
+        return axios.get(API_URL + '/get_units_per_user', { headers: authHeader() });
     }
 
     postDictUnitPerUser(requestBody: NewDictUnit) {
         return axios.post(API_URL + '/add_units_per_user', requestBody, { headers: authHeader() })
-            .then(response => {
-                console.log('Odpowiedź z serwera:', response.data);
-            })
-            .catch(error => {
-                console.error('Błąd podczas wysyłania zapytania:', error);
-            });
+        .then(response => {
+            console.log('Odpowiedź z serwera:', response.data);
+        })
+        .catch(error => {
+            console.error('Błąd podczas wysyłania zapytania:', error);
+        });
     }
 
     deleteDictUnits(itemToDelete: string) {

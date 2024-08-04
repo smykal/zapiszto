@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { DictExercises, DictQuantityType, DictUnits, NewExercise } from '../../../../../types/types';
-import Service from '../../../../../services/exercises';
+import ExerciseService from '../../../../../services/exercises';
+import DictUnitsService from '../../../../../services/dict/DictUnitsService';
+import DictQuantityTypeService from '../../../../../services/dict/DictQuantityTypeService';
 import { Formik, Form, Field } from 'formik';
 import { withTranslation } from "react-i18next";
 
@@ -33,7 +35,7 @@ class AddExercise extends Component<Props, State> {
     }
 
     loadDictExercises() {
-        Service.getDictExercises()
+        ExerciseService.getDictExercises()
             .then(response => {
                 this.setState({ dictExercises: response.data });
             })
@@ -43,7 +45,7 @@ class AddExercise extends Component<Props, State> {
     }
 
     loadDictUnits() {
-        Service.getDictUnits()
+        DictUnitsService.getDictUnits()
             .then(response => {
                 this.setState({ dictUnits: response.data });
             })
@@ -53,7 +55,7 @@ class AddExercise extends Component<Props, State> {
     }
 
     loadDictQuantityTypes() {
-        Service.getDictQuantityType()
+        DictQuantityTypeService.getDictQuantityType()
             .then(response => {
                 this.setState({ dictQuantityTypes: response.data });
             })
@@ -63,7 +65,7 @@ class AddExercise extends Component<Props, State> {
     }
 
     postExercise = (exercise: NewExercise) => {
-        Service.postExercise(exercise)
+        ExerciseService.postExercise(exercise)
             .then(() => window.location.reload())
             .catch(error => console.error('Error posting exercise:', error));
     };

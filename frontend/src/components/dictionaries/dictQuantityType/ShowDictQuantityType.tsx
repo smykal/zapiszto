@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { DictQuantityType } from "../../../types/types";
-import Service from '../../../services/exercises';
+import Service from '../../../services/dict/DictQuantityTypeService';
 import AddDictQuantityTypePerUser from "./AddDictQuantityTypePerUser";
 import Options from './Options';
 

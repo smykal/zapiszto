@@ -1,6 +1,7 @@
+// components/ShowDictUnits.tsx
 import React, { useState, useEffect } from "react";
 import { DictUnits } from "../../../types/types";
-import Service from '../../../services/exercises';
+import Service from '../../../services/dict/DictUnitsService';
 import AddDictUnitPerUser from "./AddDictUnitPerUser";
 import Options from "./Options";
 import { useTranslation } from "react-i18next";
@@ -81,7 +82,7 @@ const ShowDictUnits: React.FC = () => {
                     {filteredUnits.map((row) => (
                         <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
                             <td>{row.id}</td>
-                            <td>{row.name}</td>
+                            <td>{row.name}</td> 
                             <td>{row.shortcut}</td>
                             <td>{row.dict === "PER_USER" ? <Options item={row.dict_id} onDeleteUnit={handleDeleteUnit} /> : t("table.menu_unavailable")}</td>
                         </tr>
