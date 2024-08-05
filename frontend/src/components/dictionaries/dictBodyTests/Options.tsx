@@ -3,13 +3,13 @@ import Service from '../../../services/dict/DictBodyTestService';
 import { withTranslation } from "react-i18next";
 
 type Props = {
-    item: number;
+    item: string;  // Change type to string for UUID
     t: any;
-    onDelete: (id: number) => void;
+    onDelete: (id: string) => void;  // Change parameter type to string for UUID
 };
 
 const Options: React.FC<Props> = ({ item, t, onDelete }) => {
-    const deleteBodyTest = (itemId: number) => {
+    const deleteBodyTest = (itemId: string) => {  // Change parameter type to string for UUID
         Service.deleteDictBodyTest(itemId)
             .then(() => {
                 onDelete(itemId);

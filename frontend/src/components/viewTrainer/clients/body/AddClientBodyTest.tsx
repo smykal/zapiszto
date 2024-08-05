@@ -26,20 +26,20 @@ const AddClientBodyTest: React.FC<ClientDetailsProps> = ({ client }) => {
 
     // Walidacja za pomocą Yup
     const validationSchema = Yup.object({
-        dictBodyTestId: Yup.number().required(t('validation.this_field_is_required')),
+        dictBodyTestId: Yup.string().required(t('validation.this_field_is_required')),  // Change to string
         result: Yup.string().required(t('validation.this_field_is_required')),
     });
 
     // Inicjalne wartości formularza
     const initialValues = {
-        id: crypto.randomUUID(), // Używamy crypto.randomUUID() bez toString
+        id: crypto.randomUUID(),
         clientId: client.id,
-        dictBodyTestId: 0, // Ustawiamy na 0 jako domyślną wartość
+        dictBodyTestId: '',  // Change to empty string
         result: ''
     };
 
     // Obsługa submita formularza
-    const handleSubmit = (values: { id: string; clientId: string; dictBodyTestId: number; result: string }) => {
+    const handleSubmit = (values: { id: string; clientId: string; dictBodyTestId: string; result: string }) => {
         const requestBody: NewClientBodyTest = {
             id: values.id,
             clientId: values.clientId,
@@ -65,10 +65,10 @@ const AddClientBodyTest: React.FC<ClientDetailsProps> = ({ client }) => {
             >
                 {({ setFieldValue }) => (
                     <Form>
-                        <div className="form-row" >
+                        <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="dictBodyTestId">{t('dictionaries.body_tests_name')}</label>
-                                <Field as="select" name="dictBodyTestId" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFieldValue('dictBodyTestId', Number(e.target.value))}>
+                                <Field as="select" name="dictBodyTestId" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFieldValue('dictBodyTestId', e.target.value)}>
                                     <option value="">{t('dictionaries.select_body_test')}</option>
                                     {dictBodyTests.map(test => (
                                         <option key={test.id} value={test.id}>

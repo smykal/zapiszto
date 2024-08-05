@@ -44,14 +44,14 @@ const ShowDictBodyTest: React.FC = () => {
             ...prevBodyTests,
             {
                 ...newBodyTest,
-                id: Math.max(...prevBodyTests.map(test => test.id)) + 1,
+                id: crypto.randomUUID(),  // Generate a UUID for new test
                 dict: "PER_USER",
-                dict_id: Math.max(...prevBodyTests.map(test => test.dict_id)) + 1
+                dict_id: crypto.randomUUID(),  // Generate a UUID for dict_id
             }
         ]);
     };
 
-    const handleDeleteBodyTest = (id: number) => {
+    const handleDeleteBodyTest = (id: string) => {  // Change parameter type to string for UUID
         setDictBodyTest(prevBodyTests => prevBodyTests.filter(test => test.id !== id));
     };
 
