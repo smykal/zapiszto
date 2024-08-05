@@ -116,7 +116,7 @@
 					<!-- <url>http://localhost:8080/</url>-->
 					<!-- provide your auth token via SENTRY_AUTH_TOKEN environment variable -->
 					<!-- <authToken>${env.SENTRY_AUTH_TOKEN}</authToken>-->
-					<authToken>"sntrys_eyJpYXQiOjE3MjEyNDk3MzkuMTY2OTA2LCJ1cmwiOiJodHRwczovL3NlbnRyeS5pbyIsInJlZ2lvbl91cmwiOiJodHRwczovL2RlLnNlbnRyeS5pbyIsIm9yZyI6InNteWthbG0ifQ"</authToken>
+					<authToken>sntrys_eyJpYXQiOjE3MjEyNDk3MzkuMTY2OTA2LCJ1cmwiOiJodHRwczovL3NlbnRyeS5pbyIsInJlZ2lvbl91cmwiOiJodHRwczovL2RlLnNlbnRyeS5pbyIsIm9yZyI6InNteWthbG0ifQ</authToken>
 <!--					<authToken>"51d0095a447c11ef9f1c3a31d1e8eb9a"</authToken>-->
 				</configuration>
 				<executions>
