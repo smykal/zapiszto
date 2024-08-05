@@ -258,9 +258,9 @@ export interface ClientProgramExerciseDto {
 }
 
 export type NewDictBodyTest = {
-                                name: string,
-                                description: string,
-                                purpose: string
+                                name: { [key: string]: string };
+                                description: { [key: string]: string };
+                                purpose: { [key: string]: string };
 }
 
 export type DictBodyTest = {

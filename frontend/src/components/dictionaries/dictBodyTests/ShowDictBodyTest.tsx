@@ -39,7 +39,7 @@ const ShowDictBodyTest: React.FC = () => {
         return false;
     });
 
-    const handleAddBodyTest = (newBodyTest: NewDictBodyTest) => {
+    const handleAddBodyTest = (newBodyTest: DictBodyTest) => {
         setDictBodyTest(prevBodyTests => [
             ...prevBodyTests,
             {
