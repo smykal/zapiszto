@@ -35,10 +35,10 @@ public class DictBodyTestService {
   public DictBodyTestDto addDictBodyTest(NewDictBodyTestDto newDictBodyTestDto, Long userId) {
     var item = DictBodyTestPerUserEntity.builder()
         .id(UUID.randomUUID())
-        .name(newDictBodyTestDto.getName())
+        .name(newDictBodyTestDto.name())
         .user_id(userId)
-        .description(newDictBodyTestDto.getDescription())
-        .purpose(newDictBodyTestDto.getPurpose())
+        .description(newDictBodyTestDto.description())
+        .purpose(newDictBodyTestDto.purpose())
         .build();
 
     DictBodyTestPerUserEntity dictBodyTestPerUserEntity = dictBodyTestPerUserRepository.save(item);
@@ -46,7 +46,7 @@ public class DictBodyTestService {
     log.info(
         "add new item to dict_body_test_per_user: id {}, value {}, user {}",
         dictBodyTestPerUserEntity.getId(),
-        newDictBodyTestDto.getName(),
+        newDictBodyTestDto.name(),
         userId
     );
 
@@ -71,8 +71,8 @@ public class DictBodyTestService {
   @Transactional
   public void addDictBodyTest(NewDictBodyTestDto newDictBodyTestDto) {
     var item = DictBodyTestBasicEntity.builder()
-        .name(newDictBodyTestDto.getName())
-        .description(newDictBodyTestDto.getDescription())
+        .name(newDictBodyTestDto.name())
+        .description(newDictBodyTestDto.description())
         .build();
 
     DictBodyTestBasicEntity dictBodyTestBasicEntity =
@@ -81,7 +81,7 @@ public class DictBodyTestService {
     log.info(
         "add new item to dict_BodyTest_basic: id {}, value {}",
         dictBodyTestBasicEntity.getId(),
-        newDictBodyTestDto.getName()
+        newDictBodyTestDto.name()
     );
 
     DictBodyTestEntity dictBodyTestEntity = DictBodyTestEntity.builder()

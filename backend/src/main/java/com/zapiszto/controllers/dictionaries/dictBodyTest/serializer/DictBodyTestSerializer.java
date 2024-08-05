@@ -9,30 +9,30 @@ public class DictBodyTestSerializer implements SerializerCommon {
   public static DictBodyTestDto convert(DictBodyTestEntity dictBodyTestEntity) {
 
     if (dictBodyTestEntity.getDictBodyTestBasicEntity() != null) {
-      return DictBodyTestDto.builder()
-          .id(dictBodyTestEntity.getId())
-          .dict(BASIC)
-          .dict_id(dictBodyTestEntity.getDictBodyTestBasicEntity()
-              .getId().toString())
-          .name(dictBodyTestEntity.getDictBodyTestBasicEntity()
-              .getName())
-          .description(dictBodyTestEntity.getDictBodyTestBasicEntity()
-              .getDescription())
-          .purpose(dictBodyTestEntity.getDictBodyTestBasicEntity().getPurpose())
-          .build();
+      return new DictBodyTestDto(
+          dictBodyTestEntity.getId(),
+          BASIC,
+          dictBodyTestEntity.getDictBodyTestBasicEntity()
+              .getId().toString(),
+          dictBodyTestEntity.getDictBodyTestBasicEntity()
+              .getName(),
+          dictBodyTestEntity.getDictBodyTestBasicEntity()
+              .getDescription(),
+          dictBodyTestEntity.getDictBodyTestBasicEntity().getPurpose()
+      );
     } else {
-      return DictBodyTestDto.builder()
-          .id(dictBodyTestEntity.getId())
-          .dict(PER_USER)
-          .dict_id(dictBodyTestEntity.getDictBodyTestPerUserEntity()
-              .getId().toString())
-          .name(dictBodyTestEntity.getDictBodyTestPerUserEntity()
-              .getName())
-          .description(dictBodyTestEntity.getDictBodyTestPerUserEntity()
-              .getDescription())
-          .purpose(dictBodyTestEntity.getDictBodyTestPerUserEntity()
-              .getPurpose())
-          .build();
+      return new DictBodyTestDto(
+          dictBodyTestEntity.getId(),
+          PER_USER,
+          dictBodyTestEntity.getDictBodyTestPerUserEntity()
+              .getId().toString(),
+          dictBodyTestEntity.getDictBodyTestPerUserEntity()
+              .getName(),
+          dictBodyTestEntity.getDictBodyTestPerUserEntity()
+              .getDescription(),
+          dictBodyTestEntity.getDictBodyTestPerUserEntity()
+              .getPurpose()
+      );
     }
   }
 }

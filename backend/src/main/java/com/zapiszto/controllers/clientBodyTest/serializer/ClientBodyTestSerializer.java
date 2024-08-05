@@ -10,41 +10,27 @@ public class ClientBodyTestSerializer implements SerializerCommon {
 
     if (clientBodyTestsEntity.getDictBodyTestEntity()
         .getDictBodyTestBasicEntity() != null) {
-      return ClientBodyTestDto.builder()
-          .id(clientBodyTestsEntity.getDictBodyTestId())
-          .dict(BASIC)
-          .dict_id(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestBasicEntity()
-              .getId())
-          .name(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestBasicEntity()
-              .getName())
-          .result(clientBodyTestsEntity.getResult())
-          .description(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestBasicEntity()
-              .getDescription())
-          .purpose(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestBasicEntity()
-              .getPurpose())
-          .build();
+      return new ClientBodyTestDto(
+          clientBodyTestsEntity.getId(),
+          clientBodyTestsEntity.getDictBodyTestId(),
+          BASIC,
+          clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestBasicEntity().getId(),
+          clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestBasicEntity().getName(),
+          clientBodyTestsEntity.getResult(),
+          clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestBasicEntity().getDescription(),
+          clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestBasicEntity().getPurpose()
+      );
     } else {
-      return ClientBodyTestDto.builder()
-          .id(clientBodyTestsEntity.getDictBodyTestId())
-          .dict(PER_USER)
-          .dict_id(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestPerUserEntity()
-              .getId())
-          .name(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestPerUserEntity()
-              .getName())
-          .result(clientBodyTestsEntity.getResult())
-          .description(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestPerUserEntity()
-              .getDescription())
-          .purpose((clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestPerUserEntity()
-              .getPurpose()))
-          .build();
+      return new ClientBodyTestDto(
+          clientBodyTestsEntity.getId(),
+          clientBodyTestsEntity.getDictBodyTestId(),
+          PER_USER,
+          clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestPerUserEntity().getId(),
+          clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestPerUserEntity().getName(),
+          clientBodyTestsEntity.getResult(),
+          clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestPerUserEntity().getDescription(),
+          clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestPerUserEntity().getPurpose()
+      );
     }
   }
 }

@@ -9,20 +9,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class ClientBodyTestDto {
-  UUID id;
-  int dict_body_test_id;
-  String dict;
-  UUID dict_id;
-  String name;
-  String result;
-  String description;
-  String purpose;
-
-}
+public record ClientBodyTestDto (
+  UUID id,
+  UUID dict_body_test_id,
+  String dict,
+  UUID dict_id,
+  String name,
+  String result,
+  String description,
+  String purpose) {}

@@ -23,13 +23,13 @@ public class ClientBodyTestService {
 
   public void addClientBodyTest(NewClientBodyTestDto newClientBodyTestDto) {
     ClientBodyTestsEntity clientBodyTestsEntity = ClientBodyTestsEntity.builder()
-        .id(newClientBodyTestDto.getId())
-        .clientId(newClientBodyTestDto.getClientId())
-        .dictBodyTestId(newClientBodyTestDto.getDictBodyTestId())
-        .result(newClientBodyTestDto.getResult())
+        .id(newClientBodyTestDto.id())
+        .clientId(newClientBodyTestDto.clientId())
+        .dictBodyTestId(newClientBodyTestDto.dictBodyTestId())
+        .result(newClientBodyTestDto.result())
         .build();
     clientBodyTestsRepository.save(clientBodyTestsEntity);
-    log.error("Add new client body test with id: {}", newClientBodyTestDto.getId());
+    log.error("Add new client body test with id: {}", newClientBodyTestDto.id());
 
   }
 

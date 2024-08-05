@@ -9,17 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class GoalDetailsDto {
-  UUID clientId;
-  String bodyParamName;
-  String bodyTestName;
-  String unitName;
-  String action;
-  String value;
+public record GoalDetailsDto (
+  UUID clientId,
+  String bodyParamName,
+  String bodyTestName,
+  String unitName,
+  String action,
+  String value) {
 }

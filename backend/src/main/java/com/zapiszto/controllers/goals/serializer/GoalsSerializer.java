@@ -1,27 +1,26 @@
 package com.zapiszto.controllers.goals.serializer;
 
 import com.zapiszto.controllers.common.SerializerCommon;
-import com.zapiszto.controllers.goals.dto.GoalDetailsDto;
 import com.zapiszto.controllers.goals.dto.GoalDto;
 import com.zapiszto.controllers.goals.entity.GoalEntity;
 
 public class GoalsSerializer implements SerializerCommon {
 
   public static GoalDto convert(GoalEntity goalEntity) {
-    return GoalDto.builder()
-        .id(goalEntity.getId())
-        .clientId(goalEntity.getClientId())
-        .goalType(getGoalType(goalEntity))
-        .dictBodyParam(getDictBodyParam(goalEntity))
-        .dictBodyTestType(getBodyTestType(goalEntity))
-        .dictBodyTest(getDictBodyTest(goalEntity))
-        .dictUnitType(getUnitType(goalEntity))
-        .dictUnit(getDictUnit(goalEntity))
-        .action(goalEntity.getAction())
-        .value(goalEntity.getValue())
-        .goalDate(goalEntity.getGoalDate())
-        .insertDate(goalEntity.getInsertDate())
-        .build();
+    return new GoalDto(
+        goalEntity.getId(),
+        goalEntity.getClientId(),
+        getGoalType(goalEntity),
+        getDictBodyParam(goalEntity),
+        getBodyTestType(goalEntity),
+        getDictBodyTest(goalEntity),
+        getUnitType(goalEntity),
+        getDictUnit(goalEntity),
+        goalEntity.getAction(),
+        goalEntity.getValue(),
+        goalEntity.getGoalDate(),
+        goalEntity.getInsertDate()
+    );
   }
 
 
@@ -30,11 +29,13 @@ public class GoalsSerializer implements SerializerCommon {
         .getDictUnitsBasicEntity() != null) {
       return goalEntity.getDictUnitsEntity()
           .getDictUnitsBasicEntity()
-          .getName().get("en");
+          .getName()
+          .get("en");
     } else {
       return goalEntity.getDictUnitsEntity()
           .getDictUnitsPerUserEntity()
-          .getName().get("en");
+          .getName()
+          .get("en");
     }
   }
 
