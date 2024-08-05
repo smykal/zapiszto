@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Step 1: Delete all entries from the tables -->
+    <changeSet id="1-delete-all-entries" author="yourname">
+        <sql>
+            DELETE FROM goals;
+        </sql>
+        <sql>
+            DELETE FROM client_body_tests;
+        </sql>
+        <sql>
+            DELETE FROM dict_body_test;
+        </sql>
+        <sql>
+            DELETE FROM dict_body_test_basic;
+        </sql>
+        <sql>
+            DELETE FROM dict_body_test_per_user;
+        </sql>
+    </changeSet>
+
+    <!-- Step 2: Change column types to jsonb -->
+    <changeSet id="2-change-column-types" author="yourname">
+        <modifyDataType tableName="dict_body_test_basic" columnName="name" newDataType="jsonb"/>
+        <modifyDataType tableName="dict_body_test_basic" columnName="description" newDataType="jsonb"/>
+        <modifyDataType tableName="dict_body_test_basic" columnName="purpose" newDataType="jsonb"/>
+
+        <modifyDataType tableName="dict_body_test_per_user" columnName="name" newDataType="jsonb"/>
+        <modifyDataType tableName="dict_body_test_per_user" columnName="description" newDataType="jsonb"/>
+        <modifyDataType tableName="dict_body_test_per_user" columnName="purpose" newDataType="jsonb"/>
+    </changeSet>
+
+</databaseChangeLog>

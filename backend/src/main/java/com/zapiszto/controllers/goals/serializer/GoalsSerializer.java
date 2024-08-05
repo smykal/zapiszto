@@ -45,11 +45,11 @@ public class GoalsSerializer implements SerializerCommon {
           .getDictBodyTestBasicEntity() != null) {
         return goalEntity.getDictBodyTestEntity()
             .getDictBodyTestBasicEntity()
-            .getName();
+            .getName().get("en");
       } else {
         return goalEntity.getDictBodyTestEntity()
             .getDictBodyTestPerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     } else {return "";}
 

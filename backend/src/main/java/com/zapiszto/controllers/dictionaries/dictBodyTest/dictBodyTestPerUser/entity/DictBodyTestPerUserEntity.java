@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -23,6 +24,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "dict_body_test_per_user")
@@ -37,14 +40,17 @@ public class DictBodyTestPerUserEntity {
   @Column(name = "id")
   UUID id;
 
+  @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "name")
-  String name;
+  HashMap<String, String> name;
 
+  @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "description")
-  String description;
+  HashMap<String, String> description;
 
+  @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "purpose")
-  String purpose;
+  HashMap<String, String> purpose;
 
   @Column(name = "user_id")
   Long user_id;

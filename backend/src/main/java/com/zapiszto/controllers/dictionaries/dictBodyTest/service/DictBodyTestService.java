@@ -9,6 +9,8 @@ import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.NewDictBodyTestDto
 import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
 import com.zapiszto.controllers.dictionaries.dictBodyTest.repository.DictBodyTestRepository;
 import com.zapiszto.controllers.dictionaries.dictBodyTest.serializer.DictBodyTestSerializer;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -31,8 +33,12 @@ public class DictBodyTestService {
   @Autowired
   DictBodyTestBasicRepository dictBodyTestBasicRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
   @Transactional
   public DictBodyTestDto addDictBodyTest(NewDictBodyTestDto newDictBodyTestDto, Long userId) {
+    Languages lang = userDetailsRepository.userLanguage(userId);
     var item = DictBodyTestPerUserEntity.builder()
         .id(UUID.randomUUID())
         .name(newDictBodyTestDto.name())
@@ -65,7 +71,7 @@ public class DictBodyTestService {
             .getId()
     );
 
-    return DictBodyTestSerializer.convert(entity);
+    return DictBodyTestSerializer.convert(entity, lang);
   }
 
   @Transactional
@@ -100,9 +106,11 @@ public class DictBodyTestService {
 
   public List<DictBodyTestDto> getDictBodyTest(Long userId) {
     List<DictBodyTestEntity> all = dictBodyTestRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
+
 
     return all.stream()
-        .map(DictBodyTestSerializer::convert)
+        .map(dictBodyTestEntity -> DictBodyTestSerializer.convert(dictBodyTestEntity, lang))
         .collect(Collectors.toList());
   }
 
