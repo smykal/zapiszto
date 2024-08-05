@@ -222,18 +222,18 @@ export type NewClient = {
 }
 
 export interface ClientProgramDto {
-  name: string;
-  macrocycles: ClientProgramMacrocycleDto[];
+                                      name: string;
+                                      macrocycles: ClientProgramMacrocycleDto[];
 }
 
 export interface ClientProgramMacrocycleDto {
-  id: string;
-  mesocycles: ClientProgramMesocycleDto[];
+                                      id: string;
+                                      mesocycles: ClientProgramMesocycleDto[];
 }
 
 export interface ClientProgramMesocycleDto {
-  orderId: number;
-  microcycles: ClientProgramMicrocycleDto[];
+                                            orderId: number;
+                                            microcycles: ClientProgramMicrocycleDto[];
 }
 
 export interface ClientProgramMicrocycleDto {
@@ -258,15 +258,15 @@ export interface ClientProgramExerciseDto {
 }
 
 export type NewDictBodyTest = {
-                                name: string,
-                                description: string,
-                                purpose: string
+                                name: { [key: string]: string };
+                                description: { [key: string]: string };
+                                purpose: { [key: string]: string };
 }
 
 export type DictBodyTest = {
-                            id: number,
+                            id: string,
                             dict: string,
-                            dict_id: number,
+                            dict_id: string,
                             name: string,
                             description: string,
                             purpose: string
@@ -275,15 +275,15 @@ export type DictBodyTest = {
 export type NewClientBodyTest = {
                             id: string,
                             clientId: string,
-                            dictBodyTestId: number,
+                            dictBodyTestId: string,
                             result: string
 }
 
 export type ClientBodyTest = {
-                              id: number
+                              id: string
                               dict_body_test_id: number
                               dict: string
-                              dict_id: number
+                              dict_id: string
                               name: string
                               result: string
                               description: string
@@ -294,7 +294,7 @@ export type NewGoal = {
                         id: string,
                         clientId: string,
                         dictBodyParamId: number | null,
-                        dictBodyTestId: number | null,
+                        dictBodyTestId: string | null,
                         dictUnitId: string,
                         action: string,
                         value: string,

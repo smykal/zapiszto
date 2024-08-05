@@ -50,10 +50,10 @@
         </sql>
 
         <sql>
-            INSERT INTO public.periodization ( "name", duration, order_id, dict_mesocycle_phase_id, color, description) VALUES( 'strength', 1, 1,(select dmp.id from public.dict_mesocycle_phase dmp left join dict_mesocycle_phase_basic dmpb ON dmp.dict_mesocycle_phase_basic_id = dmpb.id  where dmpb."name" = 'strength'), 'red', 'opis');
-            INSERT INTO public.periodization ( "name", duration, order_id, dict_mesocycle_phase_id, color, description) VALUES( 'mass', 1, 1,(select dmp.id from public.dict_mesocycle_phase dmp left join dict_mesocycle_phase_basic dmpb ON dmp.dict_mesocycle_phase_basic_id = dmpb.id  where dmpb."name" = 'mass'), 'red', 'opis');
-            INSERT INTO public.periodization ( "name", duration, order_id, dict_mesocycle_phase_id, color, description) VALUES( 'reduction', 1, 1,(select dmp.id from public.dict_mesocycle_phase dmp left join dict_mesocycle_phase_basic dmpb ON dmp.dict_mesocycle_phase_basic_id = dmpb.id  where dmpb."name" = 'reduction'), 'red', 'opis');
-            INSERT INTO public.periodization ( "name", duration, order_id, dict_mesocycle_phase_id, color, description) VALUES( 'health', 1, 1,(select dmp.id from public.dict_mesocycle_phase dmp left join dict_mesocycle_phase_basic dmpb ON dmp.dict_mesocycle_phase_basic_id = dmpb.id  where dmpb."name" = 'health'), 'red', 'opis');
+            INSERT INTO public.periodization (id, "name", duration, order_id, dict_mesocycle_phase_id, color, description) VALUES(1, 'strength', 1, 1,(select dmp.id from public.dict_mesocycle_phase dmp left join dict_mesocycle_phase_basic dmpb ON dmp.dict_mesocycle_phase_basic_id = dmpb.id  where dmpb."name" = 'strength'), 'red', 'opis');
+            INSERT INTO public.periodization (id, "name", duration, order_id, dict_mesocycle_phase_id, color, description) VALUES(2, 'mass', 1, 1,(select dmp.id from public.dict_mesocycle_phase dmp left join dict_mesocycle_phase_basic dmpb ON dmp.dict_mesocycle_phase_basic_id = dmpb.id  where dmpb."name" = 'mass'), 'red', 'opis');
+            INSERT INTO public.periodization (id, "name", duration, order_id, dict_mesocycle_phase_id, color, description) VALUES(3, 'reduction', 1, 1,(select dmp.id from public.dict_mesocycle_phase dmp left join dict_mesocycle_phase_basic dmpb ON dmp.dict_mesocycle_phase_basic_id = dmpb.id  where dmpb."name" = 'reduction'), 'red', 'opis');
+            INSERT INTO public.periodization (id, "name", duration, order_id, dict_mesocycle_phase_id, color, description) VALUES(4, 'health', 1, 1,(select dmp.id from public.dict_mesocycle_phase dmp left join dict_mesocycle_phase_basic dmpb ON dmp.dict_mesocycle_phase_basic_id = dmpb.id  where dmpb."name" = 'health'), 'red', 'opis');
         </sql>
     </changeSet>
 </databaseChangeLog>

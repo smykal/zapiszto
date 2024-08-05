@@ -5,6 +5,7 @@ import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.NewDictBodyTestDto
 import com.zapiszto.controllers.dictionaries.dictBodyTest.service.DictBodyTestService;
 import com.zapiszto.controllers.common.ControllerCommon;
 import java.util.List;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,7 +75,7 @@ public class DictBodyTestController implements ControllerCommon {
 
   @DeleteMapping("/delete_body_test_per_user/{itemToDelete}")
   public ResponseEntity<String> deleteCategoryPerUser(
-      @PathVariable("itemToDelete") int itemToDelete
+      @PathVariable("itemToDelete") UUID itemToDelete
   ) {
     var userId = extractUserId();
     try {
@@ -87,7 +88,7 @@ public class DictBodyTestController implements ControllerCommon {
 
   @DeleteMapping("/delete_body_test_basic/{itemToDelete}")
   public ResponseEntity<String> deleteCategoryBasic(
-      @PathVariable("itemToDelete") int itemToDelete
+      @PathVariable("itemToDelete") UUID itemToDelete
   ) {
     var userRole = extractUserRole();
     var userId = extractUserId();

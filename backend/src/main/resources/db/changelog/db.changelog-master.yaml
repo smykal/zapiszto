@@ -291,3 +291,7 @@ databaseChangeLog:
       file: db/changelog/145_modify_table_dict_session_part.xml
   - include:
       file: db/changelog/146_modify_table_dict_equipment.xml
+  - include:
+      file: db/changelog/147_modify_table_dict_body_test.xml
+  - include:
+      file: db/changelog/148_modify_table_dict_body_test_set_jsob.xml

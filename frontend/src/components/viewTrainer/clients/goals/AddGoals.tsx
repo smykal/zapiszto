@@ -6,7 +6,7 @@ import BodyParamsService from '../../../../services/bodyParams/';
 import DictBodyTestService from '../../../../services/dict/DictBodyTestService';
 import DictUnitsService from '../../../../services/dict/DictUnitsService';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { DictBodyParam, DictBodyTest, DictUnits } from '../../../../types/types';
+import { DictBodyParam, DictBodyTest, DictUnits, NewGoal } from '../../../../types/types';
 import * as Yup from 'yup';
 
 interface ClientDetailsProps {
@@ -53,8 +53,8 @@ const AddGoals: React.FC<ClientDetailsProps> = ({ client }) => {
     // Walidacja formularza za pomocą Yup
     const validationSchema = Yup.object({
         dictBodyParamId: Yup.number().nullable(),
-        dictBodyTestId: Yup.number().nullable(),
-        dictUnitId: Yup.number().required(t('required')),
+        dictBodyTestId: Yup.string().nullable(),
+        dictUnitId: Yup.string().required(t('required')),
         action: Yup.string().required(t('required')),
         value: Yup.string().required(t('required')),
         goalDate: Yup.string().required(t('required')),
@@ -84,12 +84,15 @@ const AddGoals: React.FC<ClientDetailsProps> = ({ client }) => {
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
-                    const newGoal = {
-                        ...values,
+                    const newGoal: NewGoal = {
+                        id: values.id,
                         clientId: client.id,
                         dictBodyParamId: values.dictBodyParamId ? Number(values.dictBodyParamId) : null,
-                        dictBodyTestId: values.dictBodyTestId ? Number(values.dictBodyTestId) : null,
+                        dictBodyTestId: values.dictBodyTestId ? String(values.dictBodyTestId) : null,
                         dictUnitId: String(values.dictUnitId),
+                        action: values.action,
+                        value: values.value,
+                        goalDate: values.goalDate,
                     };
                     GoalsService.postNewGoal(newGoal)
                         .then(() => {
@@ -148,7 +151,7 @@ const AddGoals: React.FC<ClientDetailsProps> = ({ client }) => {
                             {selectedOption === 'bodyTest' && (
                                 <div className="form-group">
                                     <label htmlFor="dictBodyTestId">{t('clients.select_body_test')}</label>
-                                    <Field as="select" name="dictBodyTestId" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFieldValue('dictBodyTestId', Number(e.target.value))}>
+                                    <Field as="select" name="dictBodyTestId" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFieldValue('dictBodyTestId', e.target.value)}>
                                         <option value="" disabled hidden>{t('clients.select_body_test')}</option>
                                         {bodyTests.map(test => (
                                             <option key={test.id} value={test.id}>
@@ -162,7 +165,7 @@ const AddGoals: React.FC<ClientDetailsProps> = ({ client }) => {
 
                             <div className="form-group">
                                 <label htmlFor="dictUnitId">{t('clients.select_unit')}</label>
-                                <Field as="select" name="dictUnitId" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFieldValue('dictUnitId', Number(e.target.value))}>
+                                <Field as="select" name="dictUnitId" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFieldValue('dictUnitId', e.target.value)}>
                                     <option value="" disabled hidden>{t('clients.select_unit')}</option>
                                     {units.map(unit => (
                                         <option key={unit.id} value={unit.id}>

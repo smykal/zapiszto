@@ -45,7 +45,7 @@ public class ClientBodyTestController implements ControllerCommon {
   ) {
     var trainerId = extractUserId();
     try {
-      List<ClientBodyTestDto> result = clientBodyTestService.getClientBodyTests(clientId);
+      List<ClientBodyTestDto> result = clientBodyTestService.getClientBodyTests(clientId, trainerId);
       return new ResponseEntity<>(result, HttpStatus.OK);
     } catch (NullPointerException e) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);

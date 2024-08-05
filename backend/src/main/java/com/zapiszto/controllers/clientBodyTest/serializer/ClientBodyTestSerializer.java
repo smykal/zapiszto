@@ -3,48 +3,38 @@ package com.zapiszto.controllers.clientBodyTest.serializer;
 import com.zapiszto.controllers.clientBodyTest.dto.ClientBodyTestDto;
 import com.zapiszto.controllers.clientBodyTest.entity.ClientBodyTestsEntity;
 import com.zapiszto.controllers.common.SerializerCommon;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.utilities.translator.Translations;
 
-public class ClientBodyTestSerializer implements SerializerCommon {
+public class ClientBodyTestSerializer extends Translations implements SerializerCommon {
 
-  public static ClientBodyTestDto convert(ClientBodyTestsEntity clientBodyTestsEntity) {
+  public static ClientBodyTestDto convert(ClientBodyTestsEntity clientBodyTestsEntity, Languages language) {
 
     if (clientBodyTestsEntity.getDictBodyTestEntity()
         .getDictBodyTestBasicEntity() != null) {
-      return ClientBodyTestDto.builder()
-          .id(clientBodyTestsEntity.getDictBodyTestId())
-          .dict(BASIC)
-          .dict_id(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestBasicEntity()
-              .getId())
-          .name(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestBasicEntity()
-              .getName())
-          .result(clientBodyTestsEntity.getResult())
-          .description(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestBasicEntity()
-              .getDescription())
-          .purpose(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestBasicEntity()
-              .getPurpose())
-          .build();
+      var dict = clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestBasicEntity();
+      return new ClientBodyTestDto(
+          clientBodyTestsEntity.getId(),
+          clientBodyTestsEntity.getDictBodyTestId(),
+          BASIC,
+          dict.getId(),
+          translate(dict.getName() ,language) ,
+          clientBodyTestsEntity.getResult(),
+          translate(dict.getDescription() ,language),
+          translate(dict.getPurpose() ,language)
+      );
     } else {
-      return ClientBodyTestDto.builder()
-          .id(clientBodyTestsEntity.getDictBodyTestId())
-          .dict(PER_USER)
-          .dict_id(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestPerUserEntity()
-              .getId())
-          .name(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestPerUserEntity()
-              .getName())
-          .result(clientBodyTestsEntity.getResult())
-          .description(clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestPerUserEntity()
-              .getDescription())
-          .purpose((clientBodyTestsEntity.getDictBodyTestEntity()
-              .getDictBodyTestPerUserEntity()
-              .getPurpose()))
-          .build();
+      var dict = clientBodyTestsEntity.getDictBodyTestEntity().getDictBodyTestPerUserEntity();
+      return new ClientBodyTestDto(
+          clientBodyTestsEntity.getId(),
+          clientBodyTestsEntity.getDictBodyTestId(),
+          PER_USER,
+          dict.getId(),
+          translate(dict.getName(), language),
+          clientBodyTestsEntity.getResult(),
+          translate(dict.getDescription(), language),
+          translate(dict.getPurpose(), language)
+      );
     }
   }
 }

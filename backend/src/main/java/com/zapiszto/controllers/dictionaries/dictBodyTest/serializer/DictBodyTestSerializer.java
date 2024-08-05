@@ -3,36 +3,41 @@ package com.zapiszto.controllers.dictionaries.dictBodyTest.serializer;
 import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.DictBodyTestDto;
 import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
 import com.zapiszto.controllers.common.SerializerCommon;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.utilities.translator.Translations;
 
-public class DictBodyTestSerializer implements SerializerCommon {
+public class DictBodyTestSerializer extends Translations implements SerializerCommon {
 
-  public static DictBodyTestDto convert(DictBodyTestEntity dictBodyTestEntity) {
+  public static DictBodyTestDto convert(DictBodyTestEntity dictBodyTestEntity, Languages language) {
 
     if (dictBodyTestEntity.getDictBodyTestBasicEntity() != null) {
-      return DictBodyTestDto.builder()
-          .id(dictBodyTestEntity.getId())
-          .dict(BASIC)
-          .dict_id(dictBodyTestEntity.getDictBodyTestBasicEntity()
-              .getId())
-          .name(dictBodyTestEntity.getDictBodyTestBasicEntity()
-              .getName())
-          .description(dictBodyTestEntity.getDictBodyTestBasicEntity()
-              .getDescription())
-          .purpose(dictBodyTestEntity.getDictBodyTestBasicEntity().getPurpose())
-          .build();
+      var name = dictBodyTestEntity.getDictBodyTestBasicEntity().getName();
+      var description = dictBodyTestEntity.getDictBodyTestBasicEntity().getDescription();
+      var purpose = dictBodyTestEntity.getDictBodyTestBasicEntity().getPurpose();
+
+      return new DictBodyTestDto(
+          dictBodyTestEntity.getId(),
+          BASIC,
+          dictBodyTestEntity.getDictBodyTestBasicEntity()
+              .getId().toString(),
+          translate(name, language),
+          translate(description,language),
+          translate(purpose, language)
+      );
     } else {
-      return DictBodyTestDto.builder()
-          .id(dictBodyTestEntity.getId())
-          .dict(PER_USER)
-          .dict_id(dictBodyTestEntity.getDictBodyTestPerUserEntity()
-              .getId())
-          .name(dictBodyTestEntity.getDictBodyTestPerUserEntity()
-              .getName())
-          .description(dictBodyTestEntity.getDictBodyTestPerUserEntity()
-              .getDescription())
-          .purpose(dictBodyTestEntity.getDictBodyTestPerUserEntity()
-              .getPurpose())
-          .build();
+      var name = dictBodyTestEntity.getDictBodyTestPerUserEntity().getName();
+      var description = dictBodyTestEntity.getDictBodyTestPerUserEntity().getDescription();
+      var purpose = dictBodyTestEntity.getDictBodyTestPerUserEntity().getPurpose();
+
+      return new DictBodyTestDto(
+          dictBodyTestEntity.getId(),
+          PER_USER,
+          dictBodyTestEntity.getDictBodyTestPerUserEntity()
+              .getId().toString(),
+          translate(name, language),
+          translate(description, language),
+          translate(purpose, language)
+      );
     }
   }
 }

@@ -24,14 +24,14 @@ public class GoalsService {
 
   public void addGoal(NewGoalDto newGoalDto) {
     GoalEntity goalEntity = GoalEntity.builder()
-        .id(newGoalDto.getId())
-        .clientId(newGoalDto.getClientId())
-        .dictBodyParamsId(newGoalDto.getDictBodyParamId() > 0 ? newGoalDto.getDictBodyParamId() : null)
-        .dictBodyTestId(Long.valueOf(newGoalDto.getDictBodyTestId() > 0 ? newGoalDto.getDictBodyTestId() : null))
-        .dictUnitsId(newGoalDto.getDictUnitId() != null ? newGoalDto.getDictUnitId() : null)
-        .action(newGoalDto.getAction())
-        .value(newGoalDto.getValue())
-        .goalDate(newGoalDto.getGoalDate())
+        .id(newGoalDto.id())
+        .clientId(newGoalDto.clientId())
+        .dictBodyParamsId(newGoalDto.dictBodyParamId() != null ? newGoalDto.dictBodyParamId() : null)
+        .dictBodyTestId(newGoalDto.dictBodyTestId() != null ? newGoalDto.dictBodyTestId() : null)
+        .dictUnitsId(newGoalDto.dictUnitId() != null ? newGoalDto.dictUnitId() : null)
+        .action(newGoalDto.action())
+        .value(newGoalDto.value())
+        .goalDate(newGoalDto.goalDate())
         .insertDate(ZonedDateTime.now())
         .build();
     goalsRepository.save(goalEntity);

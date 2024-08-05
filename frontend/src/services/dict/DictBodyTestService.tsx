@@ -18,7 +18,7 @@ class DictBodyTestService {
       });
   }
 
-  deleteDictBodyTest(itemToDelete: number) {
+  deleteDictBodyTest(itemToDelete: string) {
     return axios.delete(API_URL + '/delete_body_test_per_user/' + itemToDelete, { headers: authHeader() })
   }
 }

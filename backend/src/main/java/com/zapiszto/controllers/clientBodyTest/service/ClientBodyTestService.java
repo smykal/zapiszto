@@ -5,6 +5,8 @@ import com.zapiszto.controllers.clientBodyTest.dto.NewClientBodyTestDto;
 import com.zapiszto.controllers.clientBodyTest.entity.ClientBodyTestsEntity;
 import com.zapiszto.controllers.clientBodyTest.repository.ClientBodyTestsRepository;
 import com.zapiszto.controllers.clientBodyTest.serializer.ClientBodyTestSerializer;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -21,22 +23,26 @@ public class ClientBodyTestService {
   @Autowired
   ClientBodyTestsRepository clientBodyTestsRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
   public void addClientBodyTest(NewClientBodyTestDto newClientBodyTestDto) {
     ClientBodyTestsEntity clientBodyTestsEntity = ClientBodyTestsEntity.builder()
-        .id(newClientBodyTestDto.getId())
-        .clientId(newClientBodyTestDto.getClientId())
-        .dictBodyTestId(newClientBodyTestDto.getDictBodyTestId())
-        .result(newClientBodyTestDto.getResult())
+        .id(newClientBodyTestDto.id())
+        .clientId(newClientBodyTestDto.clientId())
+        .dictBodyTestId(newClientBodyTestDto.dictBodyTestId())
+        .result(newClientBodyTestDto.result())
         .build();
     clientBodyTestsRepository.save(clientBodyTestsEntity);
-    log.error("Add new client body test with id: {}", newClientBodyTestDto.getId());
+    log.error("Add new client body test with id: {}", newClientBodyTestDto.id());
 
   }
 
-  public List<ClientBodyTestDto> getClientBodyTests(UUID clientId) {
+  public List<ClientBodyTestDto> getClientBodyTests(UUID clientId, Long userId) {
+    Languages lang = userDetailsRepository.userLanguage(userId);
 
     List<ClientBodyTestsEntity> allByClientId = clientBodyTestsRepository.getAllByClientId(clientId);
-    return allByClientId.stream().map(ClientBodyTestSerializer::convert).collect(Collectors.toList());
+    return allByClientId.stream().map(clientBodyTestsEntity -> ClientBodyTestSerializer.convert(clientBodyTestsEntity, lang)).collect(Collectors.toList());
 
   }
 }

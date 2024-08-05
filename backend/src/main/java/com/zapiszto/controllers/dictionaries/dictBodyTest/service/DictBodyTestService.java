@@ -9,7 +9,10 @@ import com.zapiszto.controllers.dictionaries.dictBodyTest.dto.NewDictBodyTestDto
 import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEntity;
 import com.zapiszto.controllers.dictionaries.dictBodyTest.repository.DictBodyTestRepository;
 import com.zapiszto.controllers.dictionaries.dictBodyTest.serializer.DictBodyTestSerializer;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +33,18 @@ public class DictBodyTestService {
   @Autowired
   DictBodyTestBasicRepository dictBodyTestBasicRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
   @Transactional
   public DictBodyTestDto addDictBodyTest(NewDictBodyTestDto newDictBodyTestDto, Long userId) {
+    Languages lang = userDetailsRepository.userLanguage(userId);
     var item = DictBodyTestPerUserEntity.builder()
-        .name(newDictBodyTestDto.getName())
+        .id(UUID.randomUUID())
+        .name(newDictBodyTestDto.name())
         .user_id(userId)
-        .description(newDictBodyTestDto.getDescription())
-        .purpose(newDictBodyTestDto.getPurpose())
+        .description(newDictBodyTestDto.description())
+        .purpose(newDictBodyTestDto.purpose())
         .build();
 
     DictBodyTestPerUserEntity dictBodyTestPerUserEntity = dictBodyTestPerUserRepository.save(item);
@@ -44,11 +52,12 @@ public class DictBodyTestService {
     log.info(
         "add new item to dict_body_test_per_user: id {}, value {}, user {}",
         dictBodyTestPerUserEntity.getId(),
-        newDictBodyTestDto.getName(),
+        newDictBodyTestDto.name(),
         userId
     );
 
     DictBodyTestEntity dictBodyTestEntity = DictBodyTestEntity.builder()
+        .id(UUID.randomUUID())
         .dictBodyTestPerUserEntity(dictBodyTestPerUserEntity)
         .build();
 
@@ -62,14 +71,14 @@ public class DictBodyTestService {
             .getId()
     );
 
-    return DictBodyTestSerializer.convert(entity);
+    return DictBodyTestSerializer.convert(entity, lang);
   }
 
   @Transactional
   public void addDictBodyTest(NewDictBodyTestDto newDictBodyTestDto) {
     var item = DictBodyTestBasicEntity.builder()
-        .name(newDictBodyTestDto.getName())
-        .description(newDictBodyTestDto.getDescription())
+        .name(newDictBodyTestDto.name())
+        .description(newDictBodyTestDto.description())
         .build();
 
     DictBodyTestBasicEntity dictBodyTestBasicEntity =
@@ -78,7 +87,7 @@ public class DictBodyTestService {
     log.info(
         "add new item to dict_BodyTest_basic: id {}, value {}",
         dictBodyTestBasicEntity.getId(),
-        newDictBodyTestDto.getName()
+        newDictBodyTestDto.name()
     );
 
     DictBodyTestEntity dictBodyTestEntity = DictBodyTestEntity.builder()
@@ -97,14 +106,16 @@ public class DictBodyTestService {
 
   public List<DictBodyTestDto> getDictBodyTest(Long userId) {
     List<DictBodyTestEntity> all = dictBodyTestRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
+
 
     return all.stream()
-        .map(DictBodyTestSerializer::convert)
+        .map(dictBodyTestEntity -> DictBodyTestSerializer.convert(dictBodyTestEntity, lang))
         .collect(Collectors.toList());
   }
 
   @Transactional
-  public String deleteDictBodyTestPerUser(Long userId, int itemToDelete) {
+  public String deleteDictBodyTestPerUser(Long userId, UUID itemToDelete) {
     try {
       dictBodyTestRepository.deleteDictBodyTestPerUser(itemToDelete);
       dictBodyTestRepository.deleteDictBodyTestPerUser(itemToDelete, userId);
@@ -117,7 +128,7 @@ public class DictBodyTestService {
   }
 
   @Transactional
-  public String deleteDictBodyTestBasic(Long userId, int itemToDelete) {
+  public String deleteDictBodyTestBasic(Long userId, UUID itemToDelete) {
     try {
       dictBodyTestRepository.deleteDictBodyTest(itemToDelete);
       dictBodyTestRepository.deleteDictBodyTestBasic(itemToDelete);
