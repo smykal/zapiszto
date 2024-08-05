@@ -147,10 +147,10 @@ public class ExerciseSerializer implements SerializerCommon {
       DictSessionPartEntity exercise = sessionPartOptional.get();
       if (exercise.getDictSessionPartBasicEntity() != null) {
         return exercise.getDictSessionPartBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (exercise.getDictSessionPartPerUserEntity() != null) {
         return exercise.getDictSessionPartPerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     }
     return null;
@@ -187,20 +187,20 @@ public class ExerciseSerializer implements SerializerCommon {
       DictQuantityTypeEntity quantityType = quantityTypeEntity.get();
       if (quantityType.getDictQuantityTypeBasicEntity() != null) {
         String shortcut = quantityType.getDictQuantityTypeBasicEntity()
-            .getShortcut();
+            .getShortcut().get("en");
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
         return quantityType.getDictQuantityTypeBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (quantityType.getDictQuantityTypePerUserEntity() != null) {
         String shortcut = quantityType.getDictQuantityTypePerUserEntity()
-            .getShortcut();
+            .getShortcut().get("en");
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
         return quantityType.getDictQuantityTypePerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     }
 
@@ -217,20 +217,20 @@ public class ExerciseSerializer implements SerializerCommon {
       DictUnitsEntity dictUnitsEntity = unitEntity.get();
       if (dictUnitsEntity.getDictUnitsBasicEntity() != null) {
         String shortcut = dictUnitsEntity.getDictUnitsBasicEntity()
-            .getShortcut();
+            .getShortcut().get("en");
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
         return dictUnitsEntity.getDictUnitsBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (dictUnitsEntity.getDictUnitsPerUserEntity() != null) {
         String shortcut = dictUnitsEntity.getDictUnitsPerUserEntity()
-            .getShortcut();
+            .getShortcut().get("en");
         if (shortcut != null && !shortcut.isEmpty()) {
           return shortcut;
         }
         return dictUnitsEntity.getDictUnitsPerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     }
     return null;
@@ -246,10 +246,10 @@ public class ExerciseSerializer implements SerializerCommon {
       DictEquipmentEntity exercise = exerciseOptional.get();
       if (exercise.getDictEquipmentBasicEntity() != null) {
         return exercise.getDictEquipmentBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (exercise.getDictEquipmentPerUserEntity() != null) {
         return exercise.getDictEquipmentPerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     }
     return null;

@@ -3,23 +3,34 @@ package com.zapiszto.controllers.dictionaries.dictEquipment.serializer;
 import com.zapiszto.controllers.common.SerializerCommon;
 import com.zapiszto.controllers.dictionaries.dictEquipment.dto.DictEquipmentDto;
 import com.zapiszto.controllers.dictionaries.dictEquipment.entity.DictEquipmentEntity;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.utilities.translator.Translations;
 
-public class DictEquipmentSerializer implements SerializerCommon {
-  public static DictEquipmentDto convert(DictEquipmentEntity dictEquipment) {
-    if(dictEquipment.getDictEquipmentBasicEntity() != null) {
-      return DictEquipmentDto.builder()
-          .id(dictEquipment.getId())
-          .dict(BASIC)
-          .dict_id(dictEquipment.getDictEquipmentBasicEntity().getId())
-          .name(dictEquipment.getDictEquipmentBasicEntity().getName())
-          .build();
+public class DictEquipmentSerializer extends Translations implements SerializerCommon {
+  public static DictEquipmentDto convert(DictEquipmentEntity dictEquipment, Languages languages) {
+    if (dictEquipment.getDictEquipmentBasicEntity() != null) {
+      var name = dictEquipment.getDictEquipmentBasicEntity()
+          .getName();
+
+
+      return new DictEquipmentDto(
+          dictEquipment.getId(),
+          BASIC,
+          dictEquipment.getDictEquipmentBasicEntity()
+              .getId(),
+          translate(name, languages)
+      );
     } else {
-      return DictEquipmentDto.builder()
-          .id(dictEquipment.getId())
-          .dict(PER_USER)
-          .dict_id(dictEquipment.getDictEquipmentPerUserEntity().getId())
-          .name(dictEquipment.getDictEquipmentPerUserEntity().getName())
-          .build();
+      var name = dictEquipment.getDictEquipmentPerUserEntity()
+          .getName();
+
+      return new DictEquipmentDto(
+          dictEquipment.getId(),
+          PER_USER,
+          dictEquipment.getDictEquipmentPerUserEntity()
+              .getId(),
+          translate(name, languages)
+      );
     }
   }
 }

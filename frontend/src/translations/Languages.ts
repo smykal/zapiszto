@@ -1,4 +1,9 @@
-export const LANGUAGES = [
+export interface Language {
+  code: string;
+  label: string;
+}
+
+export const LANGUAGES: Language[] = [
   { code: "en", label: "English" },
   { code: "es", label: "Español" },
   { code: "it", label: "Italiano" },

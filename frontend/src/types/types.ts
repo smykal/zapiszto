@@ -92,12 +92,11 @@ export type DictQuantityType = {
                                 shortcut: string
 }
 
-export type NewDictQuantityType = {
-                                    id: string
-                                    name: string,
-                                    shortcut: string
-
-}
+export interface NewDictQuantityType {
+                                      id: string;
+                                      name: { [key: string]: string };
+                                      shortcut: { [key: string]: string };
+                                    }
 
 export type DictUnits = {
                           id: string
@@ -109,8 +108,8 @@ export type DictUnits = {
 
 export type NewDictUnit = {
                             id: string
-                            name: string,
-                            shortcut: string
+                            name: { [key: string]: string };
+                            shortcut: { [key: string]: string };
 }
 
 export type NewDictCategory = {
@@ -238,24 +237,24 @@ export interface ClientProgramMesocycleDto {
 }
 
 export interface ClientProgramMicrocycleDto {
-  orderId: number;
-  sessions: ClientProgramSessionDto[];
+                                            orderId: number;
+                                            sessions: ClientProgramSessionDto[];
 }
 
 export interface ClientProgramSessionDto {
-  orderId: number;
-  exercises: ClientProgramExerciseDto[];
+                                          orderId: number;
+                                          exercises: ClientProgramExerciseDto[];
 }
 
 export interface ClientProgramExerciseDto {
-  orderId: number;
-  purpose: string;
-  category: string;
-  exercise: string;
-  weight: number;
-  weightUnit: string;
-  repetitions: number;
-  repetitionsUnit: string;
+                                          orderId: number;
+                                          purpose: string;
+                                          category: string;
+                                          exercise: string;
+                                          weight: number;
+                                          weightUnit: string;
+                                          repetitions: number;
+                                          repetitionsUnit: string;
 }
 
 export type NewDictBodyTest = {
@@ -428,8 +427,8 @@ export interface DictEquipment {
 
 export interface NewDictEquipment {
                                     id: string;
-                                    name: string;
-}
+                                    name: { [key: string]: string };
+                                  }
 
 export interface ExerciseStats {
                                 orderId: number;
@@ -439,7 +438,7 @@ export interface ExerciseStats {
 }
 
 export interface CopyParametersDto {
-  weightIncrease: number;
-  weightIncreaseUnit: string;
-  repetitions: number;
+                                  weightIncrease: number;
+                                  weightIncreaseUnit: string;
+                                  repetitions: number;
 }

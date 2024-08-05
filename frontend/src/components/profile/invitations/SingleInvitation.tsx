@@ -11,18 +11,18 @@ class SingleInvitation extends Component<Props> {
     render() {
         const { invitation, t } = this.props;
         return (
-            <div>
+            <div className="single-invitation">
                 <div>
                     id: {invitation.id}
                 </div>
                 <div>
                     <strong>{t("invitations.from")}: </strong>{invitation.inviterName} ({invitation.inviterEmail})
-                
+                    <br />
                     <strong>{t("invitations.to")}: </strong>{invitation.inviteeName} ({invitation.inviteeEmail})
                 </div>
-                WHEN status is ?? then select from :
-                Usuń Zaproszenie | Zaakceptuj | odrzuć | wyślij ponownie
-                TERMINATE | RESENT | DELETE 
+                <div className="invitation-actions">
+                    {/* Dodaj odpowiednie przyciski akcji */}
+                </div>
             </div>
         );
     }

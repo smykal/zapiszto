@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.dictionaries.dictSessionPart.service;
 
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.dictSessionPartBasic.repository.DictSessionPartBasicRepository;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.dictSessionPartPerUser.entity.DictSessionPartPerUserEntity;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.dictSessionPartPerUser.repository.DictSessionPartPerUserRepository;
@@ -9,6 +10,7 @@ import com.zapiszto.controllers.dictionaries.dictSessionPart.entity.DictSessionP
 import com.zapiszto.controllers.dictionaries.dictSessionPart.repository.DictSessionPartRepository;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.dictSessionPartBasic.entity.DictSessionPartBasicEntity;
 import com.zapiszto.controllers.dictionaries.dictSessionPart.serializer.DictSessionPartSerializer;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +31,12 @@ public class DictSessionPartService {
   @Autowired
   DictSessionPartPerUserRepository dictSessionPartPerUserRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
   public void addDictSessionPart(NewDictSessionPartDto newDictSessionPartDto, Long userId) {
     var item = DictSessionPartPerUserEntity.builder()
-        .name(newDictSessionPartDto.getName())
+        .name(newDictSessionPartDto.name())
         .user_id(userId)
         .build();
 
@@ -40,7 +45,7 @@ public class DictSessionPartService {
     log.info(
         "add new item to dict_units_per_user: id {}, value {}, user {}",
         dictSessionPartPerUserEntity.getId(),
-        newDictSessionPartDto.getName(),
+        newDictSessionPartDto.name(),
         userId
     );
 
@@ -60,7 +65,7 @@ public class DictSessionPartService {
 
   public void addDictSessionPart(NewDictSessionPartDto newDictSessionPartDto) {
     var item = DictSessionPartBasicEntity.builder()
-        .name(newDictSessionPartDto.getName())
+        .name(newDictSessionPartDto.name())
         .build();
 
     DictSessionPartBasicEntity dictSessionPartBasicEntity = dictSessionPartBasicRepository.save(item);
@@ -68,8 +73,8 @@ public class DictSessionPartService {
     log.info(
         "add new item to dict_units_basic: id {}, value {}, shortcut {}",
         dictSessionPartBasicEntity.getId(),
-        newDictSessionPartDto.getName()
-        );
+        newDictSessionPartDto.name()
+    );
 
     DictSessionPartEntity dictSessionPartEntity = DictSessionPartEntity.builder()
         .dictSessionPartBasicEntity(dictSessionPartBasicEntity)
@@ -87,9 +92,10 @@ public class DictSessionPartService {
 
   public List<DictSessionPartDto> getDictSessionPart(Long userId) {
     List<DictSessionPartEntity> all = dictSessionPartRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
 
     return all.stream()
-        .map(DictSessionPartSerializer::convert)
+        .map(dictSessionPartEntity -> DictSessionPartSerializer.convert(dictSessionPartEntity, lang))
         .collect(Collectors.toList());
 
   }

@@ -1,0 +1,97 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="temporary change datatype" author="smykalm">
+        <modifyDataType tableName="dict_equipment_basic" columnName="name" newDataType="varchar"/>
+    </changeSet>
+
+    <changeSet id="input json warm up" author="smykalm">
+        <update tableName="dict_equipment_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "Straight bar",
+                    "es": "Barra recta",
+                    "it": "Barra dritta",
+                    "pl": "Sztanga prosta",
+                    "ru": "Прямой гриф",
+                    "ua": "Прямий гриф"
+                }
+                ]]>
+            </column>
+            <where>id = 'fa597f66-f323-4ac9-b7f8-98c3c376c125'</where>
+        </update>
+        <update tableName="dict_equipment_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "Kettle",
+                    "es": "Pesa rusa",
+                    "it": "Kettlebell",
+                    "pl": "Kettlebell",
+                    "ru": "Гиря",
+                    "ua": "Гиря"
+                }
+                ]]>
+            </column>
+            <where>id = '4f0e0fbb-1ef4-4600-ba1b-54e1002552f4'</where>
+        </update>
+        <update tableName="dict_equipment_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "EZ curl bar",
+                    "es": "Barra Z",
+                    "it": "Bilanciere EZ",
+                    "pl": "Gryf łamany",
+                    "ru": "Изогнутый гриф",
+                    "ua": "Зігнутий гриф"
+                }
+                ]]>
+            </column>
+            <where>id = 'e03666d5-4918-4e7d-b69a-8642cba8ba3c'</where>
+        </update>
+        <update tableName="dict_equipment_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "Hex bar",
+                    "es": "Barra hexagonal",
+                    "it": "Bilanciere hex",
+                    "pl": "Sztanga hexagonalna",
+                    "ru": "Гексагональный гриф",
+                    "ua": "Гексагональний гриф"
+                }
+                ]]>
+            </column>
+            <where>id = '96e107dc-ce17-4b86-9fe0-e65737924ea2'</where>
+        </update>
+        <update tableName="dict_equipment_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "Multi-grip bar",
+                    "es": "Barra multi-agarre",
+                    "it": "Bilanciere multi-impugnatura",
+                    "pl": "Sztanga wielouchwytowa",
+                    "ru": "Гриф с несколькими хватами",
+                    "ua": "Гриф з кількома хватами"
+                }
+                ]]>
+            </column>
+            <where>id = '48309c8b-5fc7-42d5-a052-4f1ed9ad093b'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="finaly change datatype" author="smykalm">
+        <modifyDataType tableName="dict_equipment_basic" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+    <changeSet id="finaly change datatype for jsonb" author="smykalm">
+        <modifyDataType tableName="dict_equipment_per_user" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+</databaseChangeLog>

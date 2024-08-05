@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.dictionaries.dictQuantityType.service;
 
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.repository.DictQuantityTypeBasicRepository;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePerUser.repository.DictQuantityTypePerUserRepository;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.DictQuantityTypeDto;
@@ -9,7 +10,10 @@ import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypePe
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dto.NewDictQuantityTypeDto;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.dictQuantityTypeBasic.entity.DictQuantityTypeBasicEntity;
 import com.zapiszto.controllers.dictionaries.dictQuantityType.serializer.DictQuantityTypeSerializer;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -31,13 +35,16 @@ public class DictQuantityTypeService {
   @Autowired
   DictQuantityTypePerUserRepository dictQuantityTypePerUserRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
 
   @Transactional
   public void addDictQuantityType(NewDictQuantityTypeDto newDictUnitDto, Long userId) {
     var item = DictQuantityTypePerUserEntity.builder()
-        .id(newDictUnitDto.getId())
-        .name(newDictUnitDto.getName())
-        .shortcut(newDictUnitDto.getShortcut())
+        .id(newDictUnitDto.id())
+        .name(newDictUnitDto.name())
+        .shortcut(newDictUnitDto.shortcut())
         .user_id(userId)
         .build();
 
@@ -45,8 +52,8 @@ public class DictQuantityTypeService {
 
     log.info("add new item to dict_QuantityType_per_user: id {}, value {}, shortcut {}, user {}",
         dictQuantityTypePerUserEntity.getId(),
-        newDictUnitDto.getName(),
-        newDictUnitDto.getShortcut(),
+        newDictUnitDto.name(),
+        newDictUnitDto.shortcut(),
         userId);
 
     DictQuantityTypeEntity dictQuantityTypeEntity = DictQuantityTypeEntity.builder()
@@ -64,16 +71,16 @@ public class DictQuantityTypeService {
   @Transactional
   public void addDictQuantityType(NewDictQuantityTypeDto newDictUnitDto) {
     var item = DictQuantityTypeBasicEntity.builder()
-        .name(newDictUnitDto.getName())
-        .shortcut(newDictUnitDto.getShortcut())
+        .name(newDictUnitDto.name())
+        .shortcut(newDictUnitDto.shortcut())
         .build();
 
     DictQuantityTypeBasicEntity dictQuantityTypeBasicEntity = dictQuantityTypeBasicRepository.save(item);
 
     log.info("add new item to dict_QuantityType_basic: id {}, value {}, shortcut {}",
         dictQuantityTypeBasicEntity.getId(),
-        newDictUnitDto.getName(),
-        newDictUnitDto.getShortcut());
+        newDictUnitDto.name(),
+        newDictUnitDto.shortcut());
 
     DictQuantityTypeEntity dictQuantityTypeEntity = DictQuantityTypeEntity.builder()
         .dictQuantityTypeBasicEntity(dictQuantityTypeBasicEntity)
@@ -88,8 +95,9 @@ public class DictQuantityTypeService {
 
   public List<DictQuantityTypeDto> getDictQuantityType(Long userId) {
     List<DictQuantityTypeEntity> all = dictQuantityTypeRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
 
-    return all.stream().map(DictQuantityTypeSerializer::convert)
+    return all.stream().map(dictQuantityType -> DictQuantityTypeSerializer.convert(dictQuantityType, lang))
         .collect(Collectors.toList());
   }
 
@@ -118,5 +126,4 @@ public class DictQuantityTypeService {
       throw new RuntimeException("Cannot delete dict quantity type due to data integrity violation");
     }
   }
-
 }

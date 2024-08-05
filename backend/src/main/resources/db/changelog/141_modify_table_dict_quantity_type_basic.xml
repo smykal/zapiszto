@@ -1,0 +1,51 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="temporary change datatype" author="smykalm">
+        <modifyDataType tableName="dict_quantity_type_basic" columnName="name" newDataType="varchar"/>
+    </changeSet>
+
+    <changeSet id="input json rep" author="smykalm">
+        <update tableName="dict_quantity_type_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "repetitions",
+                    "es": "repeticiones",
+                    "it": "ripetizioni",
+                    "pl": "powtórzenia",
+                    "ru": "повторения",
+                    "ua": "повторення"
+                }
+                ]]>
+            </column>
+            <where>id = '042ac157-4ead-4a6b-918b-3f094d2c20a7'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="input json sec" author="smykalm">
+        <update tableName="dict_quantity_type_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "seconds",
+                    "es": "segundos",
+                    "it": "secondi",
+                    "pl": "sekundy",
+                    "ru": "секунды",
+                    "ua": "секунди"
+                }
+                ]]>
+            </column>
+            <where>id = '86309c57-3bd3-42cb-a589-477fb7c64490'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="finaly change datatype" author="smykalm">
+        <modifyDataType tableName="dict_quantity_type_basic" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+</databaseChangeLog>

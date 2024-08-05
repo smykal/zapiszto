@@ -30,11 +30,11 @@ public class GoalsSerializer implements SerializerCommon {
         .getDictUnitsBasicEntity() != null) {
       return goalEntity.getDictUnitsEntity()
           .getDictUnitsBasicEntity()
-          .getName();
+          .getName().get("en");
     } else {
       return goalEntity.getDictUnitsEntity()
           .getDictUnitsPerUserEntity()
-          .getName();
+          .getName().get("en");
     }
   }
 

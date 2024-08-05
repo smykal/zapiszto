@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -23,6 +24,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "dict_units_per_user")
@@ -41,11 +44,13 @@ public class DictUnitsPerUserEntity {
   @Column(name = "user_id")
   Long user_id;
 
+  @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "name")
-  String name;
+  HashMap<String, String> name;
 
+  @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "shortcut")
-  String shortcut;
+  HashMap<String, String>  shortcut;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)

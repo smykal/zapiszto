@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.dictionaries.dictUnits.service;
 
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
 import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsBasic.entity.DictUnitsBasicEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsBasic.repository.DictUnitsBasicRepository;
 import com.zapiszto.controllers.dictionaries.dictUnits.dictUnitsPerUser.entity.DictUnitsPerUserEntity;
@@ -9,6 +10,7 @@ import com.zapiszto.controllers.dictionaries.dictUnits.dto.NewDictUnitDto;
 import com.zapiszto.controllers.dictionaries.dictUnits.entity.DictUnitsEntity;
 import com.zapiszto.controllers.dictionaries.dictUnits.repository.DictUnitsRepository;
 import com.zapiszto.controllers.dictionaries.dictUnits.serializer.DictUnitsSerializer;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -31,12 +33,16 @@ public class DictUnitsService {
   @Autowired
   DictUnitsPerUserRepository dictUnitsPerUserRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
+
   @Transactional
   public void addDictUnit(NewDictUnitDto newDictUnitDto, Long userId) {
     var item = DictUnitsPerUserEntity.builder()
-        .id(newDictUnitDto.getId())
-        .name(newDictUnitDto.getName())
-        .shortcut(newDictUnitDto.getShortcut())
+        .id(newDictUnitDto.id())
+        .name(newDictUnitDto.name())
+        .shortcut(newDictUnitDto.shortcut())
         .user_id(userId)
         .build();
 
@@ -44,8 +50,8 @@ public class DictUnitsService {
 
     log.info("add new item to dict_units_per_user: id {}, value {}, shortcut {}, user {}",
         dictUnitsPerUserEntity.getId(),
-        newDictUnitDto.getName(),
-        newDictUnitDto.getShortcut(),
+        newDictUnitDto.name(),
+        newDictUnitDto.shortcut(),
         userId);
 
     DictUnitsEntity dictUnitsEntity = DictUnitsEntity.builder()
@@ -62,17 +68,17 @@ public class DictUnitsService {
   @Transactional
   public void addDictUnit(NewDictUnitDto newDictUnitDto) {
     var item = DictUnitsBasicEntity.builder()
-        .id(newDictUnitDto.getId())
-        .name(newDictUnitDto.getName())
-        .shortcut(newDictUnitDto.getShortcut())
+        .id(newDictUnitDto.id())
+        .name(newDictUnitDto.name())
+        .shortcut(newDictUnitDto.shortcut())
         .build();
 
     DictUnitsBasicEntity dictUnitsBasicEntity = dictUnitsBasicRepository.save(item);
 
     log.info("add new item to dict_units_basic: id {}, value {}, shortcut {}",
         dictUnitsBasicEntity.getId(),
-        newDictUnitDto.getName(),
-        newDictUnitDto.getShortcut());
+        newDictUnitDto.name(),
+        newDictUnitDto.shortcut());
 
     DictUnitsEntity dictUnitsEntity = DictUnitsEntity.builder()
         .dictUnitsBasicEntity(dictUnitsBasicEntity)
@@ -87,8 +93,9 @@ public class DictUnitsService {
 
   public List<DictUnitsDto> getDictUnits(Long userId) {
     List<DictUnitsEntity> all = dictUnitsRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
 
-    return all.stream().map(DictUnitsSerializer::convert)
+    return all.stream().map(dictUnitsEntity -> DictUnitsSerializer.convert(dictUnitsEntity, lang))
         .collect(Collectors.toList());
   }
 
