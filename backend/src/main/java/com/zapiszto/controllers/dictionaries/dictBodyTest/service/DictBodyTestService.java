@@ -10,6 +10,7 @@ import com.zapiszto.controllers.dictionaries.dictBodyTest.entity.DictBodyTestEnt
 import com.zapiszto.controllers.dictionaries.dictBodyTest.repository.DictBodyTestRepository;
 import com.zapiszto.controllers.dictionaries.dictBodyTest.serializer.DictBodyTestSerializer;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class DictBodyTestService {
   @Transactional
   public DictBodyTestDto addDictBodyTest(NewDictBodyTestDto newDictBodyTestDto, Long userId) {
     var item = DictBodyTestPerUserEntity.builder()
+        .id(UUID.randomUUID())
         .name(newDictBodyTestDto.getName())
         .user_id(userId)
         .description(newDictBodyTestDto.getDescription())
@@ -49,6 +51,7 @@ public class DictBodyTestService {
     );
 
     DictBodyTestEntity dictBodyTestEntity = DictBodyTestEntity.builder()
+        .id(UUID.randomUUID())
         .dictBodyTestPerUserEntity(dictBodyTestPerUserEntity)
         .build();
 
@@ -104,7 +107,7 @@ public class DictBodyTestService {
   }
 
   @Transactional
-  public String deleteDictBodyTestPerUser(Long userId, int itemToDelete) {
+  public String deleteDictBodyTestPerUser(Long userId, UUID itemToDelete) {
     try {
       dictBodyTestRepository.deleteDictBodyTestPerUser(itemToDelete);
       dictBodyTestRepository.deleteDictBodyTestPerUser(itemToDelete, userId);
@@ -117,7 +120,7 @@ public class DictBodyTestService {
   }
 
   @Transactional
-  public String deleteDictBodyTestBasic(Long userId, int itemToDelete) {
+  public String deleteDictBodyTestBasic(Long userId, UUID itemToDelete) {
     try {
       dictBodyTestRepository.deleteDictBodyTest(itemToDelete);
       dictBodyTestRepository.deleteDictBodyTestBasic(itemToDelete);

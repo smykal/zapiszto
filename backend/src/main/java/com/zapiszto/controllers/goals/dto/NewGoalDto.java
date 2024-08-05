@@ -21,7 +21,7 @@ public class NewGoalDto {
   UUID id;
   UUID clientId;
   Integer dictBodyParamId;
-  Integer dictBodyTestId;
+  UUID dictBodyTestId;
   UUID dictUnitId;
   String action;
   String value;

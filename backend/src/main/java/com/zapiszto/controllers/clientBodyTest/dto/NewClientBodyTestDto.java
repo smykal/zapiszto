@@ -18,6 +18,6 @@ import lombok.experimental.FieldDefaults;
 public class NewClientBodyTestDto {
   UUID id;
   UUID clientId;
-  int dictBodyTestId;
+  UUID dictBodyTestId;
   String result;
 }

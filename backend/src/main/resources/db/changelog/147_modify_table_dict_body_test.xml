@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Step 1: Delete all entries from the tables -->
+    <changeSet id="1-delete-all-entries-body-test" author="smykalm">
+        <sql>
+            DELETE FROM dict_body_test;
+        </sql>
+        <sql>
+            DELETE FROM dict_body_test_basic;
+        </sql>
+        <sql>
+            DELETE FROM dict_body_test_per_user;
+        </sql>
+        <sql>
+            DELETE FROM goals;
+        </sql>
+        <sql>
+            DELETE FROM client_body_tests;
+        </sql>
+    </changeSet>
+
+    <!-- Step 2: Drop foreign keys -->
+    <changeSet id="2-drop-foreign-keys-body-test" author="smykalm">
+        <dropForeignKeyConstraint baseTableName="dict_body_test" constraintName="fk_dict_body_test_basic"/>
+        <dropForeignKeyConstraint baseTableName="dict_body_test" constraintName="fk_dict_body_test_per_user"/>
+        <dropForeignKeyConstraint baseTableName="goals" constraintName="goals_dict_body_test_id_fk"/>
+        <dropForeignKeyConstraint baseTableName="client_body_tests" constraintName="fk_client_body_tests_dict_body_test"/>
+    </changeSet>
+
+    <!-- Step 3: Add new UUID columns -->
+    <changeSet id="3-add-uuid-columns-body-test" author="smykalm">
+        <addColumn tableName="dict_body_test_basic">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="dict_body_test_per_user">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="dict_body_test">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="goals">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="client_body_tests">
+            <column name="new_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- Step 4: Drop old integer columns -->
+    <changeSet id="4-drop-old-id-columns-body-test" author="smykalm">
+        <dropColumn columnName="id" tableName="dict_body_test_basic"/>
+        <dropColumn columnName="id" tableName="dict_body_test_per_user"/>
+        <dropColumn columnName="id" tableName="dict_body_test"/>
+        <dropColumn columnName="id" tableName="goals"/>
+        <dropColumn columnName="id" tableName="client_body_tests"/>
+    </changeSet>
+
+    <!-- Step 5: Rename new UUID columns to original names -->
+    <changeSet id="5-rename-uuid-columns-body-test" author="smykalm">
+        <renameColumn tableName="dict_body_test_basic" oldColumnName="new_id" newColumnName="id"/>
+        <renameColumn tableName="dict_body_test_per_user" oldColumnName="new_id" newColumnName="id"/>
+        <renameColumn tableName="dict_body_test" oldColumnName="new_id" newColumnName="id"/>
+        <renameColumn tableName="goals" oldColumnName="new_id" newColumnName="id"/>
+        <renameColumn tableName="client_body_tests" oldColumnName="new_id" newColumnName="id"/>
+    </changeSet>
+
+    <!-- Step 6: Drop and add foreign key columns with UUID type in dict_body_test and goals -->
+    <changeSet id="6-drop-add-foreign-keys-body-test" author="smykalm">
+        <dropColumn columnName="dict_body_test_basic_id" tableName="dict_body_test"/>
+        <addColumn tableName="dict_body_test">
+            <column name="dict_body_test_basic_id" type="UUID"/>
+        </addColumn>
+        <dropColumn columnName="dict_body_test_per_user_id" tableName="dict_body_test"/>
+        <addColumn tableName="dict_body_test">
+            <column name="dict_body_test_per_user_id" type="UUID"/>
+        </addColumn>
+        <dropColumn columnName="dict_body_test_id" tableName="goals"/>
+        <addColumn tableName="goals">
+            <column name="dict_body_test_id" type="UUID"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- Step 1: Add primary key to dict_body_test_basic.id -->
+    <changeSet id="1-add-primary-key-dict-body-test-basic" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_body_test_basic" tableName="dict_body_test_basic"/>
+    </changeSet>
+
+    <!-- Step 2: Add primary key to dict_body_test_per_user.id -->
+    <changeSet id="2-add-primary-key-dict-body-test-per-user" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_body_test_per_user" tableName="dict_body_test_per_user"/>
+    </changeSet>
+
+    <!-- Step 3: Add primary key to dict_body_test.id -->
+    <changeSet id="3-add-primary-key-dict-body-test" author="smykalm">
+        <addPrimaryKey columnNames="id" constraintName="pk_dict_body_test" tableName="dict_body_test"/>
+    </changeSet>
+
+    <!-- Step 6: Add foreign keys back -->
+    <changeSet id="6-add-foreign-keys-back-body-test" author="smykalm">
+        <dropColumn columnName="dict_body_test_id" tableName="client_body_tests"/>
+        <addColumn tableName="client_body_tests">
+            <column name="dict_body_test_id" type="UUID"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="dict_body_test" baseColumnNames="dict_body_test_basic_id"
+                                 constraintName="fk_dict_body_test_basic" referencedTableName="dict_body_test_basic"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="dict_body_test" baseColumnNames="dict_body_test_per_user_id"
+                                 constraintName="fk_dict_body_test_per_user" referencedTableName="dict_body_test_per_user"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="goals" baseColumnNames="dict_body_test_id"
+                                 constraintName="fk_goals_dict_body_test" referencedTableName="dict_body_test"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="client_body_tests" baseColumnNames="dict_body_test_id"
+                                 constraintName="fk_client_body_tests_dict_body_test" referencedTableName="dict_body_test"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

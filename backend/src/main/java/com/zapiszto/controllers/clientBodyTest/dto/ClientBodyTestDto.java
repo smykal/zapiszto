@@ -1,5 +1,6 @@
 package com.zapiszto.controllers.clientBodyTest.dto;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,10 +16,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ClientBodyTestDto {
-  int id;
+  UUID id;
   int dict_body_test_id;
   String dict;
-  Long dict_id;
+  UUID dict_id;
   String name;
   String result;
   String description;

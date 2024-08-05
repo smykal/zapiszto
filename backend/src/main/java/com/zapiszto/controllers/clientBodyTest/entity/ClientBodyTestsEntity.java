@@ -42,7 +42,7 @@ public class ClientBodyTestsEntity {
   DictBodyTestEntity dictBodyTestEntity;
 
   @Column(name = "dict_body_test_id", nullable = false)
-  int dictBodyTestId;
+  UUID dictBodyTestId;
 
   @Column(name = "result")
   String result;

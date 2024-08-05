@@ -53,7 +53,7 @@ public class GoalEntity {
   DictBodyTestEntity dictBodyTestEntity;
 
   @Column(name = "dict_body_test_id")
-  Long dictBodyTestId;
+  UUID dictBodyTestId;
 
   @ManyToOne
   @JoinColumn(name = "dict_unit_id", referencedColumnName = "id", insertable = false, updatable = false)
