@@ -13,6 +13,8 @@ target/*
 .settings
 .springBeans
 .sts4-cache
+.env_render
+.run.md
 
 ### IntelliJ IDEA ###
 .idea

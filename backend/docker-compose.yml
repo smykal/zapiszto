@@ -3,6 +3,9 @@ services:
     build:
       dockerfile: ./src/main/resources/docker/database/Dockerfile
     container_name: zapiszto-database
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     ports:
       - 5555:5432
     networks:
@@ -13,6 +16,14 @@ services:
       context: .
       dockerfile: ./src/main/resources/docker/backend/Dockerfile
     container_name: zapiszto-backend
+    environment:
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      ENCRYPTION_INITVECTOR: ${ENCRYPTION_INITVECTOR}
+      JWT_SECRET: ${JWT_SECRET}
+      MAIL_USER: ${MAIL_USER}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
     depends_on:
       - database
     ports:
