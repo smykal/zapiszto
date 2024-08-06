@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file backend/pom.xml -P render
+      run: mvn -B package --file backend/pom.xml clean install -Dspring.datasource.password=${{ vars.DATABASE_PASSWORD }} -Dspring.datasource.username=${{ vars.DATABASE_USER }} -Dencryption.key=${{ vars.ENCRYPTION_KEY }} -Dencryption.initVector=${{ vars.ENCRYPTION_INITVECTOR }} -Dspring.mail.password=${{ vars.EMAIL_PASSWORD }} -Dspring.mail.username=${{ vars.EMAIL_USER }} -DzapiszTo.app.jwtSecret=${{ vars.JWT_SECRET }}
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
