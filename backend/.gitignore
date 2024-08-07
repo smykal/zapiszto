@@ -4,6 +4,8 @@ target/*
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+.env_render
+.run.md
 
 ### STS ###
 .apt_generated
@@ -13,8 +15,6 @@ target/*
 .settings
 .springBeans
 .sts4-cache
-.env_render
-.run.md
 
 ### IntelliJ IDEA ###
 .idea
