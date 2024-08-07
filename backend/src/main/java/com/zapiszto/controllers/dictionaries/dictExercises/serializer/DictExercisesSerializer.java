@@ -3,11 +3,13 @@ package com.zapiszto.controllers.dictionaries.dictExercises.serializer;
 import com.zapiszto.controllers.common.SerializerCommon;
 import com.zapiszto.controllers.dictionaries.dictExercises.dto.DictExercisesDto;
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.utilities.translator.Translations;
 
-public class DictExercisesSerializer implements SerializerCommon {
+public class DictExercisesSerializer extends Translations implements SerializerCommon {
 
 
-  public static DictExercisesDto convert(DictExercisesEntity dictExercisesEntity) {
+  public static DictExercisesDto convert(DictExercisesEntity dictExercisesEntity, Languages language) {
     boolean isExerciseBasic = dictExercisesEntity.getDictExercisesBasicEntity() != null;
 
     if (isExerciseBasic) {
@@ -18,7 +20,7 @@ public class DictExercisesSerializer implements SerializerCommon {
             .id(dictExercisesEntity.getId())
             .dict(BASIC)
             .dict_id( dictExercisesEntity.getDictExercisesBasicEntity().getId())
-            .name(dictExercisesEntity.getDictExercisesBasicEntity().getName())
+            .name(translate(dictExercisesEntity.getDictExercisesBasicEntity().getName(), language))
             .category_type(BASIC)
             .category_id(dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getId())
             .category_name(dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getDictCategoryBasicEntity().getName())
@@ -28,7 +30,7 @@ public class DictExercisesSerializer implements SerializerCommon {
             .id(dictExercisesEntity.getId())
             .dict(BASIC)
             .dict_id( dictExercisesEntity.getDictExercisesBasicEntity().getId())
-            .name(dictExercisesEntity.getDictExercisesBasicEntity().getName())
+            .name(translate(dictExercisesEntity.getDictExercisesBasicEntity().getName(), language))
             .category_type(PER_USER)
             .category_id(dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getId())
             .category_name(dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getDictCategoryPerUserEntity().getName())
@@ -42,7 +44,7 @@ public class DictExercisesSerializer implements SerializerCommon {
             .id(dictExercisesEntity.getId())
             .dict(PER_USER)
             .dict_id(dictExercisesEntity.getDictExercisesPerUserEntity().getId())
-            .name(dictExercisesEntity.getDictExercisesPerUserEntity().getName())
+            .name(translate(dictExercisesEntity.getDictExercisesPerUserEntity().getName() , language))
             .category_type(PER_USER)
             .category_id(dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getId())
             .category_name(dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryPerUserEntity().getName())
@@ -52,7 +54,7 @@ public class DictExercisesSerializer implements SerializerCommon {
             .id(dictExercisesEntity.getId())
             .dict(PER_USER)
             .dict_id(dictExercisesEntity.getDictExercisesPerUserEntity().getId())
-            .name(dictExercisesEntity.getDictExercisesPerUserEntity().getName())
+            .name(translate(dictExercisesEntity.getDictExercisesPerUserEntity().getName() , language))
             .category_type(BASIC)
             .category_id(dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getId())
             .category_name(dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryBasicEntity().getName())

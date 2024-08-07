@@ -1,0 +1,37 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="temporary change datatype in dict_exercises" author="smykalm">
+        <modifyDataType tableName="dict_exercises_basic" columnName="name" newDataType="varchar"/>
+    </changeSet>
+
+    <changeSet id="input json warm up" author="smykalm">
+        <update tableName="dict_exercises_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "benchpress",
+                    "es": "press de banca",
+                    "it": "distensione su panca",
+                    "pl": "wyciskanie na ławce",
+                    "ru": "жим лёжа",
+                    "ua": "жим лежачи"
+                }
+                ]]>
+            </column>
+            <where>id = '8437d8bd-7adb-4740-83fa-ecb1e2f64db9'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="finaly change datatype" author="smykalm">
+        <modifyDataType tableName="dict_exercises_basic" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+    <changeSet id="finaly change datatype for jsonb" author="smykalm">
+        <modifyDataType tableName="dict_exercises_per_user" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -295,3 +295,5 @@ databaseChangeLog:
       file: db/changelog/147_modify_table_dict_body_test.xml
   - include:
       file: db/changelog/148_modify_table_dict_body_test_set_jsob.xml
+  - include:
+      file: db/changelog/149_modify_table_dict_exercises_set_jsonb.xml

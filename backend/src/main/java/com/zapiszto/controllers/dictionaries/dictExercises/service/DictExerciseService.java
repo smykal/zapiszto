@@ -11,6 +11,8 @@ import com.zapiszto.controllers.dictionaries.dictExercises.dto.NewDictExerciseDt
 import com.zapiszto.controllers.dictionaries.dictExercises.entity.DictExercisesEntity;
 import com.zapiszto.controllers.dictionaries.dictExercises.repository.DictExercisesRepository;
 import com.zapiszto.controllers.dictionaries.dictExercises.serializer.DictExercisesSerializer;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -36,13 +38,17 @@ public class DictExerciseService {
   @Autowired
   DictCategoryRepository dictCategoryRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
   @Transactional
   public DictExercisesDto addDictExercise(NewDictExerciseDto newDictExerciseDto, Long userId) {
-    var item = DictExercisesPerUserEntity.builder()
-        .id(newDictExerciseDto.getId())
-        .name(newDictExerciseDto.getName())
+    Languages lang = userDetailsRepository.userLanguage(userId);
+    var  item = DictExercisesPerUserEntity.builder()
+        .id(newDictExerciseDto.id())
+        .name(newDictExerciseDto.name())
         .user_id(userId)
-        .dictCategoryId(newDictExerciseDto.getCategoryId())
+        .dictCategoryId(newDictExerciseDto.categoryId())
         .build();
 
     DictExercisesPerUserEntity dictExercisesPerUserEntity = dictExercisesPerUserRepository.save(item);
@@ -50,7 +56,7 @@ public class DictExerciseService {
     log.info(
         "add new item to dict_exercises_per_user: id {}, value {}, user {}",
         dictExercisesPerUserEntity.getId(),
-        newDictExerciseDto.getName(),
+        newDictExerciseDto.name(),
         userId
     );
 
@@ -62,7 +68,7 @@ public class DictExerciseService {
     DictExercisesEntity entity = dictExercisesRepository.save(dictExercisesEntity);
 
 
-    DictCategoryEntity dictCategoryEntity = dictCategoryRepository.getReferenceById(newDictExerciseDto.getCategoryId()
+    DictCategoryEntity dictCategoryEntity = dictCategoryRepository.getReferenceById(newDictExerciseDto.categoryId()
         .intValue());
     dictExercisesPerUserEntity.setDictCategoryEntity(dictCategoryEntity);
     entity.setDictExercisesPerUserEntity(dictExercisesPerUserEntity);
@@ -74,14 +80,14 @@ public class DictExerciseService {
             .getId()
     );
 
-    return DictExercisesSerializer.convert(entity);
+    return DictExercisesSerializer.convert(entity, lang);
   }
 
   @Transactional
   public void addDictExercise(NewDictExerciseDto newDictExerciseDto) {
     var item = DictExercisesBasicEntity.builder()
-            .id(newDictExerciseDto.getId())
-            .name(newDictExerciseDto.getName())
+            .id(newDictExerciseDto.id())
+            .name(newDictExerciseDto.name())
             .build();
 
     DictExercisesBasicEntity dictExercisesBasicEntity =
@@ -90,7 +96,7 @@ public class DictExerciseService {
     log.info(
         "add new item to dict_exercises_basic: id {}, value {}",
         dictExercisesBasicEntity.getId(),
-        newDictExerciseDto.getName()
+        newDictExerciseDto.name()
     );
 
     DictExercisesEntity dictExercisesEntity = DictExercisesEntity.builder()
@@ -109,9 +115,10 @@ public class DictExerciseService {
 
   public List<DictExercisesDto> getDictExercises(Long userId) {
     List<DictExercisesEntity> all = dictExercisesRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
 
     return all.stream()
-        .map(DictExercisesSerializer::convert)
+        .map(dictExercisesEntity -> DictExercisesSerializer.convert(dictExercisesEntity, lang))
         .collect(Collectors.toList());
   }
 

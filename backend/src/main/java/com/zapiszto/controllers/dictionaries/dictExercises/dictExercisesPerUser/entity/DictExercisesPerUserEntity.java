@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.util.HashMap;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "dict_exercises_per_user")
@@ -42,8 +45,8 @@ public class DictExercisesPerUserEntity {
   @Column(name = "user_id")
   Long user_id;
 
-  @Column(name = "name")
-  String name;
+  @JdbcTypeCode(SqlTypes.JSON)
+  HashMap<String, String> name;
 
   @ManyToOne
   @JoinColumn(name = "dict_category_id", referencedColumnName = "id", insertable = false, updatable = false)
