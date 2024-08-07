@@ -137,7 +137,7 @@ export type DictExercises = {
 
 export type NewDictExercises = {
                                 id: string
-                                name: string
+                                name: { [key: string]: string };
                                 categoryId: number
 }
 
