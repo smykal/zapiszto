@@ -9,6 +9,8 @@ import com.zapiszto.controllers.dictionaries.dictCategory.repository.DictCategor
 import com.zapiszto.controllers.dictionaries.dictCategory.dto.DictCategoryDto;
 import com.zapiszto.controllers.dictionaries.dictCategory.entity.DictCategoryEntity;
 import com.zapiszto.controllers.dictionaries.dictCategory.serializer.DictCategorySerializer;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.controllers.userDetails.repository.UserDetailsRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -30,12 +32,16 @@ public class DictCategoryService {
   @Autowired
   DictCategoryPerUserRepository dictCategoryPerUserRepository;
 
+  @Autowired
+  UserDetailsRepository userDetailsRepository;
+
   @Transactional
   public DictCategoryDto addDictCategory(NewDictCategoryDto newDictCategoryDto, Long userId) {
+    Languages lang = userDetailsRepository.userLanguage(userId);
     var item = DictCategoryPerUserEntity.builder()
-        .name(newDictCategoryDto.getName())
+        .name(newDictCategoryDto.name())
         .user_id(userId)
-        .description(newDictCategoryDto.getDescription())
+        .description(newDictCategoryDto.description())
         .build();
 
     DictCategoryPerUserEntity dictCategoryPerUserEntity = dictCategoryPerUserRepository.save(item);
@@ -43,7 +49,7 @@ public class DictCategoryService {
     log.info(
         "add new item to dict_Category_per_user: id {}, value {}, user {}",
         dictCategoryPerUserEntity.getId(),
-        newDictCategoryDto.getName(),
+        newDictCategoryDto.name(),
         userId
     );
 
@@ -61,14 +67,15 @@ public class DictCategoryService {
             .getId()
     );
 
-    return DictCategorySerializer.convert(entity);
+    return DictCategorySerializer.convert(entity, lang);
   }
 
   @Transactional
-  public void addDictCategory(NewDictCategoryDto newDictCategoryDto) {
+  public void addDictCategoryBasic(NewDictCategoryDto newDictCategoryDto, Long userId) {
+    Languages lang = userDetailsRepository.userLanguage(userId);
     var item = DictCategoryBasicEntity.builder()
-        .name(newDictCategoryDto.getName())
-        .description(newDictCategoryDto.getDescription())
+        .name(newDictCategoryDto.name())
+        .description(newDictCategoryDto.description())
         .build();
 
     DictCategoryBasicEntity dictCategoryBasicEntity =
@@ -77,7 +84,7 @@ public class DictCategoryService {
     log.info(
         "add new item to dict_Category_basic: id {}, value {}",
         dictCategoryBasicEntity.getId(),
-        newDictCategoryDto.getName()
+        newDictCategoryDto.name()
     );
 
     DictCategoryEntity dictCategoryEntity = DictCategoryEntity.builder()
@@ -96,9 +103,10 @@ public class DictCategoryService {
 
   public List<DictCategoryDto> getDictCategory(Long userId) {
     List<DictCategoryEntity> all = dictCategoryRepository.getAllForUser(userId);
+    Languages lang = userDetailsRepository.userLanguage(userId);
 
     return all.stream()
-        .map(DictCategorySerializer::convert)
+        .map(dictCategoryEntity -> DictCategorySerializer.convert(dictCategoryEntity, lang))
         .collect(Collectors.toList());
   }
 

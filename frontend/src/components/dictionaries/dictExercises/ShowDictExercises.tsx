@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Options from "./Options";
 import AddDictExercisePerUser from "./AddDictExercisePerUser";
 import Service from '../../../services/exercises';
+import CategoryService from '../../../services/dict/DictCategoryService'
 
 const ShowDictExercises = () => {
     const [dictExercises, setDictExercises] = useState<DictExercises[]>([]);
@@ -28,7 +29,7 @@ const ShowDictExercises = () => {
     };
 
     const loadDictCategories = () => {
-        Service.getDictCategory()
+        CategoryService.getDictCategory()
             .then(response => {
                 setDictCategories(response.data);
             })

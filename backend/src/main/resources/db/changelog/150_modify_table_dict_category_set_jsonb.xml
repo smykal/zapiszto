@@ -1,0 +1,209 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-delete-all-entries" author="yourname">
+        <sql>
+            UPDATE public.dict_category_basic SET description=null;
+        </sql>
+    </changeSet>
+
+    <changeSet id="temporary change datatype in dict_exercises" author="smykalm">
+        <modifyDataType tableName="dict_category_basic" columnName="name" newDataType="varchar"/>
+    </changeSet>
+
+    <changeSet id="input json warm up" author="smykalm">
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "chest",
+                    "es": "pecho",
+                    "it": "petto",
+                    "pl": "klatka piersiowa",
+                    "ru": "грудь",
+                    "ua": "груди"
+                }
+                ]]>
+            </column>
+            <where>id = '1'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "legs",
+                    "es": "piernas",
+                    "it": "gambe",
+                    "pl": "nogi",
+                    "ru": "ноги",
+                    "ua": "ноги"
+                }
+                ]]>
+            </column>
+            <where>id = '2'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "back",
+                    "es": "espalda",
+                    "it": "schiena",
+                    "pl": "plecy",
+                    "ru": "спина",
+                    "ua": "спина"
+                }
+                ]]>
+            </column>
+            <where>id = '3'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                "en": "arms",
+                "es": "brazos",
+                "it": "braccia",
+                "pl": "ramiona",
+                "ru": "руки",
+                "ua": "руки"
+                }
+                ]]>
+            </column>
+            <where>id = '4'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+               {
+                    "en": "biceps",
+                    "es": "bíceps",
+                    "it": "bicipiti",
+                    "pl": "biceps",
+                    "ru": "бицепсы",
+                    "ua": "біцепси"
+                }
+                ]]>
+            </column>
+            <where>id = '5'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "triceps",
+                    "es": "tríceps",
+                    "it": "tricipiti",
+                    "pl": "triceps",
+                    "ru": "трицепсы",
+                    "ua": "трицепси"
+                }
+                ]]>
+            </column>
+            <where>id = '6'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "shoulders",
+                    "es": "hombros",
+                    "it": "spalle",
+                    "pl": "ramiona",
+                    "ru": "плечи",
+                    "ua": "плечі"
+                }
+                ]]>
+            </column>
+            <where>id = '7'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+                {
+                    "en": "abdomen",
+                    "es": "abdomen",
+                    "it": "addome",
+                    "pl": "brzuch",
+                    "ru": "живот",
+                    "ua": "живіт"
+                }
+                ]]>
+            </column>
+            <where>id = '8'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+             {
+                "en": "calf",
+                "es": "pantorrilla",
+                "it": "polpaccio",
+                "pl": "łydka",
+                "ru": "икра",
+                "ua": "ікри"
+            }
+                ]]>
+            </column>
+            <where>id = '9'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+               {
+                    "en": "stretching",
+                    "es": "estiramiento",
+                    "it": "allungamento",
+                    "pl": "rozciąganie",
+                    "ru": "растяжка",
+                    "ua": "розтягнення"
+                }
+                ]]>
+            </column>
+            <where>id = '10'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+               {
+                    "en": "mobilization",
+                    "es": "movilización",
+                    "it": "mobilitazione",
+                    "pl": "mobilizacja",
+                    "ru": "мобилизация",
+                    "ua": "мобілізація"
+                }
+                ]]>
+            </column>
+            <where>id = '11'</where>
+        </update>
+        <update tableName="dict_category_basic">
+            <column name="name" type="varchar">
+                <![CDATA[
+               {
+                    "en": "rolling",
+                    "es": "rodar",
+                    "it": "rotolamento",
+                    "pl": "rolowanie",
+                    "ru": "катание",
+                    "ua": "катання"
+                }
+                ]]>
+            </column>
+            <where>id = '12'</where>
+        </update>
+
+    </changeSet>
+
+    <changeSet id="finaly change datatype" author="smykalm">
+        <modifyDataType tableName="dict_category_basic" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+    <changeSet id="finaly change datatype for jsonb" author="smykalm">
+        <modifyDataType tableName="dict_category_per_user" columnName="name" newDataType="jsonb"/>
+    </changeSet>
+
+</databaseChangeLog>

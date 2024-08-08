@@ -3,33 +3,40 @@ package com.zapiszto.controllers.dictionaries.dictCategory.serializer;
 import com.zapiszto.controllers.common.SerializerCommon;
 import com.zapiszto.controllers.dictionaries.dictCategory.dto.DictCategoryDto;
 import com.zapiszto.controllers.dictionaries.dictCategory.entity.DictCategoryEntity;
+import com.zapiszto.controllers.dictionaries.dictLanguages.options.Languages;
+import com.zapiszto.utilities.translator.Translations;
 
-public class DictCategorySerializer implements SerializerCommon {
+public class DictCategorySerializer extends Translations implements SerializerCommon {
 
-  public static DictCategoryDto convert(DictCategoryEntity dictCategoryEntity) {
+  public static DictCategoryDto convert(DictCategoryEntity dictCategoryEntity, Languages language) {
 
     if (dictCategoryEntity.getDictCategoryBasicEntity() != null) {
-      return DictCategoryDto.builder()
-          .id(dictCategoryEntity.getId())
-          .dict(BASIC)
-          .dict_id(dictCategoryEntity.getDictCategoryBasicEntity()
-              .getId())
-          .name(dictCategoryEntity.getDictCategoryBasicEntity()
-              .getName())
-          .description(dictCategoryEntity.getDictCategoryBasicEntity()
-              .getDescription())
-          .build();
+      var name = dictCategoryEntity.getDictCategoryBasicEntity()
+          .getName();
+      var description = dictCategoryEntity.getDictCategoryBasicEntity()
+          .getDescription();
+
+      return new DictCategoryDto(
+          dictCategoryEntity.getId(),
+          BASIC,
+          dictCategoryEntity.getDictCategoryBasicEntity().getId(),
+          translate(name, language),
+          translate(description, language)
+      );
+
     } else {
-      return DictCategoryDto.builder()
-          .id(dictCategoryEntity.getId())
-          .dict(PER_USER)
-          .dict_id(dictCategoryEntity.getDictCategoryPerUserEntity()
-              .getId())
-          .name(dictCategoryEntity.getDictCategoryPerUserEntity()
-              .getName())
-          .description(dictCategoryEntity.getDictCategoryPerUserEntity()
-              .getDescription())
-          .build();
+      var name = dictCategoryEntity.getDictCategoryPerUserEntity()
+          .getName();
+      var description = dictCategoryEntity.getDictCategoryPerUserEntity()
+          .getDescription();
+
+      return new DictCategoryDto(
+          dictCategoryEntity.getId(),
+          PER_USER,
+          dictCategoryEntity.getDictCategoryPerUserEntity().getId(),
+          translate(name, language),
+          translate(description, language)
+      );
     }
   }
 }

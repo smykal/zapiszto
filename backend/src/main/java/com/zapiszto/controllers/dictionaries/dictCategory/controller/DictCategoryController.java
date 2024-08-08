@@ -44,7 +44,7 @@ public class DictCategoryController implements ControllerCommon {
   ) {
     var userId = extractUserId();
     var role = extractUserRole();
-    dictCategoryService.addDictCategory(newDictCategoryDto);
+    dictCategoryService.addDictCategoryBasic(newDictCategoryDto, userId);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 

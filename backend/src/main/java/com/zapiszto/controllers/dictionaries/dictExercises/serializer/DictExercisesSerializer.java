@@ -16,48 +16,56 @@ public class DictExercisesSerializer extends Translations implements SerializerC
       boolean isCategoryBasic = dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getDictCategoryBasicEntity() != null;
 
       if (isCategoryBasic) {
+        var exerciseName = dictExercisesEntity.getDictExercisesBasicEntity().getName();
+        var categoryName = dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getDictCategoryBasicEntity().getName();
         return DictExercisesDto.builder()
             .id(dictExercisesEntity.getId())
             .dict(BASIC)
             .dict_id( dictExercisesEntity.getDictExercisesBasicEntity().getId())
-            .name(translate(dictExercisesEntity.getDictExercisesBasicEntity().getName(), language))
+            .name(translate(exerciseName, language))
             .category_type(BASIC)
             .category_id(dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getId())
-            .category_name(dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getDictCategoryBasicEntity().getName())
+            .category_name(translate(categoryName, language))
             .build();
       } else {
+        var exerciseName = dictExercisesEntity.getDictExercisesBasicEntity().getName();
+        var categoryName = dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getDictCategoryPerUserEntity().getName();
         return DictExercisesDto.builder()
             .id(dictExercisesEntity.getId())
             .dict(BASIC)
             .dict_id( dictExercisesEntity.getDictExercisesBasicEntity().getId())
-            .name(translate(dictExercisesEntity.getDictExercisesBasicEntity().getName(), language))
+            .name(translate(exerciseName , language))
             .category_type(PER_USER)
             .category_id(dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getId())
-            .category_name(dictExercisesEntity.getDictExercisesBasicEntity().getDictCategoryEntity().getDictCategoryPerUserEntity().getName())
+            .category_name(translate(categoryName, language))
             .build();
       }
     } else {
       boolean isCategoryPerUser = dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryPerUserEntity() != null;
 
       if (isCategoryPerUser) {
+        var exerciseName = dictExercisesEntity.getDictExercisesPerUserEntity().getName();
+        var categoryName = dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryPerUserEntity().getName();
         return DictExercisesDto.builder()
             .id(dictExercisesEntity.getId())
             .dict(PER_USER)
             .dict_id(dictExercisesEntity.getDictExercisesPerUserEntity().getId())
-            .name(translate(dictExercisesEntity.getDictExercisesPerUserEntity().getName() , language))
+            .name(translate(exerciseName, language))
             .category_type(PER_USER)
             .category_id(dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getId())
-            .category_name(dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryPerUserEntity().getName())
+            .category_name(translate(categoryName, language))
             .build();
       } else {
+        var exerciseName = dictExercisesEntity.getDictExercisesPerUserEntity().getName();
+        var categoryName = dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryBasicEntity().getName();
         return DictExercisesDto.builder()
             .id(dictExercisesEntity.getId())
             .dict(PER_USER)
             .dict_id(dictExercisesEntity.getDictExercisesPerUserEntity().getId())
-            .name(translate(dictExercisesEntity.getDictExercisesPerUserEntity().getName() , language))
+            .name(translate( exerciseName, language))
             .category_type(BASIC)
             .category_id(dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getId())
-            .category_name(dictExercisesEntity.getDictExercisesPerUserEntity().getDictCategoryEntity().getDictCategoryBasicEntity().getName())
+            .category_name(translate(categoryName, language))
             .build();
       }
     }
