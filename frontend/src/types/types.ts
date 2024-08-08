@@ -113,8 +113,8 @@ export type NewDictUnit = {
 }
 
 export type NewDictCategory = {
-                                name: string,
-                                description: string
+                                name: { [key: string]: string },
+                                description: { [key: string]: string }
 }
 
 export type DictCategories = {
@@ -137,7 +137,7 @@ export type DictExercises = {
 
 export type NewDictExercises = {
                                 id: string
-                                name: string
+                                name: { [key: string]: string };
                                 categoryId: number
 }
 

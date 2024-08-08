@@ -116,7 +116,7 @@ public class ExerciseSerializer implements SerializerCommon {
         return exercise.getDictExercisesBasicEntity()
             .getDictCategoryEntity()
             .getDictCategoryBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (exercise.getDictExercisesPerUserEntity() != null) {
         if (exercise.getDictExercisesPerUserEntity()
             .getDictCategoryEntity()
@@ -124,12 +124,12 @@ public class ExerciseSerializer implements SerializerCommon {
           return exercise.getDictExercisesPerUserEntity()
               .getDictCategoryEntity()
               .getDictCategoryBasicEntity()
-              .getName();
+              .getName().get("en");
         } else {
           return exercise.getDictExercisesPerUserEntity()
               .getDictCategoryEntity()
               .getDictCategoryPerUserEntity()
-              .getName();
+              .getName().get("en");
         }
       }
     }
@@ -167,10 +167,10 @@ public class ExerciseSerializer implements SerializerCommon {
       DictExercisesEntity exercise = exerciseOptional.get();
       if (exercise.getDictExercisesBasicEntity() != null) {
         return exercise.getDictExercisesBasicEntity()
-            .getName();
+            .getName().get("en");
       } else if (exercise.getDictExercisesPerUserEntity() != null) {
         return exercise.getDictExercisesPerUserEntity()
-            .getName();
+            .getName().get("en");
       }
     }
 

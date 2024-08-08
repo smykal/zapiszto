@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.HashMap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "dict_category_per_user")
@@ -35,14 +38,14 @@ public class DictCategoryPerUserEntity {
   @Column(name = "id")
   Long id;
 
-  @Column(name = "name")
-  String name;
+  @JdbcTypeCode(SqlTypes.JSON)
+  HashMap<String, String> name;
 
   @Column(name = "user_id")
   Long user_id;
 
-  @Column(name = "description")
-  String description;
+  @JdbcTypeCode(SqlTypes.JSON)
+  HashMap<String, String> description;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)

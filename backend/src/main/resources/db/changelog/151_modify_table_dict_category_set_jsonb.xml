@@ -1,0 +1,15 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="finaly change datatype" author="smykalm">
+        <modifyDataType tableName="dict_category_basic" columnName="description" newDataType="jsonb"/>
+    </changeSet>
+
+    <changeSet id="finaly change datatype for jsonb" author="smykalm">
+        <modifyDataType tableName="dict_category_per_user" columnName="description" newDataType="jsonb"/>
+    </changeSet>
+
+</databaseChangeLog>

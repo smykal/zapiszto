@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Options from "./Options";
 import AddDictExercisePerUser from "./AddDictExercisePerUser";
 import Service from '../../../services/exercises';
+import CategoryService from '../../../services/dict/DictCategoryService'
 
 const ShowDictExercises = () => {
     const [dictExercises, setDictExercises] = useState<DictExercises[]>([]);
@@ -28,7 +29,7 @@ const ShowDictExercises = () => {
     };
 
     const loadDictCategories = () => {
-        Service.getDictCategory()
+        CategoryService.getDictCategory()
             .then(response => {
                 setDictCategories(response.data);
             })
@@ -49,7 +50,7 @@ const ShowDictExercises = () => {
         setDictExercises(prevExercises => [...prevExercises, newExercise]);
     };
 
-    const handleDeleteExercise = (id: string) => { // zmieniono na string
+    const handleDeleteExercise = (id: string) => {
         setDictExercises(prevExercises => prevExercises.filter(exercise => exercise.id !== id));
     };
 
@@ -97,7 +98,7 @@ const ShowDictExercises = () => {
                     {filteredExercises.map((row) => (
                         <tr key={row.id} style={{ borderBottom: '1px solid #ddd' }}>
                             <td>{row.id}</td>
-                            <td>{row.name}</td>
+                            <td>{row.name}</td> {/* Assuming 'en' is the default language */}
                             <td>{row.category_name}</td>
                             <td>{row.dict === "PER_USER" ? <Options item={row.id} onDeleteExercise={handleDeleteExercise} /> : "menu niedostępne"}</td>
                         </tr>
